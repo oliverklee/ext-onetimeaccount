@@ -1,0 +1,25 @@
+# make the FE plugin work with sb_accessiblecontent
+tt_content.list.20.onetimeaccount_pi1 =< plugin.tx_onetimeaccount_pi1
+
+plugin.tx_onetimeaccount_pi1 {
+	# Do not touch this variable! This is needed for checking whether this static template has been included correctly.
+	isStaticTemplateLoaded = 1
+
+	# location of the HTML template file
+	templateFile = EXT:onetimeaccount/pi1/onetimeaccount_pi1.html
+
+	# location of the CSS file (leave empty to include no CSS file)
+	cssFile = typo3conf/ext/onetimeaccount/pi1/onetimeaccount_pi1.css
+
+	# whether to use formal or informal language
+	salutation = formal
+
+	# comma-separated list of the FE user fields that can be edited in the form
+	feUserFieldsToDisplay = company, gender, name, zip, country, email, telephone, fax
+
+	# PID of the system folder in which new FE user accounts will be stored
+	systemFolderForNewFeUserRecords =
+
+	# ID of the group for new FE users (optional), leave empty to set no group
+	groupForNewFeUsers =
+}
