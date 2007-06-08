@@ -17,7 +17,12 @@
 		</datahandler:DBMM>
 		<renderer:TEMPLATE>
 			<template>
-				<path>EXT:onetimeaccount/pi1/onetimeaccount_pi1.html</path>
+				<path>
+					<userobj>
+						<extension>this</extension>
+						<method>getTemplatePath</method>
+					</userobj>
+				</path>
 				<subpart>###ONETIMEACCOUNT_FORM###</subpart>
 				<errortag>errors</errortag>
 			</template>
