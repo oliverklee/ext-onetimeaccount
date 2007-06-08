@@ -1,0 +1,81 @@
+.tx-onetimeaccount-pi1-clear {
+  clear: both;
+  width: 1px;
+  height: 1px;
+}
+
+.tx-onetimeaccount-pi1-error {
+  color: #f00;
+  background-color: inherit;
+  font-weight: bold;
+}
+
+.tx-onetimeaccount-pi1 fieldset {
+	margin: 0 0 1em;
+}
+
+.tx-onetimeaccount-pi1 dl {
+	margin: 0;
+}
+
+.tx-onetimeaccount-pi1 dt,
+.tx-onetimeaccount-pi1 dd {
+	float: left;
+}
+
+.tx-onetimeaccount-pi1 dt {
+	width: 11em;
+	margin: 0 .5em .5em 0;
+	clear: both;
+}
+
+.tx-onetimeaccount-pi1 dd {
+	margin: 0 0 .5em;
+}
+
+.tx-onetimeaccount-pi1 dd select,
+.tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-first_name,
+.tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-zip {
+	margin: 0 .5em 0 0;
+}
+
+.tx-onetimeaccount-pi1 input,
+.tx-onetimeaccount-pi1 textarea,
+.tx-onetimeaccount-pi1-country select,
+.tx-onetimeaccount-pi1-status select {
+		width: 20em;
+}
+
+.tx-onetimeaccount-pi1 textarea {
+	height: 6em;
+}
+
+.tx-onetimeaccount-pi1-gender select {
+	width: 5em;
+}
+
+.tx-onetimeaccount-pi1-name input,
+.tx-onetimeaccount-pi1-city input {
+	width: 14em;
+}
+
+.tx-onetimeaccount-pi1-first_name input {
+	width: 4em;
+}
+
+.tx-onetimeaccount-pi1-last_name input {
+	width: 9em;
+}
+
+.tx-onetimeaccount-pi1-zip input {
+	width: 4em;
+}
+
+.tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-submit {
+	margin: .5em 0;
+	float: right;
+}
+
+.tx-onetimeaccount-pi1-submit input {
+	width: auto;
+}

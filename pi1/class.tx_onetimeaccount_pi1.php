@@ -36,6 +36,18 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	var $scriptRelPath = 'pi1/class.tx_onetimeaccount_pi1.php';
 	var $extKey = 'onetimeaccount';
 
+	/** Formidable object that creates the edit form. */
+	var $form = null;
+
+	/**
+	 * the names of the form fields to show (with the keys being the same as
+	 * the values for performance reasons
+	 */
+	var $formFieldsToShow = array();
+
+	/** an instance of tx_staticinfotables_pi1 */
+	var $staticInfo = null;
+
 	/**
 	 * Creates the plugin output.
 	 *
@@ -53,11 +65,183 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		// disable caching
 		$this->pi_USER_INT_obj = 1;
 
-		$result = '<p>Hello world!</p>';
+		$this->initializeForm();
+
+		$result = $this->renderForm();
 		$result .= $this->checkConfiguration();
 
 		return $this->pi_wrapInBaseClass($result);
 	}
+
+	/**
+	 * Initializes the FORMidable object and all related settings.
+	 *
+	 * @access	protected
+	 */
+	function initializeForm() {
+		$this->setFormFieldsToShow();
+
+		$this->form =& t3lib_div::makeInstance('tx_ameosformidable');
+		$this->form->init(
+			$this,
+			t3lib_extmgm::extPath($this->extKey).'pi1/onetimeaccount_pi1.xml',
+			// false = only create new records
+			false
+		);
+
+		return;
+	}
+
+	/**
+	 * Reads the list of form fields to show from the configuration and stores
+	 * it in $this->formFieldsToShow.
+	 *
+	 * @access	private
+	 */
+	function setFormFieldsToShow() {
+		$this->formFieldsToShow = t3lib_div::trimExplode(
+			',',
+			$this->getConfValueString('feUserFieldsToDisplay', 's_general')
+		);
+
+		return;
+	}
+
+	/**
+	 * Creates the HTML output of the form.
+	 *
+	 * @return 	string		HTML of the form
+	 *
+	 * @access	protected
+	 */
+	function renderForm() {
+		$rawForm = $this->form->_render();
+
+		$this->processTemplate($rawForm);
+		$this->setLabels();
+		$this->hideUnusedFormFields();
+
+		return $this->substituteMarkerArrayCached('', 1);
+	}
+
+	/**
+	 * Hides form fields that are disabled via TS setup from the templating
+	 * process.
+	 *
+	 * @access	protected
+	 */
+	function hideUnusedFormFields() {
+		static $availableFormFields = array(
+			'company',
+			'gender',
+			'name',
+			'first_name',
+			'last_name',
+			'address',
+			'zip',
+			'city',
+			'country',
+			'static_info_country',
+			'email',
+			'telephone',
+			'fax',
+			'date_of_birth',
+			'status'
+		);
+
+		$formFieldsToHide = array_diff(
+			$availableFormFields,
+			$this->formFieldsToShow
+		);
+
+		$this->readSubpartsToHide(
+			implode(',', $formFieldsToHide),
+			'wrapper'
+		);
+
+		return;
+	}
+
+	/**
+	 * Checks whether a form field should be displayed (and evaluated) at all.
+	 * This is specified via TS setup (or flexforms) using the
+	 * "feUserFieldsToDisplay" variable.
+	 *
+	 * @param	array		the contents of the "params" child of the userobj node as key/value pairs (used for retrieving the current form field name)
+	 *
+	 * @return	boolean		true if the current form field should be displayed, false otherwise
+	 *
+	 * @access	public
+	 */
+	function isFormFieldEnabled($parameters) {
+		return in_array($parameters['elementname'], $this->formFieldsToShow);
+	}
+
+	/**
+	 * Provides a localized list of localized country names from static_tables.
+	 *
+	 * If $parameters['alpha3'] is set, the alpha3 codes will be used as form
+	 * values. Otherwise, the localized country names will be used as values.
+	 *
+	 * @param	array		array that contains any pre-filled data (unused)
+	 * @param	array		contents of the "params" XML child of the userobj node (needs to contain an element with the key "key")
+	 *
+	 * @return	array		a list of localized country names from static_tables as an array with the keys "caption" (for the localized title) and "value" (either the country's alpha3 code or the localized name)
+	 *
+	 * @access	public
+	 */
+	function populateListCountries($unused, $parameters) {
+		$this->initStaticInfo();
+		$allCountries = $this->staticInfo->initCountries();
+
+		$result = array();
+		// Add an empty item at the top so we won't have Afghanistan (the first
+		// entry) pre-selected for empty values.
+		$result[] = array(
+			'caption' => ' ',
+			'value' => ''
+		);
+
+		foreach ($allCountries as $alpha3Code => $currentCountryName) {
+			$result[] = array(
+				'caption' => $currentCountryName,
+				'value' => (isset($parameters['alpha3']))
+					? $alpha3Code : $currentCountryName
+			);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Creates and initializes $this->staticInfo (if that hasn't been done yet).
+	 *
+	 * @access	private
+	 */
+	function initStaticInfo() {
+		if (!$this->staticInfo) {
+			$this->staticInfo =& t3lib_div::makeInstance('tx_staticinfotables_pi1');
+			$this->staticInfo->init();
+		}
+
+		return;
+	}
+
+	/**
+	 * Gets the PID of the system folder in which new FE user records will be
+	 * stored.
+	 *
+	 * @return	integer		the PID of the page where FE-created events will be stored
+	 *
+	 * @access	public
+	 */
+	function getPidForNewUserRecords() {
+		return $this->getConfValueInteger(
+			'systemFolderForNewFeUserRecords',
+			's_general'
+		);
+	}
+
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {

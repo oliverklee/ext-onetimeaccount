@@ -34,6 +34,7 @@ class tx_onetimeaccount_pi1_wizicon {
 	 * Processes the wizard items array.
 	 *
 	 * @param	array		the wizard items, may be empty, may not be null
+	 *
 	 * @return	array		modified array with wizard items
 	 *
 	 * @access	public
@@ -46,7 +47,7 @@ class tx_onetimeaccount_pi1_wizicon {
 		$wizardItems['plugins_tx_onetimeaccount_pi1'] = array(
 			'icon' => t3lib_extMgm::extRelPath('onetimeaccount').'pi1/ce_wiz.gif',
 			'title' => $LANG->getLLL('pi1_title', $LL),
-			'description' => $LANG->getLLL('pi1_plus_wiz_description', $LL),
+			'description' => '',
 			'params' => '&defVals[tt_content][CType]=list'
 				.'&defVals[tt_content][list_type]=onetimeaccount_pi1'
 		);
@@ -63,11 +64,9 @@ class tx_onetimeaccount_pi1_wizicon {
 	 * @access	public
 	 */
 	function includeLocalLang() {
-		$localLanguageFile
-			= t3lib_extMgm::extPath('onetimeaccount').'locallang.xml';
-
 		return t3lib_div::readLLXMLfile(
-			$localLanguageFile, $GLOBALS['LANG']->lang
+			t3lib_extMgm::extPath('onetimeaccount').'locallang.xml',
+			$GLOBALS['LANG']->lang
 		);
 	}
 }

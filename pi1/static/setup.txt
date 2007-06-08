@@ -15,7 +15,7 @@ plugin.tx_onetimeaccount_pi1 {
 	salutation = formal
 
 	# comma-separated list of the FE user fields that can be edited in the form
-	feUserFieldsToDisplay = company, gender, name, zip, country, email, telephone, fax
+	feUserFieldsToDisplay = company, name, address, zip, country, email, telephone, fax
 
 	# PID of the system folder in which new FE user accounts will be stored
 	systemFolderForNewFeUserRecords =

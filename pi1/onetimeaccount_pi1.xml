@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<formidable version="0.7.0">
+	<meta>
+		<name>One-time FE account generation form</name>
+		<description>This form allows users to create one-time FE acctouns</description>
+		<form>
+			<formid>tx_onetimeaccount_pi1_form</formid>
+		</form>
+		<debug>false</debug>
+		<displaylabels>false</displaylabels>
+	</meta>
+	<control>
+		<datahandler:DBMM>
+			<tablename>fe_users</tablename>
+			<keyname>uid</keyname>
+			<labelname>name</labelname>
+		</datahandler:DBMM>
+		<renderer:TEMPLATE>
+			<template>
+				<path>EXT:onetimeaccount/pi1/onetimeaccount_pi1.html</path>
+				<subpart>###ONETIMEACCOUNT_FORM###</subpart>
+				<errortag>errors</errortag>
+			</template>
+		</renderer:TEMPLATE>
+	</control>
+	<elements>
+		<renderlet:TEXT name="company">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="company" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:LISTBOX name="gender">
+			<data>
+				<items>
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_gender.I.0" value ="0" />
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_gender.I.1" value ="1" />
+				</items>
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="gender" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:LISTBOX>
+		<renderlet:TEXT name="name">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="name" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXT name="first_name">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="first_name" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXT name="last_name">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="last_name" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXTAREA name="address">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="address" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXTAREA>
+		<renderlet:TEXT name="zip">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="zip" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXT name="city">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="city" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:LISTBOX name="country">
+			<data>
+				<userobj>
+					<extension>this</extension>
+					<method>populateListCountries</method>
+				</userobj>
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="country" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:LISTBOX>
+		<renderlet:LISTBOX name="static_info_country">
+			<data>
+				<userobj>
+					<extension>this</extension>
+					<method>populateListCountries</method>
+					<params>
+						<data name="alpha3" value="1" />
+					</params>
+				</userobj>
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="static_info_country" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:LISTBOX>
+		<renderlet:TEXT name="email">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="email" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXT name="telephone">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="telephone" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:TEXT name="fax">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="fax" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
+		<renderlet:DATE name="date_of_birth">
+			<data>
+				<datetime format="%d.%m.%Y" converttotimestamp="true" />
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="date_of_birth" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:DATE>
+		<renderlet:LISTBOX name="status">
+			<data>
+				<items>
+					<item caption="&amp;nbsp;" value ="0" />
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.1" value ="1" />
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.2" value ="2" />
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.3" value ="3" />
+					<item caption="LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.4" value ="4" />
+				</items>
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="status" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:LISTBOX>
+		<renderlet:SUBMIT name="button_submit">
+			<label>LLL:EXT:onetimeaccount/pi1/locallang.xml:label_submit</label>
+		</renderlet:SUBMIT>
+		<renderlet:PASSTHRU name="crdate">
+			<data>
+				<value>CURRENT_TIMESTAMP</value>
+			</data>
+		</renderlet:PASSTHRU>
+		<renderlet:PASSTHRU name="tstamp">
+			<data>
+				<value>CURRENT_TIMESTAMP</value>
+			</data>
+		</renderlet:PASSTHRU>
+		<renderlet:PASSTHRU name="pid">
+			<data>
+				<value>
+					<userobj>
+						<extension>this</extension>
+						<method>getPidForNewUserRecords</method>
+					</userobj>
+				</value>
+			</data>
+		</renderlet:PASSTHRU>
+	</elements>
+</formidable>

@@ -13,8 +13,165 @@
 		<h1>
 			HTML template for the <em>One-time FE account</em> TYPO3 extension
 		</h1>
-		<p>
-			Hello world!
-		</p>
+
+<!-- ###ONETIMEACCOUNT_FORM### -->
+<p class="tx-seminars-pi1-error">
+	{errors}
+</p>
+
+<fieldset>
+	<legend>###LABEL_YOUR_DATA###</legend>
+	<dl>
+<!-- ###WRAPPER_COMPANY### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[company]">
+				###LABEL_COMPANY###
+			</label>
+		</dt>
+		<dd>
+			{company}
+		</dd>
+<!-- ###WRAPPER_COMPANY### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[name]">
+				###LABEL_NAME###
+			</label>
+		</dt>
+<!-- ###WRAPPER_GENDER### -->
+		<dd class="tx-onetimeaccount-pi1-gender">
+			{gender}
+		</dd>
+<!-- ###WRAPPER_GENDER### -->
+<!-- ###WRAPPER_NAME### -->
+		<dd class="tx-onetimeaccount-pi1-name">
+			{name}
+		</dd>
+<!-- ###WRAPPER_NAME### -->
+<!-- ###WRAPPER_FIRST_NAME### -->
+		<dd class="tx-onetimeaccount-pi1-first_name">
+			{first_name}
+		</dd>
+<!-- ###WRAPPER_FIRST_NAME### -->
+<!-- ###WRAPPER_LAST_NAME### -->
+		<dd class="tx-onetimeaccount-pi1-last_name">
+			{last_name}
+		</dd>
+<!-- ###WRAPPER_LAST_NAME### -->
+
+<!-- ###WRAPPER_ADDRESS### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[address]">
+				###LABEL_ADDRESS###
+			</label>
+		</dt>
+		<dd>
+			{address}
+		</dd>
+<!-- ###WRAPPER_ADDRESS### -->
+
+<!-- ###WRAPPER_CITY### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[city]">
+				###LABEL_CITY###
+			</label>
+		</dt>
+<!-- ###WRAPPER_ZIP### -->
+		<dd class="tx-onetimeaccount-pi1-zip">
+			{zip}
+		</dd>
+<!-- ###WRAPPER_ZIP### -->
+		<dd class="tx-onetimeaccount-pi1-city">
+			{city}
+		</dd>
+<!-- ###WRAPPER_CITY### -->
+
+<!-- ###WRAPPER_COUNTRY### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[country]">
+				###LABEL_COUNTRY###
+			</label>
+		</dt>
+		<dd class="tx-onetimeaccount-pi1-country">
+			{country}
+		</dd>
+<!-- ###WRAPPER_COUNTRY### -->
+
+<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[static_info_country]">
+				###LABEL_COUNTRY###
+			</label>
+		</dt>
+		<dd class="tx-onetimeaccount-pi1-country">
+			{static_info_country}
+		</dd>
+<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
+
+<!-- ###WRAPPER_EMAIL### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[email]">
+				###LABEL_EMAIL###
+			</label>
+		</dt>
+		<dd>
+			{email}
+		</dd>
+<!-- ###WRAPPER_EMAIL### -->
+
+<!-- ###WRAPPER_TELEPHONE### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[telephone]">
+				###LABEL_TELEPHONE###
+			</label>
+		</dt>
+		<dd>
+			{telephone}
+		</dd>
+<!-- ###WRAPPER_TELEPHONE### -->
+
+<!-- ###WRAPPER_FAX### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[fax]">
+				###LABEL_FAX###
+			</label>
+		</dt>
+		<dd>
+			{fax}
+		</dd>
+<!-- ###WRAPPER_FAX### -->
+
+<!-- ###WRAPPER_DATE_OF_BIRTH### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[date_of_birth]">
+				###LABEL_DATE_OF_BIRTH###
+			</label>
+		</dt>
+		<dd>
+			{date_of_birth}
+		</dd>
+<!-- ###WRAPPER_DATE_OF_BIRTH### -->
+
+<!-- ###WRAPPER_STATUS### -->
+		<dt>
+			<label for="tx_onetimeaccount_pi1_form[status]">
+				###LABEL_STATUS###
+			</label>
+		</dt>
+		<dd class="tx-onetimeaccount-pi1-status">
+			{status}
+		</dd>
+<!-- ###WRAPPER_STATUS### -->
+	</dl>
+</fieldset>
+
+<dl>
+	<dd class="tx-onetimeaccount-pi1-submit">
+		{button_submit}
+	</dd>
+</dl>
+
+<div class="tx-onetimeaccount-pi1-clear"></div>
+<!-- ###ONETIMEACCOUNT_FORM### -->
+
 	</body>
 </html>
