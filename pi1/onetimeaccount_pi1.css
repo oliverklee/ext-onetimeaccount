@@ -18,15 +18,11 @@
 	margin: 0;
 }
 
-.tx-onetimeaccount-pi1 dt,
-.tx-onetimeaccount-pi1 dd {
-	float: left;
-}
-
 .tx-onetimeaccount-pi1 dt {
 	width: 11em;
 	margin: 0 .5em .5em 0;
 	clear: both;
+	float: left;
 }
 
 .tx-onetimeaccount-pi1 dd {
