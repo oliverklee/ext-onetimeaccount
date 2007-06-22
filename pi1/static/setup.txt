@@ -17,9 +17,13 @@ plugin.tx_onetimeaccount_pi1 {
 	# comma-separated list of the FE user fields that can be edited in the form
 	feUserFieldsToDisplay = company, name, address, zip, country, email, telephone, fax
 
+	# comma-separated list of FE user fields which the user is required to fill in
+	# Note: This field is currently not processed yet due to a bug in FORMidable.
+	requiredFeUserFields = name, email
+
 	# PID of the system folder in which new FE user accounts will be stored
 	systemFolderForNewFeUserRecords =
 
-	# ID of the group for new FE users (optional), leave empty to set no group
+	# UID of the group for new FE users
 	groupForNewFeUsers =
 }

@@ -46,6 +46,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$this->checkSalutationMode();
 
 		$this->checkFeUserFieldsToDisplay();
+		$this->checkRequiredFeUserFields();
 		$this->checkSystemFolderForNewFeUserRecords();
 		$this->checkGroupForNewFeUsers();
 
@@ -58,37 +59,32 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * @access	private
 	 */
 	function checkFeUserFieldsToDisplay() {
-		$providedFields = array(
-			'company',
-			'gender',
-			'name',
-			'first_name',
-			'last_name',
-			'address',
-			'zip',
-			'city',
-			'country',
-			'static_info_country',
-			'email',
-			'telephone',
-			'fax',
-			'date_of_birth',
-			'status'
-		);
-		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
-
-		// Make sure that only fields are allowed that are actually available.
-		// (Some fields don't come with the vanilla TYPO3 installation and are
-		// provided by the sr_feusers_register extension.)
-		$availableFields = array_intersect($providedFields, $fieldsFromFeUsers);
-
 		$this->checkIfMultiInSetNotEmpty(
 			'feUserFieldsToDisplay',
 			true,
 			's_general',
 			'This value specifies which form fields will be displayed. '
 				.'Incorrect values will cause those fields to not get displayed.',
-			$availableFields
+			$this->getAvailableFields()
+		);
+
+		return;
+	}
+
+	/**
+	 * Checks the setting of the configuration value requiredFeUserFields.
+	 *
+	 * @access	private
+	 */
+	function checkRequiredFeUserFields() {
+		$this->checkIfMultiInSetOrEmpty(
+			'requiredFeUserFields',
+			true,
+			's_general',
+			'This value specifies which form fields are required to be filled in. '
+				.'Incorrect values will cause those fields to not get '
+				.'validated correctly.',
+			$this->getAvailableFields()
 		);
 
 		return;
@@ -120,7 +116,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * @access	private
 	 */
 	function checkGroupForNewFeUsers() {
-		$this->checkIfPositiveIntegerOrEmpty(
+		$this->checkIfPositiveInteger(
 			'groupForNewFeUsers',
 			true,
 			's_general',
@@ -131,6 +127,41 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		);
 
 		return;
+	}
+
+	/**
+	 * Returns an array of field names that are provided in the form AND that
+	 * actually exist in the DB (some fields need to be provided by
+	 * sr_feuser_register).
+	 *
+	 * @return	array		list of available field names, will not be empty
+	 *
+	 * @access	private
+	 */
+	function getAvailableFields() {
+		$providedFields = array(
+			'company',
+			'gender',
+			'name',
+			'first_name',
+			'last_name',
+			'address',
+			'zip',
+			'city',
+			'country',
+			'static_info_country',
+			'email',
+			'telephone',
+			'fax',
+			'date_of_birth',
+			'status'
+		);
+		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
+
+		// Make sure that only fields are allowed that are actually available.
+		// (Some fields don't come with the vanilla TYPO3 installation and are
+		// provided by the sr_feusers_register extension.)
+		return array_intersect($providedFields, $fieldsFromFeUsers);
 	}
 }
 

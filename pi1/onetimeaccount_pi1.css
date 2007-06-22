@@ -1,13 +1,13 @@
 .tx-onetimeaccount-pi1-clear {
-  clear: both;
-  width: 1px;
-  height: 1px;
+	clear: both;
+	width: 1px;
+	height: 1px;
 }
 
 .tx-onetimeaccount-pi1-error {
-  color: #f00;
-  background-color: inherit;
-  font-weight: bold;
+	color: #f00;
+	background-color: inherit;
+	font-weight: bold;
 }
 
 .tx-onetimeaccount-pi1 fieldset {
@@ -39,7 +39,7 @@
 .tx-onetimeaccount-pi1 textarea,
 .tx-onetimeaccount-pi1-country select,
 .tx-onetimeaccount-pi1-status select {
-		width: 20em;
+	width: 20em;
 }
 
 .tx-onetimeaccount-pi1 textarea {

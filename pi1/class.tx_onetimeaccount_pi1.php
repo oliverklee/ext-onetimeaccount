@@ -23,6 +23,16 @@
 ***************************************************************/
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
+require_once(t3lib_extMgm::extPath('ameos_formidable').'api/class.tx_ameosformidable.php');
+
+if (is_file(
+	t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php'
+)) {
+	require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+} else {
+	// Use sr_static_info as a fallback for TYPO3 < 4.x.
+	require_once(t3lib_extMgm::extPath('sr_static_info').'pi1/class.tx_srstaticinfo_pi1.php');
+}
 
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
@@ -39,11 +49,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/** Formidable object that creates the edit form. */
 	var $form = null;
 
-	/**
-	 * the names of the form fields to show (with the keys being the same as
-	 * the values for performance reasons
-	 */
+	/** the names of the form fields to show */
 	var $formFieldsToShow = array();
+
+	/** the names of the form fields that are required to be filled in*/
+	var $requiredFormFields = array();
 
 	/** an instance of tx_staticinfotables_pi1 */
 	var $staticInfo = null;
@@ -80,6 +90,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function initializeForm() {
 		$this->setFormFieldsToShow();
+		$this->setRequiredFormFields();
 
 		$this->form =& t3lib_div::makeInstance('tx_ameosformidable');
 		$this->form->init(
@@ -102,6 +113,21 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->formFieldsToShow = t3lib_div::trimExplode(
 			',',
 			$this->getConfValueString('feUserFieldsToDisplay', 's_general')
+		);
+
+		return;
+	}
+
+	/**
+	 * Reads the list of required form fields from the configuration and stores
+	 * it in $this->requiredFormFields.
+	 *
+	 * @access	private
+	 */
+	function setRequiredFormFields() {
+		$this->requiredFormFields = t3lib_div::trimExplode(
+			',',
+			$this->getConfValueString('requiredFeUserFields', 's_general')
 		);
 
 		return;
@@ -235,7 +261,17 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function initStaticInfo() {
 		if (!$this->staticInfo) {
-			$this->staticInfo =& t3lib_div::makeInstance('tx_staticinfotables_pi1');
+			if (is_file(
+				t3lib_extMgm::extPath('static_info_tables')
+					.'pi1/class.tx_staticinfotables_pi1.php'
+			)) {
+				$this->staticInfo
+					=& t3lib_div::makeInstance('tx_staticinfotables_pi1');
+			} else  {
+				// Use sr_static_info as a fallback for TYPO3 < 4.x.
+				$this->staticInfo =& t3lib_div::makeInstance('tx_srstaticinfo_pi1');
+			}
+
 			$this->staticInfo->init();
 		}
 
@@ -257,6 +293,118 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		);
 	}
 
+	/**
+	 * Returns the URL that has been set via the GET parameter "redirect_url".
+	 * If this parameter has not been set or is empty, an empty string will be
+	 * returned.
+	 *
+	 * In addition, the entered FE user will be automatically logged in, and
+	 * the key "onetimeaccount" with the value "1" will be written to the FE
+	 * user session.
+	 *
+	 * @return	string		the URL set as GET parameter (or an empty string if there is no such GET parameter)
+	 *
+	 * @access	public
+	 */
+	function getRedirectUrlAndLoginUser() {
+		$result = t3lib_div::_GP('redirect_url');
+
+		if (empty($result)) {
+			// Redirect to the current page if no redirect URL is provided.
+			$result = t3lib_div::locationHeaderUrl(
+				$this->cObj->getTypoLink_URL($GLOBALS['TSFE']->id)
+			);
+		}
+
+		$datahandler =& $this->form->oDataHandler;
+		$userName = $datahandler->_getThisFormData('username');
+		// The array key "uident" is required by the compareUident function.
+		$loginData = array(
+			'uident'=> $datahandler->_getThisFormData('password')
+		);
+
+		$GLOBALS['TSFE']->fe_user->checkPid = false;
+		$authenticationInformation = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
+		$user = $GLOBALS['TSFE']->fe_user->fetchUserRecord(
+			$authenticationInformation['db_user'],
+			$userName
+		);
+
+		$isLoginOk = $GLOBALS['TSFE']->fe_user->compareUident($user, $loginData);
+		if ($isLoginOk) {
+			$GLOBALS['TSFE']->fe_user->createUserSession($user);
+			$GLOBALS['TSFE']->loginUser = 1;
+			$GLOBALS['TSFE']->fe_user->start();
+
+			$GLOBALS['TSFE']->fe_user->setKey(
+				'user',
+				$this->extKey,
+				'1'
+			);
+			$GLOBALS['TSFE']->fe_user->storeSessionData();
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Creates a unique FE user name. It consists of the entered e-mail address.
+	 * If a user with that user name already exists, a number will be appended.
+	 *
+	 * @return	string		a user name (will not be empty)
+	 *
+	 * @access	public
+	 */
+	function getUserName() {
+		$enteredEmail = $this->form->oDataHandler->_getThisFormData('email');
+		$numberToAppend = 1;
+		$result = $enteredEmail;
+
+		// Modify the user name until we have a unique user name.
+		while ($GLOBALS['TSFE']->fe_user->getRawUserByName($result)) {
+			$result = $enteredEmail.'-'.$numberToAppend;
+			$numberToAppend++;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Creates a random 8-character password, consisting of digits, uppercase
+	 * and lowercase characters and some special chars.
+	 *
+	 * @return	string		a random 8 character password
+	 */
+	function getPassword() {
+		$result = '';
+
+		$availableCharacters
+			= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+				.'0123456789!§$%&/()=?*+#,;.:-_<>';
+		$indexOfLastCharacter = strlen($availableCharacters) - 1;
+
+		for ($i = 0; $i < 8; $i++) {
+			$result .= substr(
+				$availableCharacters,
+				mt_rand(0, $indexOfLastCharacter),
+				1
+			);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Retrieves the UID of the FE user group for the FE user to create.
+	 *
+	 * @return	integer		UID of the FE user group for the FE user to create, will not be zero if the plug-in has been configured correctly
+	 */
+	function getUserGroup() {
+		return $this->getConfValueInteger(
+			'groupForNewFeUsers',
+			's_general'
+		);
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {

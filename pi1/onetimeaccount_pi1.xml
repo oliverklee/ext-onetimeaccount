@@ -10,11 +10,11 @@
 		<displaylabels>false</displaylabels>
 	</meta>
 	<control>
-		<datahandler:DBMM>
+		<datahandler:DB>
 			<tablename>fe_users</tablename>
 			<keyname>uid</keyname>
 			<labelname>name</labelname>
-		</datahandler:DBMM>
+		</datahandler:DB>
 		<renderer:TEMPLATE>
 			<template>
 				<path>
@@ -27,6 +27,16 @@
 				<errortag>errors</errortag>
 			</template>
 		</renderer:TEMPLATE>
+		<actionlets>
+			<actionlet:REDIRECT>
+				<url>
+					<userobj>
+						<extension>this</extension>
+						<method>getRedirectUrlAndLoginUser</method>
+					</userobj>
+				</url>
+			</actionlet:REDIRECT>
+		</actionlets>
 	</control>
 	<elements>
 		<renderlet:TEXT name="company">
@@ -67,6 +77,11 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name"/>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="first_name">
 			<process>
@@ -78,6 +93,11 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name"/>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="last_name">
 			<process>
@@ -89,6 +109,11 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name"/>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXTAREA name="address">
 			<process>
@@ -170,6 +195,12 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<email message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email"/>
+					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email"/>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="telephone">
 			<process>
@@ -181,6 +212,14 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:PREG>
+					<pattern>
+						<value>/^([\d\+][\d \-\+]*[\d\+])?$/</value>
+						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone</message>
+					</pattern>
+				</validator:PREG>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="fax">
 			<process>
@@ -192,6 +231,14 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:PREG>
+					<pattern>
+						<value>/^([\d\+][\d \-\+]*[\d\+])?$/</value>
+						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax</message>
+					</pattern>
+				</validator:PREG>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:DATE name="date_of_birth">
 			<data>
@@ -246,6 +293,36 @@
 					<userobj>
 						<extension>this</extension>
 						<method>getPidForNewUserRecords</method>
+					</userobj>
+				</value>
+			</data>
+		</renderlet:PASSTHRU>
+		<renderlet:PASSTHRU name="username">
+			<data>
+				<value>
+					<userobj>
+						<extension>this</extension>
+						<method>getUserName</method>
+					</userobj>
+				</value>
+			</data>
+		</renderlet:PASSTHRU>
+		<renderlet:PASSTHRU name="password">
+			<data>
+				<value>
+					<userobj>
+						<extension>this</extension>
+						<method>getPassword</method>
+					</userobj>
+				</value>
+			</data>
+		</renderlet:PASSTHRU>
+		<renderlet:PASSTHRU name="usergroup">
+			<data>
+				<value>
+					<userobj>
+						<extension>this</extension>
+						<method>getUserGroup</method>
 					</userobj>
 				</value>
 			</data>
