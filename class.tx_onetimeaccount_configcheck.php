@@ -27,7 +27,9 @@
  *
  * This class checks this extension's configuration for basic sanity.
  *
- * @author	Oliver Klee <typo3-coding@oliverklee.de>
+ * @package		TYPO3
+ * @subpackage	tx_onetimeaccount
+ * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_configcheck.php');

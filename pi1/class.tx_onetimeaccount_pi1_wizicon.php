@@ -25,9 +25,9 @@
 /**
  * Class that adds the wizard icon.
  *
- * @author	Oliver Klee <typo3-coding@oliverklee.de>
- * @package	TYPO3
+ * @package		TYPO3
  * @subpackage	tx_onetimeaccount
+ * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 class tx_onetimeaccount_pi1_wizicon {
 	/**

@@ -37,9 +37,9 @@ if (is_file(
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
  *
- * @author	Oliver Klee <typo3-coding@oliverklee.de>
- * @package	TYPO3
+ * @package		TYPO3
  * @subpackage	tx_onetimeaccount
+ * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	var $prefixId = 'tx_onetimeaccount_pi1';
