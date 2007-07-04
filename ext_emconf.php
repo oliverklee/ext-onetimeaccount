@@ -34,7 +34,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'php' => '4.1.0-0.0.0',
 			'typo3' => '3.8.0-0.0.0',
-			'ameos_formidable' => '0.7.0-',
+			'ameos_formidable' => '0.7.0-0.7.0',
 			'oelib' => '0.3.0-',
 			'static_info_tables' => '',
 		),
