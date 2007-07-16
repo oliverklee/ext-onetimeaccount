@@ -22,12 +22,15 @@
 			<label index="label_company">Company:</label>
 			<label index="label_gender.I.0">Mr.</label>
 			<label index="label_gender.I.1">Ms.</label>
+			<label index="label_title">Title:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_address">Street:</label>
 			<label index="label_zip">ZIP:</label>
 			<label index="label_city">City:</label>
+			<label index="label_zone">County/Region:</label>
 			<label index="label_country">Country:</label>
 			<label index="label_email">E-mail address:</label>
+			<label index="label_www">Website:</label>
 			<label index="label_telephone">Phone number:</label>
 			<label index="label_fax">Fax number:</label>
 			<label index="label_date_of_birth">Date of birth:</label>
@@ -36,6 +39,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
 			<label index="message_name">Please enter your name.</label>
@@ -64,12 +68,15 @@
 			<label index="label_company">Firma:</label>
 			<label index="label_gender.I.0">Herr</label>
 			<label index="label_gender.I.1">Frau</label>
+			<label index="label_title">Titel:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_address">Straße:</label>
 			<label index="label_zip">PLZ:</label>
 			<label index="label_city">Ort:</label>
+			<label index="label_zone">Bundesland/Provinz:</label>
 			<label index="label_country">Land:</label>
 			<label index="label_email">E-Mail:</label>
+			<label index="label_www">Website:</label>
 			<label index="label_telephone">Telefon:</label>
 			<label index="label_fax">Fax:</label>
 			<label index="label_date_of_birth">Geburtsdatum:</label>
@@ -78,6 +85,7 @@
 			<label index="label_status.I.2">Schüler</label>
 			<label index="label_status.I.3">Angestellt</label>
 			<label index="label_status.I.4">Selbstständig</label>
+			<label index="label_comments">Kommentare:</label>
 			<label index="label_submit">Weiter</label>
 			<label index="message_company">Bitte geben Sie Ihre Firma an.</label>
 			<label index="message_name">Bitte geben Sie Ihren Namen an.</label>
@@ -108,12 +116,15 @@
 			<label index="label_company" type="integer">98955432</label>
 			<label index="label_gender.I.0" type="integer">19351194</label>
 			<label index="label_gender.I.1" type="integer">43922038</label>
+			<label index="label_title" type="integer">85903807</label>
 			<label index="label_name" type="integer">81871034</label>
 			<label index="label_address" type="integer">252788963</label>
 			<label index="label_zip" type="integer">234550549</label>
 			<label index="label_city" type="integer">201307921</label>
+			<label index="label_zone" type="integer">236350277</label>
 			<label index="label_country" type="integer">258260574</label>
 			<label index="label_email" type="integer">126760538</label>
+			<label index="label_www" type="integer">240957512</label>
 			<label index="label_telephone" type="integer">130029308</label>
 			<label index="label_fax" type="integer">212052995</label>
 			<label index="label_date_of_birth" type="integer">2570779</label>
@@ -122,6 +133,7 @@
 			<label index="label_status.I.2" type="integer">138303616</label>
 			<label index="label_status.I.3" type="integer">136964828</label>
 			<label index="label_status.I.4" type="integer">219192007</label>
+			<label index="label_comments" type="integer">138493032</label>
 			<label index="label_submit" type="integer">254160814</label>
 			<label index="message_company" type="integer">21463011</label>
 			<label index="message_name" type="integer">62714617</label>
@@ -152,12 +164,15 @@
 			<label index="label_company">Company:</label>
 			<label index="label_gender.I.0">Mr.</label>
 			<label index="label_gender.I.1">Ms.</label>
+			<label index="label_title">Title:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_address">Street:</label>
 			<label index="label_zip">ZIP:</label>
 			<label index="label_city">City:</label>
+			<label index="label_zone">County/Region:</label>
 			<label index="label_country">Country:</label>
 			<label index="label_email">E-mail address:</label>
+			<label index="label_www">Website:</label>
 			<label index="label_telephone">Phone number:</label>
 			<label index="label_fax">Fax number:</label>
 			<label index="label_date_of_birth">Date of birth:</label>
@@ -166,6 +181,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
 			<label index="message_name">Please enter your name.</label>

@@ -175,19 +175,23 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		static $availableFormFields = array(
 			'company',
 			'gender',
+			'title',
 			'name',
 			'first_name',
 			'last_name',
 			'address',
 			'zip',
 			'city',
+			'zone',
 			'country',
 			'static_info_country',
 			'email',
+			'www',
 			'telephone',
 			'fax',
 			'date_of_birth',
-			'status'
+			'status',
+			'comments'
 		);
 
 		$formFieldsToHide = array_diff(

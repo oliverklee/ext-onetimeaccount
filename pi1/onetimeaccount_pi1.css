@@ -55,7 +55,8 @@
 	width: 14em;
 }
 
-.tx-onetimeaccount-pi1-first_name input {
+.tx-onetimeaccount-pi1-first_name input,
+.tx-onetimeaccount-pi1-title input {
 	width: 4em;
 }
 

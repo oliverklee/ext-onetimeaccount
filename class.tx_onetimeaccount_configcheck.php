@@ -144,19 +144,23 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$providedFields = array(
 			'company',
 			'gender',
+			'title',
 			'name',
 			'first_name',
 			'last_name',
 			'address',
 			'zip',
 			'city',
+			'zone',
 			'country',
 			'static_info_country',
 			'email',
+			'www',
 			'telephone',
 			'fax',
 			'date_of_birth',
-			'status'
+			'status',
+			'comments'
 		);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
 

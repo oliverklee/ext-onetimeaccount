@@ -67,6 +67,17 @@
 				</userobj>
 			</process>
 		</renderlet:LISTBOX>
+		<renderlet:TEXT name="title">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="title" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
 		<renderlet:TEXT name="name">
 			<process>
 				<userobj>
@@ -148,6 +159,17 @@
 				</userobj>
 			</process>
 		</renderlet:TEXT>
+		<renderlet:TEXT name="zone">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="zone" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXT>
 		<renderlet:LISTBOX name="country">
 			<data>
 				<userobj>
@@ -201,6 +223,17 @@
 					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email"/>
 				</validator:STANDARD>
 			</validators>
+		</renderlet:TEXT>
+			<renderlet:TEXT name="www">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="www" />
+					</params>
+				</userobj>
+			</process>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="telephone">
 			<process>
@@ -274,6 +307,17 @@
 				</userobj>
 			</process>
 		</renderlet:LISTBOX>
+		<renderlet:TEXTAREA name="comments">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="comments" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:TEXTAREA>
 		<renderlet:SUBMIT name="button_submit">
 			<label>LLL:EXT:onetimeaccount/pi1/locallang.xml:label_submit</label>
 		</renderlet:SUBMIT>
