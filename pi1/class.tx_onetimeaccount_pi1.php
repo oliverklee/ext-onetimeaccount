@@ -23,19 +23,10 @@
 ***************************************************************/
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
-require_once(t3lib_extMgm::extPath('ameos_formidable').'api/class.tx_ameosformidable.php');
-
-if (is_file(
-	t3lib_extMgm::extPath('static_info_tables')
-		.'pi1/class.tx_staticinfotables_pi1.php'
-)) {
-	require_once(t3lib_extMgm::extPath('static_info_tables')
-		.'pi1/class.tx_staticinfotables_pi1.php');
-} else {
-	// Use sr_static_info as a fallback for TYPO3 < 4.x.
-	require_once(t3lib_extMgm::extPath('sr_static_info')
-		.'pi1/class.tx_srstaticinfo_pi1.php');
-}
+require_once(t3lib_extMgm::extPath('ameos_formidable')
+	.'api/class.tx_ameosformidable.php');
+require_once(t3lib_extMgm::extPath('static_info_tables')
+	.'pi1/class.tx_staticinfotables_pi1.php');
 
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
@@ -268,17 +259,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function initStaticInfo() {
 		if (!$this->staticInfo) {
-			if (is_file(
-				t3lib_extMgm::extPath('static_info_tables')
-					.'pi1/class.tx_staticinfotables_pi1.php'
-			)) {
-				$this->staticInfo
-					=& t3lib_div::makeInstance('tx_staticinfotables_pi1');
-			} else  {
-				// Use sr_static_info as a fallback for TYPO3 < 4.x.
-				$this->staticInfo =& t3lib_div::makeInstance('tx_srstaticinfo_pi1');
-			}
-
+			$this->staticInfo =& t3lib_div::makeInstance('tx_staticinfotables_pi1');
 			$this->staticInfo->init();
 		}
 
