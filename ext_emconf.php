@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'One-time FE account',
-	'description' => 'This extension allows users to create a one-time FE account to which they will be automatically logged in. The users don\'t need to enter a user name or password. So this login can be used only one time.',
+	'description' => 'This extension allows users to create a one-time FE account to which they will be automatically logged in. The users do not need to enter a user name or password. So this login can be used only one time.',
 	'category' => 'plugin',
 	'author' => 'Oliver Klee',
 	'author_email' => 'typo3-coding@oliverklee.de',
