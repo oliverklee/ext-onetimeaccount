@@ -26,12 +26,15 @@ require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php')
 require_once(t3lib_extMgm::extPath('ameos_formidable').'api/class.tx_ameosformidable.php');
 
 if (is_file(
-	t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php'
+	t3lib_extMgm::extPath('static_info_tables')
+		.'pi1/class.tx_staticinfotables_pi1.php'
 )) {
-	require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+	require_once(t3lib_extMgm::extPath('static_info_tables')
+		.'pi1/class.tx_staticinfotables_pi1.php');
 } else {
 	// Use sr_static_info as a fallback for TYPO3 < 4.x.
-	require_once(t3lib_extMgm::extPath('sr_static_info').'pi1/class.tx_srstaticinfo_pi1.php');
+	require_once(t3lib_extMgm::extPath('sr_static_info')
+		.'pi1/class.tx_srstaticinfo_pi1.php');
 }
 
 /**
