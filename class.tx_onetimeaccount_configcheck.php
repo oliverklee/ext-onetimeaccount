@@ -160,6 +160,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'fax',
 			'date_of_birth',
 			'status',
+			'module_sys_dmail_html',
 			'comments'
 		);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');

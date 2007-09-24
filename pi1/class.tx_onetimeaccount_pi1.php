@@ -185,6 +185,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			'fax',
 			'date_of_birth',
 			'status',
+			'module_sys_dmail_html',
 			'comments'
 		);
 

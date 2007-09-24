@@ -39,6 +39,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
@@ -85,6 +86,7 @@
 			<label index="label_status.I.2">Schüler</label>
 			<label index="label_status.I.3">Angestellt</label>
 			<label index="label_status.I.4">Selbstständig</label>
+			<label index="label_module_sys_dmail_html">E-Mails im HTML-Format empfangen</label>
 			<label index="label_comments">Kommentare:</label>
 			<label index="label_submit">Weiter</label>
 			<label index="message_company">Bitte geben Sie Ihre Firma an.</label>
@@ -133,6 +135,7 @@
 			<label index="label_status.I.2" type="integer">138303616</label>
 			<label index="label_status.I.3" type="integer">136964828</label>
 			<label index="label_status.I.4" type="integer">219192007</label>
+			<label index="label_module_sys_dmail_html" type="integer">89912328</label>
 			<label index="label_comments" type="integer">138493032</label>
 			<label index="label_submit" type="integer">254160814</label>
 			<label index="message_company" type="integer">21463011</label>
@@ -181,6 +184,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>

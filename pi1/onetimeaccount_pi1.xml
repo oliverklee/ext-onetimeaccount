@@ -224,7 +224,7 @@
 				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
-			<renderlet:TEXT name="www">
+		<renderlet:TEXT name="www">
 			<process>
 				<userobj>
 					<extension>this</extension>
@@ -307,6 +307,17 @@
 				</userobj>
 			</process>
 		</renderlet:LISTBOX>
+		<renderlet:CHECKSINGLE name="module_sys_dmail_html">
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="module_sys_dmail_html" />
+					</params>
+				</userobj>
+			</process>
+		</renderlet:CHECKSINGLE>
 		<renderlet:TEXTAREA name="comments">
 			<process>
 				<userobj>
