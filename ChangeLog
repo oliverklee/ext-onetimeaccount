@@ -1,6 +1,9 @@
+2007-09-24 Saskia Metzler  <saskia@merlin.owl.de>
+
+	* [#1191] Feature: Add a checkbox "HTML e-mail"
+
 2007-09-09 Oliver Klee  <typo3-coding@oliverklee.de>
 
-	* [#1191] Feature: Add a checkbox "HTML e-mail", patch by Saskia Metzler
 	* [#1138] Require TYPO3 4
 
 2007-09-09 Mario Rimann <typo3-coding@rimann.org>
