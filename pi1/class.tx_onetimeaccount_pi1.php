@@ -186,6 +186,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			'date_of_birth',
 			'status',
 			'module_sys_dmail_html',
+			'usergroup',
 			'comments'
 		);
 
@@ -194,27 +195,42 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->formFieldsToShow
 		);
 
+		// The "usergroup" field is a special case because it might also be
+		// hidden if there are less than two user groups available
+		if (!$this->hasAtLeastTwoUserGroups()) {
+			// We might be hiding the field two times, but that does no harm.
+			$formFieldsToHide[] = 'usergroup';
+		}
+
 		$this->readSubpartsToHide(
 			implode(',', $formFieldsToHide),
 			'wrapper'
 		);
-
-		return;
 	}
 
 	/**
 	 * Checks whether a form field should be displayed (and evaluated) at all.
 	 * This is specified via TS setup (or flexforms) using the
 	 * "feUserFieldsToDisplay" variable.
+	 * Radiobuttons to choose user groups are only shown if there is more than
+	 * one value to display.
 	 *
-	 * @param	array		the contents of the "params" child of the userobj node as key/value pairs (used for retrieving the current form field name)
+	 * @param	array		the contents of the "params" child of the userobj
+	 * 						node as key/value pairs (used for retrieving the current
+	 * 						form field name)
 	 *
-	 * @return	boolean		true if the current form field should be displayed, false otherwise
+	 * @return	boolean		true if the current form field should be displayed,
+	 * 						false otherwise
 	 *
 	 * @access	public
 	 */
 	function isFormFieldEnabled($parameters) {
-		return in_array($parameters['elementname'], $this->formFieldsToShow);
+		$key = $parameters['elementname'];
+		$result = in_array($key, $this->formFieldsToShow);
+		if ($key == 'usergroup') {
+			$result &= $this->hasAtLeastTwoUserGroups();
+		} 
+		return $result;
 	}
 
 	/**
@@ -384,15 +400,121 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	}
 
 	/**
-	 * Retrieves the UID of the FE user group for the FE user to create.
+	 * Gets the form data and adds the user group(s) from the BE configuration
+	 * if the form field to choose a user group in the FE is disabled.
+	 * 
+	 * @return	string		returns form data: If choosing user groups in in FE
+	 * 						is disabled, the user group(s) of groupForNewFeUsers
+	 * 						are added to the form data, otherwise it is returned
+	 * 						without modifications.
 	 *
-	 * @return	integer		UID of the FE user group for the FE user to create, will not be zero if the plug-in has been configured correctly
+	 * @access	public
 	 */
-	function getUserGroup() {
-		return $this->getConfValueInteger(
+	function setCurrentUserGroup($formData) {
+		$result = $formData;
+		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
+			$result['usergroup'] = $this->getConfValueString(
+				'groupForNewFeUsers',
+				's_general');
+		}
+		return $result;
+	}
+
+	/**
+	 * Returns the UID of the first user group shown in the FE. If there are no
+	 * user groups, the result will be zero.
+	 *
+	 * @return	integer		UID of the first user group
+	 *
+	 * @access	public
+	 */
+	 function getUidOfFirstUserGroup() {
+	 	$userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
+	 	return intval($userGroups[0]);
+	 }
+
+	/**
+	 * Returns an array of user groups choosable in the FE, will not be empty if
+	 * configured correctly. 
+	 *
+	 * @return	array		lists user groups choosable in the FE, will not be
+	 * 						empty if configured correctly
+	 *
+	 * @access	public
+	 */
+	function listUserGroups() {
+		$result = array();
+		$listOfUserGroupUids = $this->getConfValueString(
 			'groupForNewFeUsers',
 			's_general'
 		);
+
+		if (preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)) {
+			$allUserGroups = array();
+			$userGroupUids = $this->getUncheckedUidsOfAllowedUserGroups();
+			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'uid, title',
+				'fe_groups',
+				'uid IN('.$listOfUserGroupUids.')'
+					.$this->enableFields('fe_groups')
+			);
+			if ($dbResult) {
+				while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)) {
+					$allUserGroups[$row['uid']] = $row['title'];
+				}
+			}
+			foreach ($userGroupUids as $currentUid) {
+				$result[] = array(
+					'caption' => $allUserGroups[$currentUid].'<br />',
+					'value' => $currentUid
+				);
+			}
+		};
+
+		return $result;
+	}
+
+	/**
+	 * Gets an array of the value for groupForNewFeUsers from flexforms or TS setup.
+	 * The array will contain the UIDs of FE user groups, at least an empty string.
+	 *
+	 * @return	array		array of the flexforms or TS setup entry for groupForNewFeUsers
+	 *
+	 * @access	private
+	 */
+	 function getUncheckedUidsOfAllowedUserGroups() {
+		 return explode(
+			',',
+		 	$this->getConfValueString('groupForNewFeUsers', 's_general')
+		);
+	 }
+
+	/**
+	 * Checks whether a radiobutton in a radiobutton group is selected.
+	 *
+	 * @param	mixed		the currently selected value or an empty string if
+	 * 						no button is selected
+	 *
+	 * @return	boolean		true if a radiobutton is selected, false if none is
+	 * 						selected
+	 *
+	 * @access	public
+	 */
+	function isRadiobuttonSelected($radiogroupValue) {
+		$allowedValues = $this->getUncheckedUidsOfAllowedUserGroups();
+		return in_array($radiogroupValue, $allowedValues);
+	}
+
+	/**
+	 * Checks whether we have at least two allowed user groups.
+	 *
+	 * @return	boolean		true if we have at least two allowed user groups,
+	 * 						false otherwise
+	 *
+	 * @access	private
+	 */
+	function hasAtLeastTwoUserGroups() {
+		return (count($this->listUserGroups()) > 1);
 	}
 }
 

@@ -13,7 +13,7 @@
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Country name as alpha3 code:</label>
 			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">System folder for the new FE user records:</label>
-			<label index="flexforms_pi1.groupForNewFeUsers">Group for the new FE users:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groups for the new FE users:</label>
 			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML template file:</label>
 			<label index="flexforms_pi1.cssFile">CSS file:</label>
@@ -39,6 +39,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_usergroup">User group</label>
 			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
@@ -53,6 +54,7 @@
 			<label index="message_fax">Please enter a valid fax number.</label>
 			<label index="message_date_of_birth">Please enter your date of birth.</label>
 			<label index="message_status">Please enter your status.</label>
+			<label index="message_choose_usergroup">Please choose a user group.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="flexforms_pi1.sheet_general">Allgemein</label>
@@ -60,7 +62,7 @@
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Vollständiger Name:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Land als Alpha3-Code:</label>
 			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">Systemordner für die neuen FE-User:</label>
-			<label index="flexforms_pi1.groupForNewFeUsers">Gruppe für die neuen FE-User:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Gruppen für die neuen FE-User:</label>
 			<label index="flexforms_pi1.sheet_template">Templates und CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML-Template-Datei:</label>
 			<label index="flexforms_pi1.cssFile">CSS-Datei:</label>
@@ -86,6 +88,7 @@
 			<label index="label_status.I.2">Schüler</label>
 			<label index="label_status.I.3">Angestellt</label>
 			<label index="label_status.I.4">Selbstständig</label>
+			<label index="label_usergroup">Benutzergruppe:</label>
 			<label index="label_module_sys_dmail_html">E-Mails im HTML-Format empfangen</label>
 			<label index="label_comments">Kommentare:</label>
 			<label index="label_submit">Weiter</label>
@@ -100,6 +103,7 @@
 			<label index="message_fax">Bitte geben Sie eine gültige Faxnummer an.</label>
 			<label index="message_date_of_birth">Bitte geben Sie Ihr Geburtsdatum an.</label>
 			<label index="message_status">Bitte geben Sie Ihren Status an.</label>
+			<label index="message_choose_usergroup">Bitte wählen Sie eine Benutzergruppe.</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
@@ -109,7 +113,7 @@
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name" type="integer">260008070</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country" type="integer">261739177</label>
 			<label index="flexforms_pi1.systemFolderForNewFeUserRecords" type="integer">24157371</label>
-			<label index="flexforms_pi1.groupForNewFeUsers" type="integer">35703472</label>
+			<label index="flexforms_pi1.groupForNewFeUsers" type="integer">191155479</label>
 			<label index="flexforms_pi1.sheet_template" type="integer">23763433</label>
 			<label index="flexforms_pi1.templateFile" type="integer">75120399</label>
 			<label index="flexforms_pi1.cssFile" type="integer">244239567</label>
@@ -135,6 +139,7 @@
 			<label index="label_status.I.2" type="integer">138303616</label>
 			<label index="label_status.I.3" type="integer">136964828</label>
 			<label index="label_status.I.4" type="integer">219192007</label>
+			<label index="label_usergroup" type="integer">248005183</label>
 			<label index="label_module_sys_dmail_html" type="integer">89912328</label>
 			<label index="label_comments" type="integer">138493032</label>
 			<label index="label_submit" type="integer">254160814</label>
@@ -149,6 +154,7 @@
 			<label index="message_fax" type="integer">226017035</label>
 			<label index="message_date_of_birth" type="integer">155377992</label>
 			<label index="message_status" type="integer">237419934</label>
+			<label index="message_choose_usergroup" type="integer">161431320</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -158,7 +164,7 @@
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Country name as alpha3 code:</label>
 			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">System folder for the new FE user records:</label>
-			<label index="flexforms_pi1.groupForNewFeUsers">Group for the new FE users:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groups for the new FE users:</label>
 			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML template file:</label>
 			<label index="flexforms_pi1.cssFile">CSS file:</label>
@@ -184,6 +190,7 @@
 			<label index="label_status.I.2">Job seeking</label>
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
+			<label index="label_usergroup">User group</label>
 			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments</label>
 			<label index="label_submit">Proceed</label>
@@ -198,6 +205,7 @@
 			<label index="message_fax">Please enter a valid fax number.</label>
 			<label index="message_date_of_birth">Please enter your date of birth.</label>
 			<label index="message_status">Please enter your status.</label>
+			<label index="message_choose_usergroup">Please choose a user group.</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

@@ -14,6 +14,14 @@
 			<tablename>fe_users</tablename>
 			<keyname>uid</keyname>
 			<labelname>name</labelname>
+			<process>
+				<beforeinsertion>
+					<userobj>
+						<extension>this</extension>
+						<method>setCurrentUserGroup</method>
+					</userobj>
+				</beforeinsertion>
+			</process>
 		</datahandler:DB>
 		<renderer:TEMPLATE>
 			<template>
@@ -307,6 +315,37 @@
 				</userobj>
 			</process>
 		</renderlet:LISTBOX>
+		<renderlet:RADIOBUTTON name="usergroup">
+			<data>
+				<defaultvalue>
+					<userobj>
+						<extension>this</extension>
+						<method>getUidOfFirstUserGroup</method>
+					</userobj>
+				</defaultvalue>
+				<userobj>
+					<extension>this</extension>
+					<method>listUserGroups</method>
+				</userobj>
+			</data>
+			<process>
+				<userobj>
+					<extension>this</extension>
+					<method>isFormFieldEnabled</method>
+					<params>
+						<data name="elementname" value="usergroup" />
+					</params>
+				</userobj>
+			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_choose_usergroup">
+						<extension>this</extension>
+						<method>isRadiobuttonSelected</method>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
+		</renderlet:RADIOBUTTON>
 		<renderlet:CHECKSINGLE name="module_sys_dmail_html">
 			<process>
 				<userobj>
@@ -368,16 +407,6 @@
 					<userobj>
 						<extension>this</extension>
 						<method>getPassword</method>
-					</userobj>
-				</value>
-			</data>
-		</renderlet:PASSTHRU>
-		<renderlet:PASSTHRU name="usergroup">
-			<data>
-				<value>
-					<userobj>
-						<extension>this</extension>
-						<method>getUserGroup</method>
 					</userobj>
 				</value>
 			</data>

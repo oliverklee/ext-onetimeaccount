@@ -26,7 +26,7 @@
 }
 
 .tx-onetimeaccount-pi1 dd {
-	margin: 0 0 .5em;
+	margin: 0 0 .5em 12em;
 }
 
 .tx-onetimeaccount-pi1 dd select,
@@ -68,9 +68,11 @@
 	width: 4em;
 }
 
-.tx-onetimeaccount-pi1-module_sys_dmail_html input {
-	width: 1em;
+.tx-onetimeaccount-pi1-module_sys_dmail_html input,
+.tx-onetimeaccount-pi1-usergroup input {
+	width: auto;
 }
+
 
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-submit {
 	margin: .5em 0;

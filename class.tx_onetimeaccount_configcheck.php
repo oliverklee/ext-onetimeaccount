@@ -118,17 +118,48 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * @access	private
 	 */
 	function checkGroupForNewFeUsers() {
-		$this->checkIfPositiveInteger(
+		$this->checkIfPidListNotEmpty(
 			'groupForNewFeUsers',
 			true,
 			's_general',
-			'This value specifies the FE user group to which new FE user '
-				.'records will be assigned. '
-				.'If this value is not set correctly, the users will not be '
-				.'placed in that group.'
+			'This value specifies the FE user groups to which new FE user records '
+				.'will be assigned. If this value is not set correctly, the '
+				.'users will not be placed in one of those groups.'
 		);
 
-		return;
+		$valueToCheck = $this->objectToCheck->getConfValueString(
+			'groupForNewFeUsers',
+			's_general'
+		);
+		if ($this->getRawMessage() == '') {
+			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'COUNT(*) AS number',
+				'fe_groups',
+				'uid IN ('.$valueToCheck.')'
+					.$this->objectToCheck->enableFields('fe_groups')
+			);
+			if ($dbResult) {
+				$elementsInDbResult = implode(
+					$GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)
+				);
+				$elementsInValueToCheck = count(
+					$this->objectToCheck->getUncheckedUidsOfAllowedUserGroups()
+				);
+				if ($elementsInDbResult != $elementsInValueToCheck) {
+					$this->setErrorMessageAndRequestCorrection(
+						'groupForNewFeUsers',
+						true,
+						'The TS setup variable <strong>'
+							.$this->getTSSetupPath().'groupForNewFeUsers</strong> '
+							.'contains the value '.$valueToCheck.' which isn\'t valid. '
+							.'This value specifies the FE user groups to which new '
+							.'FE user records will be assigned. '
+							.'If this value is not set correctly, the users will not '
+							.'be placed in one of those groups.'
+					);
+				}
+			}
+		}
 	}
 
 	/**
@@ -161,6 +192,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'date_of_birth',
 			'status',
 			'module_sys_dmail_html',
+			'usergroup',
 			'comments'
 		);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');

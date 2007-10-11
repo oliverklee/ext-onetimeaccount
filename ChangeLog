@@ -1,3 +1,8 @@
+2007-10-11 Saskia Metzler  <saskia@merlin.owl.de>
+
+	* [#1192]	Feature: Add a set of radio buttons, allowing to choose between 
+				several FE user groups
+
 2007-09-24 Saskia Metzler  <saskia@merlin.owl.de>
 
 	* [#1191] Feature: Add a checkbox "HTML e-mail"
