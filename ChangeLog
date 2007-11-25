@@ -1,3 +1,7 @@
+2007-11-25 Oliver Klee  <typo3-coding@oliverklee.de>
+
+	* [#1266] Fix: Labels for buttons cannot be set via TS setup
+
 2007-10-11 Saskia Metzler  <saskia@merlin.owl.de>
 
 	* [#1192]	Feature: Add a set of radio buttons, allowing to choose between 

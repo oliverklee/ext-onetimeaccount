@@ -369,7 +369,7 @@
 			</process>
 		</renderlet:TEXTAREA>
 		<renderlet:SUBMIT name="button_submit">
-			<label>LLL:EXT:onetimeaccount/pi1/locallang.xml:label_submit</label>
+			<label>###LABEL_SUBMIT###</label>
 		</renderlet:SUBMIT>
 		<renderlet:PASSTHRU name="crdate">
 			<data>
