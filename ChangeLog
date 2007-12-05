@@ -1,3 +1,7 @@
+2007-12-03 Mario Rimann  <typo3-coding@rimann.org>
+
+	* [#1347] Feature: Added French localization
+
 2007-11-25 Oliver Klee  <typo3-coding@oliverklee.de>
 
 	* [#1266] Fix: Labels for buttons cannot be set via TS setup

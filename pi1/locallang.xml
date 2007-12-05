@@ -105,6 +105,55 @@
 			<label index="message_status">Bitte geben Sie Ihren Status an.</label>
 			<label index="message_choose_usergroup">Bitte wählen Sie eine Benutzergruppe.</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="flexforms_pi1.sheet_general">Généralités</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay">Champs d'utilisateurs FE dans le formulaire:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Nom complet:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Nom du pays (code sur 3 lettres):</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">Répertoire pour le stockage des nouveaux utilisateurs FE:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groupes des nouveaux utilisateurs FE:</label>
+			<label index="flexforms_pi1.sheet_template">Gabarit et CSS</label>
+			<label index="flexforms_pi1.templateFile">Fichier de gabarit HTML:</label>
+			<label index="flexforms_pi1.cssFile">Fichier CSS:</label>
+			<label index="label_your_data_formal">Vos données</label>
+			<label index="label_your_data_informal">Tes données</label>
+			<label index="label_company">Société:</label>
+			<label index="label_gender.I.0">M.</label>
+			<label index="label_gender.I.1">Mme.</label>
+			<label index="label_title">Titre:</label>
+			<label index="label_name">Nom:</label>
+			<label index="label_address">Adresse:</label>
+			<label index="label_zip">Code postal:</label>
+			<label index="label_city">Ville:</label>
+			<label index="label_zone">Département/région:</label>
+			<label index="label_country">Pays:</label>
+			<label index="label_email">Adresse mail:</label>
+			<label index="label_www">Site web:</label>
+			<label index="label_telephone">Numéro de téléphone:</label>
+			<label index="label_fax">Numéro de fax:</label>
+			<label index="label_date_of_birth">Date de naissance:</label>
+			<label index="label_status">Statut:</label>
+			<label index="label_status.I.1">Etudiant</label>
+			<label index="label_status.I.2">En recherche d'emploi</label>
+			<label index="label_status.I.3">Employé</label>
+			<label index="label_status.I.4">Retraité</label>
+			<label index="label_usergroup">Groupe d'utilisateurs</label>
+			<label index="label_module_sys_dmail_html">Recevoir les mails au format HTML</label>
+			<label index="label_comments">Commentaires</label>
+			<label index="label_submit">Continuer</label>
+			<label index="message_company">Veuillez indiquer votre société.</label>
+			<label index="message_name">Veuillez indiquer votre nom.</label>
+			<label index="message_address">Veuillez indiquer votre adresse.</label>
+			<label index="message_zip">Veuillez indiquer votre code postal.</label>
+			<label index="message_city">Veuillez indiquer votre ville.</label>
+			<label index="message_country">Veuillez indiquer votre pays.</label>
+			<label index="message_email">Veuillez donner une adresse mail valable.</label>
+			<label index="message_telephone">Veuillez donner un numéro de téléphone valable.</label>
+			<label index="message_fax">Veuillez donner un numéro de fax valable.</label>
+			<label index="message_date_of_birth">Veuillez indiquer votre date de naissance.</label>
+			<label index="message_status">Veuillez indiquer votre statut.</label>
+			<label index="message_choose_usergroup">Veuillez choisir un groupe d'utilisateurs.</label>
+		</languageKey>
 	</data>
 	<orig_hash type="array">
 		<languageKey index="de" type="array">
@@ -156,9 +205,107 @@
 			<label index="message_status" type="integer">237419934</label>
 			<label index="message_choose_usergroup" type="integer">161431320</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="flexforms_pi1.sheet_general" type="integer">14366585</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay" type="integer">23375274</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name" type="integer">260008070</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country" type="integer">261739177</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords" type="integer">24157371</label>
+			<label index="flexforms_pi1.groupForNewFeUsers" type="integer">191155479</label>
+			<label index="flexforms_pi1.sheet_template" type="integer">23763433</label>
+			<label index="flexforms_pi1.templateFile" type="integer">75120399</label>
+			<label index="flexforms_pi1.cssFile" type="integer">244239567</label>
+			<label index="label_your_data_formal" type="integer">239884756</label>
+			<label index="label_your_data_informal" type="integer">239884756</label>
+			<label index="label_company" type="integer">98955432</label>
+			<label index="label_gender.I.0" type="integer">19351194</label>
+			<label index="label_gender.I.1" type="integer">43922038</label>
+			<label index="label_title" type="integer">85903807</label>
+			<label index="label_name" type="integer">81871034</label>
+			<label index="label_address" type="integer">252788963</label>
+			<label index="label_zip" type="integer">234550549</label>
+			<label index="label_city" type="integer">201307921</label>
+			<label index="label_zone" type="integer">236350277</label>
+			<label index="label_country" type="integer">258260574</label>
+			<label index="label_email" type="integer">126760538</label>
+			<label index="label_www" type="integer">240957512</label>
+			<label index="label_telephone" type="integer">130029308</label>
+			<label index="label_fax" type="integer">212052995</label>
+			<label index="label_date_of_birth" type="integer">2570779</label>
+			<label index="label_status" type="integer">38413271</label>
+			<label index="label_status.I.1" type="integer">257690140</label>
+			<label index="label_status.I.2" type="integer">138303616</label>
+			<label index="label_status.I.3" type="integer">136964828</label>
+			<label index="label_status.I.4" type="integer">219192007</label>
+			<label index="label_usergroup" type="integer">248005183</label>
+			<label index="label_module_sys_dmail_html" type="integer">89912328</label>
+			<label index="label_comments" type="integer">138493032</label>
+			<label index="label_submit" type="integer">254160814</label>
+			<label index="message_company" type="integer">21463011</label>
+			<label index="message_name" type="integer">62714617</label>
+			<label index="message_address" type="integer">48566681</label>
+			<label index="message_zip" type="integer">55741989</label>
+			<label index="message_city" type="integer">40317843</label>
+			<label index="message_country" type="integer">56386254</label>
+			<label index="message_email" type="integer">135361076</label>
+			<label index="message_telephone" type="integer">42170244</label>
+			<label index="message_fax" type="integer">226017035</label>
+			<label index="message_date_of_birth" type="integer">155377992</label>
+			<label index="message_status" type="integer">237419934</label>
+			<label index="message_choose_usergroup" type="integer">161431320</label>
+		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
 		<languageKey index="de" type="array">
+			<label index="flexforms_pi1.sheet_general">General</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay">FE user fields in the form:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Country name as alpha3 code:</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">System folder for the new FE user records:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groups for the new FE users:</label>
+			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
+			<label index="flexforms_pi1.templateFile">HTML template file:</label>
+			<label index="flexforms_pi1.cssFile">CSS file:</label>
+			<label index="label_your_data_formal">Your data</label>
+			<label index="label_your_data_informal">Your data</label>
+			<label index="label_company">Company:</label>
+			<label index="label_gender.I.0">Mr.</label>
+			<label index="label_gender.I.1">Ms.</label>
+			<label index="label_title">Title:</label>
+			<label index="label_name">Name:</label>
+			<label index="label_address">Street:</label>
+			<label index="label_zip">ZIP:</label>
+			<label index="label_city">City:</label>
+			<label index="label_zone">County/Region:</label>
+			<label index="label_country">Country:</label>
+			<label index="label_email">E-mail address:</label>
+			<label index="label_www">Website:</label>
+			<label index="label_telephone">Phone number:</label>
+			<label index="label_fax">Fax number:</label>
+			<label index="label_date_of_birth">Date of birth:</label>
+			<label index="label_status">Status:</label>
+			<label index="label_status.I.1">Student</label>
+			<label index="label_status.I.2">Job seeking</label>
+			<label index="label_status.I.3">Working</label>
+			<label index="label_status.I.4">Retired</label>
+			<label index="label_usergroup">User group</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
+			<label index="label_comments">Comments</label>
+			<label index="label_submit">Proceed</label>
+			<label index="message_company">Please enter your company.</label>
+			<label index="message_name">Please enter your name.</label>
+			<label index="message_address">Please enter your street.</label>
+			<label index="message_zip">Please enter your ZIP code.</label>
+			<label index="message_city">Please enter your city.</label>
+			<label index="message_country">Please enter your country.</label>
+			<label index="message_email">Please enter a valid e-mail address.</label>
+			<label index="message_telephone">Please enter a valid telephone number.</label>
+			<label index="message_fax">Please enter a valid fax number.</label>
+			<label index="message_date_of_birth">Please enter your date of birth.</label>
+			<label index="message_status">Please enter your status.</label>
+			<label index="message_choose_usergroup">Please choose a user group.</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">General</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay">FE user fields in the form:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
