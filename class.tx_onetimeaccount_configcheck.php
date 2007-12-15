@@ -44,7 +44,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$this->checkCssStyledContent();
 		$this->checkStaticIncluded();
 		$this->checkTemplateFile(true);
-		$this->checkCssFile(true);
+		$this->checkCssFile(false);
 		$this->checkSalutationMode();
 
 		$this->checkFeUserFieldsToDisplay();

@@ -253,21 +253,6 @@
 							</config>
 						</TCEforms>
 					</templateFile>
-					<cssFile>
-						<TCEforms>
-							<label>LLL:EXT:onetimeaccount/pi1/locallang.xml:flexforms_pi1.cssFile</label>
-							<config>
-								<type>group</type>
-								<internal_type>file</internal_type>
-								<allowed>css</allowed>
-								<max_size>100</max_size>
-								<uploadfolder>uploads/tx_onetimeaccount</uploadfolder>
-								<maxitems>1</maxitems>
-								<size>1</size>
-								<selectedListStyle>Width:180px</selectedListStyle>
-							</config>
-						</TCEforms>
-					</cssFile>
 				</el>
 			</ROOT>
 		</s_template_special>

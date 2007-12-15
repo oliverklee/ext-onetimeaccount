@@ -64,8 +64,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->init($conf);
 		$this->pi_initPIflexForm();
 
-		$this->addCssToPageHeader();
-
 		// disable caching
 		$this->pi_USER_INT_obj = 1;
 

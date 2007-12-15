@@ -8,8 +8,8 @@ plugin.tx_onetimeaccount_pi1 {
 	# location of the HTML template file
 	templateFile = EXT:onetimeaccount/pi1/onetimeaccount_pi1.html
 
-	# location of the CSS file (leave empty to include no CSS file)
-	cssFile = typo3conf/ext/onetimeaccount/pi1/onetimeaccount_pi1.css
+	# location of the CSS file (please don't change this value, change the corresponding value in the TS constants)
+	cssFile = {$plugin.tx_onetimeaccount_pi1.cssFile}
 
 	# whether to use formal or informal language
 	salutation = formal
@@ -26,4 +26,8 @@ plugin.tx_onetimeaccount_pi1 {
 
 	# UID of the group for new FE users
 	groupForNewFeUsers =
+}
+
+page.includeCSS {
+	onetimeaccount = {$plugin.tx_onetimeaccount_pi1.cssFile}
 }
