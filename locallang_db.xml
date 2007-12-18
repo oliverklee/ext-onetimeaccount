@@ -16,6 +16,9 @@
 		<languageKey index="fr" type="array">
 			<label index="tt_content.list_type_pi1">Créateur de compte FE à usage unique</label>
 		</languageKey>
+		<languageKey index="it" type="array">
+			<label index="tt_content.list_type_pi1">Creazione di account FE one-time</label>
+		</languageKey>
 	</data>
 	<orig_hash type="array">
 		<languageKey index="de" type="array">
@@ -24,12 +27,18 @@
 		<languageKey index="fr" type="array">
 			<label index="tt_content.list_type_pi1" type="integer">94360483</label>
 		</languageKey>
+		<languageKey index="it" type="array">
+			<label index="tt_content.list_type_pi1" type="integer">94360483</label>
+		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
 		<languageKey index="de" type="array">
 			<label index="tt_content.list_type_pi1">One-time FE account creator</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
+			<label index="tt_content.list_type_pi1">One-time FE account creator</label>
+		</languageKey>
+		<languageKey index="it" type="array">
 			<label index="tt_content.list_type_pi1">One-time FE account creator</label>
 		</languageKey>
 	</orig_text>

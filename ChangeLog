@@ -1,3 +1,7 @@
+2007-12-18 Mario Rimann  <typo3-coding@rimann.org>
+
+	* [#1346] Feature: Added Italian localization
+
 2007-12-14 Niels Pardon  <mail@niels-pardon.de>
 
 	* [#1381] Change: Change the way the CSS file is included
