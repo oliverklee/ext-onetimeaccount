@@ -256,7 +256,7 @@
 			<validators>
 				<validator:PREG>
 					<pattern>
-						<value>/^([\d\+][\d \-\+]*[\d\+])?$/</value>
+						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
 						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone</message>
 					</pattern>
 				</validator:PREG>
@@ -275,7 +275,7 @@
 			<validators>
 				<validator:PREG>
 					<pattern>
-						<value>/^([\d\+][\d \-\+]*[\d\+])?$/</value>
+						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
 						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax</message>
 					</pattern>
 				</validator:PREG>

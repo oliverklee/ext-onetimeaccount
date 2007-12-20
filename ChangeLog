@@ -1,5 +1,6 @@
 2007-12-20 Niels Pardon  <mail@niels-pardon.de>
 
+	* [#1151] Fix: Slashes in the phone number field are not allowed
 	* [#1004] Change: Add labels for first name/last name
 	* [#1394] Fix: "country" field is not localized
 
