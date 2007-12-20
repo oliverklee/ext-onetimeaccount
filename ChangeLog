@@ -1,3 +1,7 @@
+2007-12-20 Niels Pardon  <mail@niels-pardon.de>
+
+	* [#1394] Fix: "country" field is not localized
+
 2007-12-18 Mario Rimann  <typo3-coding@rimann.org>
 
 	* [#1346] Feature: Added Italian localization

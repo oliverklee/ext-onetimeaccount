@@ -246,7 +246,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function populateListCountries($unused, $parameters) {
 		$this->initStaticInfo();
-		$allCountries = $this->staticInfo->initCountries();
+		$allCountries = $this->staticInfo->initCountries(
+			'ALL', $this->staticInfo->getCurrentLanguage(), true
+		);
 
 		$result = array();
 		// Add an empty item at the top so we won't have Afghanistan (the first
