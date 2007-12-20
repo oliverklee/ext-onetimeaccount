@@ -23,6 +23,8 @@
 			<label index="label_gender.I.1">Ms.</label>
 			<label index="label_title">Title:</label>
 			<label index="label_name">Name:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
 			<label index="label_address">Street:</label>
 			<label index="label_zip">ZIP:</label>
 			<label index="label_city">City:</label>
@@ -71,6 +73,8 @@
 			<label index="label_gender.I.1">Frau</label>
 			<label index="label_title">Titel:</label>
 			<label index="label_name">Name:</label>
+			<label index="label_first_name">Vorname:</label>
+			<label index="label_last_name">Nachname:</label>
 			<label index="label_address">Straße:</label>
 			<label index="label_zip">PLZ:</label>
 			<label index="label_city">Ort:</label>
@@ -211,6 +215,8 @@
 			<label index="label_gender.I.1" type="integer">43922038</label>
 			<label index="label_title" type="integer">85903807</label>
 			<label index="label_name" type="integer">81871034</label>
+			<label index="label_first_name" type="integer">107522264</label>
+			<label index="label_last_name" type="integer">199614645</label>
 			<label index="label_address" type="integer">252788963</label>
 			<label index="label_zip" type="integer">234550549</label>
 			<label index="label_city" type="integer">201307921</label>
@@ -351,6 +357,8 @@
 			<label index="label_gender.I.1">Ms.</label>
 			<label index="label_title">Title:</label>
 			<label index="label_name">Name:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
 			<label index="label_address">Street:</label>
 			<label index="label_zip">ZIP:</label>
 			<label index="label_city">City:</label>
