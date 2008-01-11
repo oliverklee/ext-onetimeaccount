@@ -227,7 +227,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$result = in_array($key, $this->formFieldsToShow);
 		if ($key == 'usergroup') {
 			$result &= $this->hasAtLeastTwoUserGroups();
-		} 
+		}
 		return $result;
 	}
 
@@ -267,6 +267,37 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Returns the default country as alpha3 code or localized string.
+	 *
+	 * If $parameters['alpha3'] is set, the alpha3 code will be used as return
+	 * value. Otherwise, the localized country name will be used as return value.
+	 *
+	 * @param	array		array that contains any pre-filled data (unused)
+	 * @param	array		contents of the "params" XML child of the userobj
+	 * 						node (needs to contain an element with the key "key")
+	 *
+	 * @return	string		the default country (either the country's alpha3
+	 * 						code or the localized name)
+	 *
+	 * @access	public
+	 */
+	function getDefaultCountry($unused, $parameters) {
+		$this->initStaticInfo();
+		$typoScriptPluginSetup =& $GLOBALS['TSFE']->tmpl->setup['plugin.'];
+		$staticInfoSetup =& $typoScriptPluginSetup['tx_staticinfotables_pi1.'];
+		$defaultCountryCode =& $staticInfoSetup['countryCode'];
+
+		if ($parameters['alpha3']) {
+			return $defaultCountryCode;
+		} else {
+			return tx_staticinfotables_div::getTitleFromIsoCode(
+				'static_countries', $defaultCountryCode,
+				$this->staticInfo->getCurrentLanguage(), true
+			);
+		}
 	}
 
 	/**
@@ -402,7 +433,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Gets the form data and adds the user group(s) from the BE configuration
 	 * if the form field to choose a user group in the FE is disabled.
-	 * 
+	 *
 	 * @return	string		returns form data: If choosing user groups in in FE
 	 * 						is disabled, the user group(s) of groupForNewFeUsers
 	 * 						are added to the form data, otherwise it is returned
@@ -435,7 +466,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Returns an array of user groups choosable in the FE, will not be empty if
-	 * configured correctly. 
+	 * configured correctly.
 	 *
 	 * @return	array		lists user groups choosable in the FE, will not be
 	 * 						empty if configured correctly

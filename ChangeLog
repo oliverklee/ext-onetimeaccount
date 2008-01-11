@@ -1,3 +1,8 @@
+2008-01-11 Niels Pardon <mail@niels-pardon.de>
+
+	* [#1379] Feature: Respect plugin.tx_staticinfotables_pi1.countryCode in
+			  tx_onetimeaccount
+
 2007-12-20 Niels Pardon  <mail@niels-pardon.de>
 
 	* [#1151] Fix: Slashes in the phone number field are not allowed
