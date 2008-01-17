@@ -91,8 +91,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			// false = only create new records
 			false
 		);
-
-		return;
 	}
 
 	/**
@@ -106,8 +104,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			',',
 			$this->getConfValueString('feUserFieldsToDisplay', 's_general')
 		);
-
-		return;
 	}
 
 	/**
@@ -121,8 +117,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			',',
 			$this->getConfValueString('requiredFeUserFields', 's_general')
 		);
-
-		return;
 	}
 
 	/**
@@ -154,7 +148,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->setLabels();
 		$this->hideUnusedFormFields();
 
-		return $this->substituteMarkerArrayCached('', 1);
+		return $this->getSubpart();
 	}
 
 	/**
@@ -200,7 +194,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$formFieldsToHide[] = 'usergroup';
 		}
 
-		$this->readSubpartsToHide(
+		$this->hideSubparts(
 			implode(',', $formFieldsToHide),
 			'wrapper'
 		);
@@ -291,13 +285,15 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$defaultCountryCode =& $staticInfoSetup['countryCode'];
 
 		if ($parameters['alpha3']) {
-			return $defaultCountryCode;
+			$result = $defaultCountryCode;
 		} else {
-			return tx_staticinfotables_div::getTitleFromIsoCode(
+			$result = tx_staticinfotables_div::getTitleFromIsoCode(
 				'static_countries', $defaultCountryCode,
 				$this->staticInfo->getCurrentLanguage(), true
 			);
 		}
+
+		return $result;
 	}
 
 	/**
@@ -310,8 +306,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->staticInfo =& t3lib_div::makeInstance('tx_staticinfotables_pi1');
 			$this->staticInfo->init();
 		}
-
-		return;
 	}
 
 	/**
@@ -443,11 +437,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function setCurrentUserGroup($formData) {
 		$result = $formData;
+
 		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
 			$result['usergroup'] = $this->getConfValueString(
 				'groupForNewFeUsers',
 				's_general');
 		}
+
 		return $result;
 	}
 
@@ -461,6 +457,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	 function getUidOfFirstUserGroup() {
 	 	$userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
+
 	 	return intval($userGroups[0]);
 	 }
 
@@ -533,6 +530,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	function isRadiobuttonSelected($radiogroupValue) {
 		$allowedValues = $this->getUncheckedUidsOfAllowedUserGroups();
+
 		return in_array($radiogroupValue, $allowedValues);
 	}
 
