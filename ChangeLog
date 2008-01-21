@@ -1,3 +1,7 @@
+2008-01-21 Oliver Klee  <typo3-coding@oliverklee.de>
+
+	* [#1553] Change: Use a new extension icon 
+
 2008-01-16 Oliver Klee  <typo3-coding@oliverklee.de>
 
 	* [#1388] Fix: Drop the "recursion" parameter when calling getSubpart
