@@ -1,3 +1,7 @@
+2008-02-13 Oliver Klee  <typo3-coding@oliverklee.de>
+
+	* [#999] Change: Require PHP 5.1
+
 2008-01-23 Oliver Klee  <typo3-coding@oliverklee.de>
 
 	* [#1554] Change: Add a new content wizard icon
