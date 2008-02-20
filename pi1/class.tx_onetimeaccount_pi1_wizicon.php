@@ -33,13 +33,13 @@ class tx_onetimeaccount_pi1_wizicon {
 	/**
 	 * Processes the wizard items array.
 	 *
-	 * @param	array		the wizard items, may be empty, may not be null
+	 * @param	array		the wizard items, may be empty
 	 *
 	 * @return	array		modified array with wizard items
 	 *
 	 * @access	public
 	 */
-	function proc($wizardItems)	{
+	function proc(array $wizardItems) {
 		global $LANG;
 
 		$LL = $this->includeLocalLang();

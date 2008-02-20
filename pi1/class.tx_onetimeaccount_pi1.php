@@ -60,7 +60,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @return	string		HTML output of the plug-in
 	 */
-	function main($content, $conf)	{
+	function main($content, array $conf)	{
 		$this->init($conf);
 		$this->pi_initPIflexForm();
 
@@ -216,7 +216,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @access	public
 	 */
-	function isFormFieldEnabled($parameters) {
+	function isFormFieldEnabled(array $parameters) {
 		$key = $parameters['elementname'];
 		$result = in_array($key, $this->formFieldsToShow);
 		if ($key == 'usergroup') {
@@ -231,14 +231,18 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * If $parameters['alpha3'] is set, the alpha3 codes will be used as form
 	 * values. Otherwise, the localized country names will be used as values.
 	 *
-	 * @param	array		array that contains any pre-filled data (unused)
-	 * @param	array		contents of the "params" XML child of the userobj node (needs to contain an element with the key "key")
+	 * @param	mixed		(unused)
+	 * @param	array		contents of the "params" XML child of the userobj
+	 *						node (needs to contain an element with the key "key")
 	 *
-	 * @return	array		a list of localized country names from static_tables as an array with the keys "caption" (for the localized title) and "value" (either the country's alpha3 code or the localized name)
+	 * @return	array		a list of localized country names from static_tables
+	 *						as an array with the keys "caption" (for the
+	 *						localized title) and "value" (either the country's
+	 *						alpha3 code or the localized name)
 	 *
 	 * @access	public
 	 */
-	function populateListCountries($unused, $parameters) {
+	function populateListCountries($unused, array $parameters) {
 		$this->initStaticInfo();
 		$allCountries = $this->staticInfo->initCountries(
 			'ALL', $this->staticInfo->getCurrentLanguage(), true
@@ -269,7 +273,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * If $parameters['alpha3'] is set, the alpha3 code will be used as return
 	 * value. Otherwise, the localized country name will be used as return value.
 	 *
-	 * @param	array		array that contains any pre-filled data (unused)
+	 * @param	mixed		(unused)
 	 * @param	array		contents of the "params" XML child of the userobj
 	 * 						node (needs to contain an element with the key "key")
 	 *
@@ -278,7 +282,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @access	public
 	 */
-	function getDefaultCountry($unused, $parameters) {
+	function getDefaultCountry($unused, array $parameters) {
 		$this->initStaticInfo();
 		$typoScriptPluginSetup =& $GLOBALS['TSFE']->tmpl->setup['plugin.'];
 		$staticInfoSetup =& $typoScriptPluginSetup['tx_staticinfotables_pi1.'];
@@ -428,14 +432,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Gets the form data and adds the user group(s) from the BE configuration
 	 * if the form field to choose a user group in the FE is disabled.
 	 *
-	 * @return	string		returns form data: If choosing user groups in in FE
+	 * @param	array		entered form data, may be empty
+	 *
+	 * @return	array		returns form data: If choosing user groups in in FE
 	 * 						is disabled, the user group(s) of groupForNewFeUsers
 	 * 						are added to the form data, otherwise it is returned
 	 * 						without modifications.
 	 *
 	 * @access	public
 	 */
-	function setCurrentUserGroup($formData) {
+	function setCurrentUserGroup(array $formData) {
 		$result = $formData;
 
 		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
@@ -506,7 +512,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Gets an array of the value for groupForNewFeUsers from flexforms or TS setup.
 	 * The array will contain the UIDs of FE user groups, at least an empty string.
 	 *
-	 * @return	array		array of the flexforms or TS setup entry for groupForNewFeUsers
+	 * @return	array		array of the flexforms or TS setup entry for
+	 *						groupForNewFeUsers
 	 *
 	 * @access	private
 	 */

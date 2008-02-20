@@ -1,3 +1,7 @@
+2008-02-17 Oliver Klee  <typo3-coding@oliverklee.de>
+
+	* [#1104] Change: Use type hinting for function parameters
+
 2008-02-13 Oliver Klee  <typo3-coding@oliverklee.de>
 
 	* [#999] Change: Require PHP 5.1
