@@ -11,5 +11,4 @@ t3lib_extMgm::addPItoST43(
 	'list_type',
 	0
 );
-
 ?>

@@ -29,6 +29,7 @@
  *
  * @package		TYPO3
  * @subpackage	tx_onetimeaccount
+ *
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 
@@ -51,8 +52,6 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$this->checkRequiredFeUserFields();
 		$this->checkSystemFolderForNewFeUserRecords();
 		$this->checkGroupForNewFeUsers();
-
-		return;
 	}
 
 	/**
@@ -69,8 +68,6 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				.'Incorrect values will cause those fields to not get displayed.',
 			$this->getAvailableFields()
 		);
-
-		return;
 	}
 
 	/**
@@ -88,8 +85,6 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				.'validated correctly.',
 			$this->getAvailableFields()
 		);
-
-		return;
 	}
 
 	/**
@@ -108,8 +103,6 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				.'If this value is not set correctly, the records will be '
 				.'stored in the wrong page.'
 		);
-
-		return;
 	}
 
 	/**
@@ -207,5 +200,4 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']) {
 	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']);
 }
-
 ?>

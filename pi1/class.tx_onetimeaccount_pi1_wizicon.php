@@ -27,6 +27,7 @@
  *
  * @package		TYPO3
  * @subpackage	tx_onetimeaccount
+ *
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 class tx_onetimeaccount_pi1_wizicon {
@@ -74,5 +75,4 @@ class tx_onetimeaccount_pi1_wizicon {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1_wizicon.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1_wizicon.php']);
 }
-
 ?>

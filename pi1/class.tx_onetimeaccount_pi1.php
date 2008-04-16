@@ -22,19 +22,19 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
-require_once(t3lib_extMgm::extPath('ameos_formidable')
-	.'api/class.tx_ameosformidable.php');
-require_once(t3lib_extMgm::extPath('static_info_tables')
-	.'pi1/class.tx_staticinfotables_pi1.php');
-
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_onetimeaccount
+ *
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
+
+require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
+require_once(t3lib_extMgm::extPath('ameos_formidable').'api/class.tx_ameosformidable.php');
+require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+
 class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	var $prefixId = 'tx_onetimeaccount_pi1';
 	var $scriptRelPath = 'pi1/class.tx_onetimeaccount_pi1.php';
@@ -557,5 +557,4 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']);
 }
-
 ?>
