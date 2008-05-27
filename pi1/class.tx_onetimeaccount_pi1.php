@@ -29,6 +29,7 @@
  * @subpackage	tx_onetimeaccount
  *
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
+ * @author		Niels Pardon <mail@niels-pardon.de>
  */
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
@@ -337,16 +338,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * user session.
 	 *
 	 * @return	string		the URL set as GET parameter (or an empty string if there is no such GET parameter)
-	 *
-	 * @access	public
 	 */
-	function getRedirectUrlAndLoginUser() {
+	public function getRedirectUrlAndLoginUser() {
 		$result = t3lib_div::_GP('redirect_url');
 
 		if (empty($result)) {
 			// Redirect to the current page if no redirect URL is provided.
 			$result = t3lib_div::locationHeaderUrl(
-				$this->cObj->getTypoLink_URL($GLOBALS['TSFE']->id)
+				$this->cObj->typoLink_URL(
+					array('parameter' => $GLOBALS['TSFE']->id)
+				)
 			);
 		}
 

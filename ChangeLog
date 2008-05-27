@@ -1,3 +1,8 @@
+2008-05-24 Niels Pardon  <mail@niels-pardon.de>
+
+	* [#1914] Change: Build all redirection links and links in e-mails using
+				cObj->typoLink_URL
+
 2008-04-06 Oliver Klee  <typo3-coding@oliverklee.de>
 
 	* [#1818] Change: Comment and whitespace consistency cleanup
@@ -25,7 +30,7 @@
 2008-01-11 Niels Pardon <mail@niels-pardon.de>
 
 	* [#1379] Feature: Respect plugin.tx_staticinfotables_pi1.countryCode in
-			  tx_onetimeaccount
+				tx_onetimeaccount
 
 2007-12-20 Niels Pardon  <mail@niels-pardon.de>
 
