@@ -1,81 +1,25 @@
-2008-07-13 Oliver Klee  <typo3-coding@oliverklee.de>
+0.3.0 - currently working on
 
-	* Released version 0.2.0.
+0.2.0 - released 2008-07-13
+- [#1914] Fix: Build all redirection links and links in e-mails using cObj->typoLink_URL
+- [#1818] Change: Comment and whitespace consistency cleanup
+- [#1104] Change: Use type hinting for function parameters
+- [#999] Change: Require PHP 5.1
+- [#1554] Change: Add a new content wizard icon
+- [#1553] Change: Use a new extension icon
+- [#1388] Fix: Drop the "recursion" parameter when calling getSubpart
+- [#1379] Feature: Respect plugin.tx_staticinfotables_pi1.countryCode in tx_onetimeaccount
+- [#1151] Fix: Slashes in the phone number field are not allowed
+- [#1004] Change: Add labels for first name/last name
+- [#1394] Fix: "country" field is not localized
+- [#1346] Feature: Added Italian localization
+- [#1381] Change: Change the way the CSS file is included
+- [#1347] Feature: Added French localization
+- [#1266] Fix: Labels for buttons cannot be set via TS setup
+- [#1192] Feature: Add a set of radio buttons, allowing to choose between several FE user groups
+- [#1191] Feature: Add a checkbox "HTML e-mail"
+- [#1138] Require TYPO3 4
+- [#612] Code cleanup
+- [#960] Add missing feuser fields, patch by Corrado
 
-2008-05-24 Niels Pardon  <mail@niels-pardon.de>
-
-	* [#1914] Fix: Build all redirection links and links in e-mails using cObj->typoLink_URL
-
-2008-04-06 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1818] Change: Comment and whitespace consistency cleanup
-
-2008-02-17 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1104] Change: Use type hinting for function parameters
-
-2008-02-13 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#999] Change: Require PHP 5.1
-
-2008-01-23 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1554] Change: Add a new content wizard icon
-
-2008-01-21 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1553] Change: Use a new extension icon
-
-2008-01-16 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1388] Fix: Drop the "recursion" parameter when calling getSubpart
-
-2008-01-11 Niels Pardon <mail@niels-pardon.de>
-
-	* [#1379] Feature: Respect plugin.tx_staticinfotables_pi1.countryCode in tx_onetimeaccount
-
-2007-12-20 Niels Pardon  <mail@niels-pardon.de>
-
-	* [#1151] Fix: Slashes in the phone number field are not allowed
-	* [#1004] Change: Add labels for first name/last name
-	* [#1394] Fix: "country" field is not localized
-
-2007-12-18 Mario Rimann  <typo3-coding@rimann.org>
-
-	* [#1346] Feature: Added Italian localization
-
-2007-12-14 Niels Pardon  <mail@niels-pardon.de>
-
-	* [#1381] Change: Change the way the CSS file is included
-
-2007-12-05 Mario Rimann  <typo3-coding@rimann.org>
-
-	* [#1347] Feature: Added French localization
-
-2007-11-25 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1266] Fix: Labels for buttons cannot be set via TS setup
-
-2007-10-11 Saskia Metzler  <saskia@merlin.owl.de>
-
-	* [#1192] Feature: Add a set of radio buttons, allowing to choose between several FE user groups
-
-2007-09-24 Saskia Metzler  <saskia@merlin.owl.de>
-
-	* [#1191] Feature: Add a checkbox "HTML e-mail"
-
-2007-09-09 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#1138] Require TYPO3 4
-
-2007-09-09 Mario Rimann <typo3-coding@rimann.org>
-
-	* [#612] Code cleanup
-
-2007-07-16 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* [#960] Add missing feuser fields, patch by Corrado
-
-2007-07-16 Oliver Klee  <typo3-coding@oliverklee.de>
-
-	* first public release
+0.1.0 - released 2007-07-16
