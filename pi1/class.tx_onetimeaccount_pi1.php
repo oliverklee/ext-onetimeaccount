@@ -22,6 +22,12 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once(PATH_formidableapi);
+
+require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
+
+require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
  *
@@ -31,11 +37,6 @@
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  * @author		Niels Pardon <mail@niels-pardon.de>
  */
-
-require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
-require_once(t3lib_extMgm::extPath('ameos_formidable').'api/class.tx_ameosformidable.php');
-require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
-
 class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	var $prefixId = 'tx_onetimeaccount_pi1';
 	var $scriptRelPath = 'pi1/class.tx_onetimeaccount_pi1.php';
@@ -214,14 +215,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @return	boolean		true if the current form field should be displayed,
 	 * 						false otherwise
-	 *
-	 * @access	public
 	 */
-	function isFormFieldEnabled(array $parameters) {
+	public function isFormFieldEnabled(array $parameters) {
 		$key = $parameters['elementname'];
 		$result = in_array($key, $this->formFieldsToShow);
 		if ($key == 'usergroup') {
-			$result &= $this->hasAtLeastTwoUserGroups();
+			$result = $result && $this->hasAtLeastTwoUserGroups();
+
 		}
 		return $result;
 	}
@@ -528,18 +528,21 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether a radiobutton in a radiobutton group is selected.
 	 *
-	 * @param	mixed		the currently selected value or an empty string if
-	 * 						no button is selected
+	 * @param	array		the currently selected value in an associative array
+	 * 						with the key 'value'
 	 *
-	 * @return	boolean		true if a radiobutton is selected, false if none is
-	 * 						selected
-	 *
-	 * @access	public
+	 * @return	boolean		true if a radiobutton is selected or if the form
+	 * 						field is hidden, false if none is selected although
+	 * 						the field is visible
 	 */
-	function isRadiobuttonSelected($radiogroupValue) {
+	public function isRadiobuttonSelected(array $radiogroupValue) {
+		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
+			return true;
+		}
+
 		$allowedValues = $this->getUncheckedUidsOfAllowedUserGroups();
 
-		return in_array($radiogroupValue, $allowedValues);
+		return in_array($radiogroupValue['value'], $allowedValues);
 	}
 
 	/**
