@@ -25,6 +25,7 @@
 require_once(PATH_formidableapi);
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
 
 require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
 
@@ -474,10 +475,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @return	array		lists user groups choosable in the FE, will not be
 	 * 						empty if configured correctly
-	 *
-	 * @access	public
 	 */
-	function listUserGroups() {
+	public function listUserGroups() {
 		$result = array();
 		$listOfUserGroupUids = $this->getConfValueString(
 			'groupForNewFeUsers',
@@ -490,8 +489,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 				'uid, title',
 				'fe_groups',
-				'uid IN('.$listOfUserGroupUids.')'
-					.$this->enableFields('fe_groups')
+				'uid IN(' . $listOfUserGroupUids . ')' .
+					tx_oelib_db::enableFields('fe_groups')
 			);
 			if ($dbResult) {
 				while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)) {

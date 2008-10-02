@@ -33,7 +33,8 @@
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 
-require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_configcheck.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_configcheck.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
 
 class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	/**
@@ -128,8 +129,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 				'COUNT(*) AS number',
 				'fe_groups',
-				'uid IN ('.$valueToCheck.')'
-					.$this->objectToCheck->enableFields('fe_groups')
+				'uid IN (' . $valueToCheck . ')' .
+					tx_oelib_db::enableFields('fe_groups')
 			);
 			if ($dbResult) {
 				$elementsInDbResult = implode(
