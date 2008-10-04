@@ -24,8 +24,10 @@
 
 require_once(PATH_formidableapi);
 
+require_once(t3lib_extMgm::extPath('oelib') . 'tx_oelib_commonConstants.php');
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_session.php');
 
 require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
 
@@ -366,11 +368,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			);
 		}
 
-		$datahandler = $this->form->oDataHandler;
-		$userName = $datahandler->_getThisFormData('username');
+		$userName = $this->getFormData('username');
 		// The array key "uident" is required by the compareUident function.
 		$loginData = array(
-			'uident'=> $datahandler->_getThisFormData('password')
+			'uident'=> $this->getFormData('password')
 		);
 
 		$GLOBALS['TSFE']->fe_user->checkPid = false;
@@ -386,15 +387,23 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$GLOBALS['TSFE']->loginUser = 1;
 			$GLOBALS['TSFE']->fe_user->start();
 
-			$GLOBALS['TSFE']->fe_user->setKey(
-				'user',
-				$this->extKey,
-				'1'
-			);
-			$GLOBALS['TSFE']->fe_user->storeSessionData();
+			tx_oelib_session::getInstance(tx_oelib_session::TYPE_USER)
+				->setAsBoolean($this->extKey, true);
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Gets the entered form data for the field $key.
+	 *
+	 * @param	string		key of the field to retrieve, must not be empty and
+	 * 						must refer to an existing form field
+	 *
+	 * @return	mixed		data for the requested form element
+	 */
+	protected function getFormData($key) {
+		return $this->form->oDataHandler->_getThisFormData($key);
 	}
 
 	/**
@@ -404,7 +413,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return	string		a user name, will not be empty
 	 */
 	public function getUserName() {
-		$enteredEmail = $this->form->oDataHandler->_getThisFormData('email');
+		$enteredEmail = $this->getFormData('email');
 		$numberToAppend = 1;
 		$result = $enteredEmail;
 
@@ -500,10 +509,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 				'uid IN(' . $listOfUserGroupUids . ')' .
 					tx_oelib_db::enableFields('fe_groups')
 			);
-			if ($dbResult) {
-				while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)) {
-					$allUserGroups[$row['uid']] = $row['title'];
-				}
+			if (!$dbResult) {
+				throw new Exception(DATABASE_QUERY_ERROR);
+			}
+
+			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)) {
+				$allUserGroups[$row['uid']] = $row['title'];
 			}
 			foreach ($userGroupUids as $currentUid) {
 				$result[] = array(
@@ -511,6 +522,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 					'value' => $currentUid
 				);
 			}
+			$GLOBALS['TYPO3_DB']->sql_free_result($dbResult);
 		};
 
 		return $result;
