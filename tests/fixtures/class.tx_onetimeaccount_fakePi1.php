@@ -28,25 +28,25 @@ require_once(t3lib_extMgm::extPath('onetimeaccount') . 'pi1/class.tx_onetimeacco
  * Fake version of the plugin 'One-time FE account creator' for the
  * 'onetimeaccount' extension.
  *
- * @package		TYPO3
- * @subpackage	tx_onetimeaccount
+ * @package TYPO3
+ * @subpackage tx_onetimeaccount
  *
- * @author		Oliver Klee <typo3-coding@oliverklee.de>
+ * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
 class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	/**
-	 * @var	array		the simulated form date
+	 * @var array the simulated form date
 	 */
 	private $formData = array();
 
 	/**
 	 * Gets the simulated form data for the field $key.
 	 *
-	 * @param	string		key of the field to retrieve, must not be empty and
-	 * 						must refer to an existing form field
+	 * @param string key of the field to retrieve, must not be empty and
+	 *               must refer to an existing form field
 	 *
-	 * @return	mixed		data for the requested form element or an empty
-	 * 						string if the form field is not set
+	 * @return mixed data for the requested form element or an empty
+	 *               string if the form field is not set
 	 */
 	public function getFormData($key) {
 		if (!isset($this->formData[$key])) {
@@ -59,7 +59,7 @@ class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	/**
 	 * Sets the form data.
 	 *
-	 * @param	array	form data to set as key/value pairs, may be empty
+	 * @param array form data to set as key/value pairs, may be empty
 	 */
 	public function setFormData(array $formData) {
 		$this->formData = $formData;

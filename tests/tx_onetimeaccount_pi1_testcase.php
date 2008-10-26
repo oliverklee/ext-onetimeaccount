@@ -31,23 +31,23 @@ require_once(t3lib_extMgm::extPath('onetimeaccount') . 'tests/fixtures/class.tx_
 /**
  * Testcase for the pi1 class in the 'onetimeaccount' extension.
  *
- * @package		TYPO3
- * @subpackage	tx_seminars
+ * @package TYPO3
+ * @subpackage tx_seminars
  *
- * @author		Oliver Klee <typo3-coding@oliverklee.de>
+ * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
 class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	/**
-	 * @var	tx_onetimeaccount_fakePi1
+	 * @var tx_onetimeaccount_fakePi1
 	 */
 	private $fixture;
 	/**
-	 * @var	tx_oelib_testingFramework
+	 * @var tx_oelib_testingFramework
 	 */
 	private $testingFramework;
 
 	public function setUp() {
-		$this->testingFramework	= new tx_oelib_testingFramework('tx_seminars');
+		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
 		$this->testingFramework->createFakeFrontEnd();
 
 		$this->fixture = new tx_onetimeaccount_fakePi1(
