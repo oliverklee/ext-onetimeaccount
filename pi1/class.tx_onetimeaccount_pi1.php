@@ -27,7 +27,7 @@ require_once(PATH_formidableapi);
 require_once(t3lib_extMgm::extPath('oelib') . 'tx_oelib_commonConstants.php');
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_session.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Session.php');
 
 require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
 
@@ -387,7 +387,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$GLOBALS['TSFE']->loginUser = 1;
 			$GLOBALS['TSFE']->fe_user->start();
 
-			tx_oelib_session::getInstance(tx_oelib_session::TYPE_USER)
+			tx_oelib_Session::getInstance(tx_oelib_Session::TYPE_USER)
 				->setAsBoolean($this->extKey, true);
 		}
 

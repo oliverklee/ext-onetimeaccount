@@ -23,8 +23,8 @@
 ***************************************************************/
 
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_testingFramework.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_session.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_fakeSession.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Session.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_FakeSession.php');
 
 require_once(t3lib_extMgm::extPath('onetimeaccount') . 'tests/fixtures/class.tx_onetimeaccount_fakePi1.php');
 
@@ -147,9 +147,9 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		);
 		$this->fixture->setFormData($userData);
 
-		$session = new tx_oelib_fakeSession();
-		tx_oelib_session::setInstance(
-			tx_oelib_session::TYPE_USER, $session
+		$session = new tx_oelib_FakeSession();
+		tx_oelib_Session::setInstance(
+			tx_oelib_Session::TYPE_USER, $session
 		);
 
 		$this->fixture->getRedirectUrlAndLoginUser();
