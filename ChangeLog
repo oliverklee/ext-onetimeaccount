@@ -1,4 +1,5 @@
 0.3.0 - currently working on
+- [#2322] Feature: Create an autoloader for models and other classes
 - [#2120] Change: Use tabs for indentation only at the beginning of lines
 - [#1778] Feature: Provide an abstraction for session handling
 - [#2097] Change: Create a class tx_oelib_db
