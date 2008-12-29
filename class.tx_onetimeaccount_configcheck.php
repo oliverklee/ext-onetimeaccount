@@ -39,10 +39,8 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
 class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	/**
 	 * Checks the configuration for tx_onetimeaccount_pi1.
-	 *
-	 * @access private
 	 */
-	function check_tx_onetimeaccount_pi1() {
+	protected function check_tx_onetimeaccount_pi1() {
 		$this->checkCssStyledContent();
 		$this->checkStaticIncluded();
 		$this->checkTemplateFile(true);
@@ -57,10 +55,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value feUserFieldsToDisplay.
-	 *
-	 * @access private
 	 */
-	function checkFeUserFieldsToDisplay() {
+	private function checkFeUserFieldsToDisplay() {
 		$this->checkIfMultiInSetNotEmpty(
 			'feUserFieldsToDisplay',
 			true,
@@ -73,10 +69,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value requiredFeUserFields.
-	 *
-	 * @access private
 	 */
-	function checkRequiredFeUserFields() {
+	private function checkRequiredFeUserFields() {
 		$this->checkIfMultiInSetOrEmpty(
 			'requiredFeUserFields',
 			true,
@@ -91,10 +85,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	/**
 	 * Checks the setting of the configuration value
 	 * systemFolderForNewFeUserRecords.
-	 *
-	 * @access private
 	 */
-	function checkSystemFolderForNewFeUserRecords() {
+	private function checkSystemFolderForNewFeUserRecords() {
 		$this->checkIfSingleSysFolderNotEmpty(
 			'systemFolderForNewFeUserRecords',
 			true,
@@ -108,10 +100,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value groupForNewFeUsers.
-	 *
-	 * @access private
 	 */
-	function checkGroupForNewFeUsers() {
+	private function checkGroupForNewFeUsers() {
 		$this->checkIfPidListNotEmpty(
 			'groupForNewFeUsers',
 			true,
@@ -162,10 +152,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * sr_feuser_register).
 	 *
 	 * @return array list of available field names, will not be empty
-	 *
-	 * @access private
 	 */
-	function getAvailableFields() {
+	private function getAvailableFields() {
 		$providedFields = array(
 			'company',
 			'gender',
