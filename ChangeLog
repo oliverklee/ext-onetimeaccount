@@ -1,4 +1,5 @@
 0.4.0 - currently working on
+- [#2494] Change: The autoloader should include the constants
 
 0.3.0 - released 2009-01-04
 - [#2504] Fix: Update the <label for=""> to the new form IDs from FORMidable

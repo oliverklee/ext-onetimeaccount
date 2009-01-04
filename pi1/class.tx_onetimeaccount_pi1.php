@@ -25,7 +25,6 @@
 require_once(PATH_formidableapi);
 
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'tx_oelib_commonConstants.php');
 
 require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
 
