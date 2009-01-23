@@ -80,6 +80,22 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				.'validated correctly.',
 			$this->getAvailableFields()
 		);
+
+		$this->checkIfMultiInSetOrEmpty(
+			'requiredFeUserFields',
+			true,
+			's_general',
+			'This value specifies which form fields are required to be filled ' .
+				'in. Incorrect values will cause the user not to be able to ' .
+				'send the registration form.',
+			t3lib_div::trimExplode(
+				',',
+				$this->objectToCheck->getConfValueString(
+					'feUserFieldsToDisplay', 's_general'
+				),
+				true
+			)
+		);
 	}
 
 	/**

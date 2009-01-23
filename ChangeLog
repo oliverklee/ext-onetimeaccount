@@ -1,4 +1,5 @@
 0.4.0 - currently working on
+- [#873] Feature: Provide a setting for the required fields
 - [#2494] Change: The autoloader should include the constants
 
 0.3.0 - released 2009-01-04

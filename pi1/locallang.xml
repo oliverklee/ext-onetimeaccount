@@ -16,6 +16,7 @@
 			<label index="flexforms_pi1.groupForNewFeUsers">Groups for the new FE users:</label>
 			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML template file:</label>
+			<label index="flexforms_pi1.requiredFeUserFields">Required fields:</label>
 			<label index="label_your_data_formal">Your data</label>
 			<label index="label_your_data_informal">Your data</label>
 			<label index="label_company">Company:</label>
@@ -66,6 +67,7 @@
 			<label index="flexforms_pi1.groupForNewFeUsers">Gruppen für die neuen FE-User:</label>
 			<label index="flexforms_pi1.sheet_template">Templates und CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML-Template-Datei:</label>
+			<label index="flexforms_pi1.requiredFeUserFields">Pflichtfelder:</label>
 			<label index="label_your_data_formal">Ihre Daten</label>
 			<label index="label_your_data_informal">Deine Daten</label>
 			<label index="label_company">Firma:</label>
@@ -248,6 +250,7 @@
 			<label index="message_date_of_birth" type="integer">155377992</label>
 			<label index="message_status" type="integer">237419934</label>
 			<label index="message_choose_usergroup" type="integer">161431320</label>
+			<label index="flexforms_pi1.requiredFeUserFields" type="integer">225447594</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general" type="integer">14366585</label>
@@ -390,6 +393,7 @@
 			<label index="message_date_of_birth">Please enter your date of birth.</label>
 			<label index="message_status">Please enter your status.</label>
 			<label index="message_choose_usergroup">Please choose a user group.</label>
+			<label index="flexforms_pi1.requiredFeUserFields">Required fields:</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">General</label>
