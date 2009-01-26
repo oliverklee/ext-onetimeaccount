@@ -72,6 +72,33 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	private $staticInfo = null;
 
 	/**
+	 * @var array the fields available in the form
+	 */
+	private static $availableFormFields = array(
+		'company',
+		'gender',
+		'title',
+		'name',
+		'first_name',
+		'last_name',
+		'address',
+		'zip',
+		'city',
+		'zone',
+		'country',
+		'static_info_country',
+		'email',
+		'www',
+		'telephone',
+		'fax',
+		'date_of_birth',
+		'status',
+		'module_sys_dmail_html',
+		'usergroup',
+		'comments',
+	);
+
+	/**
 	 * Frees as much memory that has been used by this object as possible.
 	 */
 	public function __destruct() {
@@ -122,6 +149,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	private function initializeFormFields() {
 		$this->setFormFieldsToShow();
 		$this->setRequiredFormFields();
+		$this->setRequiredFieldLabels();
 	}
 
 	/**
@@ -181,32 +209,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * process.
 	 */
 	private function hideUnusedFormFields() {
-		static $availableFormFields = array(
-			'company',
-			'gender',
-			'title',
-			'name',
-			'first_name',
-			'last_name',
-			'address',
-			'zip',
-			'city',
-			'zone',
-			'country',
-			'static_info_country',
-			'email',
-			'www',
-			'telephone',
-			'fax',
-			'date_of_birth',
-			'status',
-			'module_sys_dmail_html',
-			'usergroup',
-			'comments',
-		);
-
 		$formFieldsToHide = array_diff(
-			$availableFormFields,
+			self::$availableFormFields,
 			$this->formFieldsToShow
 		);
 
@@ -567,6 +571,24 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	private function hasAtLeastTwoUserGroups() {
 		return (count($this->listUserGroups()) > 1);
+	}
+
+	/**
+	 * Adds a class 'required' to the label of a field if it is required.
+	 */
+	private function setRequiredFieldLabels() {
+		$formFieldsToCheck = array_diff(
+			self::$availableFormFields,
+			array('usergroup', 'gender', 'module_sys_dmail_html')
+		);
+		foreach ($formFieldsToCheck as $formField) {
+			$this->setMarker(
+				$formField . '_required',
+				(in_array($formField, $this->requiredFormFields))
+					? ' class="required"'
+					: ''
+			);
+		}
 	}
 }
 

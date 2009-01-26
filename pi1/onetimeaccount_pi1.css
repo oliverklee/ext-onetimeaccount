@@ -29,6 +29,10 @@
 	margin: 0 0 .5em 12em;
 }
 
+.tx-onetimeaccount-pi1 label.required {
+	font-weight: bold;
+}
+
 .tx-onetimeaccount-pi1 dd select,
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-first_name,
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-zip {
