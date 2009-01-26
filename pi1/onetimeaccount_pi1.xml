@@ -304,7 +304,8 @@
 		</renderlet:TEXT>
 		<renderlet:DATE name="date_of_birth">
 			<data>
-				<datetime format="%d.%m.%Y" converttotimestamp="true" />
+				<datetime format="%d.%m.%Y" converttotimestamp="true" 
+					allowmanualedition="true"/>
 			</data>
 			<process>
 				<userobj>
