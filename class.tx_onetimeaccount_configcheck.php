@@ -78,7 +78,9 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'This value specifies which form fields are required to be filled in. '
 				.'Incorrect values will cause those fields to not get '
 				.'validated correctly.',
-			$this->getAvailableFields()
+			$this->getAvailableFields(
+				array('gender', 'usergroup', 'module_sys_dmail_html')
+			)
 		);
 
 		$this->checkIfMultiInSetOrEmpty(
@@ -167,9 +169,12 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * actually exist in the DB (some fields need to be provided by
 	 * sr_feuser_register).
 	 *
+	 * @param array fields which should be excluded from the list of available
+	 *              fields, may be empty
+	 *
 	 * @return array list of available field names, will not be empty
 	 */
-	private function getAvailableFields() {
+	private function getAvailableFields(array $excludeFields = array()) {
 		$providedFields = array(
 			'company',
 			'gender',
@@ -193,12 +198,13 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'usergroup',
 			'comments'
 		);
+		$formFields = array_diff($providedFields, $excludeFields);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
 
 		// Make sure that only fields are allowed that are actually available.
 		// (Some fields don't come with the vanilla TYPO3 installation and are
 		// provided by the sr_feusers_register extension.)
-		return array_intersect($providedFields, $fieldsFromFeUsers);
+		return array_intersect($formFields, $fieldsFromFeUsers);
 	}
 }
 
