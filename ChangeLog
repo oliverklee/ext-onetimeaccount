@@ -1,4 +1,5 @@
 0.4.0 - currently working on
+- [#2642] Fix: Login fails with TYPO3 4.2.5
 - [#2639] Fix: Mark the birth date field as manually editable
 - [#2631] Feature: Mark the labels of required fields as bold (using CSS)
 - [#873] Feature: Provide a setting for the required fields

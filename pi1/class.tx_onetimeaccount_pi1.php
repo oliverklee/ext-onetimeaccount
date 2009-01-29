@@ -348,6 +348,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Returns the URL that has been set via the GET parameter "redirect_url".
+	 *
 	 * If this parameter has not been set or is empty, an empty string will be
 	 * returned.
 	 *
@@ -355,13 +356,14 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * the key "onetimeaccount" with the value "1" will be written to the FE
 	 * user session.
 	 *
-	 * @return string the URL set as GET parameter (or an empty string if there is no such GET parameter)
+	 * @return string the URL set as GET parameter or an empty string if there
+	 *                is no such GET parameter
 	 */
 	public function getRedirectUrlAndLoginUser() {
-		$result = t3lib_div::_GP('redirect_url');
+		$result = (string) t3lib_div::_GP('redirect_url');
 
-		if (empty($result)) {
-			// Redirect to the current page if no redirect URL is provided.
+		if ($result == '') {
+			// Redirects to the current page if no redirect URL is provided.
 			$result = t3lib_div::locationHeaderUrl(
 				$this->cObj->typoLink_URL(
 					array('parameter' => $GLOBALS['TSFE']->id)
@@ -369,28 +371,15 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			);
 		}
 
-		$userName = $this->getFormData('username');
-		// The array key "uident" is required by the compareUident function.
-		$loginData = array(
-			'uident'=> $this->getFormData('password')
-		);
+		$_POST['user'] = $this->getFormData('username');;
+		$_POST['pass'] = $this->getFormData('password');
+		$_POST['logintype'] = 'login';
+		$_POST['pid'] = $this->getPidForNewUserRecords();
 
-		$GLOBALS['TSFE']->fe_user->checkPid = false;
-		$authenticationInformation = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
-		$user = $GLOBALS['TSFE']->fe_user->fetchUserRecord(
-			$authenticationInformation['db_user'],
-			$userName
-		);
+		$GLOBALS['TSFE']->initFEuser();
 
-		$isLoginOk = $GLOBALS['TSFE']->fe_user->compareUident($user, $loginData);
-		if ($isLoginOk) {
-			$GLOBALS['TSFE']->fe_user->createUserSession($user);
-			$GLOBALS['TSFE']->loginUser = 1;
-			$GLOBALS['TSFE']->fe_user->start();
-
-			tx_oelib_Session::getInstance(tx_oelib_Session::TYPE_USER)
-				->setAsBoolean($this->extKey, true);
-		}
+		tx_oelib_Session::getInstance(tx_oelib_Session::TYPE_USER)
+			->setAsBoolean($this->extKey, true);
 
 		return $result;
 	}
