@@ -156,5 +156,103 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$session->getAsBoolean('onetimeaccount')
 		);
 	}
+
+
+	/////////////////////////////////////////////
+	// Tests concerning validateStringField
+	/////////////////////////////////////////////
+
+	public function test_ValidateStringField_ForNotRequiredField_ReturnsTrue() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertTrue(
+			$this->fixture->validateStringField(
+				array('elementName' => 'address')
+			)
+		);
+	}
+
+	public function test_ValidateStringField_ForMissingFieldName_ThrowsException() {
+		$this->setExpectedException(
+			'Exception', 'The given field name was empty.'
+		);
+
+		$this->fixture->validateStringField(array());
+
+	}
+
+	public function test_ValidateStringField_ForNonEmptyRequiredField_ReturnsTrue() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertTrue(
+			$this->fixture->validateStringField(
+				array('elementName' => 'name', 'value' => 'foo')
+			)
+		);
+	}
+
+	public function test_ValidateStringField_ForEmptyRequiredField_ReturnsFalse() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertFalse(
+			$this->fixture->validateStringField(
+				array('elementName' => 'name', 'value' => '')
+			)
+		);
+	}
+
+
+	////////////////////////////////////////////
+	// Tests concerning validateIntegerField
+	////////////////////////////////////////////
+
+	public function test_ValidateIntegerField_ForRequiredFieldValueZero_ReturnsFalse() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertFalse(
+			$this->fixture->validateIntegerField(
+				array('elementName' => 'name', 'value' => 0)
+			)
+		);
+	}
+
+	public function test_ValidateIntegerField_ForNonRequiredField_ReturnsTrue() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertTrue(
+			$this->fixture->validateIntegerField(
+				array('elementName' => 'address')
+			)
+		);
+	}
+
+	public function test_ValidateIntegerField_ForRequiredFieldValueNonZero_ReturnsTrue() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertTrue(
+			$this->fixture->validateIntegerField(
+				array('elementName' => 'name', 'value' => 1)
+			)
+		);
+	}
+
+	public function test_ValidateIntegerField_ForRequiredFieldValueString_ReturnsFalse() {
+		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
+
+		$this->assertFalse(
+			$this->fixture->validateIntegerField(
+				array('elementName' => 'name', 'value' => 'foo')
+			)
+		);
+	}
+
+	public function test_ValidateIntegerField_ForMissingFieldName_ThrowsException() {
+		$this->setExpectedException(
+			'Exception',
+			'The given field name was empty.'
+		);
+
+		$this->fixture->validateIntegerField(array());
+	}
 }
 ?>

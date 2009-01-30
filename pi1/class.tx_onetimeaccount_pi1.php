@@ -579,6 +579,65 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			);
 		}
 	}
+
+	/**
+	 * Checks whether the content of a given field is non-empty or not required.
+	 *
+	 * @param array associative array containing the current value, with the key
+	 *              'value' and the name, with the key 'elementName', of the
+	 *              form field to check, must not be empty
+	 *
+	 * @return boolean true if this field is not empty or not required, false
+	 *                 otherwise
+	 */
+	public function validateStringField(array $formData) {
+		if ($this->checkPremisses($formData)) {
+			return true;
+		}
+
+		return (trim($formData['value']) != '');
+	}
+
+	/**
+	 * Checks whether the content of a given field is non-zero or not required.
+	 *
+	 * @param array associative array containing the current value, with the key
+	 *              'value' and the name, with the key 'elementName', of the
+	 *              form field to check, must not be empty
+	 *
+	 * @return boolean true if this field is not zero or not required, false
+	 *                 otherwise
+	 */
+	public function validateIntegerField(array $formData) {
+		if ($this->checkPremisses($formData)) {
+			return true;
+		}
+
+		return (intval($formData['value']) != 0);
+	}
+
+	/**
+	 * Checks if the form field data is not empty and if it is required.
+	 *
+	 * @throws Exception if the element name is empty
+	 *
+	 * @param array associative array containing the current value, with the key
+	 *              'value' and the name, with the key 'elementName', of the
+	 *              form field to check, must not be empty
+	 *
+	 * @return boolean true if the element was not required, false otherwise
+	 */
+	private function checkPremisses(array $formData) {
+		if ($formData['elementName'] == '') {
+			throw new Exception('The given field name was empty.');
+		}
+
+		if (empty($this->requiredFormFields)) {
+			$this->setRequiredFormFields();
+		}
+
+		return !in_array($formData['elementName'], $this->requiredFormFields);
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {

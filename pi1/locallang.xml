@@ -47,16 +47,22 @@
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
 			<label index="message_name">Please enter your name.</label>
+			<label index="message_title">Please enter your title.</label>
+			<label index="message_first_name">Please enter your first name.</label>
+			<label index="message_last_name">Please enter your last name.</label>
 			<label index="message_address">Please enter your street.</label>
 			<label index="message_zip">Please enter your ZIP code.</label>
 			<label index="message_city">Please enter your city.</label>
+			<label index="message_zone">Please enter your county/region.</label>
 			<label index="message_country">Please enter your country.</label>
 			<label index="message_email">Please enter a valid e-mail address.</label>
+			<label index="message_www">Please enter your website.</label>
 			<label index="message_telephone">Please enter a valid telephone number.</label>
 			<label index="message_fax">Please enter a valid fax number.</label>
 			<label index="message_date_of_birth">Please enter your date of birth.</label>
 			<label index="message_status">Please enter your status.</label>
 			<label index="message_choose_usergroup">Please choose a user group.</label>
+			<label index="message_comments">Please enter some comments.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="flexforms_pi1.sheet_general">Allgemein</label>
@@ -98,16 +104,22 @@
 			<label index="label_submit">Weiter</label>
 			<label index="message_company">Bitte geben Sie Ihre Firma an.</label>
 			<label index="message_name">Bitte geben Sie Ihren Namen an.</label>
+			<label index="message_title">Bitte geben Sie Ihren Titel an.</label>
+			<label index="message_first_name">Bitte geben Sie Ihren Vornamen an</label>
+			<label index="message_last_name">Bitte geben Sie Ihren Nachnamen an.</label>
 			<label index="message_address">Bitte geben Sie Ihre Straße an.</label>
 			<label index="message_zip">Bitte geben Sie Ihre Postleitzahl an.</label>
 			<label index="message_city">Bitte geben Sie Ihre Stadt an.</label>
+			<label index="message_zone">Bitte geben sie Ihr Bundesland/Ihre Provinz an.</label>
 			<label index="message_country">Bitte geben Sie Ihr Land an.</label>
 			<label index="message_email">Bitte geben Sie eine gültige E-Mail-Adresse an.</label>
+			<label index="message_www">Bitte geben Sie Ihre Website an.</label>
 			<label index="message_telephone">Bitte geben Sie eine gültige Telefonnummer an.</label>
 			<label index="message_fax">Bitte geben Sie eine gültige Faxnummer an.</label>
 			<label index="message_date_of_birth">Bitte geben Sie Ihr Geburtsdatum an.</label>
 			<label index="message_status">Bitte geben Sie Ihren Status an.</label>
 			<label index="message_choose_usergroup">Bitte wählen Sie eine Benutzergruppe.</label>
+			<label index="message_comments">Bitte geben sie Kommentare ein.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">Généralités</label>
@@ -251,6 +263,12 @@
 			<label index="message_status" type="integer">237419934</label>
 			<label index="message_choose_usergroup" type="integer">161431320</label>
 			<label index="flexforms_pi1.requiredFeUserFields" type="integer">225447594</label>
+			<label index="message_zone" type="integer">12716845</label>
+			<label index="message_www" type="integer">116162288</label>
+			<label index="message_comments" type="integer">241350058</label>
+			<label index="message_title" type="integer">263171268</label>
+			<label index="message_first_name" type="integer">195910983</label>
+			<label index="message_last_name" type="integer">174820393</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general" type="integer">14366585</label>
@@ -394,6 +412,12 @@
 			<label index="message_status">Please enter your status.</label>
 			<label index="message_choose_usergroup">Please choose a user group.</label>
 			<label index="flexforms_pi1.requiredFeUserFields">Required fields:</label>
+			<label index="message_zone">Please enter your county/region.</label>
+			<label index="message_www">Please enter your website.</label>
+			<label index="message_comments">Please enter comments.</label>
+			<label index="message_title">Please enter your title.</label>
+			<label index="message_first_name">Please enter your first name.</label>
+			<label index="message_last_name">Please enter your last name.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">General</label>

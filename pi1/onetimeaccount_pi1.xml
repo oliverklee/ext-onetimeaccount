@@ -63,6 +63,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_company">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="company" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:LISTBOX name="gender">
 			<data>
@@ -91,6 +102,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_title">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="title" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="name">
 			<process>
@@ -120,7 +142,13 @@
 			</process>
 			<validators>
 				<validator:STANDARD>
-					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name"/>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_first_name">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="first_name" />
+						</params>
+					</userobj>
 				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
@@ -136,7 +164,13 @@
 			</process>
 			<validators>
 				<validator:STANDARD>
-					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name"/>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_last_name">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="last_name" />
+						</params>
+					</userobj>
 				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
@@ -150,6 +184,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_address">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="address" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXTAREA>
 		<renderlet:TEXT name="zip">
 			<process>
@@ -161,6 +206,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zip">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="zip" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="city">
 			<process>
@@ -172,6 +228,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_city">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="city" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="zone">
 			<process>
@@ -183,6 +250,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zone">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="zone" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:LISTBOX name="country">
 			<data>
@@ -206,6 +284,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="country" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:LISTBOX>
 		<renderlet:LISTBOX name="static_info_country">
 			<data>
@@ -235,6 +324,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="static_info_country" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:LISTBOX>
 		<renderlet:TEXT name="email">
 			<process>
@@ -248,8 +348,13 @@
 			</process>
 			<validators>
 				<validator:STANDARD>
-					<email message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email"/>
-					<required message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email"/>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="email" />
+						</params>
+					</userobj>
 				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
@@ -263,6 +368,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_www">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="www" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="telephone">
 			<process>
@@ -275,12 +391,15 @@
 				</userobj>
 			</process>
 			<validators>
-				<validator:PREG>
-					<pattern>
-						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
-						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone</message>
-					</pattern>
-				</validator:PREG>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="telephone" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="fax">
@@ -294,17 +413,20 @@
 				</userobj>
 			</process>
 			<validators>
-				<validator:PREG>
-					<pattern>
-						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
-						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax</message>
-					</pattern>
-				</validator:PREG>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="fax" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
 		<renderlet:DATE name="date_of_birth">
 			<data>
-				<datetime format="%d.%m.%Y" converttotimestamp="true" 
+				<datetime format="%d.%m.%Y" converttotimestamp="true"
 					allowmanualedition="true"/>
 			</data>
 			<process>
@@ -316,6 +438,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_date_of_birth">
+						<extension>this</extension>
+						<method>validateIntegerField</method>
+						<params>
+							<data name="elementName" value="date_of_birth" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:DATE>
 		<renderlet:LISTBOX name="status">
 			<data>
@@ -336,6 +469,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_status">
+						<extension>this</extension>
+						<method>validateIntegerField</method>
+						<params>
+							<data name="elementName" value="status" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:LISTBOX>
 		<renderlet:RADIOBUTTON name="usergroup">
 			<data>
@@ -389,6 +533,17 @@
 					</params>
 				</userobj>
 			</process>
+			<validators>
+				<validator:STANDARD>
+					<userobj message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_comments">
+						<extension>this</extension>
+						<method>validateStringField</method>
+						<params>
+							<data name="elementName" value="comments" />
+						</params>
+					</userobj>
+				</validator:STANDARD>
+			</validators>
 		</renderlet:TEXTAREA>
 		<renderlet:SUBMIT name="button_submit">
 			<label>###LABEL_SUBMIT###</label>
