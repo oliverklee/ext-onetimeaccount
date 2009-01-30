@@ -220,6 +220,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			// We might be hiding the field two times, but that does no harm.
 			$formFieldsToHide[] = 'usergroup';
 		}
+		if (!in_array('city', $formFieldsToHide)
+			|| in_array('zip', $formFieldsToHide)
+		) {
+			$formFieldsToHide[] = 'zip_only';
+		}
 
 		$this->hideSubparts(
 			implode(',', $formFieldsToHide),
