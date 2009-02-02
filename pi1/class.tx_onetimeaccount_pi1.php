@@ -496,7 +496,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			's_general'
 		);
 
-		if (preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)) {
+		if (preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)
+			&& ($listOfUserGroupUids != '')
+		) {
 			$allUserGroups = array();
 			$userGroupUids = $this->getUncheckedUidsOfAllowedUserGroups();
 			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(

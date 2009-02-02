@@ -382,5 +382,19 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$this->fixture->listUserGroups()
 		);
 	}
+
+
+	////////////////////////////////////
+	// Tests concerning listUserGroups
+	////////////////////////////////////
+
+	public function test_ListUserGroups_ForGroupForNewUsersEmpty_ReturnsEmptyArray() {
+		$this->fixture->setConfigurationValue('groupForNewFeUsers', '');
+
+		$this->assertEquals(
+			array(),
+			$this->fixture->listUserGroups()
+		);
+	}
 }
 ?>
