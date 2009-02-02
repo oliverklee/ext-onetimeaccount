@@ -77,11 +77,12 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+
 	/////////////////////////////////
 	// Tests concerning getUserName
 	/////////////////////////////////
 
-	public function testGetUserNameWithNonEmptyEmailReturnsNonEmptyString() {
+	public function test_GetUserName_WithNonEmptyEmail_ReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => 'foo@bar.com'));
 
 		$this->assertNotEquals(
@@ -90,7 +91,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		);
 	}
 
-	public function testGetUserNameWithEmailOfExistingUserNameReturnsDifferentName() {
+	public function test_GetUserName_WithEmailOfExistingUserName_ReturnsDifferentName() {
 		$this->testingFramework->createFrontEndUser(
 			$this->testingFramework->createFrontEndUserGroup(),
 			array('username' => 'foo@bar.com')
@@ -99,6 +100,27 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 
 		$this->assertNotEquals(
 			'foo@bar.com',
+			$this->fixture->getUserName()
+		);
+	}
+
+	public function test_GetUserName_WithEmptyEmail_ReturnsNonEmptyString() {
+		$this->fixture->setFormData(array('email' => ''));
+
+		$this->assertNotEquals(
+			'',
+			$this->fixture->getUserName()
+		);
+	}
+
+	public function test_GetUserName_WithEmptyEmailAndDefaultUserNameAlreadyExisting_ReturnsNewUniqueUsernameString() {
+		$this->testingFramework->createFrontEndUser(
+			'', array('username' => 'user')
+		);
+		$this->fixture->setFormData(array('email' => ''));
+
+		$this->assertNotEquals(
+			'user',
 			$this->fixture->getUserName()
 		);
 	}

@@ -408,13 +408,14 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return string a user name, will not be empty
 	 */
 	public function getUserName() {
-		$enteredEmail = $this->getFormData('email');
+		$enteredEmail = $this->getFormData('email') ;
+		$nonEmptyUsername = ($enteredEmail != '') ? $enteredEmail : 'user';
 		$numberToAppend = 1;
-		$result = $enteredEmail;
+		$result = $nonEmptyUsername;
 
 		// Modify the user name until we have a unique user name.
 		while ($GLOBALS['TSFE']->fe_user->getRawUserByName($result)) {
-			$result = $enteredEmail.'-'.$numberToAppend;
+			$result = $nonEmptyUsername . '-' . $numberToAppend;
 			$numberToAppend++;
 		}
 

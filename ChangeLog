@@ -1,4 +1,5 @@
 0.4.0 - currently working on#
+- [#1540] Fix: Login not possible if the e-mail field is not displayed
 - [#2644] Change: Add some unit tests
 - [#788] Fix: Use t3lib_div::trimExplode instead of explode
 - [#2505] Fix: ZIP field can only be displayed if the city field is displayed as well
