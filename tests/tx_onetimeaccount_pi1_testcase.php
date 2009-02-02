@@ -396,5 +396,153 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$this->fixture->listUserGroups()
 		);
 	}
+
+
+	//////////////////////////////////////////////////
+	// Tests concerning setAllNamesSubpartVisibility
+	//////////////////////////////////////////////////
+
+	public function test_SetAllNamesSubpartVisibility_ForAllNameRelatedFieldsHidden_AddsAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('name', 'title', 'gender', 'first_name', 'last_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+	public function test_SetAllNamesSubpartVisibility_ForVisibleNameField_DoesNotAddAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('title', 'gender', 'first_name', 'last_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+	public function test_SetAllNamesSubpartVisibility_ForVisibleFirstNameField_DoesNotAddAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('name', 'title', 'gender', 'last_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+	public function test_SetAllNamesSubpartVisibility_ForVisibleLastNameField_DoesNotAddAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('name', 'title', 'gender', 'first_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+	public function test_SetAllNamesSubpartVisibility_ForVisibleTitleField_DoesNotAddAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+	public function test_SetAllNamesSubpartVisibility_ForVisibleGenderField_DoesNotAddAllNamesSubpartToHideFields() {
+		$fieldsToHide = array('name', 'title', 'first_name', 'last_name');
+		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('all_names', $fieldsToHide)
+		);
+	}
+
+
+	/////////////////////////////////////////////
+	// Tests concerning setZipSubpartVisibility
+	/////////////////////////////////////////////
+
+	public function test_SetZipSubpartVisibility_ForHiddenCityAndZip_AddsZipOnlySubpartToHideFields() {
+		$fieldsToHide = array('zip', 'city');
+		$this->fixture->setZipSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('zip_only', $fieldsToHide)
+		);
+	}
+
+	public function test_SetZipSubpartVisibility_ForShownCityAndZip_AddsZipOnlySubpartToHideFields() {
+		$fieldsToHide = array();
+		$this->fixture->setZipSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('zip_only', $fieldsToHide)
+		);
+	}
+
+	public function test_SetZipSubpartVisibility_ForShownCityAndHiddenZip_AddsZipOnlySubpartToHideFields() {
+		$fieldsToHide = array('zip');
+		$this->fixture->setZipSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('zip_only', $fieldsToHide)
+		);
+	}
+
+	public function test_SetZipSubpartVisibility_ForHiddenCityAndShownZip_DoesNotAddZipOnlySubpartToHideFields() {
+		$fieldsToHide = array('city');
+		$this->fixture->setZipSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('zip_only', $fieldsToHide)
+		);
+	}
+
+
+	///////////////////////////////////////////////////
+	// Tests concerning setUsergroupSubpartVisibility
+	///////////////////////////////////////////////////
+
+	public function test_SetUsergroupSubpartVisibility_ForNonExistingUsergroup_AddsUsergroupSubpartToHideFields() {
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers',
+			$this->testingFramework->getAutoIncrement('fe_groups')
+		);
+		$fieldsToHide = array();
+
+		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('usergroup', $fieldsToHide)
+		);
+	}
+
+	public function test_SetUsergroupSubpartVisibility_ForOneAvailableUsergroup_AddsUsergroupSubpartToHideFields() {
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers',
+			$this->testingFramework->createFrontEndUserGroup()
+		);
+
+		$fieldsToHide = array();
+		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+
+		$this->assertTrue(
+			in_array('usergroup', $fieldsToHide)
+		);
+	}
+
+	public function test_SetUsergroupSubpartVisibility_ForTwoAvailableUsergroup_DoesNotAddUsergroupSubpartToHideFields() {
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers',
+			$this->testingFramework->createFrontEndUserGroup() . ',' .
+				$this->testingFramework->createFrontEndUserGroup()
+		);
+
+		$fieldsToHide = array();
+		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+
+		$this->assertFalse(
+			in_array('usergroup', $fieldsToHide)
+		);
+	}
 }
 ?>

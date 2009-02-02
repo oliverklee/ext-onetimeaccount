@@ -64,6 +64,44 @@ class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	public function setFormData(array $formData) {
 		$this->formData = $formData;
 	}
+
+	/**
+	 * Checks if the 'all_names' subpart containing the names label and 
+        * the name related fields must be hidden.
+	 *
+	 * The all_names subpart will be hidden if all name related fields are
+	 * hidden. These are: 'title', 'name', 'first_name', 'last_name' and
+	 * 'gender'.
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	public function setAllNamesSubpartVisibility(array &$formFieldsToHide) {
+		parent::setAllNamesSubpartVisibility($formFieldsToHide);
+	}
+
+	/**
+	 * Checks if the zip_only subpart must be shown.
+	 *
+	 * The zip_only subpart must be shown if the zip is visible but the city
+	 * is not.
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	public function setZipSubpartVisibility(array &$formFieldsToHide) {
+		parent::setZipSubpartVisibility($formFieldsToHide);
+	}
+
+	/**
+	 * Checks if the usergroup subpart can be hidden.
+	 *
+	 * The "usergroup" field is a special case because it might also be
+	 * hidden if there are less than two user groups available
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	public function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
+		parent::setUsergroupSubpartVisibility($formFieldsToHide);
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/tests/fixtures/tx_onetimeaccount_fakePi1.php']) {

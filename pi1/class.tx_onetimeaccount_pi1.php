@@ -214,22 +214,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->formFieldsToShow
 		);
 
-		// The "usergroup" field is a special case because it might also be
-		// hidden if there are less than two user groups available
-		if (!$this->hasAtLeastTwoUserGroups()) {
-			// We might be hiding the field two times, but that does no harm.
-			$formFieldsToHide[] = 'usergroup';
-		}
-		if (!in_array('city', $formFieldsToHide)
-			|| in_array('zip', $formFieldsToHide)
-		) {
-			$formFieldsToHide[] = 'zip_only';
-		}
+		$this->setUsergroupSubpartVisibility($formFieldsToHide);
+		$this->setZipSubpartVisibility($formFieldsToHide);
+		$this->setAllNamesSubpartVisibility($formFieldsToHide);
 
-		$this->hideSubparts(
-			implode(',', $formFieldsToHide),
-			'wrapper'
-		);
+		$this->hideSubpartsArray($formFieldsToHide, 'wrapper');
 	}
 
 	/**
@@ -646,6 +635,69 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 
 		return !in_array($formData['elementName'], $this->requiredFormFields);
+	}
+
+	/**
+	 * Checks if the usergroup subpart can be hidden.
+	 *
+	 * The "usergroup" field is a special case because it might also be
+	 * hidden if there are less than two user groups available
+	 *
+	 * If the subpart is hidden it will be added to formFieldsToHide
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	protected function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
+		if (!$this->hasAtLeastTwoUserGroups()) {
+			$formFieldsToHide[] = 'usergroup';
+		}
+	}
+
+	/**
+	 * Checks if the zip_only subpart must be shown.
+	 *
+	 * The zip_only subpart must be shown if the zip is visible but the city
+	 * is not.
+	 *
+	 * If the subpart is hidden it will be added to formFieldsToHide
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	protected function setZipSubpartVisibility(array &$formFieldsToHide) {
+		if (!in_array('city', $formFieldsToHide)
+			|| in_array('zip', $formFieldsToHide)
+		) {
+			$formFieldsToHide[] = 'zip_only';
+		}
+	}
+
+	/**
+	 * Checks if the 'all_names' subpart containing the names label and
+	 * the name related fields must be hidden.
+	 *
+	 * The all_names subpart will be hidden if all name related fields are
+	 * hidden. These are: 'title', 'name', 'first_name', 'last_name' and
+	 * 'gender'.
+	 *
+	 * If the subpart is hidden it will be added to formFieldsToHide
+	 *
+	 *
+	 * @param array the form fields which should be hidden, may be empty
+	 */
+	protected function setAllNamesSubpartVisibility(array &$formFieldsToHide) {
+		$hideAllNamesSubpart = true;
+		$nameRelatedFields
+			= array('title', 'name', 'first_name', 'last_name', 'gender');
+
+		foreach($nameRelatedFields as $nameField) {
+			if (!in_array($nameField, $formFieldsToHide)) {
+				$hideAllNamesSubpart = false;
+			}
+		}
+
+		if ($hideAllNamesSubpart) {
+			$formFieldsToHide[] = 'all_names';
+		}
 	}
 }
 
