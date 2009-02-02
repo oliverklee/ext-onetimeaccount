@@ -254,5 +254,111 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 
 		$this->fixture->validateIntegerField(array());
 	}
+
+
+	/////////////////////////////////////////////
+	// Tests concerning getPidForNewUserRecords
+	/////////////////////////////////////////////
+
+	public function test_GetPidForNewUserRecords_ForEmptyConfigValue_ReturnsZero() {
+		$this->fixture->setConfigurationValue(
+			'systemFolderForNewFeUserRecords', ''
+		);
+
+		$this->assertEquals(
+			0,
+			$this->fixture->getPidForNewUserRecords()
+		);
+	}
+
+	public function test_GetPidForNewUserRecords_ForConfigValueString_ReturnsZero() {
+		$this->fixture->setConfigurationValue(
+			'systemFolderForNewFeUserRecords', 'foo'
+		);
+
+		$this->assertEquals(
+			0,
+			$this->fixture->getPidForNewUserRecords()
+		);
+	}
+
+	public function test_GetPidForNewUserRecords_ForConfigValueInteger_ReturnsInteger() {
+		$this->fixture->setConfigurationValue(
+			'systemFolderForNewFeUserRecords', 42
+		);
+
+		$this->assertEquals(
+			42,
+			$this->fixture->getPidForNewUserRecords()
+		);
+	}
+
+
+	////////////////////////////////////
+	// Tests concerning listUserGroups
+	////////////////////////////////////
+
+	public function test_ListUserGroups_ForExistingAndConfiguredUserGroup_ReturnsGroupTitleAndUid() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'foo')
+		);
+
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid
+		);
+
+		$this->assertEquals(
+			array(array('caption' => 'foo<br />', 'value' => $userGroupUid)),
+			$this->fixture->listUserGroups()
+		);
+	}
+
+	public function test_ListUserGroups_StringConfiguredAsUserGroup_ReturnsEmptyArray() {
+		$this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
+
+		$this->assertEquals(
+			array(),
+			$this->fixture->listUserGroups()
+		);
+	}
+
+	public function test_ListUserGroups_ForTwoExistingButOnlyOneConfiguredUserGroup_ReturnsOnlyConfiguredGroup() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'foo')
+		);
+		$this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'bar')
+		);
+
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid
+		);
+
+		$this->assertEquals(
+			array(array('caption' => 'foo<br />', 'value' => $userGroupUid)),
+			$this->fixture->listUserGroups()
+		);
+	}
+
+	public function test_ListUserGroups_ForTwoExistingButAndConfiguredUserGroups_ReturnsBothConfiguredGroup() {
+		$userGroupUid1 = $this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'foo', 'crdate' => 1)
+		);
+		$userGroupUid2 = $this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'bar', 'crdate' => 2)
+		);
+
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid1 . ', ' . $userGroupUid2
+		);
+
+		$this->assertEquals(
+			array(
+				array('caption' => 'foo<br />', 'value' => $userGroupUid1),
+				array('caption' => 'bar<br />', 'value' => $userGroupUid2),
+			),
+			$this->fixture->listUserGroups()
+		);
+	}
 }
 ?>
