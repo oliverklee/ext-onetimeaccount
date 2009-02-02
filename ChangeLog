@@ -1,4 +1,5 @@
-0.4.0 - currently working on
+0.4.0 - currently working on#
+- [#788] Fix: Use t3lib_div::trimExplode instead of explode
 - [#2505] Fix: ZIP field can only be displayed if the city field is displayed as well
 - [#2630] Feature: Check for required fields
 - [#2642] Fix: Login fails with TYPO3 4.2.5

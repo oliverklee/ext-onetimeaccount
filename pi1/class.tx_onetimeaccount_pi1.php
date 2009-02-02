@@ -531,9 +531,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *               groupForNewFeUsers
 	 */
 	 public function getUncheckedUidsOfAllowedUserGroups() {
-		 return explode(
+		 return t3lib_div::trimExplode(
 			',',
-		 	$this->getConfValueString('groupForNewFeUsers', 's_general')
+		 	$this->getConfValueString('groupForNewFeUsers', 's_general'),
+		 	true
 		);
 	 }
 
