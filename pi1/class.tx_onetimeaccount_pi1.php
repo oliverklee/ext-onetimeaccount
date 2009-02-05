@@ -689,7 +689,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$nameRelatedFields
 			= array('title', 'name', 'first_name', 'last_name', 'gender');
 
-		foreach($nameRelatedFields as $nameField) {
+		foreach ($nameRelatedFields as $nameField) {
 			if (!in_array($nameField, $formFieldsToHide)) {
 				$hideAllNamesSubpart = false;
 			}
