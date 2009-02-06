@@ -355,6 +355,7 @@
 							<data name="elementName" value="email" />
 						</params>
 					</userobj>
+					<email message="LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_email" />
 				</validator:STANDARD>
 			</validators>
 		</renderlet:TEXT>
@@ -400,6 +401,12 @@
 						</params>
 					</userobj>
 				</validator:STANDARD>
+				<validator:PREG>
+					<pattern>
+						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
+						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_telephone</message>
+					</pattern>
+				</validator:PREG>
 			</validators>
 		</renderlet:TEXT>
 		<renderlet:TEXT name="fax">
@@ -422,6 +429,12 @@
 						</params>
 					</userobj>
 				</validator:STANDARD>
+				<validator:PREG>
+					<pattern>
+						<value>/^([\d\+][\d \-\+\/]*[\d\+])?$/</value>
+						<message>LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_fax</message>
+					</pattern>
+				</validator:PREG>
 			</validators>
 		</renderlet:TEXT>
 		<renderlet:DATE name="date_of_birth">

@@ -1,4 +1,5 @@
 0.4.0 - currently working on
+- [#2674] Fix: The email field is not validated for well-formedness
 - [#854] Fix: "Name" label still is visible although all name-related fields are hidden
 - [#1987] Fix: FE User group in the flexforms should not be required
 - [#1540] Fix: Login not possible if the e-mail field is not displayed
