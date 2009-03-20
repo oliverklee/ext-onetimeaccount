@@ -135,10 +135,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	protected function initializeForm() {
 		$this->form = t3lib_div::makeInstance('tx_ameosformidable');
-		$this->form->init(
+
+		$this->form->initFromTs(
 			$this,
-			t3lib_extmgm::extPath($this->extKey).'pi1/onetimeaccount_pi1.xml',
-			// false = only create new records
+			$this->conf['form.'],
 			false
 		);
 	}
@@ -236,7 +236,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *                 false otherwise
 	 */
 	public function isFormFieldEnabled(array $parameters) {
-		$key = $parameters['elementname'];
+		$key = $parameters['elementName'];
 		$result = in_array($key, $this->formFieldsToShow);
 		if ($key == 'usergroup') {
 			$result = $result && $this->hasAtLeastTwoUserGroups();

@@ -22,6 +22,667 @@ plugin.tx_onetimeaccount_pi1 {
 
 	# UID of the group for new FE users
 	groupForNewFeUsers =
+
+	form {
+		meta {
+			name = One-time FE account generation form
+			description = This form allows users to create one-time FE accounts
+			form.formid = tx_onetimeaccount_pi1_form
+			debug = false
+			displaylabels = false
+		}
+		control {
+			datahandler = datahandler:DB
+			datahandler {
+				tablename = fe_users
+				keyname = uid
+				labelname = name
+				process.beforeinsertion.userobj {
+					extension = this
+					method = setCurrentUserGroup
+				}
+			}
+
+			renderer = renderer:TEMPLATE
+			renderer.template {
+				path.userobj {
+					extension = this
+					method = getTemplatePath
+				}
+				subpart = ###ONETIMEACCOUNT_FORM###
+				errortag = errors
+			}
+
+			actionlets {
+				10 = actionlet:REDIRECT
+				10.url.userobj {
+					extension = this
+					method = getRedirectUrlAndLoginUser
+				}
+			}
+		}
+		elements {
+			10 = renderlet:TEXT
+			10 {
+				name = company
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = company
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_company
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = company
+						}
+					}
+				}
+			}
+
+			20 = renderlet:LISTBOX
+			20 {
+				name = gender
+				data.items {
+					10.caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_gender.I.0
+					10.value = 0
+
+					20.caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_gender.I.1
+					20.value = 1
+				}
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = gender
+					}
+				}
+			}
+
+			30 = renderlet:TEXT
+			30 {
+				name = title
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = title
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_title
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = title
+						}
+					}
+				}
+			}
+
+			40 = renderlet:TEXT
+			40 {
+				name = name
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = name
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.required.message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_name
+				}
+			}
+
+			50 = renderlet:TEXT
+			50 {
+				name = first_name
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = first_name
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_first_name
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = first_name
+						}
+					}
+				}
+			}
+
+			60 = renderlet:TEXT
+			60 {
+				name = last_name
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = last_name
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_last_name
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = last_name
+						}
+					}
+				}
+			}
+
+			70 = renderlet:TEXTAREA
+			70 {
+				name = address
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = address
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_address
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = address
+						}
+					}
+				}
+			}
+
+			80 = renderlet:TEXT
+			80 {
+				name = zip
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = zip
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zip
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = zip
+						}
+					}
+				}
+			}
+
+			90 = renderlet:TEXT
+			90 {
+				name = city
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = city
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_city
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = city
+						}
+					}
+				}
+			}
+
+			100 = renderlet:TEXT
+			100 {
+				name = zone
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = zone
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zone
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = zone
+						}
+					}
+				}
+			}
+
+			110 = renderlet:LISTBOX
+			110 {
+				name = country
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = country
+					}
+				}
+				data {
+					userobj {
+						extension = this
+						method = populateListCountries
+					}
+					defaultvalue.userobj {
+						extension = this
+						method = getDefaultCountry
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = country
+						}
+					}
+				}
+			}
+
+			120 = renderlet:LISTBOX
+			120 {
+				name = static_info_country
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = static_info_country
+					}
+				}
+				data {
+					userobj {
+						extension = this
+						method = populateListCountries
+						params {
+							10.name = alpha3
+							10.value = 1
+						}
+					}
+					defaultvalue.userobj {
+						extension = this
+						method = getDefaultCountry
+						params {
+							10.name = alpha3
+							10.value = 1
+						}
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = static_info_country
+						}
+					}
+				}
+			}
+
+			130 = renderlet:TEXT
+			130 {
+				name = email
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = email
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = email
+						}
+					}
+					10.email.message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_email
+				}
+			}
+
+			140 = renderlet:TEXT
+			140 {
+				name = www
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = www
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_www
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = www
+						}
+					}
+				}
+			}
+
+			150 = renderlet:TEXT
+			150 {
+				name = telephone
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = telephone
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = telephone
+						}
+					}
+
+					20 = validator:PREG
+					20.pattern {
+						value = /^([\d\+][\d \-\+\/]*[\d\+])?$/
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_telephone
+					}
+				}
+			}
+
+			160 = renderlet:TEXT
+			160 {
+				name = fax
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = fax
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax
+						extension = this
+						method = validateStringField
+						params {
+							10.name = elementName
+							10.value = fax
+						}
+					}
+
+					20 = validator:PREG
+					20.pattern {
+						value = /^([\d\+][\d \-\+\/]*[\d\+])?$/
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_fax
+					}
+				}
+			}
+
+			170 = renderlet:DATE
+			170 {
+				name = date_of_birth
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = date_of_birth
+					}
+				}
+				data.datetime {
+					format = %d.%m.%Y
+					converttotimestamp = true
+					allowmanualedition = true
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_date_of_birth
+						extension = this
+						method = validateIntegerField
+						params {
+							10.name = elementName
+							10.value = date_of_birth
+						}
+					}
+				}
+			}
+
+			180 = renderlet:LISTBOX
+			180 {
+				name = status
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = status
+					}
+				}
+				data.items {
+					10 {
+						caption = &amp;nbsp;
+						value = 0
+					}
+					20 {
+						caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.1
+						value = 1
+					}
+					30 {
+						caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.2
+						value = 2
+					}
+					40 {
+						caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.3
+						value = 3
+					}
+					50 {
+						caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status.I.4
+						value = 4
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_status
+						extension = this
+						method = validateIntegerField
+						params {
+							10.name = elementName
+							10.value = status
+						}
+					}
+				}
+			}
+
+			190 = renderlet:RADIOBUTTON
+			190 {
+				name = usergroup
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = usergroup
+					}
+				}
+				data {
+					userobj {
+						extension = this
+						method = listUserGroups
+					}
+					defaultvalue.userobj {
+						extension = this
+						method = getUidOfFirstUserGroup
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_choose_usergroup
+						extension = this
+						method = isRadiobuttonSelected
+					}
+				}
+			}
+
+			200 = renderlet:CHECKSINGLE
+			200 {
+				name = module_sys_dmail_html
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = module_sys_dmail_html
+					}
+				}
+			}
+
+			210 = renderlet:TEXTAREA
+			210 {
+				name = comments
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = comments
+					}
+				}
+				validators {
+					10 = validator:STANDARD
+					10.userobj {
+						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_comments
+						extension = this
+						method = validateIntegerField
+						params {
+							10.name = elementName
+							10.value = comments
+						}
+					}
+				}
+			}
+
+			220 = renderlet:SUBMIT
+			220 {
+				name = button_submit
+				label = ###LABEL_SUBMIT###
+			}
+
+			230 = renderlet:PASSTHRU
+			230 {
+				name = crdate
+				data.value = CURRENT_TIMESTAMP
+			}
+
+			240 = renderlet:PASSTHRU
+			240 {
+				name = tstamp
+				data.value = CURRENT_TIMESTAMP
+			}
+
+
+			250 = renderlet:PASSTHRU
+			250 {
+				name = pid
+				data.value.userobj {
+					extension = this
+					method = getPidForNewUserRecords
+				}
+			}
+
+			260 = renderlet:PASSTHRU
+			260 {
+				name = username
+				data.value.userobj {
+					extension = this
+					method = getUserName
+				}
+			}
+
+			270 = renderlet:PASSTHRU
+			270 {
+				name = password
+				data.value.userobj {
+					extension = this
+					method = getPassword
+				}
+			}
+		}
+	}
 }
 
 page.includeCSS {
