@@ -62,8 +62,8 @@ plugin.tx_onetimeaccount_pi1 {
 			}
 		}
 		elements {
-			10 = renderlet:TEXT
-			10 {
+			company = renderlet:TEXT
+			company {
 				name = company
 				process.userobj {
 					extension = this
@@ -87,8 +87,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			20 = renderlet:LISTBOX
-			20 {
+			gender = renderlet:LISTBOX
+			gender {
 				name = gender
 				data.items {
 					10.caption = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_gender.I.0
@@ -107,8 +107,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			30 = renderlet:TEXT
-			30 {
+			title = renderlet:TEXT
+			title {
 				name = title
 				process.userobj {
 					extension = this
@@ -132,8 +132,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			40 = renderlet:TEXT
-			40 {
+			name = renderlet:TEXT
+			name {
 				name = name
 				process.userobj {
 					extension = this
@@ -149,8 +149,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			50 = renderlet:TEXT
-			50 {
+			first_name = renderlet:TEXT
+			first_name {
 				name = first_name
 				process.userobj {
 					extension = this
@@ -174,8 +174,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			60 = renderlet:TEXT
-			60 {
+			last_name = renderlet:TEXT
+			last_name {
 				name = last_name
 				process.userobj {
 					extension = this
@@ -199,8 +199,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			70 = renderlet:TEXTAREA
-			70 {
+			address = renderlet:TEXTAREA
+			address {
 				name = address
 				process.userobj {
 					extension = this
@@ -224,8 +224,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			80 = renderlet:TEXT
-			80 {
+			zip = renderlet:TEXT
+			zip {
 				name = zip
 				process.userobj {
 					extension = this
@@ -249,8 +249,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			90 = renderlet:TEXT
-			90 {
+			city = renderlet:TEXT
+			city {
 				name = city
 				process.userobj {
 					extension = this
@@ -274,8 +274,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			100 = renderlet:TEXT
-			100 {
+			zone = renderlet:TEXT
+			zone {
 				name = zone
 				process.userobj {
 					extension = this
@@ -299,8 +299,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			110 = renderlet:LISTBOX
-			110 {
+			country = renderlet:LISTBOX
+			country {
 				name = country
 				process.userobj {
 					extension = this
@@ -334,8 +334,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			120 = renderlet:LISTBOX
-			120 {
+			static_info_country = renderlet:LISTBOX
+			static_info_country {
 				name = static_info_country
 				process.userobj {
 					extension = this
@@ -377,8 +377,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			130 = renderlet:TEXT
-			130 {
+			email = renderlet:TEXT
+			email {
 				name = email
 				process.userobj {
 					extension = this
@@ -403,8 +403,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			140 = renderlet:TEXT
-			140 {
+			www = renderlet:TEXT
+			www {
 				name = www
 				process.userobj {
 					extension = this
@@ -428,8 +428,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			150 = renderlet:TEXT
-			150 {
+			telephone = renderlet:TEXT
+			telephone {
 				name = telephone
 				process.userobj {
 					extension = this
@@ -459,8 +459,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			160 = renderlet:TEXT
-			160 {
+			fax = renderlet:TEXT
+			fax {
 				name = fax
 				process.userobj {
 					extension = this
@@ -490,8 +490,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			170 = renderlet:DATE
-			170 {
+			date_of_birth = renderlet:DATE
+			date_of_birth {
 				name = date_of_birth
 				process.userobj {
 					extension = this
@@ -520,8 +520,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			180 = renderlet:LISTBOX
-			180 {
+			status = renderlet:LISTBOX
+			status {
 				name = status
 				process.userobj {
 					extension = this
@@ -567,8 +567,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			190 = renderlet:RADIOBUTTON
-			190 {
+			usergroup = renderlet:RADIOBUTTON
+			usergroup {
 				name = usergroup
 				process.userobj {
 					extension = this
@@ -598,8 +598,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			200 = renderlet:CHECKSINGLE
-			200 {
+			module_sys_dmail_html = renderlet:CHECKSINGLE
+			module_sys_dmail_html {
 				name = module_sys_dmail_html
 				process.userobj {
 					extension = this
@@ -611,8 +611,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			210 = renderlet:TEXTAREA
-			210 {
+			comments = renderlet:TEXTAREA
+			comments {
 				name = comments
 				process.userobj {
 					extension = this
@@ -636,27 +636,27 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			220 = renderlet:SUBMIT
-			220 {
+			button_submit = renderlet:SUBMIT
+			button_submit {
 				name = button_submit
 				label = ###LABEL_SUBMIT###
 			}
 
-			230 = renderlet:PASSTHRU
-			230 {
+			crdate = renderlet:PASSTHRU
+			crdate {
 				name = crdate
 				data.value = CURRENT_TIMESTAMP
 			}
 
-			240 = renderlet:PASSTHRU
-			240 {
+			tstamp = renderlet:PASSTHRU
+			tstamp {
 				name = tstamp
 				data.value = CURRENT_TIMESTAMP
 			}
 
 
-			250 = renderlet:PASSTHRU
-			250 {
+			pid = renderlet:PASSTHRU
+			pid {
 				name = pid
 				data.value.userobj {
 					extension = this
@@ -664,8 +664,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			260 = renderlet:PASSTHRU
-			260 {
+			username = renderlet:PASSTHRU
+			username {
 				name = username
 				data.value.userobj {
 					extension = this
@@ -673,8 +673,8 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
-			270 = renderlet:PASSTHRU
-			270 {
+			password = renderlet:PASSTHRU
+			password {
 				name = password
 				data.value.userobj {
 					extension = this
