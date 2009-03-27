@@ -66,7 +66,7 @@ class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	}
 
 	/**
-	 * Checks if the 'all_names' subpart containing the names label and 
+	 * Checks if the 'all_names' subpart containing the names label and
         * the name related fields must be hidden.
 	 *
 	 * The all_names subpart will be hidden if all name related fields are
@@ -101,6 +101,20 @@ class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	 */
 	public function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
 		parent::setUsergroupSubpartVisibility($formFieldsToHide);
+	}
+
+	/**
+	 * Generates the challenge for the MD5 passwords.
+	 *
+	 * Before calling this function, it must be ensured that sr_feuser_register
+	 * is loaded.
+	 *
+	 * @return string the challenge value to insert, will be empty if neither
+	 *                kb_md5password is loaded nor felogin is set to use MD5
+	 *                passwords
+	 */
+	public function createChallenge() {
+		return parent::createChallenge();
 	}
 }
 

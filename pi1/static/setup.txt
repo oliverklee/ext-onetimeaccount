@@ -39,7 +39,7 @@ plugin.tx_onetimeaccount_pi1 {
 				labelname = name
 				process.beforeinsertion.userobj {
 					extension = this
-					method = setCurrentUserGroup
+					method = preprocessFormData
 				}
 			}
 

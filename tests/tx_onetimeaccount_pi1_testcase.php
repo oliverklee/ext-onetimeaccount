@@ -63,6 +63,20 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		unset($this->fixture, $this->testingFramework);
 	}
 
+	//////////////////////
+	// Utility functions
+	//////////////////////
+
+	private function skipTestForNoMd5() {
+		if(!t3lib_extMgm::isLoaded('sr_feuser_register')
+			|| !t3lib_extMgm::isLoaded('kb_md5fepw')
+		) {
+			$this->markTestSkipped(
+				'This test is only applicable if sr_feuser_register and ' .
+					'kb_md5fepw are loaded.'
+			);
+		}
+	}
 
 	/////////////////////////////////
 	// Tests concerning getFormData
@@ -142,13 +156,38 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	// Tests concerning getRedirectUrlAndLoginUser
 	////////////////////////////////////////////////
 
-	public function testGetRedirectUrlAndLoginUserLogsInFrontEndUser() {
+	public function test_GetRedirectUrlAndLoginUser_ForDisabledMd5Passwords_LogsInFrontEndUser() {
+		if (t3lib_extMgm::isLoaded('sr_feuser_register')
+			&& t3lib_extMgm::isLoaded('kb_md5fepw')) {
+			$this->markTestSkipped(
+				'This test is only applicable if neither sr_feuser_register ' .
+					'nor kb_md5fepw are loaded.'
+			);
+		}
+
 		$userData = array(
 			'username' => 'foo@bar.com', 'password' => '12345678'
 		);
-		$this->testingFramework->createFrontEndUser(
-			$this->testingFramework->createFrontEndUserGroup(), $userData
+		$this->testingFramework->createFrontEndUser('', $userData);
+		$this->fixture->setFormData($userData);
+
+		$this->fixture->getRedirectUrlAndLoginUser();
+
+		$this->assertTrue(
+			$this->testingFramework->isLoggedIn()
 		);
+	}
+
+	public function test_GetRedirectUrlAndLoginUser_ForEnabledMd5Passwords_LogsInFrontEndUser() {
+		$this->skipTestForNoMd5();
+
+		$userData = array(
+			'username' => 'foo@bar.com',
+			'password' => md5('12345678'),
+		);
+		$this->testingFramework->createFrontEndUser('', $userData);
+
+		$userData['password'] = '12345678';
 		$this->fixture->setFormData($userData);
 
 		$this->fixture->getRedirectUrlAndLoginUser();
@@ -544,5 +583,34 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			in_array('usergroup', $fieldsToHide)
 		);
 	}
+
+	/////////////////////////////////////
+	// Tests concerning createChallenge
+	/////////////////////////////////////
+
+	public function test_CreateChallenge_ForLoadedSrFeuserRegisterAndNotLoadedKbMd5pw_ReturnsNonEmptyString() {
+		if(!t3lib_extMgm::isLoaded('sr_feuser_register')
+			|| t3lib_extMgm::isLoaded('kb_md5fepw')) {
+			$this->markTestSkipped(
+					'This test is only applicable if sr_feuser_register is ' .
+						'loaded and kb_md5fepw is not loaded.'
+			);
+		}
+
+		$this->assertNotEquals(
+			'',
+			$this->fixture->createChallenge()
+		);
+	}
+
+	public function test_CreateChallenge_ForLoadedSrFeuserRegisterAndLoadedKbMd5pw_ReturnsNonEmptyString() {
+		$this->skipTestForNoMd5();
+
+		$this->assertNotEquals(
+			'',
+			$this->fixture->createChallenge()
+		);
+	}
+
 }
 ?>
