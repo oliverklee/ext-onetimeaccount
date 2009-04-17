@@ -358,11 +358,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 		if ($result == '') {
 			// Redirects to the current page if no redirect URL is provided.
-			$result = t3lib_div::locationHeaderUrl(
-				$this->cObj->typoLink_URL(
-					array('parameter' => $GLOBALS['TSFE']->id)
-				)
-			);
+			$result = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 		}
 
 		$_POST['user'] = $this->getFormData('username');

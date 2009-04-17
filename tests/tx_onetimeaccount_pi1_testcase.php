@@ -63,6 +63,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		unset($this->fixture, $this->testingFramework);
 	}
 
+
 	//////////////////////
 	// Utility functions
 	//////////////////////
@@ -77,6 +78,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			);
 		}
 	}
+
 
 	/////////////////////////////////
 	// Tests concerning getFormData
@@ -155,6 +157,42 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	////////////////////////////////////////////////
 	// Tests concerning getRedirectUrlAndLoginUser
 	////////////////////////////////////////////////
+
+	/**
+	 * @test
+	 */
+	public function getRedirectUrlAndLoginUserReturnsRedirectUrl() {
+		$_POST['redirect_url'] = 'http://foo.com/';
+
+		$this->assertEquals(
+			'http://foo.com/',
+			$this->fixture->getRedirectUrlAndLoginUser()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getRedirectUrlAndLoginUserWithoutRedirectUrlReturnsFullyQualifiedUrl() {
+		$_POST['redirect_url'] = '';
+
+		$this->assertRegExp(
+			'/https?:\/\//',
+			$this->fixture->getRedirectUrlAndLoginUser()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getRedirectUrlAndLoginUserWithoutRedirectUrlIsCurrentUri() {
+		$_POST['redirect_url'] = '';
+
+		$this->assertEquals(
+			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			$this->fixture->getRedirectUrlAndLoginUser()
+		);
+	}
 
 	public function test_GetRedirectUrlAndLoginUser_ForDisabledMd5Passwords_LogsInFrontEndUser() {
 		if (t3lib_extMgm::isLoaded('sr_feuser_register')
