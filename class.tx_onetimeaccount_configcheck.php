@@ -61,8 +61,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'feUserFieldsToDisplay',
 			true,
 			's_general',
-			'This value specifies which form fields will be displayed. '
-				.'Incorrect values will cause those fields to not get displayed.',
+			'This value specifies which form fields will be displayed. ' .
+				'Incorrect values will cause those fields to not get displayed.',
 			$this->getAvailableFields()
 		);
 	}
@@ -75,9 +75,9 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'requiredFeUserFields',
 			true,
 			's_general',
-			'This value specifies which form fields are required to be filled in. '
-				.'Incorrect values will cause those fields to not get '
-				.'validated correctly.',
+			'This value specifies which form fields are required to be filled in. ' .
+				'Incorrect values will cause those fields to not get ' .
+				'validated correctly.',
 			$this->getAvailableFields(
 				array('gender', 'usergroup', 'module_sys_dmail_html')
 			)
@@ -109,10 +109,10 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'systemFolderForNewFeUserRecords',
 			true,
 			's_general',
-			'This value specifies the system folder in which new FE user'
-				.'records will be stored.'
-				.'If this value is not set correctly, the records will be '
-				.'stored in the wrong page.'
+			'This value specifies the system folder in which new FE user' .
+				'records will be stored.' .
+				'If this value is not set correctly, the records will be ' .
+				'stored in the wrong page.'
 		);
 	}
 
@@ -124,9 +124,9 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'groupForNewFeUsers',
 			true,
 			's_general',
-			'This value specifies the FE user groups to which new FE user records '
-				.'will be assigned. If this value is not set correctly, the '
-				.'users will not be placed in one of those groups.'
+			'This value specifies the FE user groups to which new FE user records ' .
+				'will be assigned. If this value is not set correctly, the ' .
+				'users will not be placed in one of those groups.'
 		);
 		if ($this->getRawMessage() != '') {
 			return;
@@ -192,7 +192,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'status',
 			'module_sys_dmail_html',
 			'usergroup',
-			'comments'
+			'comments',
 		);
 		$formFields = array_diff($providedFields, $excludeFields);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');

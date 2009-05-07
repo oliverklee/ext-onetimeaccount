@@ -26,7 +26,7 @@ require_once(PATH_formidableapi);
 
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
 
-require_once(t3lib_extMgm::extPath('static_info_tables').'pi1/class.tx_staticinfotables_pi1.php');
+require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_staticinfotables_pi1.php');
 
 /**
  * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
@@ -454,7 +454,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return array processed form data, will not be empty
 	 */
 	public function preprocessFormData(array $formData) {
-		$result = $formData;
 		$result = $this->setCurrentUserGroup($formData);
 		if ($this->usesMd5Passwords()) {
 			$result['password'] = md5($formData['password']);
@@ -696,13 +695,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * hidden. These are: 'title', 'name', 'first_name', 'last_name' and
 	 * 'gender'.
 	 *
-	 * If the subpart is hidden it will be added to formFieldsToHide
-	 *
+	 * If the subpart is hidden, it will be added to $formFieldsToHide.
 	 *
 	 * @param array the form fields which should be hidden, may be empty
 	 */
 	protected function setAllNamesSubpartVisibility(array &$formFieldsToHide) {
-		$hideAllNamesSubpart = true;
 		$nameRelatedFields
 			= array('title', 'name', 'first_name', 'last_name', 'gender');
 
