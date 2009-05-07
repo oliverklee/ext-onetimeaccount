@@ -341,33 +341,34 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	}
 
 	/**
-	 * Returns the URL that has been set via the GET parameter "redirect_url".
+	 * Creates the URL to redirect to after the form data has been submitted
+	 * and validated.
 	 *
-	 * If this parameter has not been set or is empty, an empty string will be
-	 * returned.
+	 * The created URL contains the user login credentials and the final URL
+	 * in encoded form.
 	 *
-	 * In addition, the entered FE user will be automatically logged in, and
-	 * the key "onetimeaccount" with the value "1" will be written to the FE
-	 * user session.
+	 * The final URL is either the URL provided in as the GET parameter
+	 * "redirect_url" or the current page if the redirect URL is empty.
 	 *
-	 * @return string the URL set as GET parameter or an empty string if there
-	 *                is no such GET parameter
+	 * @return string the fully-qualified URL to redirect to, will not be empty
 	 */
-	public function getRedirectUrlAndLoginUser() {
+	public function createRedirectUrl() {
 		$this->workAroundModSecurity();
-		$result = (string) t3lib_div::_GP('redirect_url');
-
-		if ($result == '') {
-			// Redirects to the current page if no redirect URL is provided.
-			$result = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+		$url = (string) t3lib_div::_GP('redirect_url');
+		if ($url == '') {
+			// Uses the current page (including all GET parameters) if no
+			// redirect URL is provided.
+			$url = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 		}
 
-		$_POST['user'] = $this->getFormData('username');
+		$postData = array();
+		$postData['url'] = $url;
+		$postData['user'] = $this->getFormData('username');
 
 		if ($this->usesMd5Passwords()) {
 			$challenge = $this->createChallenge();
-			$_POST['challenge'] = $challenge;
-			$_POST['pass'] = $this->createMd5Password(
+			$postData['challenge'] = $challenge;
+			$postData['pass'] = $this->createMd5Password(
 				array(
 					'username' => $this->getFormData('username'),
 					'password' => $this->getFormData('password'),
@@ -375,17 +376,14 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 				)
 			);
 		} else {
-			$_POST['pass'] = $this->getFormData('password');
+			$postData['pass'] = $this->getFormData('password');
 		}
-		$_POST['logintype'] = 'login';
-		$_POST['pid'] = $this->getPidForNewUserRecords();
+		$postData['pid'] = $this->getPidForNewUserRecords();
 
-		$GLOBALS['TSFE']->initFEuser();
-
-		tx_oelib_Session::getInstance(tx_oelib_Session::TYPE_USER)
-			->setAsBoolean($this->extKey, true);
-
-		return $result;
+		return t3lib_div::locationHeaderUrl(
+			'index.php?eID=onetimeaccount&data='
+				. rawurlencode(base64_encode(serialize($postData)))
+		);
 	}
 
 	/**

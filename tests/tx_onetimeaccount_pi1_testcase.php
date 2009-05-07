@@ -49,9 +49,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		$this->testingFramework->createFakeFrontEnd();
 
 		$this->fixture = new tx_onetimeaccount_fakePi1(
-			array(
-				'isStaticTemplateLoaded' => 1,
-			)
+			array('isStaticTemplateLoaded' => 1)
 		);
 		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
 	}
@@ -77,6 +75,29 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 					'kb_md5fepw are loaded.'
 			);
 		}
+	}
+
+	/**
+	 * Extracts the URL which is encoded in $url in a serialized array which
+	 * is encoded in the "data" GET parameter.
+	 *
+	 * @param string URL to that contains the data to decode, must not be empty
+	 *
+	 * @return string the encoded URL, will be empty if no URL could be found
+	 */
+	private function extractEncodedUrlFromUrl($url) {
+		$matches = array();
+		preg_match(
+			'/(^\?|&)(data=)([^&]+)(&|$)/',
+			$url,
+			$matches
+		);
+		if (empty($matches)) {
+			return '';
+		}
+
+		$data = unserialize(base64_decode($matches[3]));
+		return $data['url'];
 	}
 
 
@@ -155,104 +176,46 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 
 
 	////////////////////////////////////////////////
-	// Tests concerning getRedirectUrlAndLoginUser
+	// Tests concerning createRedirectUrl
 	////////////////////////////////////////////////
 
 	/**
 	 * @test
 	 */
-	public function getRedirectUrlAndLoginUserReturnsRedirectUrl() {
+	public function createRedirectUrlReturnsEidUrl() {
+		$_POST['redirect_url'] = '';
+
+		$this->assertRegExp(
+			'/https?:\/\/.+\/index\.php\?eID=onetimeaccount&data=/',
+			$this->fixture->createRedirectUrl()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createRedirectUrlReturnsEncodedRedirectUrl() {
 		$_POST['redirect_url'] = 'http://foo.com/';
 
 		$this->assertEquals(
 			'http://foo.com/',
-			$this->fixture->getRedirectUrlAndLoginUser()
+			$this->extractEncodedUrlFromUrl(
+				$this->fixture->createRedirectUrl()
+			)
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function getRedirectUrlAndLoginUserWithoutRedirectUrlReturnsFullyQualifiedUrl() {
-		$_POST['redirect_url'] = '';
-
-		$this->assertRegExp(
-			'/https?:\/\//',
-			$this->fixture->getRedirectUrlAndLoginUser()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function getRedirectUrlAndLoginUserWithoutRedirectUrlIsCurrentUri() {
+	public function createRedirectUrlWithoutRedirectUrlIsCurrentUri() {
 		$_POST['redirect_url'] = '';
 
 		$this->assertEquals(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
-			$this->fixture->getRedirectUrlAndLoginUser()
-		);
-	}
-
-	public function test_GetRedirectUrlAndLoginUser_ForDisabledMd5Passwords_LogsInFrontEndUser() {
-		if (t3lib_extMgm::isLoaded('sr_feuser_register')
-			&& t3lib_extMgm::isLoaded('kb_md5fepw')) {
-			$this->markTestSkipped(
-				'This test is only applicable if neither sr_feuser_register ' .
-					'nor kb_md5fepw are loaded.'
-			);
-		}
-
-		$userData = array(
-			'username' => 'foo@bar.com', 'password' => '12345678'
-		);
-		$this->testingFramework->createFrontEndUser('', $userData);
-		$this->fixture->setFormData($userData);
-
-		$this->fixture->getRedirectUrlAndLoginUser();
-
-		$this->assertTrue(
-			$this->testingFramework->isLoggedIn()
-		);
-	}
-
-	public function test_GetRedirectUrlAndLoginUser_ForEnabledMd5Passwords_LogsInFrontEndUser() {
-		$this->skipTestForNoMd5();
-
-		$userData = array(
-			'username' => 'foo@bar.com',
-			'password' => md5('12345678'),
-		);
-		$this->testingFramework->createFrontEndUser('', $userData);
-
-		$userData['password'] = '12345678';
-		$this->fixture->setFormData($userData);
-
-		$this->fixture->getRedirectUrlAndLoginUser();
-
-		$this->assertTrue(
-			$this->testingFramework->isLoggedIn()
-		);
-	}
-
-	public function testGetRedirectUrlAndLoginUserSetsOnetimeaccountToOneInUserSession() {
-		$userData = array(
-			'username' => 'foo@bar.com', 'password' => '12345678'
-		);
-		$this->testingFramework->createFrontEndUser(
-			$this->testingFramework->createFrontEndUserGroup(), $userData
-		);
-		$this->fixture->setFormData($userData);
-
-		$session = new tx_oelib_FakeSession();
-		tx_oelib_Session::setInstance(
-			tx_oelib_Session::TYPE_USER, $session
-		);
-
-		$this->fixture->getRedirectUrlAndLoginUser();
-
-		$this->assertTrue(
-			$session->getAsBoolean('onetimeaccount')
+			$this->extractEncodedUrlFromUrl(
+				$this->fixture->createRedirectUrl()
+			)
 		);
 	}
 
@@ -637,6 +600,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+
 	/////////////////////////////////////
 	// Tests concerning createChallenge
 	/////////////////////////////////////
@@ -664,6 +628,5 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$this->fixture->createChallenge()
 		);
 	}
-
 }
 ?>
