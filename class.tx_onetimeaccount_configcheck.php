@@ -128,39 +128,35 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				.'will be assigned. If this value is not set correctly, the '
 				.'users will not be placed in one of those groups.'
 		);
+		if ($this->getRawMessage() != '') {
+			return;
+		}
 
 		$valueToCheck = $this->objectToCheck->getConfValueString(
 			'groupForNewFeUsers',
 			's_general'
 		);
-		if ($this->getRawMessage() == '') {
-			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'COUNT(*) AS number',
-				'fe_groups',
-				'uid IN (' . $valueToCheck . ')' .
-					tx_oelib_db::enableFields('fe_groups')
+		$groupCounter = tx_oelib_db::selectSingle(
+			'COUNT(*) AS number',
+			'fe_groups',
+			'uid IN (' . $valueToCheck . ')' .
+				tx_oelib_db::enableFields('fe_groups')
+		);
+		$elementsInValueToCheck = count(
+			$this->objectToCheck->getUncheckedUidsOfAllowedUserGroups()
+		);
+		if ($groupCounter['number'] != $elementsInValueToCheck) {
+			$this->setErrorMessageAndRequestCorrection(
+				'groupForNewFeUsers',
+				true,
+				'The TS setup variable <strong>' .
+					$this->getTSSetupPath() . 'groupForNewFeUsers</strong> ' .
+					'contains the value ' . $valueToCheck . ' which isn\'t valid. ' .
+					'This value specifies the FE user groups to which new ' .
+					'FE user records will be assigned. ' .
+					'If this value is not set correctly, the users will not ' .
+					'be placed in one of those groups.'
 			);
-			if ($dbResult) {
-				$elementsInDbResult = implode(
-					$GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)
-				);
-				$elementsInValueToCheck = count(
-					$this->objectToCheck->getUncheckedUidsOfAllowedUserGroups()
-				);
-				if ($elementsInDbResult != $elementsInValueToCheck) {
-					$this->setErrorMessageAndRequestCorrection(
-						'groupForNewFeUsers',
-						true,
-						'The TS setup variable <strong>'
-							.$this->getTSSetupPath().'groupForNewFeUsers</strong> '
-							.'contains the value '.$valueToCheck.' which isn\'t valid. '
-							.'This value specifies the FE user groups to which new '
-							.'FE user records will be assigned. '
-							.'If this value is not set correctly, the users will not '
-							.'be placed in one of those groups.'
-					);
-				}
-			}
 		}
 	}
 
@@ -201,7 +197,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$formFields = array_diff($providedFields, $excludeFields);
 		$fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
 
-		// Make sure that only fields are allowed that are actually available.
+		// Makes sure that only fields are allowed that are actually available.
 		// (Some fields don't come with the vanilla TYPO3 installation and are
 		// provided by the sr_feusers_register extension.)
 		return array_intersect($formFields, $fieldsFromFeUsers);

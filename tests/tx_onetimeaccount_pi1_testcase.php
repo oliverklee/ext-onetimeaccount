@@ -412,6 +412,21 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+	public function test_ListUserGroups_HtmlSpecialCharsGroupName() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
+			array('title' => 'a&b')
+		);
+
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid
+		);
+
+		$this->assertEquals(
+			array(array('caption' => 'a&amp;b<br />', 'value' => $userGroupUid)),
+			$this->fixture->listUserGroups()
+		);
+	}
+
 	public function test_ListUserGroups_StringConfiguredAsUserGroup_ReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
 

@@ -1,4 +1,5 @@
 0.5.0 - currently working on
+- [#2977] Change: Use the oelib DB wrapper functions in onetimeaccount
 - [#2932] Fix: Redirect to current page with all GET variables, patch by Thomas Gabler
 - [#2821] Feature: Allow MD5 passwords
 - [#2863] Change: Use the field names as TypoScript array keys for the Formidable configuration

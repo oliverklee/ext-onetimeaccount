@@ -499,63 +499,53 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 }
 
 	/**
-	 * Returns an array of user groups choosable in the FE, will not be empty if
-	 * configured correctly.
+	 * Returns the user groups choosable in the front end.
 	 *
 	 * @return array lists user groups choosable in the FE, will not be
 	 *               empty if configured correctly
 	 */
 	public function listUserGroups() {
-		$result = array();
 		$listOfUserGroupUids = $this->getConfValueString(
 			'groupForNewFeUsers',
 			's_general'
 		);
-
-		if (preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)
-			&& ($listOfUserGroupUids != '')
+		if (($listOfUserGroupUids == '')
+			|| !preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)
 		) {
-			$allUserGroups = array();
-			$userGroupUids = $this->getUncheckedUidsOfAllowedUserGroups();
-			$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'uid, title',
-				'fe_groups',
-				'uid IN(' . $listOfUserGroupUids . ')' .
-					tx_oelib_db::enableFields('fe_groups')
-			);
-			if (!$dbResult) {
-				throw new Exception(DATABASE_QUERY_ERROR);
-			}
+			return array();
+		}
 
-			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult)) {
-				$allUserGroups[$row['uid']] = $row['title'];
-			}
-			foreach ($userGroupUids as $currentUid) {
-				$result[] = array(
-					'caption' => $allUserGroups[$currentUid].'<br />',
-					'value' => $currentUid
-				);
-			}
-			$GLOBALS['TYPO3_DB']->sql_free_result($dbResult);
-		};
+		$result = array();
+		$groupData = tx_oelib_db::selectMultiple(
+			'uid, title',
+			'fe_groups',
+			'uid IN(' . $listOfUserGroupUids . ')' .
+				tx_oelib_db::enableFields('fe_groups')
+		);
+
+		foreach ($groupData as $item) {
+			$result[] = array(
+				'caption' => htmlspecialchars($item['title']) . '<br />',
+				'value' => $item['uid']
+			);
+		}
 
 		return $result;
 	}
 
 	/**
-	 * Gets an array of the value for groupForNewFeUsers from flexforms or TS setup.
-	 * The array will contain the UIDs of FE user groups, at least an empty string.
+	 * Gets the UIDs set via groupForNewFeUsers in the configuration.
 	 *
-	 * @return array array of the flexforms or TS setup entry for
-	 *               groupForNewFeUsers
+	 * @return array UIDs set via groupForNewFeUsers, will not be empty
+	 *               for a valid configuration
 	 */
-	 public function getUncheckedUidsOfAllowedUserGroups() {
-		 return t3lib_div::trimExplode(
+	public function getUncheckedUidsOfAllowedUserGroups() {
+		return t3lib_div::trimExplode(
 			',',
-		 	$this->getConfValueString('groupForNewFeUsers', 's_general'),
-		 	true
+			$this->getConfValueString('groupForNewFeUsers', 's_general'),
+			true
 		);
-	 }
+	}
 
 	/**
 	 * Checks whether a radiobutton in a radiobutton group is selected.
