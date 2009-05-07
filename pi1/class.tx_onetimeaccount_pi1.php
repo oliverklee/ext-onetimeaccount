@@ -354,6 +354,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *                is no such GET parameter
 	 */
 	public function getRedirectUrlAndLoginUser() {
+		$this->workAroundModSecurity();
 		$result = (string) t3lib_div::_GP('redirect_url');
 
 		if ($result == '') {
@@ -385,6 +386,29 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			->setAsBoolean($this->extKey, true);
 
 		return $result;
+	}
+
+	/**
+	 * Tries to get the redirect_url GET variable from the request URI if
+	 * this is possible and the GET variable otherwise would be empty.
+	 *
+	 * This might happen with certain mod_security rules that drop all GET
+	 * variables if a fully-qualified URL is set in one variable.
+	 */
+	private function workAroundModSecurity() {
+		if (isset($_GET['redirect_url']) || !isset($_SERVER['REQUEST_URI'])) {
+			return;
+		}
+
+		$matches = array();
+		preg_match(
+			'/(^\?|&)(redirect_url=)([^&]+)(&|$)/',
+			$_SERVER['REQUEST_URI'],
+			$matches
+		);
+		if (!empty($matches)) {
+			$_GET['redirect_url'] = rawurldecode($matches[3]);
+		}
 	}
 
 	/**
