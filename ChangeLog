@@ -1,3 +1,5 @@
+0.6.0 - currently working on
+
 0.5.0 - released 2009-06-05
 - [#2214] Fix: Error message "You are not logged in" when redirecting, initial patch by Dmitry Dulepov
 - [#2974] Fix: Work around mod_security dropping the redirect_url
