@@ -619,5 +619,42 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$this->fixture->createChallenge()
 		);
 	}
+
+
+	////////////////////////////////////////
+	// Tests concerning preprocessFormData
+	////////////////////////////////////////
+
+	public function test_preprocessFormData_ForNameHidden_UsesFirstNameAndLastNameAsName() {
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'first_name, last_name'
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(array(
+			'first_name' => 'foo', 'last_name' => 'bar'
+		));
+
+		$this->assertEquals(
+			'foo bar',
+			$formData['name']
+		);
+	}
+
+	public function test_preprocessFormData_ForShownNameField_UsesValueOfNameField() {
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'name,first_name,last_name'
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(array(
+			'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar'
+		));
+
+		$this->assertEquals(
+			'foobar',
+			$formData['name']
+		);
+	}
 }
 ?>

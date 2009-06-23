@@ -156,7 +156,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Reads the list of form fields to show from the configuration and stores
 	 * it in $this->formFieldsToShow.
 	 */
-	private function setFormFieldsToShow() {
+	protected function setFormFieldsToShow() {
 		$this->formFieldsToShow = t3lib_div::trimExplode(
 			',',
 			$this->getConfValueString('feUserFieldsToDisplay', 's_general')
@@ -480,6 +480,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		if ($this->usesMd5Passwords()) {
 			$result['password'] = md5($formData['password']);
 		}
+		$result = $this->buildFullName($formData);
 
 		return $result;
 	}
@@ -784,6 +785,34 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	private function createMd5Password($formData) {
 		return md5($formData['username'] . ':' .  md5($formData['password']) .
 			':' . $formData['challenge']);
+	}
+
+	/**
+	 * Builds the name field.
+	 *
+	 * If the name field is hidden, the name will be built from the 'first_name'
+	 * and 'last_name'.
+	 *
+	 * @param array $form the form data sent, may be empty
+	 *
+	 * @return array the form data with the modified name field, will be empty
+	 *               if the given form data was empty
+	 */
+	private function buildFullName(array $formData) {
+		if (in_array('name', $this->formFieldsToShow)) {
+			return $formData;
+		}
+
+		$firstName = (in_array('first_name', $this->formFieldsToShow))
+			? $formData['first_name']
+			: '';
+		$lastName = (in_array('last_name', $this->formFieldsToShow))
+			? $formData['last_name']
+			: '';
+
+		$formData['name'] = trim($firstName . ' ' . $lastName);
+
+		return $formData;
 	}
 }
 

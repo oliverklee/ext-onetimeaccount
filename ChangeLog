@@ -1,4 +1,5 @@
 0.6.0 - currently working on
+- [#3107] Feature: If the "name" field is hidden, use the first name and last name
 - [#3106] Change: Change the company field from an input field to a 3-line textarea
 - [#3105] Change: Rename and move the field "title"
 

@@ -116,6 +116,14 @@ class tx_onetimeaccount_fakePi1 extends tx_onetimeaccount_pi1 {
 	public function createChallenge() {
 		return parent::createChallenge();
 	}
+
+	/**
+	 * Reads the list of form fields to show from the configuration and stores
+	 * it in $this->formFieldsToShow.
+	 */
+	public function setFormFieldsToShow() {
+		parent::setFormFieldsToShow();
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/tests/fixtures/tx_onetimeaccount_fakePi1.php']) {
