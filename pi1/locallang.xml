@@ -22,7 +22,7 @@
 			<label index="label_company">Company:</label>
 			<label index="label_gender.I.0">Mr.</label>
 			<label index="label_gender.I.1">Ms.</label>
-			<label index="label_title">Title:</label>
+			<label index="label_title">Department/Title:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
@@ -47,7 +47,7 @@
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
 			<label index="message_name">Please enter your name.</label>
-			<label index="message_title">Please enter your title.</label>
+			<label index="message_title">Please enter your department/title.</label>
 			<label index="message_first_name">Please enter your first name.</label>
 			<label index="message_last_name">Please enter your last name.</label>
 			<label index="message_address">Please enter your street.</label>
@@ -82,7 +82,7 @@
 			<label index="label_company">Firma:</label>
 			<label index="label_gender.I.0">Herr</label>
 			<label index="label_gender.I.1">Frau</label>
-			<label index="label_title">Titel:</label>
+			<label index="label_title">Abteilung/Funktion:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_first_name">Vorname:</label>
 			<label index="label_last_name">Nachname:</label>
@@ -107,7 +107,7 @@
 			<label index="label_submit">Weiter</label>
 			<label index="message_company">Bitte geben Sie Ihre Firma an.</label>
 			<label index="message_name">Bitte geben Sie Ihren Namen an.</label>
-			<label index="message_title">Bitte geben Sie Ihren Titel an.</label>
+			<label index="message_title">Bitte geben Sie Ihre Abteilung/Funktion an.</label>
 			<label index="message_first_name">Bitte geben Sie Ihren Vornamen an</label>
 			<label index="message_last_name">Bitte geben Sie Ihren Nachnamen an.</label>
 			<label index="message_address">Bitte geben Sie Ihre Straße an.</label>
@@ -233,7 +233,7 @@
 			<label index="label_company" type="integer">98955432</label>
 			<label index="label_gender.I.0" type="integer">19351194</label>
 			<label index="label_gender.I.1" type="integer">43922038</label>
-			<label index="label_title" type="integer">85903807</label>
+			<label index="label_title" type="integer">263477919</label>
 			<label index="label_name" type="integer">81871034</label>
 			<label index="label_first_name" type="integer">107522264</label>
 			<label index="label_last_name" type="integer">199614645</label>
@@ -272,7 +272,7 @@
 			<label index="message_zone" type="integer">12716845</label>
 			<label index="message_www" type="integer">116162288</label>
 			<label index="message_comments" type="integer">9634090</label>
-			<label index="message_title" type="integer">263171268</label>
+			<label index="message_title" type="integer">222278757</label>
 			<label index="message_first_name" type="integer">195910983</label>
 			<label index="message_last_name" type="integer">174820393</label>
 			<label index="message_malformed_telephone" type="integer">42170244</label>
@@ -385,7 +385,7 @@
 			<label index="label_company">Company:</label>
 			<label index="label_gender.I.0">Mr.</label>
 			<label index="label_gender.I.1">Ms.</label>
-			<label index="label_title">Title:</label>
+			<label index="label_title">Department/Title:</label>
 			<label index="label_name">Name:</label>
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
@@ -424,7 +424,7 @@
 			<label index="message_zone">Please enter your county/region.</label>
 			<label index="message_www">Please enter your website.</label>
 			<label index="message_comments">Please enter some comments.</label>
-			<label index="message_title">Please enter your title.</label>
+			<label index="message_title">Please enter your department/title.</label>
 			<label index="message_first_name">Please enter your first name.</label>
 			<label index="message_last_name">Please enter your last name.</label>
 			<label index="message_malformed_telephone">Please enter a valid telephone number.</label>

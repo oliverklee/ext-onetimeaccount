@@ -458,7 +458,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	//////////////////////////////////////////////////
 
 	public function test_SetAllNamesSubpartVisibility_ForAllNameRelatedFieldsHidden_AddsAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('name', 'title', 'gender', 'first_name', 'last_name');
+		$fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
 		$this->assertTrue(
@@ -467,7 +467,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	}
 
 	public function test_SetAllNamesSubpartVisibility_ForVisibleNameField_DoesNotAddAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('title', 'gender', 'first_name', 'last_name');
+		$fieldsToHide = array('gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
 		$this->assertFalse(
@@ -476,7 +476,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	}
 
 	public function test_SetAllNamesSubpartVisibility_ForVisibleFirstNameField_DoesNotAddAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('name', 'title', 'gender', 'last_name');
+		$fieldsToHide = array('name', 'gender', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
 		$this->assertFalse(
@@ -485,16 +485,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	}
 
 	public function test_SetAllNamesSubpartVisibility_ForVisibleLastNameField_DoesNotAddAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('name', 'title', 'gender', 'first_name');
-		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
-
-		$this->assertFalse(
-			in_array('all_names', $fieldsToHide)
-		);
-	}
-
-	public function test_SetAllNamesSubpartVisibility_ForVisibleTitleField_DoesNotAddAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
+		$fieldsToHide = array('name', 'gender', 'first_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
 		$this->assertFalse(
@@ -503,7 +494,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 	}
 
 	public function test_SetAllNamesSubpartVisibility_ForVisibleGenderField_DoesNotAddAllNamesSubpartToHideFields() {
-		$fieldsToHide = array('name', 'title', 'first_name', 'last_name');
+		$fieldsToHide = array('name', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
 		$this->assertFalse(

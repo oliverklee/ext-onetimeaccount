@@ -28,7 +28,7 @@
 										<numIndex index="1">gender</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:lang/locallang_general.xml:LGL.title</numIndex>
+										<numIndex index="0">LLL:EXT:onetimeaccount/pi1/locallang.xml:label_title</numIndex>
 										<numIndex index="1">title</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
@@ -121,7 +121,7 @@
 										<numIndex index="1">company</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:lang/locallang_general.xml:LGL.title</numIndex>
+										<numIndex index="0">LLL:EXT:onetimeaccount/pi1/locallang.xml:label_title</numIndex>
 										<numIndex index="1">title</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">

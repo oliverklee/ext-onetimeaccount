@@ -722,8 +722,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @param array the form fields which should be hidden, may be empty
 	 */
 	protected function setAllNamesSubpartVisibility(array &$formFieldsToHide) {
-		$nameRelatedFields
-			= array('title', 'name', 'first_name', 'last_name', 'gender');
+		$nameRelatedFields = array('name', 'first_name', 'last_name', 'gender');
 
 		$visibleNameFields = array_diff(
 			$nameRelatedFields,
