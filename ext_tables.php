@@ -10,6 +10,14 @@ $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']
 
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1'] = 'pi_flexform';
 
+t3lib_div::loadTCA('fe_users');
+
+$TCA['fe_users']['columns']['company']['config'] = array(
+	'type' => 'text',
+	'cols' => '20',
+	'rows' => '3',
+);
+
 t3lib_extMgm::addPiFlexFormValue(
 	$_EXTKEY.'_pi1',
 	'FILE:EXT:onetimeaccount/pi1/flexforms_pi1.xml'

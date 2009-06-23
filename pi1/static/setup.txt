@@ -62,7 +62,7 @@ plugin.tx_onetimeaccount_pi1 {
 			}
 		}
 		elements {
-			company = renderlet:TEXT
+			company = renderlet:TEXTAREA
 			company {
 				name = company
 				process.userobj {
