@@ -296,13 +296,17 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *              node (needs to contain an element with the key "key")
 	 *
 	 * @return string the default country (either the country's alpha3
-	 *                code or the localized name)
+	 *                code or the localized name), will be empty if no default
+	 *                country has been set
 	 */
 	public function getDefaultCountry($unused, array $parameters) {
 		$this->initStaticInfo();
 		$typoScriptPluginSetup = $GLOBALS['TSFE']->tmpl->setup['plugin.'];
 		$staticInfoSetup = $typoScriptPluginSetup['tx_staticinfotables_pi1.'];
-		$defaultCountryCode = $staticInfoSetup['countryCode'];
+		$defaultCountryCode = (string) $staticInfoSetup['countryCode'];
+		if ($defaultCountryCode == '') {
+			return '';
+		}
 
 		if ($parameters['alpha3']) {
 			$result = $defaultCountryCode;
