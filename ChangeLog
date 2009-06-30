@@ -1,4 +1,4 @@
-0.6.0 - currently working on
+0.6.0 - released 2009-06-30
 - [#3147] Fix: SQL error in the FE after static_info_tables upgrade
 - [#3107] Feature: If the "name" field is hidden, use the first name and last name
 - [#3106] Change: Change the company field from an input field to a 3-line textarea
