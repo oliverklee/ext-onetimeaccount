@@ -484,7 +484,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		if ($this->usesMd5Passwords()) {
 			$result['password'] = md5($formData['password']);
 		}
-		$result = $this->buildFullName($formData);
+		$result = $this->buildFullName($result);
 
 		return $result;
 	}
@@ -501,6 +501,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *               without modifications.
 	 */
 	public function setCurrentUserGroup(array $formData) {
+		if (isset($formData['usergroup']) && ($formData['usergroup'] != '')) {
+			return $formData;
+		}
+
 		$result = $formData;
 
 		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {

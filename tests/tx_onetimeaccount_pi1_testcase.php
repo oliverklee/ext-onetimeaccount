@@ -656,5 +656,83 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			$formData['name']
 		);
 	}
+
+	public function test_preprocessFormDataForUserGroupSetInConfiguration_SetsTheUsersGroupInFormData() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'name'
+		);
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(array('name' => 'bar'));
+
+		$this->assertEquals(
+			$userGroupUid,
+			$formData['usergroup']
+		);
+	}
+
+	public function test_preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInForm_SetsTheSelectedUsergroupInFormData() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
+		$userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'name,usergroups'
+		);
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid . ',' . $userGroupUid2
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(
+			array('usergroup' => $userGroupUid)
+		);
+
+		$this->assertEquals(
+			$userGroupUid,
+			$formData['usergroup']
+		);
+	}
+
+	public function test_preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHidden_SetsTheUsergroupsFromConfiguration() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
+		$userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'name'
+		);
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid . ',' . $userGroupUid2
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(array());
+
+		$this->assertEquals(
+			$userGroupUid . ',' . $userGroupUid2,
+			$formData['usergroup']
+		);
+	}
+
+	public function test_preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInForm_SetsTheUsersGroupFromConfiguration() {
+		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
+		$this->fixture->setConfigurationValue(
+			'feUserFieldsToDisplay', 'name,usergroup'
+		);
+		$this->fixture->setConfigurationValue(
+			'groupForNewFeUsers', $userGroupUid
+		);
+		$this->fixture->setFormFieldsToShow();
+
+		$formData = $this->fixture->preprocessFormData(
+			array('name' => 'bar', 'usergroup' => '')
+		);
+
+		$this->assertEquals(
+			$userGroupUid,
+			$formData['usergroup']
+		);
+	}
 }
 ?>
