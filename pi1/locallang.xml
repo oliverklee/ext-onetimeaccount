@@ -217,6 +217,66 @@
 			<label index="message_date_of_birth">Sei pregato di inserire la tua data di nascita.</label>
 			<label index="message_status">Sei pregato di specificare il tuo status.</label>
 		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index="flexforms_pi1.sheet_general">Algemeen</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay">FE user velden in het formulier:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Volledige naam:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Landnaam als alpha3 code:</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">Systeemfolder voor de nieuwe FE user records:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groepen voor de nieuwe FE users:</label>
+			<label index="flexforms_pi1.sheet_template">Templates en CSS</label>
+			<label index="flexforms_pi1.templateFile">HTML template file:</label>
+			<label index="flexforms_pi1.requiredFeUserFields">Verplichte velden:</label>
+			<label index="label_your_data_formal">Uw gegevens</label>
+			<label index="label_your_data_informal">Jouw gegevens</label>
+			<label index="label_company">Bedrijfsnaam:</label>
+			<label index="label_gender.I.0">Dhr.</label>
+			<label index="label_gender.I.1">Mevr.</label>
+			<label index="label_title">Afdeling/Titel:</label>
+			<label index="label_name">Naam:</label>
+			<label index="label_first_name">Voornaam:</label>
+			<label index="label_last_name">Achternaam:</label>
+			<label index="label_address">Straat:</label>
+			<label index="label_zip">Postcode:</label>
+			<label index="label_city">Plaats:</label>
+			<label index="label_zone">Provincie/Regio:</label>
+			<label index="label_country">Land:</label>
+			<label index="label_email">E-mail adres:</label>
+			<label index="label_www">Website:</label>
+			<label index="label_telephone">Telefoon:</label>
+			<label index="label_fax">Fax:</label>
+			<label index="label_date_of_birth">Geboortedatum:</label>
+			<label index="label_status">Status:</label>
+			<label index="label_status.I.1">Student</label>
+			<label index="label_status.I.2">Werkzoekende</label>
+			<label index="label_status.I.3">Werkend</label>
+			<label index="label_status.I.4">Gepensioneerd</label>
+			<label index="label_usergroup">Gebruikersgroep:</label>
+			<label index="label_module_sys_dmail_html">E-mails ontvangen met HTML indeling:</label>
+			<label index="label_comments">Notities:</label>
+			<label index="label_submit">Vervolg</label>
+			<label index="message_company">Voer a.u.b. uw bedrijfsnaam in.</label>
+			<label index="message_name">Voer a.u.b. uw naam in.</label>
+			<label index="message_title">Voer a.u.b. uw afdeling/titel in.</label>
+			<label index="message_first_name">Voer a.u.b. uw voornaam in.</label>
+			<label index="message_last_name">Voer a.u.b. uw achternaam in.</label>
+			<label index="message_address">Voer a.u.w. uw straatnaam in.</label>
+			<label index="message_zip">Voer a.u.b. uw postcode in.</label>
+			<label index="message_city">Voer a.u.b. uw plaats in.</label>
+			<label index="message_zone">Voer a.u.b. uw provincie/regio in.</label>
+			<label index="message_country">Voer a.u.b. uw land in.</label>
+			<label index="message_email">Voer a.u.b. uw e-mail adres in.</label>
+			<label index="message_www">Voer a.u.b. uw website in.</label>
+			<label index="message_telephone">Voer a.u.b. uw telefoonnummer in.</label>
+			<label index="message_fax">Voer a.u.b. uw faxnummer in.</label>
+			<label index="message_date_of_birth">Voer a.u.b. uw geboortedatum in.</label>
+			<label index="message_status">Voer a.u.b. uw status in.</label>
+			<label index="message_choose_usergroup">Selecteer een gebruikersgroep.</label>
+			<label index="message_comments">Voer a.u.b. enkele notities in.</label>
+			<label index="message_malformed_telephone">Voer a.u.b. een geldig telefoonnummer in.</label>
+			<label index="message_malformed_fax">Voer a.u.b. een geldig faxnummer in.</label>
+			<label index="message_malformed_email">Voer a.u.b. een geldig e-mail adres in.</label>
+		</languageKey>
 	</data>
 	<orig_hash type="array">
 		<languageKey index="de" type="array">
@@ -369,6 +429,66 @@
 			<label index="message_date_of_birth" type="integer">155377992</label>
 			<label index="message_status" type="integer">237419934</label>
 		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index="flexforms_pi1.sheet_general" type="integer">14366585</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay" type="integer">23375274</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name" type="integer">260008070</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country" type="integer">261739177</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords" type="integer">24157371</label>
+			<label index="flexforms_pi1.groupForNewFeUsers" type="integer">191155479</label>
+			<label index="flexforms_pi1.sheet_template" type="integer">23763433</label>
+			<label index="flexforms_pi1.templateFile" type="integer">75120399</label>
+			<label index="flexforms_pi1.requiredFeUserFields" type="integer">225447594</label>
+			<label index="label_your_data_formal" type="integer">239884756</label>
+			<label index="label_your_data_informal" type="integer">239884756</label>
+			<label index="label_company" type="integer">98955432</label>
+			<label index="label_gender.I.0" type="integer">19351194</label>
+			<label index="label_gender.I.1" type="integer">43922038</label>
+			<label index="label_title" type="integer">263477919</label>
+			<label index="label_name" type="integer">81871034</label>
+			<label index="label_first_name" type="integer">107522264</label>
+			<label index="label_last_name" type="integer">199614645</label>
+			<label index="label_address" type="integer">252788963</label>
+			<label index="label_zip" type="integer">234550549</label>
+			<label index="label_city" type="integer">201307921</label>
+			<label index="label_zone" type="integer">236350277</label>
+			<label index="label_country" type="integer">258260574</label>
+			<label index="label_email" type="integer">126760538</label>
+			<label index="label_www" type="integer">240957512</label>
+			<label index="label_telephone" type="integer">130029308</label>
+			<label index="label_fax" type="integer">212052995</label>
+			<label index="label_date_of_birth" type="integer">2570779</label>
+			<label index="label_status" type="integer">38413271</label>
+			<label index="label_status.I.1" type="integer">257690140</label>
+			<label index="label_status.I.2" type="integer">138303616</label>
+			<label index="label_status.I.3" type="integer">136964828</label>
+			<label index="label_status.I.4" type="integer">219192007</label>
+			<label index="label_usergroup" type="integer">18718016</label>
+			<label index="label_module_sys_dmail_html" type="integer">12950360</label>
+			<label index="label_comments" type="integer">202678474</label>
+			<label index="label_submit" type="integer">254160814</label>
+			<label index="message_company" type="integer">21463011</label>
+			<label index="message_name" type="integer">62714617</label>
+			<label index="message_title" type="integer">222278757</label>
+			<label index="message_first_name" type="integer">195910983</label>
+			<label index="message_last_name" type="integer">174820393</label>
+			<label index="message_address" type="integer">48566681</label>
+			<label index="message_zip" type="integer">55741989</label>
+			<label index="message_city" type="integer">40317843</label>
+			<label index="message_zone" type="integer">12716845</label>
+			<label index="message_country" type="integer">56386254</label>
+			<label index="message_email" type="integer">36304719</label>
+			<label index="message_www" type="integer">116162288</label>
+			<label index="message_telephone" type="integer">243378193</label>
+			<label index="message_fax" type="integer">126616274</label>
+			<label index="message_date_of_birth" type="integer">155377992</label>
+			<label index="message_status" type="integer">237419934</label>
+			<label index="message_choose_usergroup" type="integer">161431320</label>
+			<label index="message_comments" type="integer">9634090</label>
+			<label index="message_malformed_telephone" type="integer">42170244</label>
+			<label index="message_malformed_fax" type="integer">226017035</label>
+			<label index="message_malformed_email" type="integer">135361076</label>
+		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
 		<languageKey index="de" type="array">
@@ -520,6 +640,66 @@
 			<label index="message_fax">Please enter a valid fax number.</label>
 			<label index="message_date_of_birth">Please enter your date of birth.</label>
 			<label index="message_status">Please enter your status.</label>
+		</languageKey>
+		<languageKey index="nl" type="array">
+			<label index="flexforms_pi1.sheet_general">General</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay">FE user fields in the form:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
+			<label index="flexforms_pi1.feUserFieldsToDisplay.static_info_country">Country name as alpha3 code:</label>
+			<label index="flexforms_pi1.systemFolderForNewFeUserRecords">System folder for the new FE user records:</label>
+			<label index="flexforms_pi1.groupForNewFeUsers">Groups for the new FE users:</label>
+			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
+			<label index="flexforms_pi1.templateFile">HTML template file:</label>
+			<label index="flexforms_pi1.requiredFeUserFields">Required fields:</label>
+			<label index="label_your_data_formal">Your data</label>
+			<label index="label_your_data_informal">Your data</label>
+			<label index="label_company">Company:</label>
+			<label index="label_gender.I.0">Mr.</label>
+			<label index="label_gender.I.1">Ms.</label>
+			<label index="label_title">Department/Title:</label>
+			<label index="label_name">Name:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
+			<label index="label_address">Street:</label>
+			<label index="label_zip">ZIP:</label>
+			<label index="label_city">City:</label>
+			<label index="label_zone">County/Region:</label>
+			<label index="label_country">Country:</label>
+			<label index="label_email">E-mail address:</label>
+			<label index="label_www">Website:</label>
+			<label index="label_telephone">Phone number:</label>
+			<label index="label_fax">Fax number:</label>
+			<label index="label_date_of_birth">Date of birth:</label>
+			<label index="label_status">Status:</label>
+			<label index="label_status.I.1">Student</label>
+			<label index="label_status.I.2">Job seeking</label>
+			<label index="label_status.I.3">Working</label>
+			<label index="label_status.I.4">Retired</label>
+			<label index="label_usergroup">User group:</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML:</label>
+			<label index="label_comments">Comments:</label>
+			<label index="label_submit">Proceed</label>
+			<label index="message_company">Please enter your company.</label>
+			<label index="message_name">Please enter your name.</label>
+			<label index="message_title">Please enter your department/title.</label>
+			<label index="message_first_name">Please enter your first name.</label>
+			<label index="message_last_name">Please enter your last name.</label>
+			<label index="message_address">Please enter your street.</label>
+			<label index="message_zip">Please enter your ZIP code.</label>
+			<label index="message_city">Please enter your city.</label>
+			<label index="message_zone">Please enter your county/region.</label>
+			<label index="message_country">Please enter your country.</label>
+			<label index="message_email">Please enter your e-mail address.</label>
+			<label index="message_www">Please enter your website.</label>
+			<label index="message_telephone">Please enter your telephone number.</label>
+			<label index="message_fax">Please enter your fax number.</label>
+			<label index="message_date_of_birth">Please enter your date of birth.</label>
+			<label index="message_status">Please enter your status.</label>
+			<label index="message_choose_usergroup">Please choose a user group.</label>
+			<label index="message_comments">Please enter some comments.</label>
+			<label index="message_malformed_telephone">Please enter a valid telephone number.</label>
+			<label index="message_malformed_fax">Please enter a valid fax number.</label>
+			<label index="message_malformed_email">Please enter a valid e-mail address.</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
