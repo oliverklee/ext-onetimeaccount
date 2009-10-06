@@ -1,4 +1,5 @@
 0.6.2 - currently working on
+- [#3373] Fix: Typo in the German onetimeaccount error messages: sie -> Sie
 - [#1867] Feature: Add a try/catch construct around the seminars and onetimeaccount pi1/pi2/mod1/mod2/cli main function
 
 0.6.1 - released 2009-07-10
