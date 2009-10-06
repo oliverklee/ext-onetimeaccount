@@ -113,7 +113,7 @@
 			<label index="message_address">Bitte geben Sie Ihre Straße an.</label>
 			<label index="message_zip">Bitte geben Sie Ihre Postleitzahl an.</label>
 			<label index="message_city">Bitte geben Sie Ihre Stadt an.</label>
-			<label index="message_zone">Bitte geben sie Ihr Bundesland/Ihre Provinz an.</label>
+			<label index="message_zone">Bitte geben Sie Ihr Bundesland/Ihre Provinz an.</label>
 			<label index="message_country">Bitte geben Sie Ihr Land an.</label>
 			<label index="message_email">Bitte geben Sie Ihre E-Mail-Adresse an.</label>
 			<label index="message_www">Bitte geben Sie Ihre Website an.</label>
@@ -122,10 +122,10 @@
 			<label index="message_date_of_birth">Bitte geben Sie Ihr Geburtsdatum an.</label>
 			<label index="message_status">Bitte geben Sie Ihren Status an.</label>
 			<label index="message_choose_usergroup">Bitte wählen Sie eine Benutzergruppe.</label>
-			<label index="message_comments">Bitte geben sie Kommentare ein.</label>
-			<label index="message_malformed_telephone">Bitte geben sie eine gültige Telefonnummer an.</label>
-			<label index="message_malformed_fax">Bitte geben sie eine gültige Faxnummer an.</label>
-			<label index="message_malformed_email">Bitte geben sie eine gültige E-Mail Adresse an.</label>
+			<label index="message_comments">Bitte geben Sie Kommentare ein.</label>
+			<label index="message_malformed_telephone">Bitte geben Sie eine gültige Telefonnummer an.</label>
+			<label index="message_malformed_fax">Bitte geben Sie eine gültige Faxnummer an.</label>
+			<label index="message_malformed_email">Bitte geben Sie eine gültige E-Mail Adresse an.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">Généralités</label>
