@@ -62,10 +62,9 @@ plugin.tx_onetimeaccount_pi1 {
 			}
 		}
 		elements {
-			company = renderlet:TEXTAREA
+			company = renderlet:TEXT
 			company {
 				name = company
-				custom = rows="3" cols="20"
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
