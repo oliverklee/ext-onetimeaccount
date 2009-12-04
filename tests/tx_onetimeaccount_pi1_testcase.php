@@ -96,7 +96,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			return '';
 		}
 
-		$data = unserialize(base64_decode($matches[3]));
+		$data = unserialize(base64_decode(rawurldecode($matches[3])));
 		return $data['url'];
 	}
 
