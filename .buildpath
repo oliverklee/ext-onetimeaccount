@@ -2,4 +2,6 @@
 <buildpath>
 	<buildpathentry kind="src" path=""/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/oelib"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/typo3_src"/>
 </buildpath>
