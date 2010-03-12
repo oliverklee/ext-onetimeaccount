@@ -1,4 +1,5 @@
 0.7.1 - currently working on
+- [#3729] Change: Provide ext_autoload for our extensions
 
 0.7.0 - released 2010-02-19
 - [#3641] Change: Update all copyrights to 2010
