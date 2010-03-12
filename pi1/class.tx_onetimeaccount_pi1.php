@@ -372,9 +372,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->workAroundModSecurity();
 		$url = (string) t3lib_div::_GP('redirect_url');
 		if ($url == '') {
-			// Uses the current page (including all GET parameters) if no
-			// redirect URL is provided.
 			$url = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
 		}
 
 		$postData = array();
@@ -396,10 +395,14 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 		$postData['pid'] = $this->getPidForNewUserRecords();
 
-		return t3lib_div::locationHeaderUrl(
+		$result = t3lib_div::locationHeaderUrl(
 			'index.php?eID=onetimeaccount&data='
 				. rawurlencode(base64_encode(serialize($postData)))
 		);
+
+		$this->log('Redirecting before login to: ' . $result);
+
+		return $result;
 	}
 
 	/**
@@ -413,6 +416,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		if (isset($_GET['redirect_url']) || !isset($_SERVER['REQUEST_URI'])) {
 			return;
 		}
+		$this->log('Applying mod_security workaround.', 1);
 
 		$matches = array();
 		preg_match(
@@ -492,11 +496,21 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return array processed form data, will not be empty
 	 */
 	public function preprocessFormData(array $formData) {
+		$this->log(
+			'Submitted data is valid on FE page: ' . $GLOBALS['TSFE']->id
+		);
+
 		$result = $this->setCurrentUserGroup($formData);
 		if ($this->usesMd5Passwords()) {
+			$this->log('Creating an MD5 password.');
 			$result['password'] = md5($formData['password']);
 		}
 		$result = $this->buildFullName($result);
+
+		$this->log(
+			'Creating user "' . $result['username'] . '" with groups ' .
+				$result['usergroup'] . ' in sysfolder ' . $result['pid'] . '.'
+		);
 
 		return $result;
 	}
@@ -766,6 +780,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *                passwords
 	 */
 	protected function createChallenge() {
+		$this->log('Creating challenge.');
+
 		require_once(
 			t3lib_extMgm::extPath('sr_feuser_register') .
 				'lib/class.tx_srfeuserregister_passwordmd5.php'
@@ -833,6 +849,24 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$formData['name'] = trim($firstName . ' ' . $lastName);
 
 		return $formData;
+	}
+
+	/**
+	 * Logs $message to the TYPO3 development log if logging is enabled for
+	 * this extension.
+	 *
+	 * @param string $message the message to log, must not be empty
+	 * @param integer $severity
+	 *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
+	 */
+	private function log($message, $severity = 0) {
+		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')
+			->getAsBoolean('enableLogging')
+		) {
+			return;
+		}
+
+		t3lib_div::devLog($message, 'onetimeaccount', $severity);
 	}
 }
 

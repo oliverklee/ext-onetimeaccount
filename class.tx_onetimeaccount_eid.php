@@ -22,6 +22,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
 /**
  * This class contains a user login script which uses the login data encoded
  * in GET['data'].
@@ -47,13 +49,17 @@ class tx_onetimeaccount_eid {
 	 * a GET parameter.
 	 */
 	public function loginAndRedirect() {
+		tslib_eidtools::connectDB();
+
 		$postData = @unserialize(
 			base64_decode($_GET['data'])
 		);
 		if (!is_array($postData) || empty($postData)) {
+			$this->log('POST data is no array or empty.', 3);
 			return;
 		}
 		if (!preg_match('/^https?:\/\//', $postData['url'])) {
+			$this->log('URL has no http(s) prefix: ' . $url, 3);
 			return;
 		}
 
@@ -65,13 +71,37 @@ class tx_onetimeaccount_eid {
 		$_POST['pid'] = $postData['pid'];
 		$_POST['logintype'] = 'login';
 
-		tslib_eidtools::connectDB();
+		$this->log(
+			'Logging in user "' . $postData['user'] . '" in sysfolder ' .
+			$postData['pid'] .
+			(isset($postData['challenge']) ? ' with challenge' : '') .
+			'.'
+		);
 		$frontEndUser = tslib_eidtools::initFeUser();
-		$frontEndUser->setKey('user', 'onetimeaccount', true);
+		$frontEndUser->setKey('user', 'onetimeaccount', TRUE);
 		$frontEndUser->storeSessionData();
 
+		$this->log('Redirecting after login to: ' . $postData['url']);
 		header('HTTP/1.0 302 Redirect');
 		header('Location: ' . $postData['url']);
+	}
+
+	/**
+	 * Logs $message to the TYPO3 development log if logging is enabled for
+	 * this extension.
+	 *
+	 * @param string $message the message to log, must not be empty
+	 * @param integer $severity
+	 *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
+	 */
+	private function log($message, $severity = 0) {
+		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')
+			->getAsBoolean('enableLogging')
+		) {
+			return;
+		}
+
+		t3lib_div::devLog($message, 'onetimeaccount', $severity);
 	}
 }
 

@@ -52,6 +52,11 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 			array('isStaticTemplateLoaded' => 1)
 		);
 		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
+
+		$configurationProxy =
+			tx_oelib_configurationProxy::getInstance('onetimeaccount');
+		$configurationProxy->setAsBoolean('enableConfigCheck', FALSE);
+		$configurationProxy->setAsBoolean('enableLogging', FALSE);
 	}
 
 	public function tearDown() {
