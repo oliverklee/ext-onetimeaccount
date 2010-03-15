@@ -1,4 +1,5 @@
 0.8.0 - currently working on
+- [#3738] Change: Require static_info_tables >= 2.1.0
 - [#3450] Change: Mention in setup.txt that the admin should not copy'n'paste the complete template into the TS template
 - [#3729] Change: Provide ext_autoload for our extensions
 - [#3719] Feature: Add logging
