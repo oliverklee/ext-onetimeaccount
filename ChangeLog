@@ -1,4 +1,4 @@
-0.7.1 - currently working on
+0.7.1 - released 2010-04-22
 - [#3826] Fix: Login fails if generated password contains a (non-ASCII) paragraph character
 - [#3450] Change: Mention in setup.txt that the admin should not copy'n'paste the complete template into the TS template
 - [#3729] Change: Provide ext_autoload for our extensions
