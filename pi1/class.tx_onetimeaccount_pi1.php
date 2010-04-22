@@ -468,8 +468,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$result = '';
 
 		$availableCharacters
-			= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-				.'0123456789!§$%&/()=?*+#,;.:-_<>';
+			= 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' .
+				'0123456789!$%&/()=?*+#,;.:-_<>';
 		$indexOfLastCharacter = strlen($availableCharacters) - 1;
 
 		for ($i = 0; $i < 8; $i++) {
