@@ -67,7 +67,7 @@ class tx_onetimeaccount_eid {
 
 		tslib_eidtools::connectDB();
 		$frontEndUser = tslib_eidtools::initFeUser();
-		$frontEndUser->setKey('user', 'onetimeaccount', true);
+		$frontEndUser->setKey('user', 'onetimeaccount', TRUE);
 		$frontEndUser->storeSessionData();
 
 		header('HTTP/1.0 302 Redirect');

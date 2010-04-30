@@ -1,4 +1,5 @@
 0.7.2 - currently working on
+- [#3434] Cleanup: Replace false/true with FALSE/TRUE
 
 0.7.1 - released 2010-04-22
 - [#3826] Fix: Login fails if generated password contains a (non-ASCII) paragraph character
