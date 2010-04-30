@@ -151,7 +151,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->form->initFromTs(
 			$this,
 			$this->conf['form.'],
-			false
+			FALSE
 		);
 	}
 
@@ -197,7 +197,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	public function getTemplatePath() {
 		return t3lib_div::getFileAbsFileName(
-			$this->getConfValueString('templateFile', 's_template_special', true)
+			$this->getConfValueString('templateFile', 's_template_special', TRUE)
 		);
 	}
 
@@ -244,8 +244,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *              node as key/value pairs (used for retrieving the current
 	 *              form field name)
 	 *
-	 * @return boolean true if the current form field should be displayed,
-	 *                 false otherwise
+	 * @return boolean TRUE if the current form field should be displayed,
+	 *                 FALSE otherwise
 	 */
 	public function isFormFieldEnabled(array $parameters) {
 		$key = $parameters['elementName'];
@@ -275,7 +275,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	public function populateListCountries($unused, array $parameters) {
 		$this->initStaticInfo();
 		$allCountries = $this->staticInfo->initCountries(
-			'ALL', $this->staticInfo->getCurrentLanguage(), true
+			'ALL', $this->staticInfo->getCurrentLanguage(), TRUE
 		);
 
 		$result = array();
@@ -325,7 +325,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		} else {
 			$result = tx_staticinfotables_div::getTitleFromIsoCode(
 				'static_countries', $defaultCountryCode,
-				$this->staticInfo->getCurrentLanguage(), true
+				$this->staticInfo->getCurrentLanguage(), TRUE
 			);
 		}
 
@@ -599,7 +599,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		return t3lib_div::trimExplode(
 			',',
 			$this->getConfValueString('groupForNewFeUsers', 's_general'),
-			true
+			TRUE
 		);
 	}
 
@@ -609,13 +609,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @param array the currently selected value in an associative array
 	 *              with the key 'value'
 	 *
-	 * @return boolean true if a radiobutton is selected or if the form
-	 *                 field is hidden, false if none is selected although
+	 * @return boolean TRUE if a radiobutton is selected or if the form
+	 *                 field is hidden, FALSE if none is selected although
 	 *                 the field is visible
 	 */
 	public function isRadiobuttonSelected(array $radiogroupValue) {
 		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
-			return true;
+			return TRUE;
 		}
 
 		$allowedValues = $this->getUncheckedUidsOfAllowedUserGroups();
@@ -626,8 +626,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether we have at least two allowed user groups.
 	 *
-	 * @return boolean true if we have at least two allowed user groups,
-	 *                 false otherwise
+	 * @return boolean TRUE if we have at least two allowed user groups,
+	 *                 FALSE otherwise
 	 */
 	private function hasAtLeastTwoUserGroups() {
 		return (count($this->listUserGroups()) > 1);
@@ -658,12 +658,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *              'value' and the name, with the key 'elementName', of the
 	 *              form field to check, must not be empty
 	 *
-	 * @return boolean true if this field is not empty or not required, false
+	 * @return boolean TRUE if this field is not empty or not required, FALSE
 	 *                 otherwise
 	 */
 	public function validateStringField(array $formData) {
 		if ($this->checkPremisses($formData)) {
-			return true;
+			return TRUE;
 		}
 
 		return (trim($formData['value']) != '');
@@ -676,12 +676,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *              'value' and the name, with the key 'elementName', of the
 	 *              form field to check, must not be empty
 	 *
-	 * @return boolean true if this field is not zero or not required, false
+	 * @return boolean TRUE if this field is not zero or not required, FALSE
 	 *                 otherwise
 	 */
 	public function validateIntegerField(array $formData) {
 		if ($this->checkPremisses($formData)) {
-			return true;
+			return TRUE;
 		}
 
 		return (intval($formData['value']) != 0);
@@ -696,7 +696,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *              'value' and the name, with the key 'elementName', of the
 	 *              form field to check, must not be empty
 	 *
-	 * @return boolean true if the element was not required, false otherwise
+	 * @return boolean TRUE if the element was not required, FALSE otherwise
 	 */
 	private function checkPremisses(array $formData) {
 		if ($formData['elementName'] == '') {
@@ -798,12 +798,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Checks whether the extension sr_feuser_register is loaded and whether an
 	 * MD5 password should be used.
 	 *
-	 * @return boolean true if sr_feuser_register is loaded and MD5 passwords
-	 *                 are used, false otherwise
+	 * @return boolean TRUE if sr_feuser_register is loaded and MD5 passwords
+	 *                 are used, FALSE otherwise
 	 */
 	private function usesMd5Passwords() {
 		if (!t3lib_extMgm::isLoaded('sr_feuser_register')) {
-			return false;
+			return FALSE;
 		}
 
 		return t3lib_extMgm::isLoaded('kb_md5fepw')

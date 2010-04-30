@@ -43,7 +43,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	protected function check_tx_onetimeaccount_pi1() {
 		$this->checkCssStyledContent();
 		$this->checkStaticIncluded();
-		$this->checkTemplateFile(true);
+		$this->checkTemplateFile(TRUE);
 		$this->checkCssFileFromConstants();
 		$this->checkSalutationMode();
 
@@ -59,7 +59,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	private function checkFeUserFieldsToDisplay() {
 		$this->checkIfMultiInSetNotEmpty(
 			'feUserFieldsToDisplay',
-			true,
+			TRUE,
 			's_general',
 			'This value specifies which form fields will be displayed. ' .
 				'Incorrect values will cause those fields to not get displayed.',
@@ -73,7 +73,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	private function checkRequiredFeUserFields() {
 		$this->checkIfMultiInSetOrEmpty(
 			'requiredFeUserFields',
-			true,
+			TRUE,
 			's_general',
 			'This value specifies which form fields are required to be filled in. ' .
 				'Incorrect values will cause those fields to not get ' .
@@ -85,7 +85,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 		$this->checkIfMultiInSetOrEmpty(
 			'requiredFeUserFields',
-			true,
+			TRUE,
 			's_general',
 			'This value specifies which form fields are required to be filled ' .
 				'in. Incorrect values will cause the user not to be able to ' .
@@ -95,7 +95,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				$this->objectToCheck->getConfValueString(
 					'feUserFieldsToDisplay', 's_general'
 				),
-				true
+				TRUE
 			)
 		);
 	}
@@ -107,7 +107,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	private function checkSystemFolderForNewFeUserRecords() {
 		$this->checkIfSingleSysFolderNotEmpty(
 			'systemFolderForNewFeUserRecords',
-			true,
+			TRUE,
 			's_general',
 			'This value specifies the system folder in which new FE user' .
 				'records will be stored.' .
@@ -122,7 +122,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	private function checkGroupForNewFeUsers() {
 		$this->checkIfPidListNotEmpty(
 			'groupForNewFeUsers',
-			true,
+			TRUE,
 			's_general',
 			'This value specifies the FE user groups to which new FE user records ' .
 				'will be assigned. If this value is not set correctly, the ' .
@@ -148,7 +148,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		if ($groupCounter['number'] != $elementsInValueToCheck) {
 			$this->setErrorMessageAndRequestCorrection(
 				'groupForNewFeUsers',
-				true,
+				TRUE,
 				'The TS setup variable <strong>' .
 					$this->getTSSetupPath() . 'groupForNewFeUsers</strong> ' .
 					'contains the value ' . $valueToCheck . ' which isn\'t valid. ' .
