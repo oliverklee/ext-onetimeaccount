@@ -79,7 +79,10 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 				'Incorrect values will cause those fields to not get ' .
 				'validated correctly.',
 			$this->getAvailableFields(
-				array('gender', 'usergroup', 'module_sys_dmail_html')
+				array(
+					'gender', 'usergroup', 'module_sys_dmail_newsletter',
+					'module_sys_dmail_html',
+				)
 			)
 		);
 
@@ -190,6 +193,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'fax',
 			'date_of_birth',
 			'status',
+			'module_sys_dmail_newsletter',
 			'module_sys_dmail_html',
 			'usergroup',
 			'comments',

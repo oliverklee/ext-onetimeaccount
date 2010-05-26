@@ -598,6 +598,19 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 			}
 
+			module_sys_dmail_newsletter = renderlet:CHECKSINGLE
+			module_sys_dmail_newsletter {
+				name = module_sys_dmail_newsletter
+				process.userobj {
+					extension = this
+					method = isFormFieldEnabled
+					params {
+						10.name = elementName
+						10.value = module_sys_dmail_newsletter
+					}
+				}
+			}
+
 			module_sys_dmail_html = renderlet:CHECKSINGLE
 			module_sys_dmail_html {
 				name = module_sys_dmail_html

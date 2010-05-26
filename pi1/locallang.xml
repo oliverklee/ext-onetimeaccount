@@ -42,7 +42,8 @@
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
 			<label index="label_usergroup">User group:</label>
-			<label index="label_module_sys_dmail_html">Receive e-mails as HTML:</label>
+			<label index="label_module_sys_dmail_newsletter">Subscribe to our newsletter</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments:</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>
@@ -102,7 +103,8 @@
 			<label index="label_status.I.3">Angestellt</label>
 			<label index="label_status.I.4">Selbstständig</label>
 			<label index="label_usergroup">Benutzergruppe:</label>
-			<label index="label_module_sys_dmail_html">E-Mails im HTML-Format empfangen:</label>
+			<label index="label_module_sys_dmail_newsletter">Unseren Newsletter abonnieren</label>
+			<label index="label_module_sys_dmail_html">E-Mails im HTML-Format empfangen</label>
 			<label index="label_comments">Kommentare:</label>
 			<label index="label_submit">Weiter</label>
 			<label index="message_company">Bitte geben Sie Ihre Firma an.</label>
@@ -252,7 +254,7 @@
 			<label index="label_status.I.3">Werkend</label>
 			<label index="label_status.I.4">Gepensioneerd</label>
 			<label index="label_usergroup">Gebruikersgroep:</label>
-			<label index="label_module_sys_dmail_html">E-mails ontvangen met HTML indeling:</label>
+			<label index="label_module_sys_dmail_html">E-mails ontvangen met HTML indeling</label>
 			<label index="label_comments">Notities:</label>
 			<label index="label_submit">Vervolg</label>
 			<label index="message_company">Voer a.u.b. uw bedrijfsnaam in.</label>
@@ -313,7 +315,8 @@
 			<label index="label_status.I.3" type="integer">136964828</label>
 			<label index="label_status.I.4" type="integer">219192007</label>
 			<label index="label_usergroup" type="integer">18718016</label>
-			<label index="label_module_sys_dmail_html" type="integer">12950360</label>
+			<label index="label_module_sys_dmail_newsletter" type="integer">162763034</label>
+			<label index="label_module_sys_dmail_html" type="integer">89912328</label>
 			<label index="label_comments" type="integer">202678474</label>
 			<label index="label_submit" type="integer">254160814</label>
 			<label index="message_company" type="integer">21463011</label>
@@ -525,7 +528,8 @@
 			<label index="label_status.I.3">Working</label>
 			<label index="label_status.I.4">Retired</label>
 			<label index="label_usergroup">User group:</label>
-			<label index="label_module_sys_dmail_html">Receive e-mails as HTML:</label>
+			<label index="label_module_sys_dmail_newsletter">Subscribe to our newsletter</label>
+			<label index="label_module_sys_dmail_html">Receive e-mails as HTML</label>
 			<label index="label_comments">Comments:</label>
 			<label index="label_submit">Proceed</label>
 			<label index="message_company">Please enter your company.</label>

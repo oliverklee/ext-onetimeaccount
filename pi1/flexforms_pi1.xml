@@ -96,10 +96,14 @@
 										<numIndex index="1">usergroup</numIndex>
 									</numIndex>
 									<numIndex index="19" type="array">
+										<numIndex index="0">LLL:EXT:direct_mail/locallang_tca.xml:module_sys_dmail_group.newsletter</numIndex>
+										<numIndex index="1">module_sys_dmail_newsletter</numIndex>
+									</numIndex>
+									<numIndex index="20" type="array">
 										<numIndex index="0">LLL:EXT:direct_mail/locallang_tca.xml:module_sys_dmail_group.htmlemail</numIndex>
 										<numIndex index="1">module_sys_dmail_html</numIndex>
 									</numIndex>
-									<numIndex index="20" type="array">
+									<numIndex index="21" type="array">
 										<numIndex index="0">LLL:EXT:sr_feuser_register/locallang_db.xml:fe_users.comments</numIndex>
 										<numIndex index="1">comments</numIndex>
 									</numIndex>

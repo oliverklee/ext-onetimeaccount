@@ -93,6 +93,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		'fax',
 		'date_of_birth',
 		'status',
+		'module_sys_dmail_newsletter',
 		'module_sys_dmail_html',
 		'usergroup',
 		'comments',
@@ -639,7 +640,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	private function setRequiredFieldLabels() {
 		$formFieldsToCheck = array_diff(
 			self::$availableFormFields,
-			array('usergroup', 'gender', 'module_sys_dmail_html')
+			array(
+				'usergroup', 'gender', 'module_sys_dmail_newsletter',
+				'module_sys_dmail_html',
+			)
 		);
 		foreach ($formFieldsToCheck as $formField) {
 			$this->setMarker(
