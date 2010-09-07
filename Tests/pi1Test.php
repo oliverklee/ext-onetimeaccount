@@ -24,17 +24,16 @@
 
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
 
-require_once(t3lib_extMgm::extPath('onetimeaccount') . 'tests/fixtures/class.tx_onetimeaccount_fakePi1.php');
-
 /**
- * Testcase for the pi1 class in the 'onetimeaccount' extension.
+ * Testcase for the tx_onetimeaccount_pi1 class in the "onetimeaccount"
+ * extension.
  *
  * @package TYPO3
  * @subpackage tx_seminars
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
+class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @var tx_onetimeaccount_fakePi1
 	 */
@@ -48,7 +47,7 @@ class tx_onetimeaccount_pi1_testcase extends tx_phpunit_testcase {
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
 		$this->testingFramework->createFakeFrontEnd();
 
-		$this->fixture = new tx_onetimeaccount_fakePi1(
+		$this->fixture = new tx_onetimeaccount_Tests_Fixtures_FakePi1(
 			array('isStaticTemplateLoaded' => 1)
 		);
 		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
