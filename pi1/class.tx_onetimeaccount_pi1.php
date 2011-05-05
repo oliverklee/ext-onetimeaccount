@@ -116,31 +116,18 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return string HTML output of the plug-in
 	 */
 	public function main($content, array $configuration) {
-		$result = '';
-		try {
-			$this->init($configuration);
-			$this->pi_initPIflexForm();
+		$this->init($configuration);
+		$this->pi_initPIflexForm();
 
-			// disables caching
-			$this->pi_USER_INT_obj = 1;
+		// disables caching
+		$this->pi_USER_INT_obj = 1;
 
-			$this->initializeFormFields();
-			$this->initializeForm();
+		$this->initializeFormFields();
+		$this->initializeForm();
 
-			$result = $this->renderForm();
-			$result .= $this->checkConfiguration();
+		$result = $this->renderForm() . $this->checkConfiguration();
 
-			$result = $this->pi_wrapInBaseClass($result);
-		} catch (Exception $exception) {
-			$result .= '<p style="border: 2px solid red; padding: 1em; ' .
-				'font-weight: bold;">' . LF .
-				htmlspecialchars($exception->getMessage()) . LF .
-				'<br /><br />' . LF .
-				nl2br(htmlspecialchars($exception->getTraceAsString())) . LF .
-				'</p>' . LF;
-		}
-
-		return $result;
+		return $this->pi_wrapInBaseClass($result);
 	}
 
 	/**
