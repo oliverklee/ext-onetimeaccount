@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008-2010 Oliver Klee <typo3-coding@oliverklee.de>
+*  (c) 2008-2011 Oliver Klee <typo3-coding@oliverklee.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,11 +37,11 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @var tx_onetimeaccount_fakePi1
 	 */
-	private $fixture;
+	private $fixture = NULL;
 	/**
 	 * @var tx_oelib_testingFramework
 	 */
-	private $testingFramework;
+	private $testingFramework = NULL;
 
 	public function setUp() {
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
@@ -52,8 +52,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
 
-		$configurationProxy =
-			tx_oelib_configurationProxy::getInstance('onetimeaccount');
+		$configurationProxy = tx_oelib_configurationProxy::getInstance('onetimeaccount');
 		$configurationProxy->setAsBoolean('enableConfigCheck', FALSE);
 		$configurationProxy->setAsBoolean('enableLogging', FALSE);
 	}
@@ -70,10 +69,13 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Utility functions
 	//////////////////////
 
+	/**
+	 * Skips the test if there is not MD5 password extension installed.
+	 *
+	 * @return void
+	 */
 	private function skipTestForNoMd5() {
-		if(!t3lib_extMgm::isLoaded('sr_feuser_register')
-			|| !t3lib_extMgm::isLoaded('kb_md5fepw')
-		) {
+		if (!t3lib_extMgm::isLoaded('sr_feuser_register') || !t3lib_extMgm::isLoaded('kb_md5fepw')) {
 			$this->markTestSkipped(
 				'This test is only applicable if sr_feuser_register and ' .
 					'kb_md5fepw are loaded.'
@@ -85,7 +87,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * Extracts the URL which is encoded in $url in a serialized array which
 	 * is encoded in the "data" GET parameter.
 	 *
-	 * @param string URL to that contains the data to decode, must not be empty
+	 * @param string $url
+	 *        URL to that contains the data to decode, must not be empty
 	 *
 	 * @return string the encoded URL, will be empty if no URL could be found
 	 */
@@ -109,7 +112,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning getFormData
 	/////////////////////////////////
 
-	public function testGetFormDataReturnsNonEmptyDataSetViaSetFormData() {
+	/**
+	 * @test
+	 */
+	public function getFormDataReturnsNonEmptyDataSetViaSetFormData() {
 		$this->fixture->setFormData(array('foo' => 'bar'));
 
 		$this->assertEquals(
@@ -123,7 +129,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning getUserName
 	/////////////////////////////////
 
-	public function test_GetUserName_WithNonEmptyEmail_ReturnsNonEmptyString() {
+	/**
+	 * @test
+	 */
+	public function getUserNameWithNonEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => 'foo@bar.com'));
 
 		$this->assertNotEquals(
@@ -132,7 +141,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_GetUserName_WithEmailOfExistingUserName_ReturnsDifferentName() {
+	/**
+	 * @test
+	 */
+	public function getUserNameWithEmailOfExistingUserNameReturnsDifferentName() {
 		$this->testingFramework->createFrontEndUser(
 			$this->testingFramework->createFrontEndUserGroup(),
 			array('username' => 'foo@bar.com')
@@ -145,7 +157,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_GetUserName_WithEmptyEmail_ReturnsNonEmptyString() {
+	/**
+	 * @test
+	 */
+	public function getUserNameWithEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => ''));
 
 		$this->assertNotEquals(
@@ -154,7 +169,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_GetUserName_WithEmptyEmailAndDefaultUserNameAlreadyExisting_ReturnsNewUniqueUsernameString() {
+	/**
+	 * @test
+	 */
+	public function getUserNameWithEmptyEmailAndDefaultUserNameAlreadyExistingReturnsNewUniqueUsernameString() {
 		$this->testingFramework->createFrontEndUser(
 			'', array('username' => 'user')
 		);
@@ -171,7 +189,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning getPassword
 	/////////////////////////////////
 
-	public function testGetPasswordReturnsPasswordWithEightCharacters() {
+	/**
+	 * @test
+	 */
+	public function getPasswordReturnsPasswordWithEightCharacters() {
 		$this->assertEquals(
 			8,
 			strlen($this->fixture->getPassword())
@@ -187,7 +208,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function createRedirectUrlReturnsEidUrl() {
-		$_POST['redirect_url'] = '';
+		$GLOBALS['_POST']['redirect_url'] = '';
 
 		$this->assertRegExp(
 			'/https?:\/\/.+\/index\.php\?eID=onetimeaccount&data=/',
@@ -199,7 +220,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function createRedirectUrlReturnsEncodedRedirectUrl() {
-		$_POST['redirect_url'] = 'http://foo.com/';
+		$GLOBALS['_POST']['redirect_url'] = 'http://foo.com/';
 
 		$this->assertEquals(
 			'http://foo.com/',
@@ -213,7 +234,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function createRedirectUrlWithoutRedirectUrlIsCurrentUri() {
-		$_POST['redirect_url'] = '';
+		$GLOBALS['_POST']['redirect_url'] = '';
 
 		$this->assertEquals(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
@@ -228,7 +249,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning validateStringField
 	/////////////////////////////////////////////
 
-	public function test_ValidateStringField_ForNotRequiredField_ReturnsTrue() {
+	/**
+	 * @test
+	 */
+	public function validateStringFieldForNotRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertTrue(
@@ -238,16 +262,20 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateStringField_ForMissingFieldName_ThrowsException() {
-		$this->setExpectedException(
-			'Exception', 'The given field name was empty.'
-		);
-
+	/**
+	 * @test
+	 *
+	 * @expectedException InvalidArgumentException
+	 */
+	public function validateStringFieldForMissingFieldNameThrowsException() {
 		$this->fixture->validateStringField(array());
 
 	}
 
-	public function test_ValidateStringField_ForNonEmptyRequiredField_ReturnsTrue() {
+	/**
+	 * @test
+	 */
+	public function validateStringFieldForNonEmptyRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertTrue(
@@ -257,7 +285,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateStringField_ForEmptyRequiredField_ReturnsFalse() {
+	/**
+	 * @test
+	 */
+	public function validateStringFieldForEmptyRequiredFieldReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertFalse(
@@ -272,7 +303,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning validateIntegerField
 	////////////////////////////////////////////
 
-	public function test_ValidateIntegerField_ForRequiredFieldValueZero_ReturnsFalse() {
+	/**
+	 * @test
+	 */
+	public function validateIntegerFieldForRequiredFieldValueZeroReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertFalse(
@@ -282,7 +316,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateIntegerField_ForNonRequiredField_ReturnsTrue() {
+	/**
+	 * @test
+	 */
+	public function validateIntegerFieldForNonRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertTrue(
@@ -292,7 +329,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateIntegerField_ForRequiredFieldValueNonZero_ReturnsTrue() {
+	/**
+	 * @test
+	 */
+	public function validateIntegerFieldForRequiredFieldValueNonZeroReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertTrue(
@@ -302,7 +342,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateIntegerField_ForRequiredFieldValueString_ReturnsFalse() {
+	/**
+	 * @test
+	 */
+	public function validateIntegerFieldForRequiredFieldValueStringReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
 		$this->assertFalse(
@@ -312,12 +355,12 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ValidateIntegerField_ForMissingFieldName_ThrowsException() {
-		$this->setExpectedException(
-			'Exception',
-			'The given field name was empty.'
-		);
-
+	/**
+	 * @test
+	 *
+	 * @expectedException InvalidArgumentException
+	 */
+	public function validateIntegerFieldForMissingFieldNameThrowsException() {
 		$this->fixture->validateIntegerField(array());
 	}
 
@@ -326,7 +369,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning getPidForNewUserRecords
 	/////////////////////////////////////////////
 
-	public function test_GetPidForNewUserRecords_ForEmptyConfigValue_ReturnsZero() {
+	/**
+	 * @test
+	 */
+	public function getPidForNewUserRecordsForEmptyConfigValueReturnsZero() {
 		$this->fixture->setConfigurationValue(
 			'systemFolderForNewFeUserRecords', ''
 		);
@@ -337,7 +383,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_GetPidForNewUserRecords_ForConfigValueString_ReturnsZero() {
+	/**
+	 * @test
+	 */
+	public function getPidForNewUserRecordsForConfigValueStringReturnsZero() {
 		$this->fixture->setConfigurationValue(
 			'systemFolderForNewFeUserRecords', 'foo'
 		);
@@ -348,7 +397,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_GetPidForNewUserRecords_ForConfigValueInteger_ReturnsInteger() {
+	/**
+	 * @test
+	 */
+	public function getPidForNewUserRecordsForConfigValueIntegerReturnsInteger() {
 		$this->fixture->setConfigurationValue(
 			'systemFolderForNewFeUserRecords', 42
 		);
@@ -364,7 +416,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning listUserGroups
 	////////////////////////////////////
 
-	public function test_ListUserGroups_ForExistingAndConfiguredUserGroup_ReturnsGroupTitleAndUid() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsForExistingAndConfiguredUserGroupReturnsGroupTitleAndUid() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
 			array('title' => 'foo')
 		);
@@ -379,7 +434,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ListUserGroups_HtmlSpecialCharsGroupName() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsHtmlSpecialCharsGroupName() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
 			array('title' => 'a&b')
 		);
@@ -394,7 +452,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ListUserGroups_StringConfiguredAsUserGroup_ReturnsEmptyArray() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsForStringConfiguredAsUserGroupReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
 
 		$this->assertEquals(
@@ -403,7 +464,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ListUserGroups_ForTwoExistingButOnlyOneConfiguredUserGroup_ReturnsOnlyConfiguredGroup() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsForTwoExistingButOnlyOneConfiguredUserGroupReturnsOnlyConfiguredGroup() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
 			array('title' => 'foo')
 		);
@@ -421,7 +485,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_ListUserGroups_ForTwoExistingButAndConfiguredUserGroups_ReturnsBothConfiguredGroup() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsForTwoExistingButAndConfiguredUserGroupsReturnsBothConfiguredGroup() {
 		$userGroupUid1 = $this->testingFramework->createFrontEndUserGroup(
 			array('title' => 'foo', 'crdate' => 1)
 		);
@@ -447,7 +514,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning listUserGroups
 	////////////////////////////////////
 
-	public function test_ListUserGroups_ForGroupForNewUsersEmpty_ReturnsEmptyArray() {
+	/**
+	 * @test
+	 */
+	public function listUserGroupsForGroupForNewUsersEmptyReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', '');
 
 		$this->assertEquals(
@@ -461,7 +531,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning setAllNamesSubpartVisibility
 	//////////////////////////////////////////////////
 
-	public function test_SetAllNamesSubpartVisibility_ForAllNameRelatedFieldsHidden_AddsAllNamesSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setAllNamesSubpartVisibilityForAllNameRelatedFieldsHiddenAddsAllNamesSubpartToHideFields() {
 		$fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
@@ -470,7 +543,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetAllNamesSubpartVisibility_ForVisibleNameField_DoesNotAddAllNamesSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setAllNamesSubpartVisibilityForVisibleNameFieldDoesNotAddAllNamesSubpartToHideFields() {
 		$fieldsToHide = array('gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
@@ -479,7 +555,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetAllNamesSubpartVisibility_ForVisibleFirstNameField_DoesNotAddAllNamesSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setAllNamesSubpartVisibilityForVisibleFirstNameFieldDoesNotAddAllNamesSubpartToHideFields() {
 		$fieldsToHide = array('name', 'gender', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
@@ -488,7 +567,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetAllNamesSubpartVisibility_ForVisibleLastNameField_DoesNotAddAllNamesSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setAllNamesSubpartVisibilityForVisibleLastNameFieldDoesNotAddAllNamesSubpartToHideFields() {
 		$fieldsToHide = array('name', 'gender', 'first_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
@@ -497,7 +579,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetAllNamesSubpartVisibility_ForVisibleGenderField_DoesNotAddAllNamesSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setAllNamesSubpartVisibilityForVisibleGenderFieldDoesNotAddAllNamesSubpartToHideFields() {
 		$fieldsToHide = array('name', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
@@ -511,7 +596,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning setZipSubpartVisibility
 	/////////////////////////////////////////////
 
-	public function test_SetZipSubpartVisibility_ForHiddenCityAndZip_AddsZipOnlySubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setZipSubpartVisibilityForHiddenCityAndZipAddsZipOnlySubpartToHideFields() {
 		$fieldsToHide = array('zip', 'city');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
@@ -520,7 +608,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetZipSubpartVisibility_ForShownCityAndZip_AddsZipOnlySubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setZipSubpartVisibilityForShownCityAndZipAddsZipOnlySubpartToHideFields() {
 		$fieldsToHide = array();
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
@@ -529,7 +620,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetZipSubpartVisibility_ForShownCityAndHiddenZip_AddsZipOnlySubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setZipSubpartVisibilityForShownCityAndHiddenZipAddsZipOnlySubpartToHideFields() {
 		$fieldsToHide = array('zip');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
@@ -538,7 +632,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetZipSubpartVisibility_ForHiddenCityAndShownZip_DoesNotAddZipOnlySubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setZipSubpartVisibilityForHiddenCityAndShownZipDoesNotAddZipOnlySubpartToHideFields() {
 		$fieldsToHide = array('city');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
@@ -552,7 +649,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning setUsergroupSubpartVisibility
 	///////////////////////////////////////////////////
 
-	public function test_SetUsergroupSubpartVisibility_ForNonExistingUsergroup_AddsUsergroupSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setUsergroupSubpartVisibilityForNonExistingUsergroupAddsUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->getAutoIncrement('fe_groups')
@@ -566,7 +666,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetUsergroupSubpartVisibility_ForOneAvailableUsergroup_AddsUsergroupSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setUsergroupSubpartVisibilityForOneAvailableUsergroupAddsUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->createFrontEndUserGroup()
@@ -580,7 +683,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_SetUsergroupSubpartVisibility_ForTwoAvailableUsergroup_DoesNotAddUsergroupSubpartToHideFields() {
+	/**
+	 * @test
+	 */
+	public function setUsergroupSubpartVisibilityForTwoAvailableUsergroupDoesNotAddUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->createFrontEndUserGroup() . ',' .
@@ -600,9 +706,11 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning createChallenge
 	/////////////////////////////////////
 
-	public function test_CreateChallenge_ForLoadedSrFeuserRegisterAndNotLoadedKbMd5pw_ReturnsNonEmptyString() {
-		if(!t3lib_extMgm::isLoaded('sr_feuser_register')
-			|| t3lib_extMgm::isLoaded('kb_md5fepw')) {
+	/**
+	 * @test
+	 */
+	public function createChallengeForLoadedSrFeuserRegisterAndNotLoadedKbMdFivePasswordReturnsNonEmptyString() {
+		if (!t3lib_extMgm::isLoaded('sr_feuser_register') || t3lib_extMgm::isLoaded('kb_md5fepw')) {
 			$this->markTestSkipped(
 					'This test is only applicable if sr_feuser_register is ' .
 						'loaded and kb_md5fepw is not loaded.'
@@ -615,7 +723,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_CreateChallenge_ForLoadedSrFeuserRegisterAndLoadedKbMd5pw_ReturnsNonEmptyString() {
+	/**
+	 * @test
+	 */
+	public function createChallengeForLoadedSrFeuserRegisterAndLoadedKbMdFivePasswordReturnsNonEmptyString() {
 		$this->skipTestForNoMd5();
 
 		$this->assertNotEquals(
@@ -629,7 +740,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	// Tests concerning preprocessFormData
 	////////////////////////////////////////
 
-	public function test_preprocessFormData_ForNameHidden_UsesFirstNameAndLastNameAsName() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForNameHiddenUsesFirstNameAndLastNameAsName() {
 		$this->fixture->setConfigurationValue(
 			'feUserFieldsToDisplay', 'first_name, last_name'
 		);
@@ -645,7 +759,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_preprocessFormData_ForShownNameField_UsesValueOfNameField() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForShownNameFieldUsesValueOfNameField() {
 		$this->fixture->setConfigurationValue(
 			'feUserFieldsToDisplay', 'name,first_name,last_name'
 		);
@@ -661,7 +778,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_preprocessFormDataForUserGroupSetInConfiguration_SetsTheUsersGroupInFormData() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForUserGroupSetInConfigurationSetsTheUsersGroupInFormData() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
 		$this->fixture->setConfigurationValue(
 			'feUserFieldsToDisplay', 'name'
@@ -679,7 +799,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInForm_SetsTheSelectedUsergroupInFormData() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUsergroupInFormData() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
 		$userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
 		$this->fixture->setConfigurationValue(
@@ -700,7 +823,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHidden_SetsTheUsergroupsFromConfiguration() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUsergroupsFromConfiguration() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
 		$userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
 		$this->fixture->setConfigurationValue(
@@ -719,7 +845,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 
-	public function test_preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInForm_SetsTheUsersGroupFromConfiguration() {
+	/**
+	 * @test
+	 */
+	public function preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInFormSetsTheUsersGroupFromConfiguration() {
 		$userGroupUid = $this->testingFramework->createFrontEndUserGroup();
 		$this->fixture->setConfigurationValue(
 			'feUserFieldsToDisplay', 'name,usergroup'

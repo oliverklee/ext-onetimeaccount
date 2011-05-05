@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2009-2010 Dmitry Dulepov <dmitry@typo3.org>
+*  (c) 2009-2011 Dmitry Dulepov <dmitry@typo3.org>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -47,12 +47,14 @@ class tx_onetimeaccount_eid {
 	 *
 	 * The user credentials are supplied via a serialized array that comes as
 	 * a GET parameter.
+	 *
+	 * @return void
 	 */
 	public function loginAndRedirect() {
 		tslib_eidtools::connectDB();
 
 		$postData = @unserialize(
-			base64_decode($_GET['data'])
+			base64_decode($GLOBALS['_GET']['data'])
 		);
 		if (!is_array($postData) || empty($postData)) {
 			$this->log('POST data is no array or empty.', 3);
@@ -63,13 +65,13 @@ class tx_onetimeaccount_eid {
 			return;
 		}
 
-		$_POST['user'] = $postData['user'];
-		$_POST['pass'] = $postData['pass'];
+		$GLOBALS['_POST']['user'] = $postData['user'];
+		$GLOBALS['_POST']['pass'] = $postData['pass'];
 		if (isset($postData['challenge'])) {
-			$_POST['challenge'] = $postData['challenge'];
+			$GLOBALS['_POST']['challenge'] = $postData['challenge'];
 		}
-		$_POST['pid'] = $postData['pid'];
-		$_POST['logintype'] = 'login';
+		$GLOBALS['_POST']['pid'] = $postData['pid'];
+		$GLOBALS['_POST']['logintype'] = 'login';
 
 		$this->log(
 			'Logging in user "' . $postData['user'] . '" in sysfolder ' .
@@ -93,11 +95,11 @@ class tx_onetimeaccount_eid {
 	 * @param string $message the message to log, must not be empty
 	 * @param integer $severity
 	 *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
+	 *
+	 * @return void
 	 */
 	private function log($message, $severity = 0) {
-		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')
-			->getAsBoolean('enableLogging')
-		) {
+		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
 			return;
 		}
 

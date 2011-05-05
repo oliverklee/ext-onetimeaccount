@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2010 Oliver Klee <typo3-coding@oliverklee.de>
+*  (c) 2007-2011 Oliver Klee <typo3-coding@oliverklee.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -54,7 +54,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * @var tx_ameosformidable FORMidable object that creates the edit form
 	 */
-	protected $form = null;
+	protected $form = NULL;
 
 	/**
 	 * @var array names of the form fields to show
@@ -69,7 +69,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * @var tx_staticinfotables_pi1
 	 */
-	private $staticInfo = null;
+	private $staticInfo = NULL;
 
 	/**
 	 * @var array the fields available in the form
@@ -110,8 +110,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Creates the plugin output.
 	 *
-	 * @param string (ignored)
-	 * @param array the plug-in configuration
+	 * @param string $content (ignored)
+	 * @param array $configuration the plug-in configuration
 	 *
 	 * @return string HTML output of the plug-in
 	 */
@@ -145,6 +145,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Creates and initializes the FORMidable object.
+	 *
+	 * @return void
 	 */
 	protected function initializeForm() {
 		$this->form = t3lib_div::makeInstance('tx_ameosformidable');
@@ -158,6 +160,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Initializes which form fields should be shown and which are required.
+	 *
+	 * @return void
 	 */
 	private function initializeFormFields() {
 		$this->setFormFieldsToShow();
@@ -168,6 +172,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Reads the list of form fields to show from the configuration and stores
 	 * it in $this->formFieldsToShow.
+	 *
+	 * @return void
 	 */
 	protected function setFormFieldsToShow() {
 		$this->formFieldsToShow = t3lib_div::trimExplode(
@@ -179,6 +185,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Reads the list of required form fields from the configuration and stores
 	 * it in $this->requiredFormFields.
+	 *
+	 * @return void
 	 */
 	private function setRequiredFormFields() {
 		$this->requiredFormFields = t3lib_div::trimExplode(
@@ -192,9 +200,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * The returned path will always be an absolute path in the file system;
 	 * EXT: references will automatically get resolved.
 	 *
-	 * @return string the path to the HTML template as an absolute path in
-	 *                the file system, will not be empty in a correct
-	 *                configuration
+	 * @return string
+	 *         the path to the HTML template as an absolute path in the file
+	 *         system, will not be empty in a correct configuration
 	 */
 	public function getTemplatePath() {
 		return t3lib_div::getFileAbsFileName(
@@ -220,6 +228,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Hides form fields that are disabled via TS setup from the templating
 	 * process.
+	 *
+	 * @return void
 	 */
 	private function hideUnusedFormFields() {
 		$formFieldsToHide = array_diff(
@@ -241,12 +251,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Radiobuttons to choose user groups are only shown if there is more than
 	 * one value to display.
 	 *
-	 * @param array the contents of the "params" child of the userobj
-	 *              node as key/value pairs (used for retrieving the current
-	 *              form field name)
+	 * @param array $parameters
+	 *        the contents of the "params" child of the userobj node as
+	 *        key/value pairs (used for retrieving the current form field name)
 	 *
-	 * @return boolean TRUE if the current form field should be displayed,
-	 *                 FALSE otherwise
+	 * @return boolean
+	 *         TRUE if the current form field should be displayed, FALSE otherwise
 	 */
 	public function isFormFieldEnabled(array $parameters) {
 		$key = $parameters['elementName'];
@@ -264,14 +274,15 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * If $parameters['alpha3'] is set, the alpha3 codes will be used as form
 	 * values. Otherwise, the localized country names will be used as values.
 	 *
-	 * @param mixed (unused)
-	 * @param array contents of the "params" XML child of the userobj
-	 *              node (needs to contain an element with the key "key")
+	 * @param mixed $unused (unused)
+	 * @param array $parameters
+	 *        contents of the "params" XML child of the userobj node (needs to
+	 *        contain an element with the key "key")
 	 *
-	 * @return array a list of localized country names from static_tables
-	 *               as an array with the keys "caption" (for the
-	 *               localized title) and "value" (either the country's
-	 *               alpha3 code or the localized name)
+	 * @return array
+	 *         localized country names from static_tables as an array with the
+	 *         keys "caption" (for the localized title) and "value" (either the
+	 *         country's alpha3 code or the localized name)
 	 */
 	public function populateListCountries($unused, array $parameters) {
 		$this->initStaticInfo();
@@ -304,13 +315,14 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * If $parameters['alpha3'] is set, the alpha3 code will be used as return
 	 * value. Otherwise, the localized country name will be used as return value.
 	 *
-	 * @param mixed (unused)
-	 * @param array contents of the "params" XML child of the userobj
-	 *              node (needs to contain an element with the key "key")
+	 * @param mixed $unused (unused)
+	 * @param array $parameters
+	 *        contents of the "params" XML child of the userobj node (needs to
+	 *        contain an element with the key "key")
 	 *
-	 * @return string the default country (either the country's alpha3
-	 *                code or the localized name), will be empty if no default
-	 *                country has been set
+	 * @return string
+	 *         the default country (either the country's alpha3 code or the
+	 *         localized name), will be empty if no default country has been set
 	 */
 	public function getDefaultCountry($unused, array $parameters) {
 		$this->initStaticInfo();
@@ -335,6 +347,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Creates and initializes $this->staticInfo (if that hasn't been done yet).
+	 *
+	 * @return void
 	 */
 	private function initStaticInfo() {
 		if (!$this->staticInfo) {
@@ -412,9 +426,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * This might happen with certain mod_security rules that drop all GET
 	 * variables if a fully-qualified URL is set in one variable.
+	 *
+	 * @return void
 	 */
 	private function workAroundModSecurity() {
-		if (isset($_GET['redirect_url']) || !isset($_SERVER['REQUEST_URI'])) {
+		if (isset($GLOBALS['_GET']['redirect_url']) || !isset($GLOBALS['_SERVER']['REQUEST_URI'])) {
 			return;
 		}
 		$this->log('Applying mod_security workaround.', 1);
@@ -422,19 +438,20 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$matches = array();
 		preg_match(
 			'/(^\?|&)(redirect_url=)([^&]+)(&|$)/',
-			$_SERVER['REQUEST_URI'],
+			$GLOBALS['_SERVER']['REQUEST_URI'],
 			$matches
 		);
 		if (!empty($matches)) {
-			$_GET['redirect_url'] = rawurldecode($matches[3]);
+			$GLOBALS['_GET']['redirect_url'] = rawurldecode($matches[3]);
 		}
 	}
 
 	/**
 	 * Gets the entered form data for the field $key.
 	 *
-	 * @param string key of the field to retrieve, must not be empty and
-	 *               must refer to an existing form field
+	 * @param string $key
+	 *        key of the field to retrieve, must not be empty and must refer to
+	 *        an existing form field
 	 *
 	 * @return mixed data for the requested form element
 	 */
@@ -449,7 +466,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return string a user name, will not be empty
 	 */
 	public function getUserName() {
-		$enteredEmail = $this->getFormData('email') ;
+		$enteredEmail = $this->getFormData('email');
 		$nonEmptyUsername = ($enteredEmail != '') ? $enteredEmail : 'user';
 		$numberToAppend = 1;
 		$result = $nonEmptyUsername;
@@ -489,10 +506,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	}
 
 	/**
-	 * Makes some preprocessing which is necessary to insert the user into the
-	 * DB.
+	 * Makes some preprocessing which is necessary to insert the user into the DB.
 	 *
-	 * @param array entered form data, may be empty
+	 * @param array $formData
+	 *        entered form data, may be empty
 	 *
 	 * @return array processed form data, will not be empty
 	 */
@@ -520,12 +537,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Gets the form data and adds the user group(s) from the BE configuration
 	 * if the form field to choose a user group in the FE is disabled.
 	 *
-	 * @param array entered form data, may be empty
+	 * @param array $formData
+	 *        entered form data, may be empty
 	 *
-	 * @return array returns form data: If choosing user groups in in FE
-	 *               is disabled, the user group(s) of groupForNewFeUsers
-	 *               are added to the form data, otherwise it is returned
-	 *               without modifications.
+	 * @return array
+	 *         form data: If choosing user groups in in FE is disabled, the user
+	 *         group(s) of groupForNewFeUsers are added to the form data,
+	 *         otherwise it is returned without modifications.
 	 */
 	public function setCurrentUserGroup(array $formData) {
 		if (isset($formData['usergroup']) && ($formData['usergroup'] != '')) {
@@ -549,17 +567,18 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @return integer UID of the first user group
 	 */
-	 public function getUidOfFirstUserGroup() {
+	public function getUidOfFirstUserGroup() {
 		$userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
 
 		return intval($userGroups[0]);
-	 }
+	}
 
 	/**
 	 * Returns the user groups choosable in the front end.
 	 *
-	 * @return array lists user groups choosable in the FE, will not be
-	 *               empty if configured correctly
+	 * @return array
+	 *         user groups choosable in the FE, will not be empty if configured
+	 *         correctly
 	 */
 	public function listUserGroups() {
 		$listOfUserGroupUids = $this->getConfValueString(
@@ -593,8 +612,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Gets the UIDs set via groupForNewFeUsers in the configuration.
 	 *
-	 * @return array UIDs set via groupForNewFeUsers, will not be empty
-	 *               for a valid configuration
+	 * @return array<integer>
+	 *         UIDs set via groupForNewFeUsers, will not be empty for a valid
+	 *         configuration
 	 */
 	public function getUncheckedUidsOfAllowedUserGroups() {
 		return t3lib_div::trimExplode(
@@ -607,12 +627,12 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether a radiobutton in a radiobutton group is selected.
 	 *
-	 * @param array the currently selected value in an associative array
-	 *              with the key 'value'
+	 * @param array $radiogroupValue
+	 *        the currently selected value in an associative array with the key "value"
 	 *
-	 * @return boolean TRUE if a radiobutton is selected or if the form
-	 *                 field is hidden, FALSE if none is selected although
-	 *                 the field is visible
+	 * @return boolean
+	 *         TRUE if a radiobutton is selected or if the form field is hidden,
+	 *         FALSE if none is selected although the field is visible
 	 */
 	public function isRadiobuttonSelected(array $radiogroupValue) {
 		if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
@@ -627,8 +647,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether we have at least two allowed user groups.
 	 *
-	 * @return boolean TRUE if we have at least two allowed user groups,
-	 *                 FALSE otherwise
+	 * @return boolean
+	 *         TRUE if we have at least two allowed user groups, FALSE otherwise
 	 */
 	private function hasAtLeastTwoUserGroups() {
 		return (count($this->listUserGroups()) > 1);
@@ -636,6 +656,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 	/**
 	 * Adds a class 'required' to the label of a field if it is required.
+	 *
+	 * @return void
 	 */
 	private function setRequiredFieldLabels() {
 		$formFieldsToCheck = array_diff(
@@ -658,12 +680,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether the content of a given field is non-empty or not required.
 	 *
-	 * @param array associative array containing the current value, with the key
-	 *              'value' and the name, with the key 'elementName', of the
-	 *              form field to check, must not be empty
+	 * @param array $formData
+	 *        associative array containing the current value with the key
+	 *        "value" and the name with the key "elementName" of the form field
+	 *        to check, must not be empty
 	 *
-	 * @return boolean TRUE if this field is not empty or not required, FALSE
-	 *                 otherwise
+	 * @return boolean
+	 *         TRUE if this field is not empty or not required, FALSE otherwise
 	 */
 	public function validateStringField(array $formData) {
 		if ($this->checkPremisses($formData)) {
@@ -676,12 +699,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether the content of a given field is non-zero or not required.
 	 *
-	 * @param array associative array containing the current value, with the key
-	 *              'value' and the name, with the key 'elementName', of the
-	 *              form field to check, must not be empty
+	 * @param array $formData
+	 *        associative array containing the current value with the key
+	 *        "value" and the name with the key "elementName" of the form field
+	 *        to check, must not be empty
 	 *
-	 * @return boolean TRUE if this field is not zero or not required, FALSE
-	 *                 otherwise
+	 * @return boolean
+	 *         TRUE if this field is not zero or not required, FALSE otherwise
 	 */
 	public function validateIntegerField(array $formData) {
 		if ($this->checkPremisses($formData)) {
@@ -694,17 +718,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks if the form field data is not empty and if it is required.
 	 *
-	 * @throws Exception if the element name is empty
-	 *
-	 * @param array associative array containing the current value, with the key
-	 *              'value' and the name, with the key 'elementName', of the
-	 *              form field to check, must not be empty
+	 * @param array $formData
+	 *        associative array containing the current value with the key
+	 *        "value" and the name with the key "elementName" of the form field
+	 *        to check, must not be empty
 	 *
 	 * @return boolean TRUE if the element was not required, FALSE otherwise
 	 */
 	private function checkPremisses(array $formData) {
 		if ($formData['elementName'] == '') {
-			throw new Exception('The given field name was empty.');
+			throw new InvalidArgumentException('The given field name was empty.');
 		}
 
 		if (empty($this->requiredFormFields)) {
@@ -722,7 +745,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * If the subpart is hidden it will be added to formFieldsToHide
 	 *
-	 * @param array the form fields which should be hidden, may be empty
+	 * @param array &$formFieldsToHide
+	 *        the form fields which should be hidden, may be empty
+	 *
+	 * @return void
 	 */
 	protected function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
 		if (!$this->hasAtLeastTwoUserGroups()) {
@@ -738,12 +764,13 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * If the subpart is hidden it will be added to formFieldsToHide
 	 *
-	 * @param array the form fields which should be hidden, may be empty
+	 * @param array &$formFieldsToHide
+	 *        the form fields which should be hidden, may be empty
+	 *
+	 * @return void
 	 */
 	protected function setZipSubpartVisibility(array &$formFieldsToHide) {
-		if (!in_array('city', $formFieldsToHide)
-			|| in_array('zip', $formFieldsToHide)
-		) {
+		if (!in_array('city', $formFieldsToHide) || in_array('zip', $formFieldsToHide)) {
 			$formFieldsToHide[] = 'zip_only';
 		}
 	}
@@ -758,7 +785,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * If the subpart is hidden, it will be added to $formFieldsToHide.
 	 *
-	 * @param array the form fields which should be hidden, may be empty
+	 * @param array &$formFieldsToHide
+	 *        the form fields which should be hidden, may be empty
+	 *
+	 * @return void
 	 */
 	protected function setAllNamesSubpartVisibility(array &$formFieldsToHide) {
 		$nameRelatedFields = array('name', 'first_name', 'last_name', 'gender');
@@ -779,9 +809,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Before calling this function, it must be ensured that sr_feuser_register
 	 * is loaded.
 	 *
-	 * @return string the challenge value to insert, will be empty if neither
-	 *                kb_md5password is loaded nor felogin is set to use MD5
-	 *                passwords
+	 * @return string
+	 *         the challenge value to insert, will be empty if neither
+	 *         kb_md5password is loaded nor felogin is set to use MD5 passwords
 	 */
 	protected function createChallenge() {
 		$this->log('Creating challenge.');
@@ -802,8 +832,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Checks whether the extension sr_feuser_register is loaded and whether an
 	 * MD5 password should be used.
 	 *
-	 * @return boolean TRUE if sr_feuser_register is loaded and MD5 passwords
-	 *                 are used, FALSE otherwise
+	 * @return boolean
+	 *         TRUE if sr_feuser_register is loaded and MD5 passwords are used,
+	 *         FALSE otherwise
 	 */
 	private function usesMd5Passwords() {
 		if (!t3lib_extMgm::isLoaded('sr_feuser_register')) {
@@ -817,8 +848,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Modifies the password to create an kb_md5pw style password.
 	 *
-	 * @param array the form data sent, must contain username, password and
-	 *              challenge
+	 * @param array $formData
+	 *        the form data sent, must contain username, password and challenge
 	 *
 	 * @return string the password conform to kb_md5pw, will not be empty
 	 */
@@ -833,10 +864,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * If the name field is hidden, the name will be built from the 'first_name'
 	 * and 'last_name'.
 	 *
-	 * @param array $form the form data sent, may be empty
+	 * @param array $formData the form data sent, may be empty
 	 *
-	 * @return array the form data with the modified name field, will be empty
-	 *               if the given form data was empty
+	 * @return array
+	 *         the form data with the modified name field, will be empty
+	 *         if the given form data was empty
 	 */
 	private function buildFullName(array $formData) {
 		if (in_array('name', $this->formFieldsToShow)) {
@@ -844,11 +876,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 
 		$firstName = (in_array('first_name', $this->formFieldsToShow))
-			? $formData['first_name']
-			: '';
+			? $formData['first_name'] : '';
 		$lastName = (in_array('last_name', $this->formFieldsToShow))
-			? $formData['last_name']
-			: '';
+			? $formData['last_name'] : '';
 
 		$formData['name'] = trim($firstName . ' ' . $lastName);
 
@@ -862,11 +892,11 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @param string $message the message to log, must not be empty
 	 * @param integer $severity
 	 *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
+	 *
+	 * @return void
 	 */
 	private function log($message, $severity = 0) {
-		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')
-			->getAsBoolean('enableLogging')
-		) {
+		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
 			return;
 		}
 
@@ -874,7 +904,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {
+	require_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']);
 }
 ?>

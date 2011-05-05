@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2007-2010 Oliver Klee <typo3-coding@oliverklee.de>
+*  (c) 2007-2011 Oliver Klee <typo3-coding@oliverklee.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -34,20 +34,18 @@ class tx_onetimeaccount_pi1_wizicon {
 	/**
 	 * Processes the wizard items array.
 	 *
-	 * @param array the wizard items, may be empty
+	 * @param array $wizardItems the wizard items, may be empty
 	 *
 	 * @return array modified array with wizard items
 	 */
 	public function proc(array $wizardItems) {
-		global $LANG;
-
-		$LL = $this->includeLocalLang();
+		$localLanguage = $this->includeLocalLang();
 
 		$wizardItems['plugins_tx_onetimeaccount_pi1'] = array(
 			'icon' => t3lib_extMgm::extRelPath('onetimeaccount') .
 				'pi1/ce_wiz.gif',
-			'title' => $LANG->getLLL('pi1_title', $LL),
-			'description' => $LANG->getLLL('pi1_description', $LL),
+			'title' => $GLOBALS['LANG']->getLLL('pi1_title', $localLanguage),
+			'description' => $GLOBALS['LANG']->getLLL('pi1_description', $localLanguage),
 			'params' => '&defVals[tt_content][CType]=list' .
 				'&defVals[tt_content][list_type]=onetimeaccount_pi1'
 		);

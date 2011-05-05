@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2007-2010 Oliver Klee (typo3-coding@oliverklee.de)
+* (c) 2007-2011 Oliver Klee (typo3-coding@oliverklee.de)
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,6 +22,9 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_configcheck.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
+
 /**
  * Class 'tx_onetimeaccount_configcheck' for the 'ontimeaccount' extension.
  *
@@ -32,13 +35,11 @@
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_configcheck.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_db.php');
-
 class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	/**
 	 * Checks the configuration for tx_onetimeaccount_pi1.
+	 *
+	 * @return void
 	 */
 	protected function check_tx_onetimeaccount_pi1() {
 		$this->checkCssStyledContent();
@@ -55,6 +56,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value feUserFieldsToDisplay.
+	 *
+	 * @return void
 	 */
 	private function checkFeUserFieldsToDisplay() {
 		$this->checkIfMultiInSetNotEmpty(
@@ -69,6 +72,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value requiredFeUserFields.
+	 *
+	 * @return void
 	 */
 	private function checkRequiredFeUserFields() {
 		$this->checkIfMultiInSetOrEmpty(
@@ -104,8 +109,9 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	}
 
 	/**
-	 * Checks the setting of the configuration value
-	 * systemFolderForNewFeUserRecords.
+	 * Checks the setting of the configuration value systemFolderForNewFeUserRecords.
+	 *
+	 * @return void
 	 */
 	private function checkSystemFolderForNewFeUserRecords() {
 		$this->checkIfSingleSysFolderNotEmpty(
@@ -121,6 +127,8 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 
 	/**
 	 * Checks the setting of the configuration value groupForNewFeUsers.
+	 *
+	 * @return void
 	 */
 	private function checkGroupForNewFeUsers() {
 		$this->checkIfPidListNotEmpty(
@@ -168,8 +176,9 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * actually exist in the DB (some fields need to be provided by
 	 * sr_feuser_register).
 	 *
-	 * @param array fields which should be excluded from the list of available
-	 *              fields, may be empty
+	 * @param array $excludeFields
+	 *        fields which should be excluded from the list of available fields,
+	 *        may be empty
 	 *
 	 * @return array list of available field names, will not be empty
 	 */
@@ -208,7 +217,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']) {
-	include_once ($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']) {
+	require_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']);
 }
 ?>

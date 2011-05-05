@@ -1,4 +1,5 @@
 0.8.0 - currently working on
+- [#4193] Cleanup: Fix phpcs warnings
 - [#4047] Cleanup: Rename all test classes from *_testcase to *Test
 - [#3869] Feature: Add a checkbox "subscribe to the newsletter"
 - [#3434] Cleanup: Replace false/true with FALSE/TRUE
