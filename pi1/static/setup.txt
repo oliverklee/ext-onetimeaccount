@@ -23,6 +23,9 @@ plugin.tx_onetimeaccount_pi1 {
 	# UID of the group for new FE users
 	groupForNewFeUsers =
 
+	# The source from which to generate the user login name (email or name)
+	userNameSource = email
+
 	form {
 		meta {
 			name = One-time FE account generation form

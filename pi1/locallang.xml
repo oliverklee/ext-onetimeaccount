@@ -17,6 +17,10 @@
 			<label index="flexforms_pi1.sheet_template">Templates and CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML template file:</label>
 			<label index="flexforms_pi1.requiredFeUserFields">Required fields:</label>
+			<label index="flexforms_pi1.userNameSource">Generate user login name from:</label>
+			<label index="flexforms_pi1.userNameSource.fromTsSetup">(as configured via TS setup)</label>
+			<label index="flexforms_pi1.userNameSource.email">the e-mail address</label>
+			<label index="flexforms_pi1.userNameSource.name">the user's real name</label>
 			<label index="label_your_data_formal">Your data</label>
 			<label index="label_your_data_informal">Your data</label>
 			<label index="label_company">Company:</label>
@@ -78,6 +82,10 @@
 			<label index="flexforms_pi1.sheet_template">Templates und CSS</label>
 			<label index="flexforms_pi1.templateFile">HTML-Template-Datei:</label>
 			<label index="flexforms_pi1.requiredFeUserFields">Pflichtfelder:</label>
+			<label index="flexforms_pi1.userNameSource">Loginnamen des Benutzers erzeugen aus:</label>
+			<label index="flexforms_pi1.userNameSource.fromTsSetup">(wie im TS-Setup eingestellt)</label>
+			<label index="flexforms_pi1.userNameSource.email">der E-Mail-Adresse</label>
+			<label index="flexforms_pi1.userNameSource.name">dem echten Namen des Benutzers</label>
 			<label index="label_your_data_formal">Ihre Daten</label>
 			<label index="label_your_data_informal">Deine Daten</label>
 			<label index="label_company">Firma:</label>
@@ -341,6 +349,10 @@
 			<label index="message_malformed_telephone" type="integer">42170244</label>
 			<label index="message_malformed_fax" type="integer">226017035</label>
 			<label index="message_malformed_email" type="integer">135361076</label>
+			<label index="flexforms_pi1.userNameSource" type="integer">89618210</label>
+			<label index="flexforms_pi1.userNameSource.fromTsSetup" type="integer">243968481</label>
+			<label index="flexforms_pi1.userNameSource.email" type="integer">104431819</label>
+			<label index="flexforms_pi1.userNameSource.name" type="integer">169811828</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general" type="integer">14366585</label>
@@ -554,6 +566,10 @@
 			<label index="message_malformed_telephone">Please enter a valid telephone number.</label>
 			<label index="message_malformed_fax">Please enter a valid fax number.</label>
 			<label index="message_malformed_email">Please enter a valid e-mail address.</label>
+			<label index="flexforms_pi1.userNameSource">Generate user login name from:</label>
+			<label index="flexforms_pi1.userNameSource.fromTsSetup">(as configured via TS setup)</label>
+			<label index="flexforms_pi1.userNameSource.email">the e-mail address</label>
+			<label index="flexforms_pi1.userNameSource.name">the user's real name</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="flexforms_pi1.sheet_general">General</label>

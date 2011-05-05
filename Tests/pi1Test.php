@@ -48,7 +48,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		$this->testingFramework->createFakeFrontEnd();
 
 		$this->fixture = new tx_onetimeaccount_Tests_Fixtures_FakePi1(
-			array('isStaticTemplateLoaded' => 1)
+			array(
+				'isStaticTemplateLoaded' => 1,
+				'userNameSource' => 'email',
+			)
 		);
 		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
 
@@ -125,6 +128,167 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
+	///////////////////////////////////////////
+	// Tests concerning createInitialUserName
+	///////////////////////////////////////////
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForEmailSourceAndForNonEmptyEmailReturnsTheEmail() {
+		$this->fixture->setConfigurationValue('userNameSource', 'email');
+		$this->fixture->setFormData(array('email' => 'foo@example.com'));
+
+		$this->assertSame(
+			'foo@example.com',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForInvaliedSourceAndForNonEmptyEmailReturnsTheEmail() {
+		$this->fixture->setConfigurationValue('userNameSource', 'somethingInvalid');
+		$this->fixture->setFormData(array('email' => 'foo@example.com'));
+
+		$this->assertSame(
+			'foo@example.com',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForEmailSourceAndForEmptyEmailReturnsUser() {
+		$this->fixture->setConfigurationValue('userNameSource', 'email');
+		$this->fixture->setFormData(array('email' => ''));
+
+		$this->assertSame(
+			'user',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForEmptyNameFieldsReturnsUser() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array());
+
+		$this->assertSame(
+			'user',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForNonEmptyFullNameFieldsReturnsLowercasedFullNameWithDots() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('name' => 'John Doe'));
+
+		$this->assertSame(
+			'john.doe',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForNonEmptyFullNameFieldsTrimsName() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('name' => ' John Doe '));
+
+		$this->assertSame(
+			'john.doe',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForNonEmptyFirstAndLastReturnsFirstAndLastName() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => 'John', 'last_name' => 'Doe'));
+
+		$this->assertSame(
+			'john.doe',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForNonEmptyFirstAndEmptyLastReturnsFirstName() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => 'John', 'last_name' => ''));
+
+		$this->assertSame(
+			'john',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForEmptyFirstAndNonEmptyLastReturnsLastName() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => '', 'last_name' => 'Doe'));
+
+		$this->assertSame(
+			'doe',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceAndForTwoPartFirstNameReturnsBothParts() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => 'John Sullivan', 'last_name' => 'Doe'));
+
+		$this->assertSame(
+			'john.sullivan.doe',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceDropsAmpersandAndComma() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => 'Tom & Jerry', 'last_name' => 'Smith, Miller'));
+
+		$this->assertSame(
+			'tom.jerry.smith.miller',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createInitialUserNameForNameSourceDropsSpecialCharacters() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('first_name' => 'Sölüläß', 'last_name' => 'Smith'));
+
+		$this->assertSame(
+			'sll.smith',
+			$this->fixture->createInitialUserName()
+		);
+	}
+
+
 	/////////////////////////////////
 	// Tests concerning getUserName
 	/////////////////////////////////
@@ -133,7 +297,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function getUserNameWithNonEmptyEmailReturnsNonEmptyString() {
-		$this->fixture->setFormData(array('email' => 'foo@bar.com'));
+		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
 		$this->assertNotEquals(
 			'',
@@ -144,15 +308,40 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
+	public function getUserNameWithNonEmptyEmailReturnsStringStartingWithEmail() {
+		$this->fixture->setFormData(array('email' => 'foo@example.com'));
+
+		$this->assertRegExp(
+			'/^foo@example\.com/',
+			$this->fixture->getUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function getUserNameForNameSourceWithNonEmptyEmailReturnsStringStartingWithEmail() {
+		$this->fixture->setConfigurationValue('userNameSource', 'name');
+		$this->fixture->setFormData(array('name' => 'John Doe'));
+
+		$this->assertRegExp(
+			'/^john.doe/',
+			$this->fixture->getUserName()
+		);
+	}
+
+	/**
+	 * @test
+	 */
 	public function getUserNameWithEmailOfExistingUserNameReturnsDifferentName() {
 		$this->testingFramework->createFrontEndUser(
 			$this->testingFramework->createFrontEndUserGroup(),
-			array('username' => 'foo@bar.com')
+			array('username' => 'foo@example.com')
 		);
-		$this->fixture->setFormData(array('email' => 'foo@bar.com'));
+		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
 		$this->assertNotEquals(
-			'foo@bar.com',
+			'foo@example.com',
 			$this->fixture->getUserName()
 		);
 	}

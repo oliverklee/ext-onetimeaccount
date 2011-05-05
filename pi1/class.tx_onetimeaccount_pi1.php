@@ -453,18 +453,45 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return string a user name, will not be empty
 	 */
 	public function getUserName() {
-		$enteredEmail = $this->getFormData('email');
-		$nonEmptyUsername = ($enteredEmail != '') ? $enteredEmail : 'user';
+		$initialUsername = $this->createInitialUserName();
 		$numberToAppend = 1;
-		$result = $nonEmptyUsername;
+		$result = $initialUsername;
 
 		// Modify the user name until we have a unique user name.
 		while ($GLOBALS['TSFE']->fe_user->getRawUserByName($result)) {
-			$result = $nonEmptyUsername . '-' . $numberToAppend;
+			$result = $initialUsername . '-' . $numberToAppend;
 			$numberToAppend++;
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Creates the initial user name, i.e. the first part of the user name
+	 * to which then a suffix like "-2" might get appended to make it unique.
+	 *
+	 * @return string an initial user name, is not guaranteed to be unique
+	 */
+	public function createInitialUserName() {
+		if ($this->getConfValueString('userNameSource', 's_general') === 'name') {
+			$fullName = (string) $this->getFormData('name');
+			if ($fullName === '') {
+				$fullName = $this->getFormData('first_name') . ' ' . $this->getFormData('last_name');
+			}
+
+			$lowercasedName = mb_strtolower($fullName, 'UTF-8');
+			$safeLowercasedName = preg_replace('/[^a-z ]/', '', $lowercasedName);
+			$userNameParts = t3lib_div::trimExplode(' ', $safeLowercasedName, TRUE);
+			$userName = implode('.', $userNameParts);
+		} else {
+			$userName = trim((string) $this->getFormData('email'));
+		}
+
+		if ($userName === '') {
+			$userName = 'user';
+		}
+
+		return $userName;
 	}
 
 	/**

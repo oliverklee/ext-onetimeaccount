@@ -52,6 +52,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 		$this->checkRequiredFeUserFields();
 		$this->checkSystemFolderForNewFeUserRecords();
 		$this->checkGroupForNewFeUsers();
+		$this->checkUserNameSource();
 	}
 
 	/**
@@ -170,6 +171,24 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			);
 		}
 	}
+
+	/**
+	 * Checks the setting of the configuration value userNameSource.
+	 *
+	 * @return void
+	 */
+	private function checkUserNameSource() {
+		$this->checkIfMultiInSetNotEmpty(
+			'userNameSource',
+			TRUE,
+			's_general',
+			'This value specifies how to generate the user name.' .
+				'An incorrect value might cause the generated user names look ' .
+				'different than intended.',
+			array('email', 'name')
+		);
+	}
+
 
 	/**
 	 * Returns an array of field names that are provided in the form AND that

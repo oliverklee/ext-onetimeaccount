@@ -225,6 +225,32 @@
 							</config>
 						</TCEforms>
 					</groupForNewFeUsers>
+					<userNameSource>
+						<TCEforms>
+							<exclude>1</exclude>
+							<label>LLL:EXT:onetimeaccount/pi1/locallang.xml:flexforms_pi1.userNameSource</label>
+							<config>
+								<type>select</type>
+								<size>1</size>
+								<minitems>1</minitems>
+								<maxitems>1</maxitems>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:onetimeaccount/pi1/locallang.xml:flexforms_pi1.userNameSource.fromTsSetup</numIndex>
+										<numIndex index="1"></numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:onetimeaccount/pi1/locallang.xml:flexforms_pi1.userNameSource.email</numIndex>
+										<numIndex index="1">email</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:onetimeaccount/pi1/locallang.xml:flexforms_pi1.userNameSource.name</numIndex>
+										<numIndex index="1">name</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</userNameSource>
 				</el>
 			</ROOT>
 		</s_general>
