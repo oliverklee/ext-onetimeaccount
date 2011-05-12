@@ -1,4 +1,4 @@
-0.8.0 - currently working on
+0.8.0 - released 2011-05-12
 - [#4194] Feature: Add the possibility to create the user name from the real name
 - [#3862] Cleanup: Drop our own exception handlers in onetimeaccount
 - [#3844] Change: Require TYPO3 4.3 for onetimeaccount
