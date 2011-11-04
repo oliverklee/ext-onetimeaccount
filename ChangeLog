@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4269] Cleanup: Convert the XCLASS code to use $GLOBALS
 
 0.8.0 - released 2011-05-12
 - [#4194] Feature: Add the possibility to create the user name from the real name

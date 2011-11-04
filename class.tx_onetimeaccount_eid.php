@@ -107,8 +107,8 @@ class tx_onetimeaccount_eid {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_eid.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_eid.php']);
+if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_eid.php']) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_eid.php']);
 }
 
 $instance = t3lib_div::makeInstance('tx_onetimeaccount_eid');
