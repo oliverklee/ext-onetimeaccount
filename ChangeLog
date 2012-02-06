@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4326] Cleanup: Remove the Zend Studio metadata from all projects
 - [#4269] Cleanup: Convert the XCLASS code to use $GLOBALS
 
 0.8.0 - released 2011-05-12
