@@ -35,7 +35,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  */
 class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
-	 * @var tx_onetimeaccount_fakePi1
+	 * @var tx_onetimeaccount_Tests_Fixtures_FakePi1
 	 */
 	private $fixture = NULL;
 	/**

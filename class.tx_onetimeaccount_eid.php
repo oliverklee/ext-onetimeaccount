@@ -60,7 +60,9 @@ class tx_onetimeaccount_eid {
 			$this->log('POST data is no array or empty.', 3);
 			return;
 		}
-		if (!preg_match('/^https?:\/\//', $postData['url'])) {
+
+		$url = $postData['url'];
+		if (!preg_match('/^https?:\/\//', $url)) {
 			$this->log('URL has no http(s) prefix: ' . $url, 3);
 			return;
 		}
@@ -83,9 +85,9 @@ class tx_onetimeaccount_eid {
 		$frontEndUser->setKey('user', 'onetimeaccount', TRUE);
 		$frontEndUser->storeSessionData();
 
-		$this->log('Redirecting after login to: ' . $postData['url']);
+		$this->log('Redirecting after login to: ' . $url);
 		header('HTTP/1.0 302 Redirect');
-		header('Location: ' . $postData['url']);
+		header('Location: ' . $url);
 	}
 
 	/**
