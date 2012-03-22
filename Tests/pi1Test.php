@@ -87,8 +87,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 	/**
-	 * Extracts the URL which is encoded in $url in a serialized array which
-	 * is encoded in the "data" GET parameter.
+	 * Extracts the URL which is encoded in $url in a JSON-encoded array which is encoded in the "data" GET parameter.
 	 *
 	 * @param string $url
 	 *        URL to that contains the data to decode, must not be empty
@@ -106,7 +105,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			return '';
 		}
 
-		$data = unserialize(base64_decode(rawurldecode($matches[3])));
+		$data = json_decode(base64_decode(rawurldecode($matches[3])), TRUE);
 		return $data['url'];
 	}
 

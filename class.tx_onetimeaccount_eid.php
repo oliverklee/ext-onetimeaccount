@@ -45,17 +45,14 @@ class tx_onetimeaccount_eid {
 	 * Logs in the user and sends the user to the destination URL by setting
 	 * the appropriate redirection headers.
 	 *
-	 * The user credentials are supplied via a serialized array that comes as
-	 * a GET parameter.
+	 * The user credentials are supplied via a JSON-encoded array that comes as a GET parameter.
 	 *
 	 * @return void
 	 */
 	public function loginAndRedirect() {
 		tslib_eidtools::connectDB();
 
-		$postData = @unserialize(
-			base64_decode($GLOBALS['_GET']['data'])
-		);
+		$postData = json_decode(base64_decode($GLOBALS['_GET']['data']), TRUE);
 		if (!is_array($postData) || empty($postData)) {
 			$this->log('POST data is no array or empty.', 3);
 			return;
