@@ -398,8 +398,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$postData['pid'] = $this->getPidForNewUserRecords();
 
 		$result = t3lib_div::locationHeaderUrl(
-			'index.php?eID=onetimeaccount&data='
-				. rawurlencode(base64_encode(serialize($postData)))
+			'index.php?eID=onetimeaccount&data=' . rawurlencode(base64_encode(json_encode($postData)))
 		);
 
 		$this->log('Redirecting before login to: ' . $result);
