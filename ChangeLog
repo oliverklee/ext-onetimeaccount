@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4399] Fix: Check the redirect URL to be within the site
 - [#4372] Fix: Pass the data using JSON instead of serialization
 - [#4350] Fix: Fix undefined and unused variables and undefined classes
 - [#4351] Fix: Fix all deprecation log warnings failures when running the unit tests on the current Core master

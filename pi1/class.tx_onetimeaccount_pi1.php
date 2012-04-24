@@ -372,7 +372,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	public function createRedirectUrl() {
 		$this->workAroundModSecurity();
-		$url = (string) t3lib_div::_GP('redirect_url');
+		$url = t3lib_div::sanitizeLocalUrl((string) t3lib_div::_GP('redirect_url'));
 		if ($url == '') {
 			$url = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
