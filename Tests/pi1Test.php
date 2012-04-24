@@ -395,7 +395,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlReturnsEidUrl() {
+	public function createRedirectUrlForEmptyRedirectUrlReturnsEidUrl() {
 		$GLOBALS['_POST']['redirect_url'] = '';
 
 		$this->assertRegExp(
@@ -407,11 +407,12 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlReturnsEncodedRedirectUrl() {
-		$GLOBALS['_POST']['redirect_url'] = 'http://foo.com/';
+	public function createRedirectUrlWithLocalRedirectUrlReturnsEncodedRedirectUrl() {
+		$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
+		$GLOBALS['_POST']['redirect_url'] = $url;
 
-		$this->assertEquals(
-			'http://foo.com/',
+		$this->assertSame(
+			$url,
 			$this->extractEncodedUrlFromUrl(
 				$this->fixture->createRedirectUrl()
 			)
@@ -421,10 +422,38 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlWithoutRedirectUrlIsCurrentUri() {
+	public function createRedirectUrlWithForeignUrlReturnsEncodedCurrentUri() {
+		$GLOBALS['_POST']['redirect_url'] = 'http://google.com/';
+
+		$this->assertSame(
+			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			$this->extractEncodedUrlFromUrl(
+				$this->fixture->createRedirectUrl()
+			)
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createRedirectUrlWithEmptyRedirectUrlReturnsCurrentUri() {
 		$GLOBALS['_POST']['redirect_url'] = '';
 
-		$this->assertEquals(
+		$this->assertSame(
+			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			$this->extractEncodedUrlFromUrl(
+				$this->fixture->createRedirectUrl()
+			)
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function createRedirectUrlWithMissingRedirectUrlReturnsCurrentUri() {
+		unset($GLOBALS['_POST']['redirect_url']);
+
+		$this->assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->extractEncodedUrlFromUrl(
 				$this->fixture->createRedirectUrl()
