@@ -120,7 +120,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function getFormDataReturnsNonEmptyDataSetViaSetFormData() {
 		$this->fixture->setFormData(array('foo' => 'bar'));
 
-		$this->assertEquals(
+		$this->assertSame(
 			'bar',
 			$this->fixture->getFormData('foo')
 		);
@@ -298,7 +298,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function getUserNameWithNonEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'',
 			$this->fixture->getUserName()
 		);
@@ -339,7 +339,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'foo@example.com',
 			$this->fixture->getUserName()
 		);
@@ -351,7 +351,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function getUserNameWithEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => ''));
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'',
 			$this->fixture->getUserName()
 		);
@@ -366,7 +366,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 		$this->fixture->setFormData(array('email' => ''));
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'user',
 			$this->fixture->getUserName()
 		);
@@ -381,7 +381,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function getPasswordReturnsPasswordWithEightCharacters() {
-		$this->assertEquals(
+		$this->assertSame(
 			8,
 			strlen($this->fixture->getPassword())
 		);
@@ -594,7 +594,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', ''
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			0,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -608,7 +608,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', 'foo'
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			0,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -622,7 +622,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', 42
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			42,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -645,8 +645,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid
 		);
 
-		$this->assertEquals(
-			array(array('caption' => 'foo<br />', 'value' => $userGroupUid)),
+		$this->assertSame(
+			array(array('caption' => 'foo<br />', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
 	}
@@ -663,8 +663,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid
 		);
 
-		$this->assertEquals(
-			array(array('caption' => 'a&amp;b<br />', 'value' => $userGroupUid)),
+		$this->assertSame(
+			array(array('caption' => 'a&amp;b<br />', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
 	}
@@ -675,7 +675,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function listUserGroupsForStringConfiguredAsUserGroupReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
 
-		$this->assertEquals(
+		$this->assertSame(
 			array(),
 			$this->fixture->listUserGroups()
 		);
@@ -696,8 +696,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid
 		);
 
-		$this->assertEquals(
-			array(array('caption' => 'foo<br />', 'value' => $userGroupUid)),
+		$this->assertSame(
+			array(array('caption' => 'foo<br />', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
 	}
@@ -717,10 +717,10 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid1 . ', ' . $userGroupUid2
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			array(
-				array('caption' => 'foo<br />', 'value' => $userGroupUid1),
-				array('caption' => 'bar<br />', 'value' => $userGroupUid2),
+				array('caption' => 'foo<br />', 'value' => (string) $userGroupUid1),
+				array('caption' => 'bar<br />', 'value' => (string) $userGroupUid2),
 			),
 			$this->fixture->listUserGroups()
 		);
@@ -737,7 +737,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function listUserGroupsForGroupForNewUsersEmptyReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', '');
 
-		$this->assertEquals(
+		$this->assertSame(
 			array(),
 			$this->fixture->listUserGroups()
 		);
@@ -934,7 +934,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			);
 		}
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'',
 			$this->fixture->createChallenge()
 		);
@@ -946,7 +946,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function createChallengeForLoadedSrFeuserRegisterAndLoadedKbMdFivePasswordReturnsNonEmptyString() {
 		$this->skipTestForNoMd5();
 
-		$this->assertNotEquals(
+		$this->assertNotSame(
 			'',
 			$this->fixture->createChallenge()
 		);
@@ -970,7 +970,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'first_name' => 'foo', 'last_name' => 'bar'
 		));
 
-		$this->assertEquals(
+		$this->assertSame(
 			'foo bar',
 			$formData['name']
 		);
@@ -989,7 +989,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar'
 		));
 
-		$this->assertEquals(
+		$this->assertSame(
 			'foobar',
 			$formData['name']
 		);
@@ -1010,8 +1010,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 
 		$formData = $this->fixture->preprocessFormData(array('name' => 'bar'));
 
-		$this->assertEquals(
-			$userGroupUid,
+		$this->assertSame(
+			(string) $userGroupUid,
 			$formData['usergroup']
 		);
 	}
@@ -1034,7 +1034,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			array('usergroup' => $userGroupUid)
 		);
 
-		$this->assertEquals(
+		$this->assertSame(
 			$userGroupUid,
 			$formData['usergroup']
 		);
@@ -1056,7 +1056,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 
 		$formData = $this->fixture->preprocessFormData(array());
 
-		$this->assertEquals(
+		$this->assertSame(
 			$userGroupUid . ',' . $userGroupUid2,
 			$formData['usergroup']
 		);
@@ -1079,8 +1079,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 			array('name' => 'bar', 'usergroup' => '')
 		);
 
-		$this->assertEquals(
-			$userGroupUid,
+		$this->assertSame(
+			(string) $userGroupUid,
 			$formData['usergroup']
 		);
 	}
