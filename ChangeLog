@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4352] Change: Require PHP 5.3
 - [#4453] Cleanup: Use assertSame/assertNotSame instead of assertEquals
 - [#4140] Change: Require TYPO3 4.5
 - [#4399] Fix: Check the redirect URL to be within the site
