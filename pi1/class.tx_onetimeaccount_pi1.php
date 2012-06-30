@@ -281,7 +281,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		// Add an empty item at the top so we won't have Afghanistan (the first
 		// entry) pre-selected for empty values.
 		$result[] = array(
-			'caption' => '&nbsp;',
+			'caption' => '',
 			'value' => ''
 		);
 
@@ -614,8 +614,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 		foreach ($groupData as $item) {
 			$result[] = array(
-				'caption' => htmlspecialchars($item['title']) . '<br />',
-				'value' => $item['uid']
+				'caption' => $item['title'],
+				'value' => $item['uid'],
 			);
 		}
 
