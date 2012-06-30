@@ -71,20 +71,6 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	//////////////////////
 
 	/**
-	 * Skips the test if there is not MD5 password extension installed.
-	 *
-	 * @return void
-	 */
-	private function skipTestForNoMd5() {
-		if (!t3lib_extMgm::isLoaded('sr_feuser_register') || !t3lib_extMgm::isLoaded('kb_md5fepw')) {
-			$this->markTestSkipped(
-				'This test is only applicable if sr_feuser_register and ' .
-					'kb_md5fepw are loaded.'
-			);
-		}
-	}
-
-	/**
 	 * Extracts the URL which is encoded in $url in a JSON-encoded array which is encoded in the "data" GET parameter.
 	 *
 	 * @param string $url
@@ -913,40 +899,6 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 
 		$this->assertFalse(
 			in_array('usergroup', $fieldsToHide)
-		);
-	}
-
-
-	/////////////////////////////////////
-	// Tests concerning createChallenge
-	/////////////////////////////////////
-
-	/**
-	 * @test
-	 */
-	public function createChallengeForLoadedSrFeuserRegisterAndNotLoadedKbMdFivePasswordReturnsNonEmptyString() {
-		if (!t3lib_extMgm::isLoaded('sr_feuser_register') || t3lib_extMgm::isLoaded('kb_md5fepw')) {
-			$this->markTestSkipped(
-					'This test is only applicable if sr_feuser_register is ' .
-						'loaded and kb_md5fepw is not loaded.'
-			);
-		}
-
-		$this->assertNotSame(
-			'',
-			$this->fixture->createChallenge()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function createChallengeForLoadedSrFeuserRegisterAndLoadedKbMdFivePasswordReturnsNonEmptyString() {
-		$this->skipTestForNoMd5();
-
-		$this->assertNotSame(
-			'',
-			$this->fixture->createChallenge()
 		);
 	}
 

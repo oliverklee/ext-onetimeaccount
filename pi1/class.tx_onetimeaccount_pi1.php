@@ -380,19 +380,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$postData['url'] = $url;
 		$postData['user'] = $this->getFormData('username');
 
-		if ($this->usesMd5Passwords()) {
-			$challenge = $this->createChallenge();
-			$postData['challenge'] = $challenge;
-			$postData['pass'] = $this->createMd5Password(
-				array(
-					'username' => $this->getFormData('username'),
-					'password' => $this->getFormData('password'),
-					'challenge' => $challenge,
-				)
-			);
-		} else {
-			$postData['pass'] = $this->getFormData('password');
-		}
+		$postData['pass'] = $this->getFormData('password');
 		$postData['pid'] = $this->getPidForNewUserRecords();
 
 		$result = t3lib_div::locationHeaderUrl(
@@ -530,10 +518,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		);
 
 		$result = $this->setCurrentUserGroup($formData);
-		if ($this->usesMd5Passwords()) {
-			$this->log('Creating an MD5 password.');
-			$result['password'] = md5($formData['password']);
-		}
 		$result = $this->buildFullName($result);
 
 		$this->log(
@@ -812,61 +796,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		if (empty($visibleNameFields)) {
 			$formFieldsToHide[] = 'all_names';
 		}
-	}
-
-	/**
-	 * Generates the challenge for the MD5 passwords.
-	 *
-	 * Before calling this function, it must be ensured that sr_feuser_register
-	 * is loaded.
-	 *
-	 * @return string
-	 *         the challenge value to insert, will be empty if neither
-	 *         kb_md5password is loaded nor felogin is set to use MD5 passwords
-	 */
-	protected function createChallenge() {
-		$this->log('Creating challenge.');
-
-		require_once(
-			t3lib_extMgm::extPath('sr_feuser_register') .
-				'lib/class.tx_srfeuserregister_passwordmd5.php'
-		);
-		$srFeUserRegister = new tx_srfeuserregister_passwordmd5();
-
-		$emptyArray = array();
-		$srFeUserRegister->generateChallenge($emptyArray);
-
-		return $srFeUserRegister->getChallenge();
-	}
-
-	/**
-	 * Checks whether the extension sr_feuser_register is loaded and whether an
-	 * MD5 password should be used.
-	 *
-	 * @return boolean
-	 *         TRUE if sr_feuser_register is loaded and MD5 passwords are used,
-	 *         FALSE otherwise
-	 */
-	private function usesMd5Passwords() {
-		if (!t3lib_extMgm::isLoaded('sr_feuser_register')) {
-			return FALSE;
-		}
-
-		return t3lib_extMgm::isLoaded('kb_md5fepw')
-			&& tx_oelib_db::existsTable('tx_kbmd5fepw_challenge');
-	}
-
-	/**
-	 * Modifies the password to create an kb_md5pw style password.
-	 *
-	 * @param array $formData
-	 *        the form data sent, must contain username, password and challenge
-	 *
-	 * @return string the password conform to kb_md5pw, will not be empty
-	 */
-	private function createMd5Password($formData) {
-		return md5($formData['username'] . ':' .  md5($formData['password']) .
-			':' . $formData['challenge']);
 	}
 
 	/**

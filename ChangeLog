@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4461] Change: Drop support for kb_md5fepw
 - [#3451] Cleanup: Use TYPO3's autoloader instead of oelib's autoloader
 - [#4278] Cleanup: Update the copyright to 2012
 - [#4352] Change: Require PHP 5.3

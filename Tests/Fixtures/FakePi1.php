@@ -118,20 +118,6 @@ class tx_onetimeaccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
 	}
 
 	/**
-	 * Generates the challenge for the MD5 passwords.
-	 *
-	 * Before calling this function, it must be ensured that sr_feuser_register
-	 * is loaded.
-	 *
-	 * @return string
-	 *         the challenge value to insert, will be empty if neither
-	 *         kb_md5password is loaded nor felogin is set to use MD5 passwords
-	 */
-	public function createChallenge() {
-		return parent::createChallenge();
-	}
-
-	/**
 	 * Reads the list of form fields to show from the configuration and stores
 	 * it in $this->formFieldsToShow.
 	 *

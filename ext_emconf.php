@@ -18,7 +18,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author_email' => 'typo3-coding@oliverklee.de',
 	'shy' => '',
 	'dependencies' => 'ameos_formidable,oelib,static_info_tables',
-	'conflicts' => '',
+	'conflicts' => 'kb_md5fepw',
 	'priority' => '',
 	'module' => '',
 	'state' => 'beta',
@@ -39,6 +39,7 @@ $EM_CONF[$_EXTKEY] = array(
 			'static_info_tables' => '2.1.0-',
 		),
 		'conflicts' => array(
+			'kb_md5fepw' => '0.0.0-',
 		),
 		'suggests' => array(
 			'sr_feuser_register' => '2.2.0-',
