@@ -536,7 +536,7 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				data.items {
 					10 {
-						caption = &amp;nbsp;
+						caption =
 						value = 0
 					}
 					20 {
@@ -591,6 +591,7 @@ plugin.tx_onetimeaccount_pi1 {
 						method = getUidOfFirstUserGroup
 					}
 				}
+				wrapitem = |<br/>
 				validators {
 					10 = validator:STANDARD
 					10.userobj {

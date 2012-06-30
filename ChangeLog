@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4473] Fix: HTML entities are visible in the FE
 - [#4472] Cleanup: Clean up the includes and the autoload file
 - [#4461] Change: Drop support for kb_md5fepw
 - [#3451] Cleanup: Use TYPO3's autoloader instead of oelib's autoloader

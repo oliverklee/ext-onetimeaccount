@@ -630,25 +630,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 
 		$this->assertSame(
-			array(array('caption' => 'foo<br />', 'value' => (string) $userGroupUid)),
-			$this->fixture->listUserGroups()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function listUserGroupsHtmlSpecialCharsGroupName() {
-		$userGroupUid = $this->testingFramework->createFrontEndUserGroup(
-			array('title' => 'a&b')
-		);
-
-		$this->fixture->setConfigurationValue(
-			'groupForNewFeUsers', $userGroupUid
-		);
-
-		$this->assertSame(
-			array(array('caption' => 'a&amp;b<br />', 'value' => (string) $userGroupUid)),
+			array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
 	}
@@ -681,7 +663,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 
 		$this->assertSame(
-			array(array('caption' => 'foo<br />', 'value' => (string) $userGroupUid)),
+			array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
 	}
@@ -703,8 +685,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 
 		$this->assertSame(
 			array(
-				array('caption' => 'foo<br />', 'value' => (string) $userGroupUid1),
-				array('caption' => 'bar<br />', 'value' => (string) $userGroupUid2),
+				array('caption' => 'foo', 'value' => (string) $userGroupUid1),
+				array('caption' => 'bar', 'value' => (string) $userGroupUid2),
 			),
 			$this->fixture->listUserGroups()
 		);
