@@ -22,8 +22,6 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-require_once(t3lib_extMgm::extPath('onetimeaccount') . 'pi1/class.tx_onetimeaccount_pi1.php');
-
 /**
  * Fake version of the plugin "One-time FE account creator" for the
  * "onetimeaccount" extension.
