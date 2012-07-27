@@ -1,4 +1,4 @@
-0.8.1 - currently working on
+0.8.1 - released 2012-07-27
 - [#4485] Fix: Add TYPO3 maximum version to ext_emconf.php
 - [#4473] Fix: HTML entities are visible in the FE
 - [#4399] Fix: Check the redirect URL to be within the site
