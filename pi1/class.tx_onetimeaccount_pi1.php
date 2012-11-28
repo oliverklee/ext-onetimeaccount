@@ -357,39 +357,32 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	}
 
 	/**
-	 * Creates the URL to redirect to after the form data has been submitted
+	 * Creates a session for the created FE user and returns the redirect URL after the form data has been submitted
 	 * and validated.
 	 *
-	 * The created URL contains the user login credentials and the final URL
-	 * in encoded form.
-	 *
-	 * The final URL is either the URL provided in as the GET parameter
+	 * The returned URL is either the URL provided in as the GET parameter
 	 * "redirect_url" or the current page if the redirect URL is empty.
 	 *
 	 * @return string the fully-qualified URL to redirect to, will not be empty
 	 */
-	public function createRedirectUrl() {
+	public function loginUserAndCreateRedirectUrl() {
 		$this->workAroundModSecurity();
+
 		$url = t3lib_div::sanitizeLocalUrl((string) t3lib_div::_GP('redirect_url'));
-		if ($url == '') {
+		if ($url === '') {
 			$url = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
 		}
 
-		$postData = array();
-		$postData['url'] = $url;
-		$postData['user'] = $this->getFormData('username');
+		$GLOBALS['TSFE']->fe_user->checkPid = FALSE;
 
-		$postData['pass'] = $this->getFormData('password');
-		$postData['pid'] = $this->getPidForNewUserRecords();
+		$authenticationData = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
+		$userData = $GLOBALS['TSFE']->fe_user->fetchUserRecord($authenticationData['db_user'],  $this->getFormData('username'));
+		$GLOBALS['TSFE']->fe_user->createUserSession($userData);
 
-		$result = t3lib_div::locationHeaderUrl(
-			'index.php?eID=onetimeaccount&data=' . rawurlencode(base64_encode(json_encode($postData)))
-		);
+		$this->log('Redirecting to: ' . $url);
 
-		$this->log('Redirecting before login to: ' . $result);
-
-		return $result;
+		return $url;
 	}
 
 	/**

@@ -11,7 +11,4 @@ t3lib_extMgm::addPItoST43(
 	'list_type',
 	0
 );
-
-$GLOBALS['TYPO3_CONF_VARS']['FE']['eID_include'][$_EXTKEY]
-	= 'EXT:' . $_EXTKEY . '/class.tx_onetimeaccount_eid.php';
 ?>

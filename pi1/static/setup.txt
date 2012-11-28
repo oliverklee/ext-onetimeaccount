@@ -60,7 +60,7 @@ plugin.tx_onetimeaccount_pi1 {
 				10 = actionlet:REDIRECT
 				10.url.userobj {
 					extension = this
-					method = createRedirectUrl
+					method = loginUserAndCreateRedirectUrl
 				}
 			}
 		}

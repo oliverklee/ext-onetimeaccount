@@ -36,14 +36,25 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 * @var tx_onetimeaccount_Tests_Fixtures_FakePi1
 	 */
 	private $fixture = NULL;
+
 	/**
 	 * @var tx_oelib_testingFramework
 	 */
 	private $testingFramework = NULL;
 
+	/**
+	 * @var tslib_feUserAuth|PHPUnit_Framework_MockObject_MockObject
+	 */
+	private $frontEndUser = NULL;
+
 	public function setUp() {
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
-		$this->testingFramework->createFakeFrontEnd();
+
+		$GLOBALS['TSFE'] = $this->getMock('tslib_fe', array(), array(), '', FALSE);
+		$this->frontEndUser = $this->getMock(
+			'tslib_feUserAuth', array('getAuthInfoArray', 'fetchUserRecord', 'createUserSession')
+		);
+		$GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
 		$this->fixture = new tx_onetimeaccount_Tests_Fixtures_FakePi1(
 			array(
@@ -51,7 +62,6 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 				'userNameSource' => 'email',
 			)
 		);
-		$this->fixture->cObj = $GLOBALS['TSFE']->cObj;
 
 		$configurationProxy = tx_oelib_configurationProxy::getInstance('onetimeaccount');
 		$configurationProxy->setAsBoolean('enableConfigCheck', FALSE);
@@ -62,35 +72,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		$this->testingFramework->cleanUp();
 
 		$this->fixture->__destruct();
-		unset($this->fixture, $this->testingFramework);
-	}
+		unset($this->fixture, $this->testingFramework, $GLOBALS['TSFE']->fe_user, $this->frontEndUser);
 
-
-	//////////////////////
-	// Utility functions
-	//////////////////////
-
-	/**
-	 * Extracts the URL which is encoded in $url in a JSON-encoded array which is encoded in the "data" GET parameter.
-	 *
-	 * @param string $url
-	 *        URL to that contains the data to decode, must not be empty
-	 *
-	 * @return string the encoded URL, will be empty if no URL could be found
-	 */
-	private function extractEncodedUrlFromUrl($url) {
-		$matches = array();
-		preg_match(
-			'/(^\?|&)(data=)([^&]+)(&|$)/',
-			$url,
-			$matches
-		);
-		if (empty($matches)) {
-			return '';
-		}
-
-		$data = json_decode(base64_decode(rawurldecode($matches[3])), TRUE);
-		return $data['url'];
+		$GLOBALS['TSFE'] = NULL;
 	}
 
 
@@ -372,77 +356,87 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	////////////////////////////////////////////////
-	// Tests concerning createRedirectUrl
-	////////////////////////////////////////////////
+	/*
+	 * Tests concerning loginUserAndCreateRedirectUrl
+	 */
 
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlForEmptyRedirectUrlReturnsEidUrl() {
-		$GLOBALS['_POST']['redirect_url'] = '';
-
-		$this->assertRegExp(
-			'/https?:\/\/.+\/index\.php\?eID=onetimeaccount&data=/',
-			$this->fixture->createRedirectUrl()
-		);
-	}
-
-	/**
-	 * @test
-	 */
-	public function createRedirectUrlWithLocalRedirectUrlReturnsEncodedRedirectUrl() {
+	public function loginUserAndCreateRedirectUrlWithLocalRedirectUrlReturnsRedirectUrl() {
 		$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
 		$GLOBALS['_POST']['redirect_url'] = $url;
 
 		$this->assertSame(
 			$url,
-			$this->extractEncodedUrlFromUrl(
-				$this->fixture->createRedirectUrl()
-			)
+			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlWithForeignUrlReturnsEncodedCurrentUri() {
+	public function loginUserAndCreateRedirectUrlWithForeignUrlReturnsCurrentUri() {
 		$GLOBALS['_POST']['redirect_url'] = 'http://google.com/';
 
 		$this->assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
-			$this->extractEncodedUrlFromUrl(
-				$this->fixture->createRedirectUrl()
-			)
+			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlWithEmptyRedirectUrlReturnsCurrentUri() {
+	public function loginUserAndCreateRedirectUrlWithEmptyRedirectUrlReturnsCurrentUri() {
 		$GLOBALS['_POST']['redirect_url'] = '';
 
 		$this->assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
-			$this->extractEncodedUrlFromUrl(
-				$this->fixture->createRedirectUrl()
-			)
+			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}
 
 	/**
 	 * @test
 	 */
-	public function createRedirectUrlWithMissingRedirectUrlReturnsCurrentUri() {
+	public function loginUserAndCreateRedirectUrlWithMissingRedirectUrlReturnsCurrentUri() {
 		unset($GLOBALS['_POST']['redirect_url']);
 
 		$this->assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
-			$this->extractEncodedUrlFromUrl(
-				$this->fixture->createRedirectUrl()
-			)
+			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function loginUserAndCreateRedirectUrlDisablesFrontEndUserPidCheck() {
+		$GLOBALS['TSFE']->fe_user->checkPid = TRUE;
+
+		$this->fixture->loginUserAndCreateRedirectUrl();
+
+		$this->assertFalse(
+			$GLOBALS['TSFE']->fe_user->checkPid
+		);
+	}
+
+	/**
+	 * @test
+	 */
+	public function loginUserAndCreateRedirectUrlCreatesUserSessionWithProvidedUserName() {
+		$userName = 'john.doe';
+		$this->fixture->setFormData(array('username' => $userName));
+
+		$authenticationData = array('some authentication data');
+		$this->frontEndUser->expects($this->once())->method('getAuthInfoArray')->will($this->returnValue(array('db_user' => $authenticationData)));
+
+		$userData = array('uid' => 42, 'username' => $userName, 'password' => 'secret');
+		$this->frontEndUser->expects($this->once())->method('fetchUserRecord')->with($authenticationData, $userName)->will($this->returnValue($userData));
+		$this->frontEndUser->expects($this->once())->method('createUserSession')->with($userData);
+
+		$this->fixture->loginUserAndCreateRedirectUrl();
 	}
 
 
