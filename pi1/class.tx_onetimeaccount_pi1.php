@@ -27,7 +27,7 @@ require_once(PATH_formidableapi);
 require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_staticinfotables_pi1.php');
 
 /**
- * Plugin 'One-time FE account creator' for the 'onetimeaccount' extension.
+ * Plugin "One-time FE account creator".
  *
  * @package TYPO3
  * @subpackage tx_onetimeaccount

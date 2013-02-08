@@ -23,8 +23,6 @@
 ***************************************************************/
 
 /**
- * Class 'tx_onetimeaccount_configcheck' for the 'ontimeaccount' extension.
- *
  * This class checks this extension's configuration for basic sanity.
  *
  * @package TYPO3

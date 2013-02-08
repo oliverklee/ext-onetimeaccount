@@ -23,8 +23,7 @@
 ***************************************************************/
 
 /**
- * Testcase for the tx_onetimeaccount_pi1 class in the "onetimeaccount"
- * extension.
+ * Test case.
  *
  * @package TYPO3
  * @subpackage tx_seminars

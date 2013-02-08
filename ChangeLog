@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4631] Cleanup: Drop useless class comments
 - [#4630] Cleanup: Update the copyright to 2013
 - [#4183] Feature: Support rsaauth and saltedpasswords
 - [#4485] Fix: Add TYPO3 maximum version to ext_emconf.php

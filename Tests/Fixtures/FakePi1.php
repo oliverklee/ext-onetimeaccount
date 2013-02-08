@@ -23,8 +23,7 @@
 ***************************************************************/
 
 /**
- * Fake version of the plugin "One-time FE account creator" for the
- * "onetimeaccount" extension.
+ * Fake version of the plugin "One-time FE account creator".
  *
  * @package TYPO3
  * @subpackage tx_onetimeaccount
