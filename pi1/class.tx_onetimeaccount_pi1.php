@@ -374,11 +374,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
 		}
 
-		$GLOBALS['TSFE']->fe_user->checkPid = FALSE;
+		/** @var $frontEndUser tslib_feUserAuth */
+		$frontEndUser = $GLOBALS['TSFE']->fe_user;
+		$frontEndUser->checkPid = FALSE;
 
 		$authenticationData = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
-		$userData = $GLOBALS['TSFE']->fe_user->fetchUserRecord($authenticationData['db_user'],  $this->getFormData('username'));
-		$GLOBALS['TSFE']->fe_user->createUserSession($userData);
+		$userData = $frontEndUser->fetchUserRecord($authenticationData['db_user'], $this->getFormData('username'));
+		$frontEndUser->user = $userData;
+		$frontEndUser->createUserSession($userData);
+		$frontEndUser->setKey('user', 'onetimeaccount', TRUE);
+		$frontEndUser->storeSessionData();
 
 		$this->log('Redirecting to: ' . $url);
 
