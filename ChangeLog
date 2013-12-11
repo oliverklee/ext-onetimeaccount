@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4831] Cleanup: Remove the closing PHP tags and fix some code style issues
 - [#4183] Bugfix: Set the "onetimeaccount" flag in the user session data
 - [#4631] Cleanup: Drop useless class comments
 - [#4630] Cleanup: Update the copyright to 2013

@@ -77,9 +77,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////
-	// Tests concerning getFormData
-	/////////////////////////////////
+	/*
+	 * Tests concerning getFormData
+	 */
 
 	/**
 	 * @test
@@ -94,9 +94,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	///////////////////////////////////////////
-	// Tests concerning createInitialUserName
-	///////////////////////////////////////////
+	/*
+	 * Tests concerning createInitialUserName
+	 */
 
 	/**
 	 * @test
@@ -255,9 +255,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////
-	// Tests concerning getUserName
-	/////////////////////////////////
+	/*
+	 * Tests concerning getUserName
+	 */
 
 	/**
 	 * @test
@@ -340,9 +340,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////
-	// Tests concerning getPassword
-	/////////////////////////////////
+	/*
+	 * Tests concerning getPassword
+	 */
 
 	/**
 	 * @test
@@ -439,9 +439,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////////////////
-	// Tests concerning validateStringField
-	/////////////////////////////////////////////
+	/*
+	 * Tests concerning validateStringField
+	 */
 
 	/**
 	 * @test
@@ -493,9 +493,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	////////////////////////////////////////////
-	// Tests concerning validateIntegerField
-	////////////////////////////////////////////
+	/*
+	 * Tests concerning validateIntegerField
+	 */
 
 	/**
 	 * @test
@@ -559,9 +559,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////////////////
-	// Tests concerning getPidForNewUserRecords
-	/////////////////////////////////////////////
+	/*
+	 * Tests concerning getPidForNewUserRecords
+	 */
 
 	/**
 	 * @test
@@ -606,9 +606,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	////////////////////////////////////
-	// Tests concerning listUserGroups
-	////////////////////////////////////
+	/*
+	 * Tests concerning listUserGroups
+	 */
 
 	/**
 	 * @test
@@ -686,9 +686,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	////////////////////////////////////
-	// Tests concerning listUserGroups
-	////////////////////////////////////
+	/*
+	 * Tests concerning listUserGroups
+	 */
 
 	/**
 	 * @test
@@ -703,9 +703,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	//////////////////////////////////////////////////
-	// Tests concerning setAllNamesSubpartVisibility
-	//////////////////////////////////////////////////
+	/*
+	 * Tests concerning setAllNamesSubpartVisibility
+	 */
 
 	/**
 	 * @test
@@ -768,9 +768,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	/////////////////////////////////////////////
-	// Tests concerning setZipSubpartVisibility
-	/////////////////////////////////////////////
+	/*
+	 * Tests concerning setZipSubpartVisibility
+	 */
 
 	/**
 	 * @test
@@ -821,21 +821,21 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	///////////////////////////////////////////////////
-	// Tests concerning setUsergroupSubpartVisibility
-	///////////////////////////////////////////////////
+	/*
+	 * Tests concerning setUserGroupSubpartVisibility
+	 */
 
 	/**
 	 * @test
 	 */
-	public function setUsergroupSubpartVisibilityForNonExistingUsergroupAddsUsergroupSubpartToHideFields() {
+	public function setUserGroupSubpartVisibilityForNonExistingUsergroupAddsUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->getAutoIncrement('fe_groups')
 		);
 		$fieldsToHide = array();
 
-		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
 		$this->assertTrue(
 			in_array('usergroup', $fieldsToHide)
@@ -845,14 +845,14 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
-	public function setUsergroupSubpartVisibilityForOneAvailableUsergroupAddsUsergroupSubpartToHideFields() {
+	public function setUserGroupSubpartVisibilityForOneAvailableUsergroupAddsUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->createFrontEndUserGroup()
 		);
 
 		$fieldsToHide = array();
-		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
 		$this->assertTrue(
 			in_array('usergroup', $fieldsToHide)
@@ -862,7 +862,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @test
 	 */
-	public function setUsergroupSubpartVisibilityForTwoAvailableUsergroupDoesNotAddUsergroupSubpartToHideFields() {
+	public function setUserGroupSubpartVisibilityForTwoAvailableUsergroupDoesNotAddUsergroupSubpartToHideFields() {
 		$this->fixture->setConfigurationValue(
 			'groupForNewFeUsers',
 			$this->testingFramework->createFrontEndUserGroup() . ',' .
@@ -870,7 +870,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 
 		$fieldsToHide = array();
-		$this->fixture->setUsergroupSubpartVisibility($fieldsToHide);
+		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
 		$this->assertFalse(
 			in_array('usergroup', $fieldsToHide)
@@ -878,9 +878,9 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	}
 
 
-	////////////////////////////////////////
-	// Tests concerning preprocessFormData
-	////////////////////////////////////////
+	/*
+	 * Tests concerning preprocessFormData
+	 */
 
 	/**
 	 * @test
@@ -1010,4 +1010,3 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		);
 	}
 }
-?>

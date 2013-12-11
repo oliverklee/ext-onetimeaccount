@@ -100,7 +100,7 @@ class tx_onetimeaccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
 	}
 
 	/**
-	 * Checks if the usergroup subpart can be hidden.
+	 * Checks if the user group subpart can be hidden.
 	 *
 	 * The "usergroup" field is a special case because it might also be
 	 * hidden if there are less than two user groups available
@@ -110,8 +110,8 @@ class tx_onetimeaccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
 	 *
 	 * @return void
 	 */
-	public function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
-		parent::setUsergroupSubpartVisibility($formFieldsToHide);
+	public function setUserGroupSubpartVisibility(array &$formFieldsToHide) {
+		parent::setUserGroupSubpartVisibility($formFieldsToHide);
 	}
 
 	/**
@@ -124,4 +124,3 @@ class tx_onetimeaccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
 		parent::setFormFieldsToShow();
 	}
 }
-?>

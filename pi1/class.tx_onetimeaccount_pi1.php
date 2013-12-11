@@ -222,7 +222,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->formFieldsToShow
 		);
 
-		$this->setUsergroupSubpartVisibility($formFieldsToHide);
+		$this->setUserGroupSubpartVisibility($formFieldsToHide);
 		$this->setZipSubpartVisibility($formFieldsToHide);
 		$this->setAllNamesSubpartVisibility($formFieldsToHide);
 
@@ -682,7 +682,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         TRUE if this field is not empty or not required, FALSE otherwise
 	 */
 	public function validateStringField(array $formData) {
-		if ($this->checkPremisses($formData)) {
+		if ($this->checkPremises($formData)) {
 			return TRUE;
 		}
 
@@ -701,7 +701,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         TRUE if this field is not zero or not required, FALSE otherwise
 	 */
 	public function validateIntegerField(array $formData) {
-		if ($this->checkPremisses($formData)) {
+		if ($this->checkPremises($formData)) {
 			return TRUE;
 		}
 
@@ -717,8 +717,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *        to check, must not be empty
 	 *
 	 * @return boolean TRUE if the element was not required, FALSE otherwise
+	 *
+	 * @throws InvalidArgumentException
 	 */
-	private function checkPremisses(array $formData) {
+	private function checkPremises(array $formData) {
 		if ($formData['elementName'] == '') {
 			throw new InvalidArgumentException('The given field name was empty.');
 		}
@@ -743,7 +745,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *
 	 * @return void
 	 */
-	protected function setUsergroupSubpartVisibility(array &$formFieldsToHide) {
+	protected function setUserGroupSubpartVisibility(array &$formFieldsToHide) {
 		if (!$this->hasAtLeastTwoUserGroups()) {
 			$formFieldsToHide[] = 'usergroup';
 		}
@@ -845,4 +847,3 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {
 	require_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']);
 }
-?>

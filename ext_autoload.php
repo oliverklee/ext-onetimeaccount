@@ -9,4 +9,3 @@ return array(
 	'tx_onetimeaccount_pi1' => $extensionPath . 'pi1/class.tx_onetimeaccount_pi1.php',
 	'tx_onetimeaccount_pi1_wizicon' => $extensionPath . 'pi1/class.tx_onetimeaccount_pi1_wizicon.php',
 );
-?>
