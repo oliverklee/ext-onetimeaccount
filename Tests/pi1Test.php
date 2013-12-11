@@ -47,6 +47,8 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	private $frontEndUser = NULL;
 
 	public function setUp() {
+		tx_oelib_configurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', FALSE);
+
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
 
 		$GLOBALS['TSFE'] = $this->getMock('tslib_fe', array(), array(), '', FALSE);
