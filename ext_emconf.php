@@ -32,11 +32,11 @@ $EM_CONF[$_EXTKEY] = array(
 	'version' => '0.8.53',
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.3.0-0.0.0',
+			'php' => '5.3.0-5.5.99',
 			'typo3' => '4.5.0-4.7.99',
 			'ameos_formidable' => '1.0.0-1.9.99',
-			'oelib' => '0.7.62-',
-			'static_info_tables' => '2.1.0-',
+			'oelib' => '0.7.0-1.0.99',
+			'static_info_tables' => '2.1.0-2.3.99',
 		),
 		'conflicts' => array(
 			'kb_md5fepw' => '0.0.0-',

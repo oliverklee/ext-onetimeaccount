@@ -1,4 +1,5 @@
 0.9.0 - currently working on
+- [#4920] Change: Update the extension dependencies
 - [#4868] Change: Update the copyrights to 2014
 - [#4362] Fix: Skip the configuration check in the unit tests
 - [#4831] Cleanup: Remove the closing PHP tags and fix some code style issues
