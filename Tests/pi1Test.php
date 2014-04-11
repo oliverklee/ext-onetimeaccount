@@ -72,7 +72,6 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	public function tearDown() {
 		$this->testingFramework->cleanUp();
 
-		$this->fixture->__destruct();
 		unset($this->fixture, $this->testingFramework, $GLOBALS['TSFE']->fe_user, $this->frontEndUser);
 
 		$GLOBALS['TSFE'] = NULL;
