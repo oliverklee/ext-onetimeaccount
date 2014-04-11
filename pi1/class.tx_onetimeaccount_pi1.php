@@ -605,7 +605,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Gets the UIDs set via groupForNewFeUsers in the configuration.
 	 *
-	 * @return array<integer>
+	 * @return integer[]
 	 *         UIDs set via groupForNewFeUsers, will not be empty for a valid
 	 *         configuration
 	 */
