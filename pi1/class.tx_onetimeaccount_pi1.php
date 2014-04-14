@@ -271,9 +271,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	public function populateListCountries($unused, array $parameters) {
 		$this->initStaticInfo();
-		$allCountries = $this->staticInfo->initCountries(
-			'ALL', $this->staticInfo->getCurrentLanguage(), TRUE
-		);
+		$allCountries = $this->staticInfo->initCountries('ALL', '', TRUE);
 
 		$result = array();
 		// Add an empty item at the top so we won't have Afghanistan (the first
@@ -310,21 +308,28 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         localized name), will be empty if no default country has been set
 	 */
 	public function getDefaultCountry($unused, array $parameters) {
-		$this->initStaticInfo();
-		$typoScriptPluginSetup = $GLOBALS['TSFE']->tmpl->setup['plugin.'];
-		$staticInfoSetup = $typoScriptPluginSetup['tx_staticinfotables_pi1.'];
-		$defaultCountryCode = (string) $staticInfoSetup['countryCode'];
-		if ($defaultCountryCode == '') {
+		$defaultCountryCode = Tx_Oelib_ConfigurationRegistry::get('plugin.tx_staticinfotables_pi1')
+			->getAsString('countryCode');
+		if ($defaultCountryCode === '') {
 			return '';
 		}
+
+		$this->initStaticInfo();
 
 		if ($parameters['alpha3']) {
 			$result = $defaultCountryCode;
 		} else {
-			$result = tx_staticinfotables_div::getTitleFromIsoCode(
-				'static_countries', $defaultCountryCode,
-				$this->staticInfo->getCurrentLanguage(), TRUE
-			);
+			if (class_exists('SJBR\\StaticInfoTables\\Utility\\LocalizationUtility')) {
+				$currentLanguageCode = Tx_Oelib_ConfigurationRegistry::get('config')->getAsString('language');
+				$identifiers = array('iso' => $defaultCountryCode);
+				$result = \SJBR\StaticInfoTables\Utility\LocalizationUtility::getLabelFieldValue(
+					$identifiers, 'static_countries', $currentLanguageCode, TRUE
+				);
+			} else {
+				$result = tx_staticinfotables_div::getTitleFromIsoCode(
+					'static_countries', $defaultCountryCode, $this->staticInfo->getCurrentLanguage(), TRUE
+				);
+			}
 		}
 
 		return $result;
