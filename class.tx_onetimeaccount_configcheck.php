@@ -37,7 +37,6 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 	 * @return void
 	 */
 	protected function check_tx_onetimeaccount_pi1() {
-		$this->checkCssStyledContent();
 		$this->checkStaticIncluded();
 		$this->checkTemplateFile(TRUE);
 		$this->checkCssFileFromConstants();

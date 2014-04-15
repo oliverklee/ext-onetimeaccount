@@ -1,4 +1,5 @@
 1.0.0 - currently working on
+- [#5020] Fix: Error massage: The extension CSS Styled Content is not loaded
 - [#4921] Fix: Make onetimeaccount compatible with static_info_tables >= 6.0
 - [#5008] Fix: Call loadTCA only for TYPO3 CMS < 6.1
 - [#4572] Fix: Add .htaccess to all folders with private resources
