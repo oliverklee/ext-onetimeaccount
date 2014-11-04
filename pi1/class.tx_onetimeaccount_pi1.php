@@ -388,6 +388,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$frontEndUser->user = $userData;
 		$frontEndUser->createUserSession($userData);
 		$frontEndUser->setKey('user', 'onetimeaccount', TRUE);
+		// fake a session entry to ensure the Core actually creates the session and sends the FE cookie
+		$frontEndUser->setKey('ses', 'onetimeaccount_dummy', TRUE);
 		$frontEndUser->storeSessionData();
 
 		$this->log('Redirecting to: ' . $url);
