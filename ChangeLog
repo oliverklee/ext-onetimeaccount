@@ -1,5 +1,5 @@
 1.0.0 - currently working on
-- [#5162] Fix: Fix autologin feature to work with CMS 6.2.5+
+- [#5176] Change: Update maximum PHP version to 5.6- [#5162] Fix: Fix autologin feature to work with CMS 6.2.5+
 - [#5089] Fix: Bump TYPO3 CMS dependency to <= 6.2.99
 - [#5020] Fix: Error message: The extension CSS Styled Content is not loaded
 - [#4921] Fix: Make onetimeaccount compatible with static_info_tables >= 6.0
