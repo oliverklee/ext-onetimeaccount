@@ -7,16 +7,16 @@ if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 
 	t3lib_div::loadTCA('tt_content');
 }
 
-$TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY . '_pi1']
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY . '_pi1']
 	= 'layout,select_key,pages,recursive';
 
-$TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
 
 if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 6001000) {
 	t3lib_div::loadTCA('fe_users');
 }
 
-$TCA['fe_users']['columns']['company']['config'] = array(
+$GLOBALS['TCA']['fe_users']['columns']['company']['config'] = array(
 	'type' => 'text',
 	'cols' => '20',
 	'rows' => '3',
