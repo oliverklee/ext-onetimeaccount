@@ -230,7 +230,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *        the contents of the "params" child of the userobj node as
 	 *        key/value pairs (used for retrieving the current form field name)
 	 *
-	 * @return boolean
+	 * @return bool
 	 *         TRUE if the current form field should be displayed, FALSE otherwise
 	 */
 	public function isFormFieldEnabled(array $parameters) {
@@ -342,7 +342,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Gets the PID of the system folder in which new FE user records will be
 	 * stored.
 	 *
-	 * @return integer the PID of the page where FE-created events will be stored
+	 * @return int the PID of the page where FE-created events will be stored
 	 */
 	public function getPidForNewUserRecords() {
 		return $this->getConfValueInteger(
@@ -555,7 +555,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * Returns the UID of the first user group shown in the FE. If there are no
 	 * user groups, the result will be zero.
 	 *
-	 * @return integer UID of the first user group
+	 * @return int UID of the first user group
 	 */
 	public function getUidOfFirstUserGroup() {
 		$userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
@@ -602,7 +602,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Gets the UIDs set via groupForNewFeUsers in the configuration.
 	 *
-	 * @return integer[]
+	 * @return int[]
 	 *         UIDs set via groupForNewFeUsers, will not be empty for a valid
 	 *         configuration
 	 */
@@ -620,7 +620,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @param array $radiogroupValue
 	 *        the currently selected value in an associative array with the key "value"
 	 *
-	 * @return boolean
+	 * @return bool
 	 *         TRUE if a radiobutton is selected or if the form field is hidden,
 	 *         FALSE if none is selected although the field is visible
 	 */
@@ -637,7 +637,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	/**
 	 * Checks whether we have at least two allowed user groups.
 	 *
-	 * @return boolean
+	 * @return bool
 	 *         TRUE if we have at least two allowed user groups, FALSE otherwise
 	 */
 	private function hasAtLeastTwoUserGroups() {
@@ -675,7 +675,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *        "value" and the name with the key "elementName" of the form field
 	 *        to check, must not be empty
 	 *
-	 * @return boolean
+	 * @return bool
 	 *         TRUE if this field is not empty or not required, FALSE otherwise
 	 */
 	public function validateStringField(array $formData) {
@@ -694,7 +694,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *        "value" and the name with the key "elementName" of the form field
 	 *        to check, must not be empty
 	 *
-	 * @return boolean
+	 * @return bool
 	 *         TRUE if this field is not zero or not required, FALSE otherwise
 	 */
 	public function validateIntegerField(array $formData) {
@@ -713,7 +713,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *        "value" and the name with the key "elementName" of the form field
 	 *        to check, must not be empty
 	 *
-	 * @return boolean TRUE if the element was not required, FALSE otherwise
+	 * @return bool TRUE if the element was not required, FALSE otherwise
 	 *
 	 * @throws InvalidArgumentException
 	 */
@@ -827,7 +827,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * this extension.
 	 *
 	 * @param string $message the message to log, must not be empty
-	 * @param integer $severity
+	 * @param int $severity
 	 *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
 	 *
 	 * @return void
