@@ -1,4 +1,5 @@
 1.0.0 - currently working on
+- [#5206] Cleanup: Drop the unset from tearDown()
 - [#5198] Cleanup: Make setUp and tearDown protected
 - [#5201] Cleanup: Convert intval/float to casts
 - [#5200] Cleanup: boolean -> bool, integer -> int
