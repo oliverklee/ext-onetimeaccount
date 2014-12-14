@@ -36,7 +36,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 	 */
 	private $frontEndUser = NULL;
 
-	public function setUp() {
+	protected function setUp() {
 		tx_oelib_configurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', FALSE);
 
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
@@ -59,7 +59,7 @@ class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
 		$configurationProxy->setAsBoolean('enableLogging', FALSE);
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		$this->testingFramework->cleanUp();
 
 		unset($this->fixture, $this->testingFramework, $GLOBALS['TSFE']->fe_user, $this->frontEndUser);
