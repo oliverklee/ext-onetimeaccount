@@ -560,7 +560,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	public function getUidOfFirstUserGroup() {
 		$userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
 
-		return intval($userGroups[0]);
+		return (int)$userGroups[0];
 	}
 
 	/**
@@ -702,7 +702,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			return TRUE;
 		}
 
-		return (intval($formData['value']) != 0);
+		return (int)$formData['value'] !== 0;
 	}
 
 	/**
