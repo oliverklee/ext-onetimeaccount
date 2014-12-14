@@ -1,7 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die('Access denied.');
-}
+defined('TYPO3_MODE') or die('Access denied.');
 
 // extends TypoScript from static template uid=43 to set up userdefined tag
 t3lib_extMgm::addPItoST43(

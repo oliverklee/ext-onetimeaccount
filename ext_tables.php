@@ -1,7 +1,5 @@
 <?php
-if (!defined('TYPO3_MODE')) {
-	die('Access denied.');
-}
+defined('TYPO3_MODE') or die('Access denied.');
 
 if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 6001000) {
 	t3lib_div::loadTCA('tt_content');
