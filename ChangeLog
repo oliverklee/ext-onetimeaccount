@@ -1,21 +1,30 @@
 1.0.0 - currently working on
-- [#5222] Change: Require oelib 0.8.0
-- [#5219] Change: Mark the extension as stable
-- [#5206] Cleanup: Drop the unset from tearDown()
-- [#5198] Cleanup: Make setUp and tearDown protected
-- [#5201] Cleanup: Convert intval/float to casts
-- [#5200] Cleanup: boolean -> bool, integer -> int
-- [#5088] Cleanup: Shorten the die() line
-- [#5199] Cleanup: Use $GLOBALS['TCA'] instead of $TCA
-- [#5197] Cleanup: Use the new TYPO3 copyright headers
-- [#5176] Change: Update maximum PHP version to 5.6- [#5162] Fix: Fix autologin feature to work with CMS 6.2.5+
-- [#5089] Fix: Bump TYPO3 CMS dependency to <= 6.2.99
-- [#5020] Fix: Error message: The extension CSS Styled Content is not loaded
-- [#4921] Fix: Make onetimeaccount compatible with static_info_tables >= 6.0
-- [#5008] Fix: Call loadTCA only for TYPO3 CMS < 6.1
-- [#4572] Fix: Add .htaccess to all folders with private resources
-- [#4648] Fix: Drop early __destruct calls
-- [#4998] Cleanup: Use type[] instead of array<type>
+
+Features:
+
+Bug fixes:
+- [#5089] Bump TYPO3 CMS dependency to <= 6.2.99
+- [#5020] Error message: The extension CSS Styled Content is not loaded
+- [#4921] Make onetimeaccount compatible with static_info_tables >= 6.0
+- [#5008] Call loadTCA only for TYPO3 CMS < 6.1
+- [#4572] Add .htaccess to all folders with private resources
+- [#4648] Drop early __destruct calls
+
+Changes:
+- [#5222] Require oelib 0.8.0
+- [#5219] Mark the extension as stable
+- [#5176] Update maximum PHP version to 5.6- [#5162] Fix: Fix autologin feature to work with CMS 6.2.5+
+
+Cleanup:
+- [#5206] Drop the unset from tearDown()
+- [#5198] Make setUp and tearDown protected
+- [#5201] Convert intval/float to casts
+- [#5200] boolean -> bool, integer -> int
+- [#5088] Shorten the die() line
+- [#5199] Use $GLOBALS['TCA'] instead of $TCA
+- [#5197] Use the new TYPO3 copyright headers
+- [#4998] Use type[] instead of array<type>
+
 
 0.9.0 - released 2014-01-15
 - [#4920] Change: Update the extension dependencies
