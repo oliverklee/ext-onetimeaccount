@@ -1,4 +1,5 @@
 1.0.0 - currently working on
+- [#5222] Change: Require oelib 0.8.0
 - [#5219] Change: Mark the extension as stable
 - [#5206] Cleanup: Drop the unset from tearDown()
 - [#5198] Cleanup: Make setUp and tearDown protected
