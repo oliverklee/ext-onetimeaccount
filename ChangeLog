@@ -11,6 +11,7 @@ Bug fixes:
 - [#4648] Drop early __destruct calls
 
 Changes:
+- [#5226] Convert the manual to ReST
 - [#5222] Require oelib 0.8.0
 - [#5219] Mark the extension as stable
 - [#5176] Update maximum PHP version to 5.6- [#5162] Fix: Fix autologin feature to work with CMS 6.2.5+
