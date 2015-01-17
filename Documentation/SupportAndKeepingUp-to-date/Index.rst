@@ -26,4 +26,3 @@ Support and keeping up-to-date
 
    PaidServicesOfferedByTheAuthor/Index
    FreePublicSupport/Index
-

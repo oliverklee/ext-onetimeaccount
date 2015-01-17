@@ -43,7 +43,7 @@ reader/>`_ r with these settings:
 
    a
          Server:
-   
+
    b
          lists.typo3.org
 
@@ -52,7 +52,7 @@ reader/>`_ r with these settings:
 
    a
          Port:
-   
+
    b
          119 (which is the default)
 
@@ -61,7 +61,7 @@ reader/>`_ r with these settings:
 
    a
          Group name:
-   
+
    b
          typo3.project.seminars (we use the  *seminars* newsgroup for the
          *onetimeaccount* extension, too)
@@ -71,4 +71,3 @@ reader/>`_ r with these settings:
 
 The mailing list and newsgroup are synced, so you just need one of
 them to stay informed.
-

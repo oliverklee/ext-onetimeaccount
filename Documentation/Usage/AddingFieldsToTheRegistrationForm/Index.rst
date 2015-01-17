@@ -80,9 +80,9 @@ The following has to be done manually:
    plugin.tx\_onetimeaccount\_pi1.requiredFeUserFields if necessary,
 
 #. add a marker to the HTML template, e.g.:
-   
+
    ::
-   
+
       <!-- ###WRAPPER_MOBILE_PHONE### -->
        <dt>
        <label for="tx_onetimeaccount_pi1_form_mobile_phone"###MOBILE_HONE_REQUIRED###>
@@ -105,4 +105,3 @@ plugin.tx\_onetimeaccount\_pi1.form and/or the FORMidable manual.
 There also is an example extension “marijo” that adds a few
 radiobuttons to the FE users table and to the form. You can find it in
 the doc/ directory.
-

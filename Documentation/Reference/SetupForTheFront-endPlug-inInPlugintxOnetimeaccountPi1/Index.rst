@@ -31,13 +31,13 @@ override the corresponding value from TS Setup.**
 
    Property
          Property:
-   
+
    Data type
          Data type:
-   
+
    Description
          Description:
-   
+
    Default
          Default:
 
@@ -46,13 +46,13 @@ override the corresponding value from TS Setup.**
 
    Property
          templateFile
-   
+
    Data type
          string
-   
+
    Description
          File name of the HTML template
-   
+
    Default
          EXT:onetimeaccount/pi1/onetimeaccount\_pi1.html
 
@@ -61,14 +61,14 @@ override the corresponding value from TS Setup.**
 
    Property
          salutation
-   
+
    Data type
          string
-   
+
    Description
          Switch whether to use formal/informal language on the front
          end.Allowed values are:formal \| informal
-   
+
    Default
          formal
 
@@ -77,15 +77,15 @@ override the corresponding value from TS Setup.**
 
    Property
          feUserFieldsToDisplay
-   
+
    Data type
          string
-   
+
    Description
          comma-separated list of the FE user fields that can be edited in the
          form; there needs to be at least one name field present (name,
          first\_name or last\_name)
-   
+
    Default
          company, name, zip, country, email, telephone, fax
 
@@ -94,15 +94,15 @@ override the corresponding value from TS Setup.**
 
    Property
          requiredFeUserFields
-   
+
    Data type
          string
-   
+
    Description
          comma-separated list of FE user fields which the user is required to
          fill inNote: If displayed, the gender, usergroup and
          module\_sys\_dmail\_html fieldsautomatically are required.
-   
+
    Default
          name, email
 
@@ -111,13 +111,13 @@ override the corresponding value from TS Setup.**
 
    Property
          systemFolderForNewFeUserRecords
-   
+
    Data type
          page\_id
-   
+
    Description
          PID of the system folder in which new FE user accounts will be stored
-   
+
    Default
 
 
@@ -125,13 +125,13 @@ override the corresponding value from TS Setup.**
 
    Property
          groupForNewFeUsers
-   
+
    Data type
          record\_id
-   
+
    Description
          IDs of the groups for new FE users
-   
+
    Default
 
 
@@ -139,13 +139,13 @@ override the corresponding value from TS Setup.**
 
    Property
          userNameSource
-   
+
    Data type
          string
-   
+
    Description
          The source from which to generate the user login name (email or name)
-   
+
    Default
          email
 
@@ -154,17 +154,16 @@ override the corresponding value from TS Setup.**
 
    Property
          form
-   
+
    Data type
          array
-   
+
    Description
          The FORMidable configuration for the onetimeaccount registration form.
-   
+
    Default
 
 
 .. ###### END~OF~TABLE ######
 
 [tsref:plugin.tx\_onetimeaccount\_pi1]
-

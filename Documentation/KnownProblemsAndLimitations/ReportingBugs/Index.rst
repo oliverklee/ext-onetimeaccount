@@ -32,5 +32,3 @@ data when reporting a bug:
 - what you expect to happen
 
 - what actually happens instead
-
-

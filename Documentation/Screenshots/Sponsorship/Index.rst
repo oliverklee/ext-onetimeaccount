@@ -38,4 +38,3 @@ organizations and persons:
 - `thinkhouse GmbH <http://www.thinkhouse.de/>`_
 
 - Wes Currier
-

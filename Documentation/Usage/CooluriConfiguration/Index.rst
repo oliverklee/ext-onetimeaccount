@@ -26,9 +26,8 @@ CoolURI configuration:
    <uriparts>
      <part>
        <parameter>tx_seminars_pi1[seminar]</parameter>
-     </part>    
+     </part>
      <part>
        <parameter>tx_seminars_pi1[onetimeaccount]</parameter>
      </part>
    </uriparts>
-

@@ -31,4 +31,3 @@ Known problems and limitations
    :glob:
 
    ReportingBugs/Index
-

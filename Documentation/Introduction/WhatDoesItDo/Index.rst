@@ -29,4 +29,3 @@ accounts for other extensions. Originally, this extension was created
 as a supplement to the extension  *Seminar Manager* (extension key:
 *seminars* ), but it can also be used for other extensions without
 problems.
-

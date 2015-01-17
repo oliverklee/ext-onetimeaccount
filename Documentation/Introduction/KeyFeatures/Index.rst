@@ -38,4 +38,3 @@ Key features
 - the code follows the TYPO3 coding guidelines
 
 - visual design is done using XHTML templates and CSS
-

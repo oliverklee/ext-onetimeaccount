@@ -20,4 +20,3 @@ Development workflow and coding style guidelines
 
 The development workflow and the coding style guidelines for this
 extension are the in the manual of the extension  *oelib* .
-

@@ -27,4 +27,3 @@ Development
    ChangingOrCustomizingTheExtension/Index
    GettingTheExtensionFromGit/Index
    DevelopmentWorkflowAndCodingStyleGuidelines/Index
-

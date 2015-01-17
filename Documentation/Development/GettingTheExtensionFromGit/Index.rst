@@ -20,4 +20,3 @@ Getting the extension from GIT
 
 The extension's source code is hosted on the TYPO3 GIT:
 git://git.typo3.org/TYPO3CMS/Extensions/onetimeaccount.git
-

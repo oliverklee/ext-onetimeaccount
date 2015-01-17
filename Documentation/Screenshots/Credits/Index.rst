@@ -42,4 +42,3 @@ doing code reviews:
 - Sebastian Wittig (icons)
 
 - Thomas Gabler
-

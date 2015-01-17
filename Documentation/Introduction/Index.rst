@@ -18,9 +18,6 @@
 Introduction
 ------------
 
-If you like this extension, please submit a rating for it in the TER.
-
-
 .. toctree::
    :maxdepth: 5
    :titlesonly:
@@ -29,4 +26,3 @@ If you like this extension, please submit a rating for it in the TER.
    WhatDoesItDo/Index
    KeyFeatures/Index
    UnderTheHood/Index
-

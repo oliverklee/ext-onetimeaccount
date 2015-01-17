@@ -29,4 +29,3 @@ Screenshots
    LiveExamples/Index
    Credits/Index
    Sponsorship/Index
-

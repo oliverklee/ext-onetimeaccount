@@ -29,4 +29,3 @@ Usage
    ChangingTheCompanyFieldFromInputFieldToTextarea/Index
    ChangingAddressStreetFieldsFromTextareaToTextInputField/Index
    AddingFieldsToTheRegistrationForm/Index
-

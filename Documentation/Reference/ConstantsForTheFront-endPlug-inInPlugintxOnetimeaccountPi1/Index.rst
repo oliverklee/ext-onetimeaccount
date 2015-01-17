@@ -27,13 +27,13 @@ form plugin.tx\_onetimeaccount\_pi1. *property = value.*
 
    Property
          Property:
-   
+
    Data type
          Data type:
-   
+
    Description
          Description:
-   
+
    Default
          Default:
 
@@ -42,13 +42,13 @@ form plugin.tx\_onetimeaccount\_pi1. *property = value.*
 
    Property
          cssFile
-   
+
    Data type
          string
-   
+
    Description
          location of the CSS file (set as empty to not include the file)
-   
+
    Default
          EXT:onetimeaccount/pi1/onetimeaccount\_pi1.css
 
@@ -56,4 +56,3 @@ form plugin.tx\_onetimeaccount\_pi1. *property = value.*
 .. ###### END~OF~TABLE ######
 
 [tsref:plugin.tx\_onetimeaccount\_pi1]
-

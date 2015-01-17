@@ -80,4 +80,3 @@ Installing the extension
 #. If you're using all three extensions  *seminars* ,  *onetimeaccount*
    and  *cal\_ts\_service* , the extension  **seminarscalredirect** might
    be useful for you.
-

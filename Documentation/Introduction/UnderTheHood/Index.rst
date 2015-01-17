@@ -41,4 +41,3 @@ redirect will lead to the current page.
 
 For the country field, the default value configured for
 static\_info\_tables will be selected by default.
-
