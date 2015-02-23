@@ -1,6 +1,4 @@
-﻿
-
-.. ==================================================
+﻿.. ==================================================
 .. FOR YOUR INFORMATION
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
@@ -24,6 +22,9 @@ Known problems and limitations
 
 - Currently, the date of birth is not validated yet.
 
+- The form uses PrototypeJS. If you are using jQuery on your site, you will
+  either need to disable it on the page with the onetimeaccount plugin or
+  use jQuery in no-conflict mode.
 
 .. toctree::
    :maxdepth: 5

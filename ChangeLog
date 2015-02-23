@@ -12,6 +12,7 @@ Bug fixes:
 - [#4648] Drop early __destruct calls
 
 Changes:
+- [#5254] Document the Prototype/jQuery clash
 - [#5226] Convert the manual to ReST
 - [#5222] Require oelib 0.8.0
 - [#5219] Mark the extension as stable
