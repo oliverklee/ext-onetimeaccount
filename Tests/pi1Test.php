@@ -20,7 +20,7 @@
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_pi1Test extends tx_phpunit_testcase {
+class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	/**
 	 * @var tx_onetimeaccount_Tests_Fixtures_FakePi1
 	 */

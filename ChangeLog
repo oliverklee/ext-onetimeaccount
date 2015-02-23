@@ -18,6 +18,7 @@ Changes:
 - [#5176] Update maximum PHP version to 5.6
 
 Cleanup:
+- [#5252] Rename the unit test classes
 - [#5206] Drop the unset from tearDown()
 - [#5198] Make setUp and tearDown protected
 - [#5201] Convert intval/float to casts

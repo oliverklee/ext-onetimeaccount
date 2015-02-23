@@ -20,7 +20,7 @@
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
+class Tx_OneTimeAccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1 {
 	/**
 	 * @var array the simulated form date
 	 */
