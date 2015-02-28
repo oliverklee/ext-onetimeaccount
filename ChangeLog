@@ -20,6 +20,7 @@ Changes:
 - [#5176] Update maximum PHP version to 5.6
 
 Cleanup:
+- [#5263] Clean up the pi1 initialization
 - [#5205] Add wrappers for the GLOBALS
 - [#5252] Rename the unit test classes
 - [#5206] Drop the unset from tearDown()

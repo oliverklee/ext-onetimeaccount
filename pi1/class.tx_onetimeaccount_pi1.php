@@ -12,10 +12,6 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-require_once(PATH_formidableapi);
-
-require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_staticinfotables_pi1.php');
-
 /**
  * Plugin "One-time FE account creator".
  *
@@ -26,6 +22,13 @@ require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_statici
  * @author Niels Pardon <mail@niels-pardon.de>
  */
 class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
+	/**
+	 * make the plugin uncached
+	 *
+	 * @var bool
+	 */
+	public $pi_USER_INT_obj = TRUE;
+
 	/**
 	 * @var string same as class name
 	 */
@@ -88,6 +91,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	);
 
 	/**
+	 * The constructor.
+	 */
+	public function __construct() {
+		parent::__construct();
+
+		require_once(PATH_formidableapi);
+		require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_staticinfotables_pi1.php');
+	}
+
+	/**
 	 * Frees as much memory that has been used by this object as possible.
 	 */
 	public function __destruct() {
@@ -106,9 +119,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	public function main($content, array $configuration) {
 		$this->init($configuration);
 		$this->pi_initPIflexForm();
-
-		// disables caching
-		$this->pi_USER_INT_obj = 1;
 
 		$this->initializeFormFields();
 		$this->initializeForm();
