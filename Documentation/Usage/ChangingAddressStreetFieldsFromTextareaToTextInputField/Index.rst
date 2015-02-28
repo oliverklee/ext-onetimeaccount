@@ -25,3 +25,4 @@ This can easily be done via TS setup:
    plugin.tx_onetimeaccount_pi1.form.elements {
      address = renderlet:TEXT
    }
+

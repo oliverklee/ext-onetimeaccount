@@ -31,3 +31,4 @@ CoolURI configuration:
        <parameter>tx_seminars_pi1[onetimeaccount]</parameter>
      </part>
    </uriparts>
+

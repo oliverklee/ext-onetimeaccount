@@ -26,3 +26,4 @@ This can easily be done via TS setup:
      company = renderlet:TEXTAREA
      company.custom = rows="3" cols="20"
    }
+
