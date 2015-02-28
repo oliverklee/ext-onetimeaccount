@@ -24,8 +24,6 @@ Key features
 
 - automatic redirect after login
 
-- automatic configuration check
-
 - works with the *sb\_accessiblecontent* extension
 
 - currently full English, German, French, Dutch and Italian localization
