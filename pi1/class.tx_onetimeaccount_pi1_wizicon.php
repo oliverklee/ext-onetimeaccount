@@ -29,12 +29,14 @@ class tx_onetimeaccount_pi1_wizicon {
 	 * @return array modified array with wizard items
 	 */
 	public function proc(array $wizardItems) {
-		$localLanguage = $this->includeLocalLang();
+		$languageData = $this->includeLocalLang();
 
+		/** @var language $languageService */
+		$languageService = $GLOBALS['LANG'];
 		$wizardItems['plugins_tx_onetimeaccount_pi1'] = array(
 			'icon' => t3lib_extMgm::extRelPath('onetimeaccount') . 'pi1/ce_wiz.gif',
-			'title' => $GLOBALS['LANG']->getLLL('pi1_title', $localLanguage),
-			'description' => $GLOBALS['LANG']->getLLL('pi1_description', $localLanguage),
+			'title' => $languageService->getLLL('pi1_title', $languageData),
+			'description' => $languageService->getLLL('pi1_description', $languageData),
 			'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=onetimeaccount_pi1',
 		);
 
@@ -48,16 +50,15 @@ class tx_onetimeaccount_pi1_wizicon {
 	 * @return array the found language labels
 	 */
 	public function includeLocalLang() {
+		$languageFile = t3lib_extMgm::extPath('onetimeaccount') . 'locallang.xml';
+		/** @var language $languageService */
+		$languageService = $GLOBALS['LANG'];
 		if (class_exists('t3lib_l10n_parser_Llxml')) {
 			/** @var $xmlParser t3lib_l10n_parser_Llxml */
 			$xmlParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
-			$localLanguage = $xmlParser->getParsedData(
-				t3lib_extMgm::extPath('onetimeaccount') . 'locallang.xml', $GLOBALS['LANG']->lang
-			);
+			$localLanguage = $xmlParser->getParsedData($languageFile, $languageService->lang);
 		} else {
-			$localLanguage = t3lib_div::readLLXMLfile(
-				t3lib_extMgm::extPath('onetimeaccount') . 'locallang.xml', $GLOBALS['LANG']->lang
-			);
+			$localLanguage = t3lib_div::readLLXMLfile($languageFile, $languageService->lang);
 		}
 
 		return $localLanguage;

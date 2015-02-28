@@ -370,10 +370,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 
 		/** @var $frontEndUser tslib_feUserAuth */
-		$frontEndUser = $GLOBALS['TSFE']->fe_user;
+		$frontEndUser = $this->getFrontEndController()->fe_user;
 		$frontEndUser->checkPid = FALSE;
 
-		$authenticationData = $GLOBALS['TSFE']->fe_user->getAuthInfoArray();
+		$authenticationData = $this->getFrontEndController()->fe_user->getAuthInfoArray();
 		$userData = $frontEndUser->fetchUserRecord($authenticationData['db_user'], $this->getFormData('username'));
 		$frontEndUser->user = $userData;
 		$frontEndUser->createUserSession($userData);
@@ -437,8 +437,10 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$numberToAppend = 1;
 		$result = $initialUsername;
 
+		/** @var $frontEndUser tslib_feUserAuth */
+		$frontEndUser = $this->getFrontEndController()->fe_user;
 		// Modify the user name until we have a unique user name.
-		while ($GLOBALS['TSFE']->fe_user->getRawUserByName($result)) {
+		while ($frontEndUser->getRawUserByName($result)) {
 			$result = $initialUsername . '-' . $numberToAppend;
 			$numberToAppend++;
 		}
@@ -508,9 +510,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return array processed form data, will not be empty
 	 */
 	public function preprocessFormData(array $formData) {
-		$this->log(
-			'Submitted data is valid on FE page: ' . $GLOBALS['TSFE']->id
-		);
+		$this->log('Submitted data is valid on FE page: ' . $this->getFrontEndController()->id);
 
 		$result = $this->setCurrentUserGroup($formData);
 		$result = $this->buildFullName($result);
