@@ -1,6 +1,7 @@
 1.0.0 - currently working on
 
 Features:
+- [#2399] Hide flexforms fields of not installed extensions
 
 Bug fixes:
 - [#5256] Add a dependency to felogin
