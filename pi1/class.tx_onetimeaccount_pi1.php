@@ -413,11 +413,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$this->log('Applying mod_security workaround.', 1);
 
 		$matches = array();
-		preg_match(
-			'/(^\?|&)(redirect_url=)([^&]+)(&|$)/',
-			$GLOBALS['_SERVER']['REQUEST_URI'],
-			$matches
-		);
+		preg_match('/(^\\?|&)(redirect_url=)([^&]+)(&|$)/', $GLOBALS['_SERVER']['REQUEST_URI'], $matches);
 		if (!empty($matches)) {
 			$GLOBALS['_GET']['redirect_url'] = rawurldecode($matches[3]);
 		}
@@ -581,13 +577,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         correctly
 	 */
 	public function listUserGroups() {
-		$listOfUserGroupUids = $this->getConfValueString(
-			'groupForNewFeUsers',
-			's_general'
-		);
-		if (($listOfUserGroupUids == '')
-			|| !preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)
-		) {
+		$listOfUserGroupUids = $this->getConfValueString('groupForNewFeUsers', 's_general');
+		if (($listOfUserGroupUids === '') || !preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)) {
 			return array();
 		}
 
