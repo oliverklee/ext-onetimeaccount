@@ -4,6 +4,7 @@ Features:
 - [#2399] Hide flexforms fields of not installed extensions
 
 Bug fixes:
+- [#5148] Flexforms cannot be saved in 6.2
 - [#5256] Add a dependency to felogin
 - [#5162] Fix autologin feature to work with CMS 6.2.5+
 - [#5089] Bump TYPO3 CMS dependency to <= 6.2.99

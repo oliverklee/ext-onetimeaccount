@@ -17,7 +17,7 @@
 								<type>select</type>
 								<renderMode>checkbox</renderMode>
 								<minitems>0</minitems>
-								<maxitems>21</maxitems>
+								<maxitems>999</maxitems>
 								<itemsProcFunc>Tx_OneTimeAccount_BackEnd_FlexForms->getFieldsToDisplay</itemsProcFunc>
 							</config>
 						</TCEforms>
@@ -29,7 +29,7 @@
 								<type>select</type>
 								<renderMode>checkbox</renderMode>
 								<minitems>0</minitems>
-								<maxitems>18</maxitems>
+								<maxitems>999</maxitems>
 								<itemsProcFunc>Tx_OneTimeAccount_BackEnd_FlexForms->getFieldsToRequire</itemsProcFunc>
 							</config>
 						</TCEforms>
@@ -70,7 +70,7 @@
 							<config>
 								<type>select</type>
 								<size>1</size>
-								<minitems>1</minitems>
+								<minitems>0</minitems>
 								<maxitems>1</maxitems>
 								<items type="array">
 									<numIndex index="0" type="array">
