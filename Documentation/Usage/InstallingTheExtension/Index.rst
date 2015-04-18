@@ -22,24 +22,20 @@ Installing the extension
 
 #. Install the required extensions:
 
-#. Install ameos\_formidable . If you are using TYPO3 >= 4.7, you will
-   need the patched ameos\_formidable from `https://dl.dropboxusercontent
-   .com/u/27225645/Extensions/T3X\_ameos\_formidable-1\_1\_563-z-20140417
-   1623.t3x <https://dl.dropboxusercontent.com/u/27225645/Extensions
-   /T3X_ameos_formidable-1_1_563-z-201404171623.t3x>`_
+- **ameos\_formidable**: Please use the `patched ameos\_formidable
+  <https://dl.dropboxusercontent.com/u/27225645/Extensions/T3X_ameos_formidable-1_1_563-z-201404171623.t3x>`_.
 
-#. oelib
+#. **static\_info\_tables**
 
-#. static\_info\_tables
+#. **oelib**
 
-#. If you would like to have additional fields like gender, first/last
-   name (instead of one field for the complete name) or employment
-   status, install sr\_feuser\_register. It is not necessary to actually
-   place the sr\_feuser\_register FE plug-in on a page; the extension
-   just needs to be installed.
+#. If you would like to have additional fields like gender or employment
+   status, install the extension **sf\_register** or **sr\_feuser\_register**.
+   It is not necessary to actually place the FE plug-in on a page; the
+   extension just needs to be installed.
 
 #. If you would like to use the checkbox “Receive e-mails as HTML”, the
-   extension direct\_mail needs to be installed.
+   extension **direct\_mail** needs to be installed.
 
 #. Install/update this extension.
 
