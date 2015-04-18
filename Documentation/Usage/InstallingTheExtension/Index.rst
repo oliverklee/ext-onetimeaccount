@@ -22,7 +22,7 @@ Installing the extension
 
 #. Install the required extensions:
 
-- **ameos\_formidable**: Please use the `patched ameos\_formidable
+#. **ameos\_formidable**: Please use the `patched ameos\_formidable
   <https://dl.dropboxusercontent.com/u/27225645/Extensions/T3X_ameos_formidable-1_1_563-z-201404171623.t3x>`_.
 
 #. **static\_info\_tables**
