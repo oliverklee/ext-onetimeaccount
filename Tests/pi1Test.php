@@ -76,7 +76,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function getFormDataReturnsNonEmptyDataSetViaSetFormData() {
 		$this->fixture->setFormData(array('foo' => 'bar'));
 
-		$this->assertSame(
+		self::assertSame(
 			'bar',
 			$this->fixture->getFormData('foo')
 		);
@@ -94,7 +94,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'email');
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertSame(
+		self::assertSame(
 			'foo@example.com',
 			$this->fixture->createInitialUserName()
 		);
@@ -107,7 +107,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'somethingInvalid');
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertSame(
+		self::assertSame(
 			'foo@example.com',
 			$this->fixture->createInitialUserName()
 		);
@@ -120,7 +120,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'email');
 		$this->fixture->setFormData(array('email' => ''));
 
-		$this->assertSame(
+		self::assertSame(
 			'user',
 			$this->fixture->createInitialUserName()
 		);
@@ -133,7 +133,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array());
 
-		$this->assertSame(
+		self::assertSame(
 			'user',
 			$this->fixture->createInitialUserName()
 		);
@@ -146,7 +146,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('name' => 'John Doe'));
 
-		$this->assertSame(
+		self::assertSame(
 			'john.doe',
 			$this->fixture->createInitialUserName()
 		);
@@ -159,7 +159,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('name' => ' John Doe '));
 
-		$this->assertSame(
+		self::assertSame(
 			'john.doe',
 			$this->fixture->createInitialUserName()
 		);
@@ -172,7 +172,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => 'John', 'last_name' => 'Doe'));
 
-		$this->assertSame(
+		self::assertSame(
 			'john.doe',
 			$this->fixture->createInitialUserName()
 		);
@@ -185,7 +185,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => 'John', 'last_name' => ''));
 
-		$this->assertSame(
+		self::assertSame(
 			'john',
 			$this->fixture->createInitialUserName()
 		);
@@ -198,7 +198,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => '', 'last_name' => 'Doe'));
 
-		$this->assertSame(
+		self::assertSame(
 			'doe',
 			$this->fixture->createInitialUserName()
 		);
@@ -211,7 +211,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => 'John Sullivan', 'last_name' => 'Doe'));
 
-		$this->assertSame(
+		self::assertSame(
 			'john.sullivan.doe',
 			$this->fixture->createInitialUserName()
 		);
@@ -224,7 +224,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => 'Tom & Jerry', 'last_name' => 'Smith, Miller'));
 
-		$this->assertSame(
+		self::assertSame(
 			'tom.jerry.smith.miller',
 			$this->fixture->createInitialUserName()
 		);
@@ -237,7 +237,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('first_name' => 'Sölüläß', 'last_name' => 'Smith'));
 
-		$this->assertSame(
+		self::assertSame(
 			'sll.smith',
 			$this->fixture->createInitialUserName()
 		);
@@ -254,7 +254,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function getUserNameWithNonEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertNotSame(
+		self::assertNotSame(
 			'',
 			$this->fixture->getUserName()
 		);
@@ -266,7 +266,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function getUserNameWithNonEmptyEmailReturnsStringStartingWithEmail() {
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertRegExp(
+		self::assertRegExp(
 			'/^foo@example\.com/',
 			$this->fixture->getUserName()
 		);
@@ -279,7 +279,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setConfigurationValue('userNameSource', 'name');
 		$this->fixture->setFormData(array('name' => 'John Doe'));
 
-		$this->assertRegExp(
+		self::assertRegExp(
 			'/^john.doe/',
 			$this->fixture->getUserName()
 		);
@@ -295,7 +295,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		);
 		$this->fixture->setFormData(array('email' => 'foo@example.com'));
 
-		$this->assertNotSame(
+		self::assertNotSame(
 			'foo@example.com',
 			$this->fixture->getUserName()
 		);
@@ -307,7 +307,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function getUserNameWithEmptyEmailReturnsNonEmptyString() {
 		$this->fixture->setFormData(array('email' => ''));
 
-		$this->assertNotSame(
+		self::assertNotSame(
 			'',
 			$this->fixture->getUserName()
 		);
@@ -322,7 +322,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		);
 		$this->fixture->setFormData(array('email' => ''));
 
-		$this->assertNotSame(
+		self::assertNotSame(
 			'user',
 			$this->fixture->getUserName()
 		);
@@ -337,7 +337,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function getPasswordReturnsPasswordWithEightCharacters() {
-		$this->assertSame(
+		self::assertSame(
 			8,
 			strlen($this->fixture->getPassword())
 		);
@@ -355,7 +355,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
 		$GLOBALS['_POST']['redirect_url'] = $url;
 
-		$this->assertSame(
+		self::assertSame(
 			$url,
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
@@ -367,7 +367,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function loginUserAndCreateRedirectUrlWithForeignUrlReturnsCurrentUri() {
 		$GLOBALS['_POST']['redirect_url'] = 'http://google.com/';
 
-		$this->assertSame(
+		self::assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
@@ -379,7 +379,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function loginUserAndCreateRedirectUrlWithEmptyRedirectUrlReturnsCurrentUri() {
 		$GLOBALS['_POST']['redirect_url'] = '';
 
-		$this->assertSame(
+		self::assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
@@ -391,7 +391,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function loginUserAndCreateRedirectUrlWithMissingRedirectUrlReturnsCurrentUri() {
 		unset($GLOBALS['_POST']['redirect_url']);
 
-		$this->assertSame(
+		self::assertSame(
 			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
@@ -405,7 +405,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$this->fixture->loginUserAndCreateRedirectUrl();
 
-		$this->assertFalse(
+		self::assertFalse(
 			$GLOBALS['TSFE']->fe_user->checkPid
 		);
 	}
@@ -418,11 +418,11 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$this->fixture->setFormData(array('username' => $userName));
 
 		$authenticationData = array('some authentication data');
-		$this->frontEndUser->expects($this->once())->method('getAuthInfoArray')->will($this->returnValue(array('db_user' => $authenticationData)));
+		$this->frontEndUser->expects(self::once())->method('getAuthInfoArray')->will(self::returnValue(array('db_user' => $authenticationData)));
 
 		$userData = array('uid' => 42, 'username' => $userName, 'password' => 'secret');
-		$this->frontEndUser->expects($this->once())->method('fetchUserRecord')->with($authenticationData, $userName)->will($this->returnValue($userData));
-		$this->frontEndUser->expects($this->once())->method('createUserSession')->with($userData);
+		$this->frontEndUser->expects(self::once())->method('fetchUserRecord')->with($authenticationData, $userName)->will(self::returnValue($userData));
+		$this->frontEndUser->expects(self::once())->method('createUserSession')->with($userData);
 
 		$this->fixture->loginUserAndCreateRedirectUrl();
 	}
@@ -438,7 +438,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateStringFieldForNotRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertTrue(
+		self::assertTrue(
 			$this->fixture->validateStringField(
 				array('elementName' => 'address')
 			)
@@ -461,7 +461,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateStringFieldForNonEmptyRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertTrue(
+		self::assertTrue(
 			$this->fixture->validateStringField(
 				array('elementName' => 'name', 'value' => 'foo')
 			)
@@ -474,7 +474,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateStringFieldForEmptyRequiredFieldReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertFalse(
+		self::assertFalse(
 			$this->fixture->validateStringField(
 				array('elementName' => 'name', 'value' => '')
 			)
@@ -492,7 +492,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateIntegerFieldForRequiredFieldValueZeroReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertFalse(
+		self::assertFalse(
 			$this->fixture->validateIntegerField(
 				array('elementName' => 'name', 'value' => 0)
 			)
@@ -505,7 +505,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateIntegerFieldForNonRequiredFieldReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertTrue(
+		self::assertTrue(
 			$this->fixture->validateIntegerField(
 				array('elementName' => 'address')
 			)
@@ -518,7 +518,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateIntegerFieldForRequiredFieldValueNonZeroReturnsTrue() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertTrue(
+		self::assertTrue(
 			$this->fixture->validateIntegerField(
 				array('elementName' => 'name', 'value' => 1)
 			)
@@ -531,7 +531,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function validateIntegerFieldForRequiredFieldValueStringReturnsFalse() {
 		$this->fixture->setConfigurationValue('requiredFeUserFields', 'name');
 
-		$this->assertFalse(
+		self::assertFalse(
 			$this->fixture->validateIntegerField(
 				array('elementName' => 'name', 'value' => 'foo')
 			)
@@ -560,7 +560,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', ''
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			0,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -574,7 +574,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', 'foo'
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			0,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -588,7 +588,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'systemFolderForNewFeUserRecords', 42
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			42,
 			$this->fixture->getPidForNewUserRecords()
 		);
@@ -611,7 +611,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
@@ -623,7 +623,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function listUserGroupsForStringConfiguredAsUserGroupReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
 
-		$this->assertSame(
+		self::assertSame(
 			array(),
 			$this->fixture->listUserGroups()
 		);
@@ -644,7 +644,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
 			$this->fixture->listUserGroups()
 		);
@@ -665,7 +665,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'groupForNewFeUsers', $userGroupUid1 . ', ' . $userGroupUid2
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			array(
 				array('caption' => 'foo', 'value' => (string) $userGroupUid1),
 				array('caption' => 'bar', 'value' => (string) $userGroupUid2),
@@ -685,7 +685,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	public function listUserGroupsForGroupForNewUsersEmptyReturnsEmptyArray() {
 		$this->fixture->setConfigurationValue('groupForNewFeUsers', '');
 
-		$this->assertSame(
+		self::assertSame(
 			array(),
 			$this->fixture->listUserGroups()
 		);
@@ -703,7 +703,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('all_names', $fieldsToHide)
 		);
 	}
@@ -715,7 +715,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('gender', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('all_names', $fieldsToHide)
 		);
 	}
@@ -727,7 +727,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('name', 'gender', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('all_names', $fieldsToHide)
 		);
 	}
@@ -739,7 +739,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('name', 'gender', 'first_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('all_names', $fieldsToHide)
 		);
 	}
@@ -751,7 +751,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('name', 'first_name', 'last_name');
 		$this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('all_names', $fieldsToHide)
 		);
 	}
@@ -768,7 +768,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('zip', 'city');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('zip_only', $fieldsToHide)
 		);
 	}
@@ -780,7 +780,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array();
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('zip_only', $fieldsToHide)
 		);
 	}
@@ -792,7 +792,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('zip');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('zip_only', $fieldsToHide)
 		);
 	}
@@ -804,7 +804,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array('city');
 		$this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('zip_only', $fieldsToHide)
 		);
 	}
@@ -826,7 +826,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('usergroup', $fieldsToHide)
 		);
 	}
@@ -843,7 +843,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array();
 		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-		$this->assertTrue(
+		self::assertTrue(
 			in_array('usergroup', $fieldsToHide)
 		);
 	}
@@ -861,7 +861,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$fieldsToHide = array();
 		$this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-		$this->assertFalse(
+		self::assertFalse(
 			in_array('usergroup', $fieldsToHide)
 		);
 	}
@@ -884,7 +884,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'first_name' => 'foo', 'last_name' => 'bar'
 		));
 
-		$this->assertSame(
+		self::assertSame(
 			'foo bar',
 			$formData['name']
 		);
@@ -903,7 +903,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar'
 		));
 
-		$this->assertSame(
+		self::assertSame(
 			'foobar',
 			$formData['name']
 		);
@@ -924,7 +924,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$formData = $this->fixture->preprocessFormData(array('name' => 'bar'));
 
-		$this->assertSame(
+		self::assertSame(
 			(string) $userGroupUid,
 			$formData['usergroup']
 		);
@@ -948,7 +948,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			array('usergroup' => $userGroupUid)
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			$userGroupUid,
 			$formData['usergroup']
 		);
@@ -970,7 +970,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$formData = $this->fixture->preprocessFormData(array());
 
-		$this->assertSame(
+		self::assertSame(
 			$userGroupUid . ',' . $userGroupUid2,
 			$formData['usergroup']
 		);
@@ -993,7 +993,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			array('name' => 'bar', 'usergroup' => '')
 		);
 
-		$this->assertSame(
+		self::assertSame(
 			(string) $userGroupUid,
 			$formData['usergroup']
 		);
