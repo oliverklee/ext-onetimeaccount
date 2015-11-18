@@ -1,4 +1,4 @@
-﻿
+
 
 .. ==================================================
 .. FOR YOUR INFORMATION
@@ -18,7 +18,7 @@
 Installing the extension
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Make sure that you’re using at least PHP 5.3 and TYPO3 4.5.
+#. Make sure that you’re using at least PHP 5.5 and TYPO3 CMS 6.2.0.
 
 #. Install the required extensions:
 
@@ -37,7 +37,7 @@ Installing the extension
 #. If you would like to use the checkbox “Receive e-mails as HTML”, the
    extension **direct\_mail** needs to be installed.
 
-#. Install/update this extension.
+#. Install this extension.
 
 #. Remove the contents of the typo3temp/llxml/ and
    typo3conf/l10n/\*/onetimeaccount/ directories (if they exist).
