@@ -8,6 +8,7 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
 - [#5335] Make the calls to static PHPUnit methods static
