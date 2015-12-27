@@ -12,6 +12,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5407] Drop the old XCLASS footers
 - [#5335] Make the calls to static PHPUnit methods static
 
 1.0.0 - released 2015-03-15

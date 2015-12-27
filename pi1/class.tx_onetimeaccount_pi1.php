@@ -841,7 +841,3 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		t3lib_div::devLog($message, 'onetimeaccount', $severity);
 	}
 }
-
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']) {
-	require_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/pi1/class.tx_onetimeaccount_pi1.php']);
-}
