@@ -1,18 +1,10 @@
 <?php
 defined('TYPO3_MODE') or die('Access denied.');
 
-if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 6001000) {
-	t3lib_div::loadTCA('tt_content');
-}
-
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY . '_pi1']
 	= 'layout,select_key,pages,recursive';
 
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY . '_pi1'] = 'pi_flexform';
-
-if (t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version) < 6001000) {
-	t3lib_div::loadTCA('fe_users');
-}
 
 $GLOBALS['TCA']['fe_users']['columns']['company']['config'] = array(
 	'type' => 'text',
