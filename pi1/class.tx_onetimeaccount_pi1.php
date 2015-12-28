@@ -12,6 +12,9 @@
  * The TYPO3 project - inspiring people to share!
  */
 
+use SJBR\StaticInfoTables\PiBaseApi;
+use SJBR\StaticInfoTables\Utility\LocalizationUtility;
+
 /**
  * Plugin "One-time FE account creator".
  *
@@ -58,7 +61,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	private $requiredFormFields = array();
 
 	/**
-	 * @var tx_staticinfotables_pi1
+	 * @var PiBaseApi
 	 */
 	private $staticInfo = NULL;
 
@@ -97,7 +100,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		parent::__construct();
 
 		require_once(PATH_formidableapi);
-		require_once(t3lib_extMgm::extPath('static_info_tables') . 'pi1/class.tx_staticinfotables_pi1.php');
 	}
 
 	/**
@@ -319,17 +321,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		if ($parameters['alpha3']) {
 			$result = $defaultCountryCode;
 		} else {
-			if (class_exists('SJBR\\StaticInfoTables\\Utility\\LocalizationUtility')) {
-				$currentLanguageCode = Tx_Oelib_ConfigurationRegistry::get('config')->getAsString('language');
-				$identifiers = array('iso' => $defaultCountryCode);
-				$result = \SJBR\StaticInfoTables\Utility\LocalizationUtility::getLabelFieldValue(
-					$identifiers, 'static_countries', $currentLanguageCode, TRUE
-				);
-			} else {
-				$result = tx_staticinfotables_div::getTitleFromIsoCode(
-					'static_countries', $defaultCountryCode, $this->staticInfo->getCurrentLanguage(), TRUE
-				);
-			}
+			$currentLanguageCode = Tx_Oelib_ConfigurationRegistry::get('config')->getAsString('language');
+			$identifiers = array('iso' => $defaultCountryCode);
+			$result = LocalizationUtility::getLabelFieldValue($identifiers, 'static_countries', $currentLanguageCode, TRUE);
 		}
 
 		return $result;
@@ -341,9 +335,8 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return void
 	 */
 	private function initStaticInfo() {
-		if (!$this->staticInfo) {
-			$this->staticInfo
-				= t3lib_div::makeInstance('tx_staticinfotables_pi1');
+		if ($this->staticInfo === null) {
+			$this->staticInfo = t3lib_div::makeInstance(PiBaseApi::class);
 			$this->staticInfo->init();
 		}
 	}

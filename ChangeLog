@@ -8,10 +8,12 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5417] Require static_info_tables >= 6.2.0
 - [#5416] Update the static_info_tables version dependencies
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5408] Drop version-specific code and class_exists
 - [#5407] Drop the old XCLASS footers
 - [#5335] Make the calls to static PHPUnit methods static
 
