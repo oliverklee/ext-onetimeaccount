@@ -14,6 +14,7 @@
 
 use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Plugin "One-time FE account creator".
@@ -136,7 +137,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return void
 	 */
 	protected function initializeForm() {
-		$this->form = t3lib_div::makeInstance('tx_ameosformidable');
+		$this->form = GeneralUtility::makeInstance('tx_ameosformidable');
 
 		$this->form->initFromTs(
 			$this,
@@ -163,7 +164,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return void
 	 */
 	protected function setFormFieldsToShow() {
-		$this->formFieldsToShow = t3lib_div::trimExplode(
+		$this->formFieldsToShow = GeneralUtility::trimExplode(
 			',',
 			$this->getConfValueString('feUserFieldsToDisplay', 's_general')
 		);
@@ -176,7 +177,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 * @return void
 	 */
 	private function setRequiredFormFields() {
-		$this->requiredFormFields = t3lib_div::trimExplode(
+		$this->requiredFormFields = GeneralUtility::trimExplode(
 			',',
 			$this->getConfValueString('requiredFeUserFields', 's_general')
 		);
@@ -192,7 +193,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         system, will not be empty in a correct configuration
 	 */
 	public function getTemplatePath() {
-		return t3lib_div::getFileAbsFileName(
+		return GeneralUtility::getFileAbsFileName(
 			$this->getConfValueString('templateFile', 's_template_special', TRUE)
 		);
 	}
@@ -336,7 +337,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 */
 	private function initStaticInfo() {
 		if ($this->staticInfo === null) {
-			$this->staticInfo = t3lib_div::makeInstance(PiBaseApi::class);
+			$this->staticInfo = GeneralUtility::makeInstance(PiBaseApi::class);
 			$this->staticInfo->init();
 		}
 	}
@@ -366,9 +367,9 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	public function loginUserAndCreateRedirectUrl() {
 		$this->workAroundModSecurity();
 
-		$url = t3lib_div::sanitizeLocalUrl((string) t3lib_div::_GP('redirect_url'));
+		$url = GeneralUtility::sanitizeLocalUrl((string) GeneralUtility::_GP('redirect_url'));
 		if ($url === '') {
-			$url = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+			$url = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
 			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
 		}
 
@@ -462,7 +463,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 
 			$lowercasedName = mb_strtolower($fullName, 'UTF-8');
 			$safeLowercasedName = preg_replace('/[^a-z ]/', '', $lowercasedName);
-			$userNameParts = t3lib_div::trimExplode(' ', $safeLowercasedName, TRUE);
+			$userNameParts = GeneralUtility::trimExplode(' ', $safeLowercasedName, TRUE);
 			$userName = implode('.', $userNameParts);
 		} else {
 			$userName = trim((string) $this->getFormData('email'));
@@ -601,7 +602,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 	 *         configuration
 	 */
 	public function getUncheckedUidsOfAllowedUserGroups() {
-		return t3lib_div::trimExplode(
+		return GeneralUtility::trimExplode(
 			',',
 			$this->getConfValueString('groupForNewFeUsers', 's_general'),
 			TRUE
@@ -831,6 +832,6 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			return;
 		}
 
-		t3lib_div::devLog($message, 'onetimeaccount', $severity);
+		GeneralUtility::devLog($message, 'onetimeaccount', $severity);
 	}
 }

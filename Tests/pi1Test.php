@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Test case.
@@ -352,7 +353,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	 * @test
 	 */
 	public function loginUserAndCreateRedirectUrlWithLocalRedirectUrlReturnsRedirectUrl() {
-		$url = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
+		$url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
 		$GLOBALS['_POST']['redirect_url'] = $url;
 
 		self::assertSame(
@@ -368,7 +369,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$GLOBALS['_POST']['redirect_url'] = 'http://google.com/';
 
 		self::assertSame(
-			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}
@@ -380,7 +381,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		$GLOBALS['_POST']['redirect_url'] = '';
 
 		self::assertSame(
-			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}
@@ -392,7 +393,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 		unset($GLOBALS['_POST']['redirect_url']);
 
 		self::assertSame(
-			t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'),
+			GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
 			$this->fixture->loginUserAndCreateRedirectUrl()
 		);
 	}

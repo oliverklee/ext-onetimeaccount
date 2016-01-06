@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class checks this extension's configuration for basic sanity.
@@ -83,7 +84,7 @@ class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
 			'This value specifies which form fields are required to be filled ' .
 				'in. Incorrect values will cause the user not to be able to ' .
 				'send the registration form.',
-			t3lib_div::trimExplode(
+			GeneralUtility::trimExplode(
 				',',
 				$this->objectToCheck->getConfValueString(
 					'feUserFieldsToDisplay', 's_general'

@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class provides functions for filling the flex-forms.
@@ -145,13 +146,9 @@ class Tx_OneTimeAccount_BackEnd_FlexForms {
 		}
 
 		$languageFilePath = t3lib_extMgm::extPath('onetimeaccount') . 'locallang_db.xml';
-		if (class_exists('t3lib_l10n_parser_Llxml')) {
-			/** @var $xmlParser t3lib_l10n_parser_Llxml */
-			$xmlParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
-			$this->languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
-		} else {
-			$this->languageLabels = t3lib_div::readLLXMLfile($languageFilePath, $this->getLanguageService()->lang);
-		}
+		/** @var $xmlParser t3lib_l10n_parser_Llxml */
+		$xmlParser = GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
+		$this->languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
 	}
 
 	/**

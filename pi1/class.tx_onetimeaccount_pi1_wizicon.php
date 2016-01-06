@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class that adds the wizard icon.
@@ -53,13 +54,9 @@ class tx_onetimeaccount_pi1_wizicon {
 		$languageFile = t3lib_extMgm::extPath('onetimeaccount') . 'locallang.xml';
 		/** @var language $languageService */
 		$languageService = $GLOBALS['LANG'];
-		if (class_exists('t3lib_l10n_parser_Llxml')) {
-			/** @var $xmlParser t3lib_l10n_parser_Llxml */
-			$xmlParser = t3lib_div::makeInstance('t3lib_l10n_parser_Llxml');
-			$localLanguage = $xmlParser->getParsedData($languageFile, $languageService->lang);
-		} else {
-			$localLanguage = t3lib_div::readLLXMLfile($languageFile, $languageService->lang);
-		}
+		/** @var $xmlParser t3lib_l10n_parser_Llxml */
+		$xmlParser = GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
+		$localLanguage = $xmlParser->getParsedData($languageFile, $languageService->lang);
 
 		return $localLanguage;
 	}
