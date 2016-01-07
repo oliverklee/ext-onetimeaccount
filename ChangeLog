@@ -8,6 +8,7 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5430] Change t3lib_extMgm to \TYPO3\CMS\Core\Utility\ExtensionManagementUtility
 - [#5425] Change t3lib_div into \TYPO3\CMS\Core\Utility\GeneralUtility
 - [#5417] Require static_info_tables >= 6.2.0
 - [#5416] Update the static_info_tables version dependencies

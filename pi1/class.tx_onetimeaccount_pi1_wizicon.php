@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -35,7 +36,7 @@ class tx_onetimeaccount_pi1_wizicon {
 		/** @var language $languageService */
 		$languageService = $GLOBALS['LANG'];
 		$wizardItems['plugins_tx_onetimeaccount_pi1'] = array(
-			'icon' => t3lib_extMgm::extRelPath('onetimeaccount') . 'pi1/ce_wiz.gif',
+			'icon' => ExtensionManagementUtility::extRelPath('onetimeaccount') . 'pi1/ce_wiz.gif',
 			'title' => $languageService->getLLL('pi1_title', $languageData),
 			'description' => $languageService->getLLL('pi1_description', $languageData),
 			'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=onetimeaccount_pi1',
@@ -51,7 +52,7 @@ class tx_onetimeaccount_pi1_wizicon {
 	 * @return array the found language labels
 	 */
 	public function includeLocalLang() {
-		$languageFile = t3lib_extMgm::extPath('onetimeaccount') . 'locallang.xml';
+		$languageFile = ExtensionManagementUtility::extPath('onetimeaccount') . 'locallang.xml';
 		/** @var language $languageService */
 		$languageService = $GLOBALS['LANG'];
 		/** @var $xmlParser t3lib_l10n_parser_Llxml */

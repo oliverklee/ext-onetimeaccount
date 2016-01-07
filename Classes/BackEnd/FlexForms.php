@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -122,13 +123,13 @@ class Tx_OneTimeAccount_BackEnd_FlexForms {
 	 */
 	protected function getAvailableFieldNames() {
 		$availableFieldNames = $this->fieldsFromSystemExtensions;
-		if (t3lib_extMgm::isLoaded('sr_feuser_register')) {
+		if (ExtensionManagementUtility::isLoaded('sr_feuser_register')) {
 			$availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromSrFrontEndUserRegister);
 		}
-		if (t3lib_extMgm::isLoaded('sf_register')) {
+		if (ExtensionManagementUtility::isLoaded('sf_register')) {
 			$availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromSfRegister);
 		}
-		if (t3lib_extMgm::isLoaded('direct_mail')) {
+		if (ExtensionManagementUtility::isLoaded('direct_mail')) {
 			$availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromDirectMail);
 		}
 
@@ -145,7 +146,7 @@ class Tx_OneTimeAccount_BackEnd_FlexForms {
 			return;
 		}
 
-		$languageFilePath = t3lib_extMgm::extPath('onetimeaccount') . 'locallang_db.xml';
+		$languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'locallang_db.xml';
 		/** @var $xmlParser t3lib_l10n_parser_Llxml */
 		$xmlParser = GeneralUtility::makeInstance('t3lib_l10n_parser_Llxml');
 		$this->languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
