@@ -12,6 +12,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Test case.
@@ -42,7 +43,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
 
-		$GLOBALS['TSFE'] = $this->getMock('tslib_fe', array(), array(), '', FALSE);
+		$GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, array(), array(), '', FALSE);
 		$this->frontEndUser = $this->getMock(
 			'tslib_feUserAuth', array('getAuthInfoArray', 'fetchUserRecord', 'createUserSession')
 		);
