@@ -8,6 +8,7 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5462] Change t3lib_l10n_parser_Llxml to LocallangXmlParser
 - [#5427] Change tslib_fe to TypoScriptFrontendController
 - [#5430] Change t3lib_extMgm to \TYPO3\CMS\Core\Utility\ExtensionManagementUtility
 - [#5425] Change t3lib_div into \TYPO3\CMS\Core\Utility\GeneralUtility
