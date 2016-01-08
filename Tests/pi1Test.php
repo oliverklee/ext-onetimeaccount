@@ -12,6 +12,7 @@
  * The TYPO3 project - inspiring people to share!
  */
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -34,7 +35,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	private $testingFramework = NULL;
 
 	/**
-	 * @var tslib_feUserAuth|PHPUnit_Framework_MockObject_MockObject
+	 * @var FrontendUserAuthentication|PHPUnit_Framework_MockObject_MockObject
 	 */
 	private $frontEndUser = NULL;
 
@@ -45,7 +46,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 
 		$GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, array(), array(), '', FALSE);
 		$this->frontEndUser = $this->getMock(
-			'tslib_feUserAuth', array('getAuthInfoArray', 'fetchUserRecord', 'createUserSession')
+			FrontendUserAuthentication::class, array('getAuthInfoArray', 'fetchUserRecord', 'createUserSession')
 		);
 		$GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 

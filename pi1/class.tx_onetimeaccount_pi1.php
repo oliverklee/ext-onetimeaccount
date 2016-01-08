@@ -15,6 +15,7 @@
 use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * Plugin "One-time FE account creator".
@@ -373,7 +374,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 			$this->log('redirect_url is empty, using the request URL: ' . $url, 2);
 		}
 
-		/** @var $frontEndUser tslib_feUserAuth */
+		/** @var FrontendUserAuthentication $frontEndUser */
 		$frontEndUser = $this->getFrontEndController()->fe_user;
 		$frontEndUser->checkPid = FALSE;
 
@@ -437,7 +438,7 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		$numberToAppend = 1;
 		$result = $initialUsername;
 
-		/** @var $frontEndUser tslib_feUserAuth */
+		/** @var FrontendUserAuthentication $frontEndUser */
 		$frontEndUser = $this->getFrontEndController()->fe_user;
 		// Modify the user name until we have a unique user name.
 		while ($frontEndUser->getRawUserByName($result)) {
