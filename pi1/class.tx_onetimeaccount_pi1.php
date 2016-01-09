@@ -21,7 +21,7 @@
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Niels Pardon <mail@niels-pardon.de>
  */
-class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
+class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_Interface_ConfigurationCheckable {
 	/**
 	 * make the plugin uncached
 	 *
@@ -839,6 +839,16 @@ class tx_onetimeaccount_pi1 extends tx_oelib_templatehelper {
 		}
 
 		t3lib_div::devLog($message, 'onetimeaccount', $severity);
+	}
+
+	/**
+	 * Returns the prefix for the configuration to check, e.g. "plugin.tx_seminars_pi1.".
+	 *
+	 * @return string the namespace prefix, will end with a dot
+	 */
+	public function getTypoScriptNamespace()
+	{
+		return 'plugin.tx_onetimeaccount_pi1.';
 	}
 }
 
