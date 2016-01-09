@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_configcheck extends tx_oelib_configcheck {
+class tx_onetimeaccount_configcheck extends Tx_Oelib_ConfigCheck {
 	/**
 	 * Checks the configuration for tx_onetimeaccount_pi1.
 	 *
