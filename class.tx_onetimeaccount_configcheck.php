@@ -133,11 +133,11 @@ class tx_onetimeaccount_configcheck extends Tx_Oelib_ConfigCheck {
 			'groupForNewFeUsers',
 			's_general'
 		);
-		$groupCounter = tx_oelib_db::selectSingle(
+		$groupCounter = Tx_Oelib_Db::selectSingle(
 			'COUNT(*) AS number',
 			'fe_groups',
 			'uid IN (' . $valueToCheck . ')' .
-				tx_oelib_db::enableFields('fe_groups')
+				Tx_Oelib_Db::enableFields('fe_groups')
 		);
 		$elementsInValueToCheck = count(
 			$this->objectToCheck->getUncheckedUidsOfAllowedUserGroups()

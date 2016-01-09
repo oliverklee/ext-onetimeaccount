@@ -578,11 +578,11 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
 		}
 
 		$result = array();
-		$groupData = tx_oelib_db::selectMultiple(
+		$groupData = Tx_Oelib_Db::selectMultiple(
 			'uid, title',
 			'fe_groups',
 			'uid IN(' . $listOfUserGroupUids . ')' .
-				tx_oelib_db::enableFields('fe_groups')
+				Tx_Oelib_Db::enableFields('fe_groups')
 		);
 
 		foreach ($groupData as $item) {
