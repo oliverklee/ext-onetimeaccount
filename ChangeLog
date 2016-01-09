@@ -9,6 +9,7 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5473] Change tx_oelib_configurationProxy to Tx_Oelib_ConfigurationProxy
 - [#5465] Change tslib_feUserAuth to \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
 - [#5462] Change t3lib_l10n_parser_Llxml to LocallangXmlParser
 - [#5427] Change tslib_fe to TypoScriptFrontendController

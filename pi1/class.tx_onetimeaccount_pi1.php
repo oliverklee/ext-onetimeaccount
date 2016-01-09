@@ -829,7 +829,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
 	 * @return void
 	 */
 	private function log($message, $severity = 0) {
-		if (!tx_oelib_configurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
+		if (!Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
 			return;
 		}
 

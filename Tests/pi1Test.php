@@ -40,7 +40,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	private $frontEndUser = NULL;
 
 	protected function setUp() {
-		tx_oelib_configurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', FALSE);
+		Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', FALSE);
 
 		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
 
@@ -57,7 +57,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 			)
 		);
 
-		$configurationProxy = tx_oelib_configurationProxy::getInstance('onetimeaccount');
+		$configurationProxy = Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount');
 		$configurationProxy->setAsBoolean('enableConfigCheck', FALSE);
 		$configurationProxy->setAsBoolean('enableLogging', FALSE);
 	}
