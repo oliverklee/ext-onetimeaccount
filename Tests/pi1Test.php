@@ -23,14 +23,14 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
+class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends PHPUnit_Framework_TestCase {
 	/**
 	 * @var tx_onetimeaccount_Tests_Fixtures_FakePi1
 	 */
 	private $fixture = NULL;
 
 	/**
-	 * @var tx_oelib_testingFramework
+	 * @var Tx_Oelib_TestingFramework
 	 */
 	private $testingFramework = NULL;
 
@@ -42,7 +42,7 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends tx_phpunit_testcase {
 	protected function setUp() {
 		Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', FALSE);
 
-		$this->testingFramework = new tx_oelib_testingFramework('tx_seminars');
+		$this->testingFramework = new Tx_Oelib_TestingFramework('tx_seminars');
 
 		$GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, array(), array(), '', FALSE);
 		$this->frontEndUser = $this->getMock(
