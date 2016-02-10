@@ -1,6 +1,7 @@
 1.1.0 - currently working on
 
 Features:
+- [#5653] Add a configuration for PDF rendering of the manual
 
 Bug fixes:
 - [#5235] Explicitly provide the configuration check namespaces
