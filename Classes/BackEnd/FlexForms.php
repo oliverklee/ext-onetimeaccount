@@ -14,6 +14,7 @@
 use TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * This class provides functions for filling the flex-forms.
@@ -168,7 +169,7 @@ class Tx_OneTimeAccount_BackEnd_FlexForms {
 	/**
 	 * Returns the language service.
 	 *
-	 * @return language
+	 * @return LanguageService
 	 */
 	protected function getLanguageService() {
 		return $GLOBALS['LANG'];
