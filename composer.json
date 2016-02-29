@@ -23,8 +23,8 @@
   "require": {
     "php": ">=5.5.0,<8.0",
     "typo3/cms-core": ">=6.2.0,<8.0",
-    "static_info_tables": ">=6.2.0",
-    "oelib": ">=0.9.50",
+    "sjbr/static-info-tables": ">=6.2.0",
+    "oelib": ">=0.9.52",
     "ameos_formidable": ">=1.1.564"
   },
   "require-dev": {
