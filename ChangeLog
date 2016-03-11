@@ -27,6 +27,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5360] Reformat the code to PSR-2
 - [#5658] Replace "language" in the PHPDoc
 - [#5657] Remove the byte order mark from the ReST files
 - [#5408] Drop version-specific code and class_exists
