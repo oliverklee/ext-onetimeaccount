@@ -28,7 +28,7 @@ $GLOBALS['TCA']['fe_users']['columns']['company']['config'] = array(
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     $_EXTKEY,
-    'pi1/static/',
+    'Configuration/TypoScript/',
     'One-time FE account creator'
 );
 
