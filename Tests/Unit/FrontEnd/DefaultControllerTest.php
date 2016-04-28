@@ -1,4 +1,6 @@
 <?php
+namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,6 +13,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+use OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures\FakeDefaultController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -21,28 +24,28 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends PHPUnit_Framework_TestCase
+class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var tx_onetimeaccount_Tests_Fixtures_FakePi1
+     * @var FakeDefaultController
      */
     private $fixture = null;
 
     /**
-     * @var Tx_Oelib_TestingFramework
+     * @var \Tx_Oelib_TestingFramework
      */
     private $testingFramework = null;
 
     /**
-     * @var FrontendUserAuthentication|PHPUnit_Framework_MockObject_MockObject
+     * @var FrontendUserAuthentication|\PHPUnit_Framework_MockObject_MockObject
      */
     private $frontEndUser = null;
 
     protected function setUp()
     {
-        Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', false);
+        \Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', false);
 
-        $this->testingFramework = new Tx_Oelib_TestingFramework('tx_seminars');
+        $this->testingFramework = new \Tx_Oelib_TestingFramework('tx_seminars');
 
         $GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, array(), array(), '', false);
         $this->frontEndUser = $this->getMock(
@@ -50,14 +53,14 @@ class Tx_OneTimeAccount_Tests_Unit_Pi1Test extends PHPUnit_Framework_TestCase
         );
         $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
-        $this->fixture = new tx_onetimeaccount_Tests_Fixtures_FakePi1(
+        $this->fixture = new FakeDefaultController(
             array(
                 'isStaticTemplateLoaded' => 1,
                 'userNameSource' => 'email',
             )
         );
 
-        $configurationProxy = Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount');
+        $configurationProxy = \Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount');
         $configurationProxy->setAsBoolean('enableConfigCheck', false);
         $configurationProxy->setAsBoolean('enableLogging', false);
     }

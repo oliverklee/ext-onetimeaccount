@@ -1,4 +1,5 @@
 <?php
+namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures;
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -15,10 +16,9 @@
 /**
  * Fake version of the plugin "One-time FE account creator".
  *
- *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class Tx_OneTimeAccount_Tests_Fixtures_FakePi1 extends tx_onetimeaccount_pi1
+class FakeDefaultController extends \tx_onetimeaccount_pi1
 {
     /**
      * @var array the simulated form date
