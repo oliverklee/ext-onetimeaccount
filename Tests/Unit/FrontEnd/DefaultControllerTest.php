@@ -476,7 +476,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function validateStringFieldForMissingFieldNameThrowsException()
     {
@@ -574,7 +574,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      *
-     * @expectedException InvalidArgumentException
+     * @expectedException \InvalidArgumentException
      */
     public function validateIntegerFieldForMissingFieldNameThrowsException()
     {
