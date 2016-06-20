@@ -47,7 +47,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public $extKey = 'onetimeaccount';
 
     /**
-     * @var tx_ameosformidable FORMidable object that creates the edit form
+     * @var \tx_mkforms_forms_Base
      */
     protected $form = null;
 
@@ -95,25 +95,6 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     );
 
     /**
-     * The constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        require_once(PATH_formidableapi);
-    }
-
-    /**
-     * Frees as much memory that has been used by this object as possible.
-     */
-    public function __destruct()
-    {
-        unset($this->form, $this->staticInfo);
-        parent::__destruct();
-    }
-
-    /**
      * Creates the plugin output.
      *
      * @param string $content (ignored)
@@ -141,12 +122,22 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     protected function initializeForm()
     {
-        $this->form = GeneralUtility::makeInstance('tx_ameosformidable');
+        \tx_rnbase::load(\tx_mkforms_forms_Base::class);
+        \tx_rnbase::load(\Tx_Rnbase_Database_Connection::class);
+        $this->form = GeneralUtility::makeInstance(\tx_mkforms_forms_Base::class);
+
+        /** @var \tx_rnbase_configurations $pluginConfiguration */
+        $pluginConfiguration = GeneralUtility::makeInstance(\tx_rnbase_configurations::class);
+        $pluginConfiguration->init($this->conf, $this->cObj, 'onetimeaccount', 'tx_onetimeaccount_pi1_form');
 
         $this->form->initFromTs(
             $this,
             $this->conf['form.'],
             false
+            ,
+            $pluginConfiguration
+            ,
+            'form.'
         );
     }
 
@@ -272,7 +263,6 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * If $parameters['alpha3'] is set, the alpha3 codes will be used as form
      * values. Otherwise, the localized country names will be used as values.
      *
-     * @param mixed $unused (unused)
      * @param array $parameters
      *        contents of the "params" XML child of the userobj node (needs to
      *        contain an element with the key "key")
@@ -282,7 +272,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         keys "caption" (for the localized title) and "value" (either the
      *         country's alpha3 code or the localized name)
      */
-    public function populateListCountries($unused, array $parameters)
+    public function populateListCountries(array $parameters)
     {
         $this->initStaticInfo();
         $allCountries = $this->staticInfo->initCountries('ALL', '', true);
@@ -312,7 +302,6 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * If $parameters['alpha3'] is set, the alpha3 code will be used as return
      * value. Otherwise, the localized country name will be used as return value.
      *
-     * @param mixed $unused (unused)
      * @param array $parameters
      *        contents of the "params" XML child of the userobj node (needs to
      *        contain an element with the key "key")
@@ -321,7 +310,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         the default country (either the country's alpha3 code or the
      *         localized name), will be empty if no default country has been set
      */
-    public function getDefaultCountry($unused, array $parameters)
+    public function getDefaultCountry(array $parameters)
     {
         $defaultCountryCode = Tx_Oelib_ConfigurationRegistry::get('plugin.tx_staticinfotables_pi1')
             ->getAsString('countryCode');
@@ -683,7 +672,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         foreach ($formFieldsToCheck as $formField) {
             $this->setMarker(
                 $formField . '_required',
-                (in_array($formField, $this->requiredFormFields))
+                in_array($formField, $this->requiredFormFields)
                     ? ' class="required"'
                     : ''
             );

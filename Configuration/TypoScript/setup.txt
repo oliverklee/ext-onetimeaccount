@@ -26,6 +26,7 @@ plugin.tx_onetimeaccount_pi1 {
 	# The source from which to generate the user login name (email or name)
 	userNameSource = email
 
+	form =< config.tx_mkforms
 	form {
 		meta {
 			name = One-time FE account generation form
@@ -68,6 +69,7 @@ plugin.tx_onetimeaccount_pi1 {
 			company = renderlet:TEXT
 			company {
 				name = company
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_company
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -78,13 +80,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_company
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = company
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = company
+							}
 						}
 					}
 				}
@@ -113,6 +117,7 @@ plugin.tx_onetimeaccount_pi1 {
 			title = renderlet:TEXT
 			title {
 				name = title
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_title
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -123,13 +128,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_title
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = title
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = title
+							}
 						}
 					}
 				}
@@ -138,6 +145,7 @@ plugin.tx_onetimeaccount_pi1 {
 			name = renderlet:TEXT
 			name {
 				name = name
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_name
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -165,13 +173,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_first_name
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = first_name
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = first_name
+							}
 						}
 					}
 				}
@@ -190,13 +200,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_last_name
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = last_name
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = last_name
+							}
 						}
 					}
 				}
@@ -205,6 +217,7 @@ plugin.tx_onetimeaccount_pi1 {
 			address = renderlet:TEXTAREA
 			address {
 				name = address
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_address
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -215,13 +228,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_address
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = address
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = address
+							}
 						}
 					}
 				}
@@ -230,6 +245,7 @@ plugin.tx_onetimeaccount_pi1 {
 			zip = renderlet:TEXT
 			zip {
 				name = zip
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_zip
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -240,13 +256,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zip
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = zip
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = zip
+							}
 						}
 					}
 				}
@@ -255,6 +273,7 @@ plugin.tx_onetimeaccount_pi1 {
 			city = renderlet:TEXT
 			city {
 				name = city
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_city
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -265,13 +284,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_city
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = city
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = city
+							}
 						}
 					}
 				}
@@ -280,6 +301,7 @@ plugin.tx_onetimeaccount_pi1 {
 			zone = renderlet:TEXT
 			zone {
 				name = zone
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_zone
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -290,13 +312,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_zone
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = zone
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = zone
+							}
 						}
 					}
 				}
@@ -305,6 +329,7 @@ plugin.tx_onetimeaccount_pi1 {
 			country = renderlet:LISTBOX
 			country {
 				name = country
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_country
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -325,13 +350,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = country
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = country
+							}
 						}
 					}
 				}
@@ -340,6 +367,7 @@ plugin.tx_onetimeaccount_pi1 {
 			static_info_country = renderlet:LISTBOX
 			static_info_country {
 				name = static_info_country
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_country
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -368,13 +396,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_country
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = static_info_country
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = static_info_country
+							}
 						}
 					}
 				}
@@ -383,6 +413,7 @@ plugin.tx_onetimeaccount_pi1 {
 			email = renderlet:TEXT
 			email {
 				name = email
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_email
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -393,13 +424,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_email
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = email
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = email
+							}
 						}
 					}
 					10.email.message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_malformed_email
@@ -409,6 +442,7 @@ plugin.tx_onetimeaccount_pi1 {
 			www = renderlet:TEXT
 			www {
 				name = www
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_www
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -419,13 +453,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_www
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = www
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = www
+							}
 						}
 					}
 				}
@@ -434,6 +470,7 @@ plugin.tx_onetimeaccount_pi1 {
 			telephone = renderlet:TEXT
 			telephone {
 				name = telephone
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_telephone
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -444,13 +481,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_telephone
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = telephone
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = telephone
+							}
 						}
 					}
 
@@ -464,6 +503,7 @@ plugin.tx_onetimeaccount_pi1 {
 
 			fax = renderlet:TEXT
 			fax {
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_fax
 				name = fax
 				process.userobj {
 					extension = this
@@ -475,13 +515,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_fax
-						extension = this
-						method = validateStringField
-						params {
-							10.name = elementName
-							10.value = fax
+						userobj {
+							extension = this
+							method = validateStringField
+							params {
+								10.name = elementName
+								10.value = fax
+							}
 						}
 					}
 
@@ -496,6 +538,7 @@ plugin.tx_onetimeaccount_pi1 {
 			date_of_birth = renderlet:DATE
 			date_of_birth {
 				name = date_of_birth
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_date_of_birth
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -511,13 +554,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_date_of_birth
-						extension = this
-						method = validateIntegerField
-						params {
-							10.name = elementName
-							10.value = date_of_birth
+						userobj {
+							extension = this
+							method = validateIntegerField
+							params {
+								10.name = elementName
+								10.value = date_of_birth
+							}
 						}
 					}
 				}
@@ -526,6 +571,7 @@ plugin.tx_onetimeaccount_pi1 {
 			status = renderlet:LISTBOX
 			status {
 				name = status
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_status
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -558,13 +604,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_status
-						extension = this
-						method = validateIntegerField
-						params {
-							10.name = elementName
-							10.value = status
+						userobj {
+							extension = this
+							method = validateIntegerField
+							params {
+								10.name = elementName
+								10.value = status
+							}
 						}
 					}
 				}
@@ -573,6 +621,7 @@ plugin.tx_onetimeaccount_pi1 {
 			usergroup = renderlet:RADIOBUTTON
 			usergroup {
 				name = usergroup
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_usergroup
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -594,10 +643,12 @@ plugin.tx_onetimeaccount_pi1 {
 				wrapitem = |<br/>
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_choose_usergroup
-						extension = this
-						method = isRadiobuttonSelected
+						userobj {
+							extension = this
+							method = isRadiobuttonSelected
+						}
 					}
 				}
 			}
@@ -605,6 +656,7 @@ plugin.tx_onetimeaccount_pi1 {
 			module_sys_dmail_newsletter = renderlet:CHECKSINGLE
 			module_sys_dmail_newsletter {
 				name = module_sys_dmail_newsletter
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_module_sys_dmail_newsletter
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -618,6 +670,7 @@ plugin.tx_onetimeaccount_pi1 {
 			module_sys_dmail_html = renderlet:CHECKSINGLE
 			module_sys_dmail_html {
 				name = module_sys_dmail_html
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_module_sys_dmail_html
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -631,6 +684,7 @@ plugin.tx_onetimeaccount_pi1 {
 			comments = renderlet:TEXTAREA
 			comments {
 				name = comments
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_comments
 				process.userobj {
 					extension = this
 					method = isFormFieldEnabled
@@ -641,13 +695,15 @@ plugin.tx_onetimeaccount_pi1 {
 				}
 				validators {
 					10 = validator:STANDARD
-					10.userobj {
+					10.custom {
 						message = LLL:EXT:onetimeaccount/pi1/locallang.xml:message_comments
-						extension = this
-						method = validateIntegerField
-						params {
-							10.name = elementName
-							10.value = comments
+						userobj {
+							extension = this
+							method = validateIntegerField
+							params {
+								10.name = elementName
+								10.value = comments
+							}
 						}
 					}
 				}
@@ -656,7 +712,7 @@ plugin.tx_onetimeaccount_pi1 {
 			button_submit = renderlet:SUBMIT
 			button_submit {
 				name = button_submit
-				label = ###LABEL_SUBMIT###
+				label = LLL:EXT:onetimeaccount/pi1/locallang.xml:label_submit
 			}
 
 			crdate = renderlet:PASSTHRU

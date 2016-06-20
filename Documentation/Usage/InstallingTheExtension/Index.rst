@@ -22,12 +22,11 @@ Installing the extension
 
 #. Install the required extensions:
 
-#. **ameos\_formidable**: Please use the `patched ameos\_formidable
-  <https://dl.dropboxusercontent.com/u/27225645/Extensions/T3X_ameos_formidable-1_1_564-z-201506082123.t3x>`_.
-
 #. **static\_info\_tables**
 
 #. **oelib**
+
+#. **mkforms**
 
 #. If you would like to have additional fields like gender or employment
    status, install the extension **sf\_register** or **sr\_feuser\_register**.

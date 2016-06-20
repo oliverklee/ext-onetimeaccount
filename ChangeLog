@@ -12,6 +12,7 @@ Bug fixes:
 - [#5281] Download link to FORMidable is split across several lines
 
 Changes:
+- [#5692] Switch from ameos_formidable to mkforms
 - [#5481] Set 7.9.99 as maximum TYPO3 version
 - [#5476] Change tx_oelib_db to Tx_Oelib_Db
 - [#5475] Change tx_oelib_configcheck to Tx_Oelib_ConfigCheck
