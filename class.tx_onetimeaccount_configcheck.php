@@ -225,7 +225,3 @@ class tx_onetimeaccount_configcheck extends Tx_Oelib_ConfigCheck
         return array_intersect($formFields, $fieldsFromFeUsers);
     }
 }
-
-if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']) {
-    require_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/onetimeaccount/class.tx_onetimeaccount_configcheck.php']);
-}
