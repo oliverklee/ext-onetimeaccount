@@ -207,7 +207,6 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $rawForm = $this->form->_render();
 
         $this->processTemplate($rawForm);
-        $this->setLabels();
         $this->hideUnusedFormFields();
 
         return $this->getSubpart();
