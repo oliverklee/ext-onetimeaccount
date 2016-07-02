@@ -41,8 +41,15 @@ Installing the extension
 #. Remove the contents of the typo3temp/llxml/ and
    typo3conf/l10n/\*/onetimeaccount/ directories (if they exist).
 
-#. Include this extension’s static template in your site template under
-   “Include static (from extensions)”.
+#. In your TS template, include this static template *before* the
+   onetimeaccount static template::
+   MKFORMS - Basics (mkforms)
+
+#. If your site does not use jQuery by default, also include the following
+   static template::
+   MKFORMS JQuery-JS (mkforms)
+
+#. Include the onetimeaccount static template *after* the MKForms templates.
 
 #. Create a system folder where the FE user accounts will be stored.
 

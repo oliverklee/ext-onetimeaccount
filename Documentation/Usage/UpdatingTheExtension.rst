@@ -23,7 +23,16 @@ Updating the extension from 1.0.x to 1.1.x
 #. Update the oelib and static\_info\_tables extensions to the latest
    versions.
 
-#. Update the onetimeaccount extension.
+#. Temporarily disable the onetimaccount extension.
 
-#. Remove the contents of the typo3temp/llxml/ and
-   typo3conf/l10n/\*/onetimeaccount/ directories (if they exist).
+#. Remove the ameos\_formidable extension.
+
+#. Update the onetimeaccount extension and re-enable it.
+
+#. In your TS template, include this static template *before* the
+   onetimeaccount static template::
+   MKFORMS - Basics (mkforms)
+
+#. If your site does not use jQuery by default, also include the following
+   static template::
+   MKFORMS JQuery-JS (mkforms)
