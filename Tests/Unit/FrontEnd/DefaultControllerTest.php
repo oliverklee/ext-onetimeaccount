@@ -27,6 +27,11 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var bool
+     */
+    protected $backupGlobals = false;
+
+    /**
      * @var FakeDefaultController
      */
     private $fixture = null;
@@ -53,12 +58,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
         $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
-        $this->fixture = new FakeDefaultController(
-            array(
-                'isStaticTemplateLoaded' => 1,
-                'userNameSource' => 'email',
-            )
-        );
+        $this->fixture = new FakeDefaultController();
 
         $configurationProxy = \Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount');
         $configurationProxy->setAsBoolean('enableConfigCheck', false);
