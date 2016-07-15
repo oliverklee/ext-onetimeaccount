@@ -5,6 +5,7 @@ Features:
 - [#5653] Add a configuration for PDF rendering of the manual
 
 Bug fixes:
+- [#5725] Make the locallang handling in the FlexForms faster and more robust
 - [#5661] Fix the static-info-tables dependency in the composer.json
 - [#5235] Explicitly provide the configuration check namespaces
 - [#5321] Update .htaccess to be Apache 2.4 compatible

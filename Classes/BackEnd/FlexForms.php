@@ -60,9 +60,12 @@ class FlexForms
     protected static $fieldsFromDirectMail = ['module_sys_dmail_newsletter', 'module_sys_dmail_html'];
 
     /**
+     * The labels are static in order to avoid loading the language file multiple times for multiple user functions called from
+     * the FlexForms.
+     *
      * @var string[]
      */
-    protected $languageLabels = [];
+    protected static $languageLabels = [];
 
     /**
      * Constructor.
@@ -76,54 +79,55 @@ class FlexForms
     }
 
     /**
-     * Returns the selectable items for the fields to display.
+     * Sets the selectable items for the fields to display in $configuration.
      *
      * @param string[][][] $configuration
      *
-     * @return string[][][]
+     * @return void
      *
      * @throws \BadFunctionCallException
      */
-    public function getFieldsToDisplay(array $configuration)
+    public function getFieldsToDisplay(array &$configuration)
     {
-        return $this->createCheckboxFieldsForKeys($configuration, $this->getAvailableFieldNames());
+        $this->createCheckboxFieldsForKeys($configuration, $this->getAvailableFieldNames());
     }
 
     /**
-     * Returns the selectable items for the fields to require.
+     * Sets the selectable items for the fields to require in $configuration.
      *
      * @param string[][][] $configuration
      *
-     * @return string[][][]
+     * @return void
      *
      * @throws \BadFunctionCallException
      */
-    public function getFieldsToRequire(array $configuration)
+    public function getFieldsToRequire(array &$configuration)
     {
         $availableFields = array_intersect($this->getAvailableFieldNames(), static::$fieldsForRequiring);
-        return $this->createCheckboxFieldsForKeys($configuration, $availableFields);
+        $this->createCheckboxFieldsForKeys($configuration, $availableFields);
     }
 
     /**
-     * Returns the selectable items for $availableFields.
+     * Sets the selectable items for $availableFields in in $configuration.
      *
      * @param string[][][] $configuration
      * @param string[] $availableFields
      *
-     * @return string[][][]
+     * @return void
      */
-    protected function createCheckboxFieldsForKeys(array $configuration, array $availableFields)
+    protected function createCheckboxFieldsForKeys(array &$configuration, array $availableFields)
     {
         /** @var string[][] $items */
         $items = [];
         foreach ($availableFields as $fieldName) {
             $label = $this->getLanguageLabelForFrontEndUserField($fieldName);
+            if ($label === '') {
+                $label = $fieldName;
+            }
             $items[] = [$label, $fieldName];
         }
 
         $configuration['items'] = $items;
-
-        return $configuration;
     }
 
     /**
@@ -150,7 +154,7 @@ class FlexForms
     }
 
     /**
-     * Reads the language labels into $this->languageLabels (if they have not been loaded yet).
+     * Reads the language labels into self::$languageLabels (if they have not been loaded yet).
      *
      * @return void
      *
@@ -159,14 +163,14 @@ class FlexForms
      */
     protected function loadLanguageLabels()
     {
-        if (count($this->languageLabels) > 0) {
+        if (count(self::$languageLabels) > 0) {
             return;
         }
 
         $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'locallang_db.xml';
         /** @var LocallangXmlParser $xmlParser */
         $xmlParser = GeneralUtility::makeInstance(LocallangXmlParser::class);
-        $this->languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
+        self::$languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
     }
 
     /**
@@ -180,7 +184,7 @@ class FlexForms
     {
         $fullKey = 'fe_users.' . $fieldName;
 
-        return $this->getLanguageService()->getLLL($fullKey, $this->languageLabels);
+        return $this->getLanguageService()->getLLL($fullKey, self::$languageLabels);
     }
 
     /**
