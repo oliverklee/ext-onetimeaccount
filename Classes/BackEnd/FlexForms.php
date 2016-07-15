@@ -29,47 +29,46 @@ class FlexForms
     /**
      * @var string[]
      */
-    protected $fieldsForRequiring = array(
+    protected static $fieldsForRequiring = [
         'company', 'title', 'name', 'first_name', 'last_name', 'address', 'zip', 'city', 'country', 'email', 'www',
         'telephone', 'fax', 'gender', 'static_info_country', 'date_of_birth', 'status', 'comments',
-    );
+    ];
 
     /**
      * @var string[]
      */
-    protected $fieldsFromSystemExtensions = array(
+    protected static $fieldsFromSystemExtensions = [
         'company', 'title', 'name', 'first_name', 'last_name', 'address', 'zip', 'city', 'country', 'email', 'www',
         'telephone', 'fax', 'usergroup',
-    );
+    ];
 
     /**
      * @var string[]
      */
-    protected $fieldsFromSrFrontEndUserRegister = array(
+    protected static $fieldsFromSrFrontEndUserRegister = [
         'gender', 'zone', 'static_info_country', 'date_of_birth', 'status', 'comments',
-    );
+    ];
 
     /**
      * @var string[]
      */
-    protected $fieldsFromSfRegister = array(
-        'gender', 'zone', 'static_info_country', 'date_of_birth', 'status', 'comments',
-    );
+    protected static $fieldsFromSfRegister = ['gender', 'zone', 'static_info_country', 'date_of_birth', 'status', 'comments'];
 
     /**
      * @var string[]
      */
-    protected $fieldsFromDirectMail = array(
-        'module_sys_dmail_newsletter', 'module_sys_dmail_html'
-    );
+    protected static $fieldsFromDirectMail = ['module_sys_dmail_newsletter', 'module_sys_dmail_html'];
 
     /**
      * @var string[]
      */
-    protected $languageLabels = array();
+    protected $languageLabels = [];
 
     /**
      * Constructor.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \BadFunctionCallException
      */
     public function __construct()
     {
@@ -82,6 +81,8 @@ class FlexForms
      * @param string[][][] $configuration
      *
      * @return string[][][]
+     *
+     * @throws \BadFunctionCallException
      */
     public function getFieldsToDisplay(array $configuration)
     {
@@ -94,10 +95,12 @@ class FlexForms
      * @param string[][][] $configuration
      *
      * @return string[][][]
+     *
+     * @throws \BadFunctionCallException
      */
     public function getFieldsToRequire(array $configuration)
     {
-        $availableFields = array_intersect($this->getAvailableFieldNames(), $this->fieldsForRequiring);
+        $availableFields = array_intersect($this->getAvailableFieldNames(), static::$fieldsForRequiring);
         return $this->createCheckboxFieldsForKeys($configuration, $availableFields);
     }
 
@@ -111,11 +114,11 @@ class FlexForms
      */
     protected function createCheckboxFieldsForKeys(array $configuration, array $availableFields)
     {
-        /** @var string[][] $result */
-        $items = array();
+        /** @var string[][] $items */
+        $items = [];
         foreach ($availableFields as $fieldName) {
             $label = $this->getLanguageLabelForFrontEndUserField($fieldName);
-            $items[] = array($label, $fieldName);
+            $items[] = [$label, $fieldName];
         }
 
         $configuration['items'] = $items;
@@ -127,18 +130,20 @@ class FlexForms
      * Returns the names of all relevant FE user fields that are available through installed extensions.
      *
      * @return string[]
+     *
+     * @throws \BadFunctionCallException
      */
     protected function getAvailableFieldNames()
     {
-        $availableFieldNames = $this->fieldsFromSystemExtensions;
+        $availableFieldNames = static::$fieldsFromSystemExtensions;
         if (ExtensionManagementUtility::isLoaded('sr_feuser_register')) {
-            $availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromSrFrontEndUserRegister);
+            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromSrFrontEndUserRegister);
         }
         if (ExtensionManagementUtility::isLoaded('sf_register')) {
-            $availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromSfRegister);
+            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromSfRegister);
         }
         if (ExtensionManagementUtility::isLoaded('direct_mail')) {
-            $availableFieldNames = array_merge($availableFieldNames, $this->fieldsFromDirectMail);
+            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromDirectMail);
         }
 
         return array_unique($availableFieldNames);
@@ -148,10 +153,13 @@ class FlexForms
      * Reads the language labels into $this->languageLabels (if they have not been loaded yet).
      *
      * @return void
+     *
+     * @throws \BadFunctionCallException
+     * @throws \InvalidArgumentException
      */
     protected function loadLanguageLabels()
     {
-        if (!empty($this->languageLabels)) {
+        if (count($this->languageLabels) > 0) {
             return;
         }
 
@@ -171,6 +179,7 @@ class FlexForms
     protected function getLanguageLabelForFrontEndUserField($fieldName)
     {
         $fullKey = 'fe_users.' . $fieldName;
+
         return $this->getLanguageService()->getLLL($fullKey, $this->languageLabels);
     }
 
