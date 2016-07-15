@@ -1,4 +1,6 @@
 <?php
+namespace OliverKlee\Onetimeaccount\BackEnd;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -11,18 +13,18 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
 use TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
- * This class provides functions for filling the flex-forms.
- *
+ * This class provides functions for filling the FlexForms.
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class Tx_OneTimeAccount_BackEnd_FlexForms
+class FlexForms
 {
     /**
      * @var string[]

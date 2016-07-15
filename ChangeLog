@@ -28,6 +28,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5727] Namespace Tx_OneTimeAccount_BackEnd_FlexForms
 - [#5726] Move the FlexForms configuration to Configuration/FlexForms
 - [#5705] Make the TCA cacheable
 - [#5697] Namespace the unit test and the fixture

@@ -18,7 +18,7 @@
 								<renderMode>checkbox</renderMode>
 								<minitems>0</minitems>
 								<maxitems>999</maxitems>
-								<itemsProcFunc>Tx_OneTimeAccount_BackEnd_FlexForms->getFieldsToDisplay</itemsProcFunc>
+								<itemsProcFunc>OliverKlee\Onetimeaccount\BackEnd\FlexForms->getFieldsToDisplay</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</feUserFieldsToDisplay>
@@ -30,7 +30,7 @@
 								<renderMode>checkbox</renderMode>
 								<minitems>0</minitems>
 								<maxitems>999</maxitems>
-								<itemsProcFunc>Tx_OneTimeAccount_BackEnd_FlexForms->getFieldsToRequire</itemsProcFunc>
+								<itemsProcFunc>OliverKlee\Onetimeaccount\BackEnd\FlexForms->getFieldsToRequire</itemsProcFunc>
 							</config>
 						</TCEforms>
 					</requiredFeUserFields>
