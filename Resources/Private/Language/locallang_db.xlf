@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-07-18T21:08:52Z" product-name="onetimeaccount">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.list_type_pi1" xml:space="preserve">
+				<source>One-time FE account creator</source>
+			</trans-unit>
+			<trans-unit id="fe_users.company" xml:space="preserve">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="fe_users.gender" xml:space="preserve">
+				<source>Gender</source>
+			</trans-unit>
+			<trans-unit id="fe_users.title" xml:space="preserve">
+				<source>Department/Title</source>
+			</trans-unit>
+			<trans-unit id="fe_users.name" xml:space="preserve">
+				<source>Full name</source>
+			</trans-unit>
+			<trans-unit id="fe_users.first_name" xml:space="preserve">
+				<source>First name</source>
+			</trans-unit>
+			<trans-unit id="fe_users.last_name" xml:space="preserve">
+				<source>Last name</source>
+			</trans-unit>
+			<trans-unit id="fe_users.address" xml:space="preserve">
+				<source>Street and street number</source>
+			</trans-unit>
+			<trans-unit id="fe_users.zip" xml:space="preserve">
+				<source>ZIP code</source>
+			</trans-unit>
+			<trans-unit id="fe_users.city" xml:space="preserve">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="fe_users.zone" xml:space="preserve">
+				<source>Federal state/region</source>
+			</trans-unit>
+			<trans-unit id="fe_users.country" xml:space="preserve">
+				<source>Country (core)</source>
+			</trans-unit>
+			<trans-unit id="fe_users.static_info_country" xml:space="preserve">
+				<source>Country (static_info_tables)</source>
+			</trans-unit>
+			<trans-unit id="fe_users.email" xml:space="preserve">
+				<source>E-mail address</source>
+			</trans-unit>
+			<trans-unit id="fe_users.www" xml:space="preserve">
+				<source>Homepage</source>
+			</trans-unit>
+			<trans-unit id="fe_users.telephone" xml:space="preserve">
+				<source>Phone number</source>
+			</trans-unit>
+			<trans-unit id="fe_users.fax" xml:space="preserve">
+				<source>Fax number</source>
+			</trans-unit>
+			<trans-unit id="fe_users.date_of_birth" xml:space="preserve">
+				<source>Date of birth</source>
+			</trans-unit>
+			<trans-unit id="fe_users.status" xml:space="preserve">
+				<source>Occupational status</source>
+			</trans-unit>
+			<trans-unit id="fe_users.module_sys_dmail_newsletter" xml:space="preserve">
+				<source>Subscribe to the newsletter</source>
+			</trans-unit>
+			<trans-unit id="fe_users.module_sys_dmail_html" xml:space="preserve">
+				<source>Enable HTML for the newsletter</source>
+			</trans-unit>
+			<trans-unit id="fe_users.usergroup" xml:space="preserve">
+				<source>User group</source>
+			</trans-unit>
+			<trans-unit id="fe_users.comments" xml:space="preserve">
+				<source>Comments</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

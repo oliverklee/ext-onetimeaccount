@@ -11,14 +11,14 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser;
+
+use TYPO3\CMS\Core\Localization\Parser\XliffParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
  * Class that adds the wizard icon.
- *
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
@@ -54,11 +54,11 @@ class tx_onetimeaccount_pi1_wizicon
      */
     public function includeLocalLang()
     {
-        $languageFile = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang.xml';
+        $languageFile = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang.xlf';
         /** @var LanguageService $languageService */
         $languageService = $GLOBALS['LANG'];
-        /** @var LocallangXmlParser $xmlParser */
-        $xmlParser = GeneralUtility::makeInstance(LocallangXmlParser::class);
+        /** @var XliffParser $xmlParser */
+        $xmlParser = GeneralUtility::makeInstance(XliffParser::class);
         $localLanguage = $xmlParser->getParsedData($languageFile, $languageService->lang);
 
         return $localLanguage;

@@ -1,4 +1,4 @@
-1.1.0 - currently working on
+2.0.0 - currently working on
 
 Features:
 - [#5239] Add a composer.json
@@ -29,6 +29,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5739] Convert the language files to XLIFF
 - [#5738] Move the locallang files to Resources/Private/Language/
 - [#5728] Clean up the FlexForms class
 - [#5727] Namespace Tx_OneTimeAccount_BackEnd_FlexForms

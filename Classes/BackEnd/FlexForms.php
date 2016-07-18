@@ -14,7 +14,7 @@ namespace OliverKlee\Onetimeaccount\BackEnd;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser;
+use TYPO3\CMS\Core\Localization\Parser\XliffParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
@@ -167,9 +167,9 @@ class FlexForms
             return;
         }
 
-        $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang_db.xml';
-        /** @var LocallangXmlParser $xmlParser */
-        $xmlParser = GeneralUtility::makeInstance(LocallangXmlParser::class);
+        $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang_db.xlf';
+        /** @var XliffParser $xmlParser */
+        $xmlParser = GeneralUtility::makeInstance(XliffParser::class);
         self::$languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
     }
 

@@ -6,13 +6,13 @@
 		<s_general>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.sheet_general</sheetTitle>
+					<sheetTitle>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.sheet_general</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<feUserFieldsToDisplay>
 						<TCEforms>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.feUserFieldsToDisplay</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.feUserFieldsToDisplay</label>
 							<config>
 								<type>select</type>
 								<renderMode>checkbox</renderMode>
@@ -24,7 +24,7 @@
 					</feUserFieldsToDisplay>
 					<requiredFeUserFields>
 						<TCEforms>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.requiredFeUserFields</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.requiredFeUserFields</label>
 							<config>
 								<type>select</type>
 								<renderMode>checkbox</renderMode>
@@ -36,7 +36,7 @@
 					</requiredFeUserFields>
 					<systemFolderForNewFeUserRecords>
 						<TCEforms>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.systemFolderForNewFeUserRecords</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.systemFolderForNewFeUserRecords</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -51,7 +51,7 @@
 					<groupForNewFeUsers>
 						<TCEforms>
 							<exclude>0</exclude>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.groupForNewFeUsers</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.groupForNewFeUsers</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -66,7 +66,7 @@
 					<userNameSource>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.userNameSource</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.userNameSource</label>
 							<config>
 								<type>select</type>
 								<size>1</size>
@@ -74,15 +74,15 @@
 								<maxitems>1</maxitems>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.userNameSource.fromTsSetup</numIndex>
+										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.userNameSource.fromTsSetup</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.userNameSource.email</numIndex>
+										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.userNameSource.email</numIndex>
 										<numIndex index="1">email</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.userNameSource.name</numIndex>
+										<numIndex index="0">LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.userNameSource.name</numIndex>
 										<numIndex index="1">name</numIndex>
 									</numIndex>
 								</items>
@@ -95,13 +95,13 @@
 		<s_template_special>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.sheet_template</sheetTitle>
+					<sheetTitle>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.sheet_template</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<templateFile>
 						<TCEforms>
-							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xml:flexforms_pi1.templateFile</label>
+							<label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:flexforms_pi1.templateFile</label>
 							<config>
 								<type>group</type>
 								<internal_type>file</internal_type>

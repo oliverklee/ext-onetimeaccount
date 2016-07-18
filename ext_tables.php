@@ -8,7 +8,7 @@ defined('TYPO3_MODE') or die('Access denied.');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
     [
-        'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang_db.xml:tt_content.list_type_pi1',
+        'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1',
         'onetimeaccount_pi1',
         \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('onetimeaccount') . 'ext_icon.gif',
     ],

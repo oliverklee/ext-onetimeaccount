@@ -30,7 +30,7 @@ The extension to be created should:
 
 #. add the field mobile\_phone to the fe\_users table,
 
-#. have a locallang.xml file containing the labels and the validation
+#. have a locallang.xlf file containing the labels and the validation
    messages for the field mobile\_phone,
 
 #. add the FORMidable configuration for the field mobile\_phone via
@@ -55,7 +55,7 @@ The FORMidable configuration to be added via TypoScript setup in step
            validators {
                    10 = validator:STANDARD
                    10.userobj {
-                           message = LLL:EXT:yourextensionkey/locallang.xml:message_mobile_phone
+                           message = LLL:EXT:yourextensionkey/locallang.xlf:message_mobile_phone
                            extension = this
                            method = validateStringField
                            params {
@@ -66,7 +66,7 @@ The FORMidable configuration to be added via TypoScript setup in step
                    20 = validator:PREG
                    20.pattern {
                            value = /^([\d\+][\d \-\+\/]*[\d\+])?$/
-                           message = LLL:EXT:yourextensionkey/locallang.xml:message_malformed_mobile_phone
+                           message = LLL:EXT:yourextensionkey/locallang.xlf:message_malformed_mobile_phone
                    }
            }
    }
