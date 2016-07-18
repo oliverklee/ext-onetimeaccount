@@ -48,14 +48,13 @@ class tx_onetimeaccount_pi1_wizicon
     }
 
     /**
-     * Reads the [extDir]/locallang.xml and returns the $LOCAL_LANG array found
-     * in that file.
+     * Reads the locallang file and returns the $LOCAL_LANG array found in that file.
      *
      * @return array the found language labels
      */
     public function includeLocalLang()
     {
-        $languageFile = ExtensionManagementUtility::extPath('onetimeaccount') . 'locallang.xml';
+        $languageFile = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang.xml';
         /** @var LanguageService $languageService */
         $languageService = $GLOBALS['LANG'];
         /** @var LocallangXmlParser $xmlParser */

@@ -8,6 +8,8 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="pi1_title">One-time FE account</label>
+			<label index="pi1_description">One-time FE account creator</label>
 			<label index="flexforms_pi1.sheet_general">General</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay">FE user fields in the form:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Full name:</label>
@@ -73,6 +75,8 @@
 			<label index="message_malformed_email">Please enter a valid e-mail address.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
+			<label index="pi1_title">Einmal-FE-Account</label>
+			<label index="pi1_description">Einmal-FE-Account-Generator</label>
 			<label index="flexforms_pi1.sheet_general">Allgemein</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay">FE-User-Felder im Formular:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Vollständiger Name:</label>
@@ -138,6 +142,8 @@
 			<label index="message_malformed_email">Bitte geben Sie eine gültige E-Mail Adresse an.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
+			<label index="pi1_title">Compte FE à usage unique</label>
+			<label index="pi1_description">Créateur de compte FE à usage unique</label>
 			<label index="flexforms_pi1.sheet_general">Généralités</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay">Champs d'utilisateurs FE dans le formulaire:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Nom complet:</label>
@@ -186,6 +192,8 @@
 			<label index="message_choose_usergroup">Veuillez choisir un groupe d'utilisateurs.</label>
 		</languageKey>
 		<languageKey index="it" type="array">
+			<label index="pi1_title">Account FE one-time</label>
+			<label index="pi1_description">Creazione di account FE one-time</label>
 			<label index="flexforms_pi1.sheet_general">Generali</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay">Campi degli utenti di FE nella form:</label>
 			<label index="flexforms_pi1.feUserFieldsToDisplay.name">Nome completo:</label>

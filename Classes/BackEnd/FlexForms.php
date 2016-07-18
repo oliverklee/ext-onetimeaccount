@@ -167,7 +167,7 @@ class FlexForms
             return;
         }
 
-        $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'locallang_db.xml';
+        $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang_db.xml';
         /** @var LocallangXmlParser $xmlParser */
         $xmlParser = GeneralUtility::makeInstance(LocallangXmlParser::class);
         self::$languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
