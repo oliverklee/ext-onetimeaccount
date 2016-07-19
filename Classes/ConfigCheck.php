@@ -11,15 +11,15 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class checks this extension's configuration for basic sanity.
  *
- *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_configcheck extends Tx_Oelib_ConfigCheck
+class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
 {
     /**
      * Checks the configuration for tx_onetimeaccount_pi1.
