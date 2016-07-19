@@ -1,4 +1,6 @@
 <?php
+namespace OliverKlee\Onetimeaccount\BackEnd;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -22,7 +24,7 @@ use TYPO3\CMS\Lang\LanguageService;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class tx_onetimeaccount_pi1_wizicon
+class ContentElementWizard
 {
     /**
      * Processes the wizard items array.

@@ -5,8 +5,8 @@
 $extensionPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('onetimeaccount');
 return array(
     'oliverklee\\onetimeaccount\\backend\\flexforms' => $extensionPath . 'Classes/BackEnd/FlexForms.php',
+    'oliverklee\\onetimeaccount\\backend\\contentelementwizard' => $extensionPath . 'Classes/BackEnd/ContentElementWizard.php',
     'oliverklee\\onetimeaccount\\tests\\unit\\frontend\\fixtures\\fakedefaultcontroller' => $extensionPath . 'Tests/Unit/FrontEnd/Fixtures/FakeDefaultController.php',
     'tx_onetimeaccount_configcheck' => $extensionPath . 'Classes/ConfigCheck.php',
     'tx_onetimeaccount_pi1' => $extensionPath . 'pi1/class.tx_onetimeaccount_pi1.php',
-    'tx_onetimeaccount_pi1_wizicon' => $extensionPath . 'pi1/class.tx_onetimeaccount_pi1_wizicon.php',
 );

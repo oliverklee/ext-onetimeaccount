@@ -22,7 +22,7 @@ defined('TYPO3_MODE') or die('Access denied.');
 );
 
 if (TYPO3_MODE === 'BE') {
-    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['tx_onetimeaccount_pi1_wizicon']
+    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][\OliverKlee\Onetimeaccount\BackEnd\ContentElementWizard::class]
         = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('onetimeaccount')
-            . 'pi1/class.tx_onetimeaccount_pi1_wizicon.php';
+            . 'Classes/BackEnd/ContentElementWizard.php';
 }
