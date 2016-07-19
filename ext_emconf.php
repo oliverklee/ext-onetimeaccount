@@ -29,13 +29,13 @@ $EM_CONF[$_EXTKEY] = [
     'clearCacheOnLoad' => 0,
     'lockType' => '',
     'author_company' => 'oliverklee.de',
-    'version' => '1.0.52',
+    'version' => '2.0.0',
     'constraints' => [
         'depends' => [
             'php' => '5.5.0-7.0.99',
             'typo3' => '6.2.0-7.9.99',
             'mkforms' => '2.0.0-2.99.99',
-            'oelib' => '0.9.52-1.0.99',
+            'oelib' => '1.0.0-1.99.99',
             'static_info_tables' => '6.2.0-',
         ],
         'conflicts' => [
@@ -46,8 +46,6 @@ $EM_CONF[$_EXTKEY] = [
         ],
     ],
     '_md5_values_when_last_written' => '',
-    'suggests' => [
-    ],
     'autoload' => [
         'classmap' => ['Classes', 'pi1', 'Tests'],
     ],
