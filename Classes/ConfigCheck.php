@@ -72,10 +72,10 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
                 'Incorrect values will cause those fields to not get ' .
                 'validated correctly.',
             $this->getAvailableFields(
-                array(
+                [
                     'gender', 'usergroup', 'module_sys_dmail_newsletter',
                     'module_sys_dmail_html',
-                )
+                ]
             )
         );
 
@@ -175,7 +175,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'This value specifies how to generate the user name.' .
                 'An incorrect value might cause the generated user names look ' .
                 'different than intended.',
-            array('email', 'name')
+            ['email', 'name']
         );
     }
 
@@ -190,9 +190,9 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
      *
      * @return array list of available field names, will not be empty
      */
-    private function getAvailableFields(array $excludeFields = array())
+    private function getAvailableFields(array $excludeFields = [])
     {
-        $providedFields = array(
+        $providedFields = [
             'company',
             'gender',
             'title',
@@ -215,7 +215,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'module_sys_dmail_html',
             'usergroup',
             'comments',
-        );
+        ];
         $formFields = array_diff($providedFields, $excludeFields);
         $fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
 

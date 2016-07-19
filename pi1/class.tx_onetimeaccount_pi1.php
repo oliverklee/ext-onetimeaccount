@@ -54,12 +54,12 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     /**
      * @var array names of the form fields to show
      */
-    private $formFieldsToShow = array();
+    private $formFieldsToShow = [];
 
     /**
      * @var array names of the form fields that are required to be filled in
      */
-    private $requiredFormFields = array();
+    private $requiredFormFields = [];
 
     /**
      * @var PiBaseApi
@@ -69,7 +69,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     /**
      * @var array the fields available in the form
      */
-    private static $availableFormFields = array(
+    private static $availableFormFields = [
         'company',
         'gender',
         'title',
@@ -92,7 +92,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         'module_sys_dmail_html',
         'usergroup',
         'comments',
-    );
+    ];
 
     /**
      * Creates the plugin output.
@@ -133,10 +133,8 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $this->form->initFromTs(
             $this,
             $this->conf['form.'],
-            false
-            ,
-            $pluginConfiguration
-            ,
+            false,
+            $pluginConfiguration,
             'form.'
         );
     }
@@ -276,20 +274,20 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $this->initStaticInfo();
         $allCountries = $this->staticInfo->initCountries('ALL', '', true);
 
-        $result = array();
+        $result = [];
         // Add an empty item at the top so we won't have Afghanistan (the first
         // entry) pre-selected for empty values.
-        $result[] = array(
+        $result[] = [
             'caption' => '',
-            'value' => ''
-        );
+            'value' => '',
+        ];
 
         foreach ($allCountries as $alpha3Code => $currentCountryName) {
-            $result[] = array(
+            $result[] = [
                 'caption' => $currentCountryName,
                 'value' => (isset($parameters['alpha3']))
-                    ? $alpha3Code : $currentCountryName
-            );
+                    ? $alpha3Code : $currentCountryName,
+            ];
         }
 
         return $result;
@@ -323,7 +321,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             $result = $defaultCountryCode;
         } else {
             $currentLanguageCode = Tx_Oelib_ConfigurationRegistry::get('config')->getAsString('language');
-            $identifiers = array('iso' => $defaultCountryCode);
+            $identifiers = ['iso' => $defaultCountryCode];
             $result = LocalizationUtility::getLabelFieldValue($identifiers, 'static_countries', $currentLanguageCode, true);
         }
 
@@ -410,7 +408,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         }
         $this->log('Applying mod_security workaround.', 1);
 
-        $matches = array();
+        $matches = [];
         preg_match('/(^\\?|&)(redirect_url=)([^&]+)(&|$)/', $GLOBALS['_SERVER']['REQUEST_URI'], $matches);
         if (!empty($matches)) {
             $GLOBALS['_GET']['redirect_url'] = rawurldecode($matches[3]);
@@ -552,7 +550,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
 
         $result = $formData;
 
-        if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
+        if (!$this->isFormFieldEnabled(['elementname' => 'usergroup'])) {
             $result['usergroup'] = $this->getConfValueString(
                 'groupForNewFeUsers',
                 's_general');
@@ -585,10 +583,10 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     {
         $listOfUserGroupUids = $this->getConfValueString('groupForNewFeUsers', 's_general');
         if (($listOfUserGroupUids === '') || !preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)) {
-            return array();
+            return [];
         }
 
-        $result = array();
+        $result = [];
         $groupData = Tx_Oelib_Db::selectMultiple(
             'uid, title',
             'fe_groups',
@@ -597,10 +595,10 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         );
 
         foreach ($groupData as $item) {
-            $result[] = array(
+            $result[] = [
                 'caption' => $item['title'],
                 'value' => $item['uid'],
-            );
+            ];
         }
 
         return $result;
@@ -634,7 +632,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     public function isRadiobuttonSelected(array $radiogroupValue)
     {
-        if (!$this->isFormFieldEnabled(array('elementname' => 'usergroup'))) {
+        if (!$this->isFormFieldEnabled(['elementname' => 'usergroup'])) {
             return true;
         }
 
@@ -663,10 +661,10 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     {
         $formFieldsToCheck = array_diff(
             self::$availableFormFields,
-            array(
+            [
                 'usergroup', 'gender', 'module_sys_dmail_newsletter',
                 'module_sys_dmail_html',
-            )
+            ]
         );
         foreach ($formFieldsToCheck as $formField) {
             $this->setMarker(
@@ -800,7 +798,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     protected function setAllNamesSubpartVisibility(array &$formFieldsToHide)
     {
-        $nameRelatedFields = array('name', 'first_name', 'last_name', 'gender');
+        $nameRelatedFields = ['name', 'first_name', 'last_name', 'gender'];
 
         $visibleNameFields = array_diff(
             $nameRelatedFields,

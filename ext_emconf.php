@@ -10,7 +10,7 @@
  * writing. "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
     'title' => 'One-time FE account',
     'description' => 'This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.',
     'category' => 'plugin',
@@ -30,25 +30,25 @@ $EM_CONF[$_EXTKEY] = array(
     'lockType' => '',
     'author_company' => 'oliverklee.de',
     'version' => '1.0.52',
-    'constraints' => array(
-        'depends' => array(
+    'constraints' => [
+        'depends' => [
             'php' => '5.5.0-7.0.99',
             'typo3' => '6.2.0-7.9.99',
             'mkforms' => '2.0.0-2.99.99',
             'oelib' => '0.9.52-1.0.99',
             'static_info_tables' => '6.2.0-',
-        ),
-        'conflicts' => array(
+        ],
+        'conflicts' => [
             'kb_md5fepw' => '0.0.0-',
-        ),
-        'suggests' => array(
+        ],
+        'suggests' => [
             'sr_feuser_register' => '2.2.0-',
-        ),
-    ),
-    '_md5_values_when_last_written' => '',
-    'suggests' => array(
-    ),
-    'autoload' => [
-        'classmap' => ['Classes', 'pi1', 'Tests']
+        ],
     ],
-);
+    '_md5_values_when_last_written' => '',
+    'suggests' => [
+    ],
+    'autoload' => [
+        'classmap' => ['Classes', 'pi1', 'Tests'],
+    ],
+];

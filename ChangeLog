@@ -29,6 +29,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5745] Autoformat the code
 - [#5743] Move the content element wizard to Classes/
 - [#5742] Move the configuration check class to Classes/
 - [#5741] Move the resources from pi1/ to Resources/

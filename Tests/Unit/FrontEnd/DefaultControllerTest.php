@@ -52,9 +52,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->testingFramework = new \Tx_Oelib_TestingFramework('tx_seminars');
 
-        $GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, array(), array(), '', false);
+        $GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, [], [], '', false);
         $this->frontEndUser = $this->getMock(
-            FrontendUserAuthentication::class, array('getAuthInfoArray', 'fetchUserRecord', 'createUserSession')
+            FrontendUserAuthentication::class, ['getAuthInfoArray', 'fetchUserRecord', 'createUserSession']
         );
         $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
@@ -81,7 +81,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function getFormDataReturnsNonEmptyDataSetViaSetFormData()
     {
-        $this->fixture->setFormData(array('foo' => 'bar'));
+        $this->fixture->setFormData(['foo' => 'bar']);
 
         self::assertSame(
             'bar',
@@ -99,7 +99,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForEmailSourceAndForNonEmptyEmailReturnsTheEmail()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'email');
-        $this->fixture->setFormData(array('email' => 'foo@example.com'));
+        $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertSame(
             'foo@example.com',
@@ -113,7 +113,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForInvaliedSourceAndForNonEmptyEmailReturnsTheEmail()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'somethingInvalid');
-        $this->fixture->setFormData(array('email' => 'foo@example.com'));
+        $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertSame(
             'foo@example.com',
@@ -127,7 +127,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForEmailSourceAndForEmptyEmailReturnsUser()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'email');
-        $this->fixture->setFormData(array('email' => ''));
+        $this->fixture->setFormData(['email' => '']);
 
         self::assertSame(
             'user',
@@ -141,7 +141,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForEmptyNameFieldsReturnsUser()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array());
+        $this->fixture->setFormData([]);
 
         self::assertSame(
             'user',
@@ -155,7 +155,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForNonEmptyFullNameFieldsReturnsLowercasedFullNameWithDots()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('name' => 'John Doe'));
+        $this->fixture->setFormData(['name' => 'John Doe']);
 
         self::assertSame(
             'john.doe',
@@ -169,7 +169,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForNonEmptyFullNameFieldsTrimsName()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('name' => ' John Doe '));
+        $this->fixture->setFormData(['name' => ' John Doe ']);
 
         self::assertSame(
             'john.doe',
@@ -183,7 +183,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForNonEmptyFirstAndLastReturnsFirstAndLastName()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => 'John', 'last_name' => 'Doe'));
+        $this->fixture->setFormData(['first_name' => 'John', 'last_name' => 'Doe']);
 
         self::assertSame(
             'john.doe',
@@ -197,7 +197,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForNonEmptyFirstAndEmptyLastReturnsFirstName()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => 'John', 'last_name' => ''));
+        $this->fixture->setFormData(['first_name' => 'John', 'last_name' => '']);
 
         self::assertSame(
             'john',
@@ -211,7 +211,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForEmptyFirstAndNonEmptyLastReturnsLastName()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => '', 'last_name' => 'Doe'));
+        $this->fixture->setFormData(['first_name' => '', 'last_name' => 'Doe']);
 
         self::assertSame(
             'doe',
@@ -225,7 +225,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceAndForTwoPartFirstNameReturnsBothParts()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => 'John Sullivan', 'last_name' => 'Doe'));
+        $this->fixture->setFormData(['first_name' => 'John Sullivan', 'last_name' => 'Doe']);
 
         self::assertSame(
             'john.sullivan.doe',
@@ -239,7 +239,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceDropsAmpersandAndComma()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => 'Tom & Jerry', 'last_name' => 'Smith, Miller'));
+        $this->fixture->setFormData(['first_name' => 'Tom & Jerry', 'last_name' => 'Smith, Miller']);
 
         self::assertSame(
             'tom.jerry.smith.miller',
@@ -253,7 +253,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function createInitialUserNameForNameSourceDropsSpecialCharacters()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('first_name' => 'Sölüläß', 'last_name' => 'Smith'));
+        $this->fixture->setFormData(['first_name' => 'Sölüläß', 'last_name' => 'Smith']);
 
         self::assertSame(
             'sll.smith',
@@ -270,7 +270,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function getUserNameWithNonEmptyEmailReturnsNonEmptyString()
     {
-        $this->fixture->setFormData(array('email' => 'foo@example.com'));
+        $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertNotSame(
             '',
@@ -283,7 +283,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function getUserNameWithNonEmptyEmailReturnsStringStartingWithEmail()
     {
-        $this->fixture->setFormData(array('email' => 'foo@example.com'));
+        $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertRegExp(
             '/^foo@example\.com/',
@@ -297,7 +297,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getUserNameForNameSourceWithNonEmptyEmailReturnsStringStartingWithEmail()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'name');
-        $this->fixture->setFormData(array('name' => 'John Doe'));
+        $this->fixture->setFormData(['name' => 'John Doe']);
 
         self::assertRegExp(
             '/^john.doe/',
@@ -312,9 +312,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     {
         $this->testingFramework->createFrontEndUser(
             $this->testingFramework->createFrontEndUserGroup(),
-            array('username' => 'foo@example.com')
+            ['username' => 'foo@example.com']
         );
-        $this->fixture->setFormData(array('email' => 'foo@example.com'));
+        $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertNotSame(
             'foo@example.com',
@@ -327,7 +327,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function getUserNameWithEmptyEmailReturnsNonEmptyString()
     {
-        $this->fixture->setFormData(array('email' => ''));
+        $this->fixture->setFormData(['email' => '']);
 
         self::assertNotSame(
             '',
@@ -341,9 +341,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getUserNameWithEmptyEmailAndDefaultUserNameAlreadyExistingReturnsNewUniqueUsernameString()
     {
         $this->testingFramework->createFrontEndUser(
-            '', array('username' => 'user')
+            '', ['username' => 'user']
         );
-        $this->fixture->setFormData(array('email' => ''));
+        $this->fixture->setFormData(['email' => '']);
 
         self::assertNotSame(
             'user',
@@ -443,12 +443,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function loginUserAndCreateRedirectUrlCreatesUserSessionWithProvidedUserName()
     {
         $userName = 'john.doe';
-        $this->fixture->setFormData(array('username' => $userName));
+        $this->fixture->setFormData(['username' => $userName]);
 
-        $authenticationData = array('some authentication data');
-        $this->frontEndUser->expects(self::once())->method('getAuthInfoArray')->will(self::returnValue(array('db_user' => $authenticationData)));
+        $authenticationData = ['some authentication data'];
+        $this->frontEndUser->expects(self::once())->method('getAuthInfoArray')->will(self::returnValue(['db_user' => $authenticationData]));
 
-        $userData = array('uid' => 42, 'username' => $userName, 'password' => 'secret');
+        $userData = ['uid' => 42, 'username' => $userName, 'password' => 'secret'];
         $this->frontEndUser->expects(self::once())->method('fetchUserRecord')->with($authenticationData, $userName)->will(self::returnValue($userData));
         $this->frontEndUser->expects(self::once())->method('createUserSession')->with($userData);
 
@@ -468,7 +468,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertTrue(
             $this->fixture->validateStringField(
-                array('elementName' => 'address')
+                ['elementName' => 'address']
             )
         );
     }
@@ -480,7 +480,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function validateStringFieldForMissingFieldNameThrowsException()
     {
-        $this->fixture->validateStringField(array());
+        $this->fixture->validateStringField([]);
     }
 
     /**
@@ -492,7 +492,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertTrue(
             $this->fixture->validateStringField(
-                array('elementName' => 'name', 'value' => 'foo')
+                ['elementName' => 'name', 'value' => 'foo']
             )
         );
     }
@@ -506,7 +506,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertFalse(
             $this->fixture->validateStringField(
-                array('elementName' => 'name', 'value' => '')
+                ['elementName' => 'name', 'value' => '']
             )
         );
     }
@@ -524,7 +524,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertFalse(
             $this->fixture->validateIntegerField(
-                array('elementName' => 'name', 'value' => 0)
+                ['elementName' => 'name', 'value' => 0]
             )
         );
     }
@@ -538,7 +538,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertTrue(
             $this->fixture->validateIntegerField(
-                array('elementName' => 'address')
+                ['elementName' => 'address']
             )
         );
     }
@@ -552,7 +552,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertTrue(
             $this->fixture->validateIntegerField(
-                array('elementName' => 'name', 'value' => 1)
+                ['elementName' => 'name', 'value' => 1]
             )
         );
     }
@@ -566,7 +566,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         self::assertFalse(
             $this->fixture->validateIntegerField(
-                array('elementName' => 'name', 'value' => 'foo')
+                ['elementName' => 'name', 'value' => 'foo']
             )
         );
     }
@@ -578,7 +578,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function validateIntegerFieldForMissingFieldNameThrowsException()
     {
-        $this->fixture->validateIntegerField(array());
+        $this->fixture->validateIntegerField([]);
     }
 
     /*
@@ -640,7 +640,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function listUserGroupsForExistingAndConfiguredUserGroupReturnsGroupTitleAndUid()
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup(
-            array('title' => 'foo')
+            ['title' => 'foo']
         );
 
         $this->fixture->setConfigurationValue(
@@ -648,7 +648,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         self::assertSame(
-            array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
+            [['caption' => 'foo', 'value' => (string) $userGroupUid]],
             $this->fixture->listUserGroups()
         );
     }
@@ -661,7 +661,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setConfigurationValue('groupForNewFeUsers', 'foo');
 
         self::assertSame(
-            array(),
+            [],
             $this->fixture->listUserGroups()
         );
     }
@@ -672,10 +672,10 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function listUserGroupsForTwoExistingButOnlyOneConfiguredUserGroupReturnsOnlyConfiguredGroup()
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup(
-            array('title' => 'foo')
+            ['title' => 'foo']
         );
         $this->testingFramework->createFrontEndUserGroup(
-            array('title' => 'bar')
+            ['title' => 'bar']
         );
 
         $this->fixture->setConfigurationValue(
@@ -683,7 +683,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         self::assertSame(
-            array(array('caption' => 'foo', 'value' => (string) $userGroupUid)),
+            [['caption' => 'foo', 'value' => (string) $userGroupUid]],
             $this->fixture->listUserGroups()
         );
     }
@@ -694,10 +694,10 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function listUserGroupsForTwoExistingButAndConfiguredUserGroupsReturnsBothConfiguredGroup()
     {
         $userGroupUid1 = $this->testingFramework->createFrontEndUserGroup(
-            array('title' => 'foo', 'crdate' => 1)
+            ['title' => 'foo', 'crdate' => 1]
         );
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup(
-            array('title' => 'bar', 'crdate' => 2)
+            ['title' => 'bar', 'crdate' => 2]
         );
 
         $this->fixture->setConfigurationValue(
@@ -705,10 +705,10 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         self::assertSame(
-            array(
-                array('caption' => 'foo', 'value' => (string) $userGroupUid1),
-                array('caption' => 'bar', 'value' => (string) $userGroupUid2),
-            ),
+            [
+                ['caption' => 'foo', 'value' => (string) $userGroupUid1],
+                ['caption' => 'bar', 'value' => (string) $userGroupUid2],
+            ],
             $this->fixture->listUserGroups()
         );
     }
@@ -725,7 +725,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setConfigurationValue('groupForNewFeUsers', '');
 
         self::assertSame(
-            array(),
+            [],
             $this->fixture->listUserGroups()
         );
     }
@@ -739,7 +739,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setAllNamesSubpartVisibilityForAllNameRelatedFieldsHiddenAddsAllNamesSubpartToHideFields()
     {
-        $fieldsToHide = array('name', 'gender', 'first_name', 'last_name');
+        $fieldsToHide = ['name', 'gender', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
         self::assertTrue(
@@ -752,7 +752,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setAllNamesSubpartVisibilityForVisibleNameFieldDoesNotAddAllNamesSubpartToHideFields()
     {
-        $fieldsToHide = array('gender', 'first_name', 'last_name');
+        $fieldsToHide = ['gender', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -765,7 +765,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setAllNamesSubpartVisibilityForVisibleFirstNameFieldDoesNotAddAllNamesSubpartToHideFields()
     {
-        $fieldsToHide = array('name', 'gender', 'last_name');
+        $fieldsToHide = ['name', 'gender', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -778,7 +778,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setAllNamesSubpartVisibilityForVisibleLastNameFieldDoesNotAddAllNamesSubpartToHideFields()
     {
-        $fieldsToHide = array('name', 'gender', 'first_name');
+        $fieldsToHide = ['name', 'gender', 'first_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -791,7 +791,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setAllNamesSubpartVisibilityForVisibleGenderFieldDoesNotAddAllNamesSubpartToHideFields()
     {
-        $fieldsToHide = array('name', 'first_name', 'last_name');
+        $fieldsToHide = ['name', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -808,7 +808,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setZipSubpartVisibilityForHiddenCityAndZipAddsZipOnlySubpartToHideFields()
     {
-        $fieldsToHide = array('zip', 'city');
+        $fieldsToHide = ['zip', 'city'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
         self::assertTrue(
@@ -821,7 +821,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setZipSubpartVisibilityForShownCityAndZipAddsZipOnlySubpartToHideFields()
     {
-        $fieldsToHide = array();
+        $fieldsToHide = [];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
         self::assertTrue(
@@ -834,7 +834,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setZipSubpartVisibilityForShownCityAndHiddenZipAddsZipOnlySubpartToHideFields()
     {
-        $fieldsToHide = array('zip');
+        $fieldsToHide = ['zip'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
         self::assertTrue(
@@ -847,7 +847,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function setZipSubpartVisibilityForHiddenCityAndShownZipDoesNotAddZipOnlySubpartToHideFields()
     {
-        $fieldsToHide = array('city');
+        $fieldsToHide = ['city'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -868,7 +868,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
             'groupForNewFeUsers',
             $this->testingFramework->getAutoIncrement('fe_groups')
         );
-        $fieldsToHide = array();
+        $fieldsToHide = [];
 
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
@@ -887,7 +887,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
             $this->testingFramework->createFrontEndUserGroup()
         );
 
-        $fieldsToHide = array();
+        $fieldsToHide = [];
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
         self::assertTrue(
@@ -906,7 +906,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
                 $this->testingFramework->createFrontEndUserGroup()
         );
 
-        $fieldsToHide = array();
+        $fieldsToHide = [];
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
         self::assertFalse(
@@ -928,9 +928,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
         $this->fixture->setFormFieldsToShow();
 
-        $formData = $this->fixture->preprocessFormData(array(
-            'first_name' => 'foo', 'last_name' => 'bar'
-        ));
+        $formData = $this->fixture->preprocessFormData([
+            'first_name' => 'foo', 'last_name' => 'bar',
+        ]);
 
         self::assertSame(
             'foo bar',
@@ -948,9 +948,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
         $this->fixture->setFormFieldsToShow();
 
-        $formData = $this->fixture->preprocessFormData(array(
-            'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar'
-        ));
+        $formData = $this->fixture->preprocessFormData([
+            'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar',
+        ]);
 
         self::assertSame(
             'foobar',
@@ -972,7 +972,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
         $this->fixture->setFormFieldsToShow();
 
-        $formData = $this->fixture->preprocessFormData(array('name' => 'bar'));
+        $formData = $this->fixture->preprocessFormData(['name' => 'bar']);
 
         self::assertSame(
             (string) $userGroupUid,
@@ -996,7 +996,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormFieldsToShow();
 
         $formData = $this->fixture->preprocessFormData(
-            array('usergroup' => $userGroupUid)
+            ['usergroup' => $userGroupUid]
         );
 
         self::assertSame(
@@ -1020,7 +1020,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
         $this->fixture->setFormFieldsToShow();
 
-        $formData = $this->fixture->preprocessFormData(array());
+        $formData = $this->fixture->preprocessFormData([]);
 
         self::assertSame(
             $userGroupUid . ',' . $userGroupUid2,
@@ -1043,7 +1043,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormFieldsToShow();
 
         $formData = $this->fixture->preprocessFormData(
-            array('name' => 'bar', 'usergroup' => '')
+            ['name' => 'bar', 'usergroup' => '']
         );
 
         self::assertSame(

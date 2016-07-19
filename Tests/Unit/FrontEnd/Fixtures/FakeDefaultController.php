@@ -1,5 +1,6 @@
 <?php
 namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -23,7 +24,7 @@ class FakeDefaultController extends \tx_onetimeaccount_pi1
     /**
      * @var array the simulated form date
      */
-    private $formData = array();
+    private $formData = [];
 
     /**
      * Gets the simulated form data for the field $key.
