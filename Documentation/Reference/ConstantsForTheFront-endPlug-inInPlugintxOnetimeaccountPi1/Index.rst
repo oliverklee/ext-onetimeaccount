@@ -50,7 +50,7 @@ form plugin.tx\_onetimeaccount\_pi1. *property = value.*
          location of the CSS file (set as empty to not include the file)
 
    Default
-         EXT:onetimeaccount/pi1/onetimeaccount\_pi1.css
+         EXT:onetimeaccount/Resources/Public/CSS/OneTimeAccount\.css
 
 
 .. ###### END~OF~TABLE ######

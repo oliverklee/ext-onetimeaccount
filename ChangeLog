@@ -29,6 +29,7 @@ Changes:
 - [#5406] Require TYPO3 6.2 and PHP 5.5
 
 Cleanup:
+- [#5741] Move the resources from pi1/ to Resources/
 - [#5739] Convert the language files to XLIFF
 - [#5738] Move the locallang files to Resources/Private/Language/
 - [#5728] Clean up the FlexForms class

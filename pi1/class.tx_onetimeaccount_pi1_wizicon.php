@@ -38,7 +38,8 @@ class tx_onetimeaccount_pi1_wizicon
         /** @var LanguageService $languageService */
         $languageService = $GLOBALS['LANG'];
         $wizardItems['plugins_tx_onetimeaccount_pi1'] = array(
-            'icon' => ExtensionManagementUtility::extRelPath('onetimeaccount') . 'pi1/ce_wiz.gif',
+            'icon' => ExtensionManagementUtility::extRelPath('onetimeaccount')
+                . 'Resources/Public/Icons/ContentElementWizard.gif',
             'title' => $languageService->getLLL('pi1_title', $languageData),
             'description' => $languageService->getLLL('pi1_description', $languageData),
             'params' => '&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=onetimeaccount_pi1',

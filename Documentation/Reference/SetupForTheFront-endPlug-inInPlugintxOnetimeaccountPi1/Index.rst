@@ -54,7 +54,7 @@ override the corresponding value from TS Setup.**
          File name of the HTML template
 
    Default
-         EXT:onetimeaccount/pi1/onetimeaccount\_pi1.html
+         EXT:onetimeaccount/Resources/Private/Templates/FrontEnd\.html
 
 
 .. container:: table-row
