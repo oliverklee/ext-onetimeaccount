@@ -24,8 +24,8 @@
     "php": ">=5.5.0,<8.0",
     "typo3/cms-core": ">=6.2.0,<8.0",
     "sjbr/static-info-tables": ">=6.2.0",
-    "oelib": ">=0.9.52",
-    "mkforms": "~2.0"
+    "oliverklee/oelib": "^1.0.0",
+    "mkforms": "~2.0 || ~3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.8.0"
