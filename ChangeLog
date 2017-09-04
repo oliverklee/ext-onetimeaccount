@@ -1,6 +1,7 @@
 2.0.1 - not released yet
 
 Bug fixes:
+- [#5808] Use the correct package name for mkforms in composer.json
 - [#5809] Allow mkforms 3.x
 
 2.0.0 - released 2016-07-19
