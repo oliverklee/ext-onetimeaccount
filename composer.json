@@ -1,7 +1,7 @@
 {
   "name": "oliverklee/onetimeaccount",
   "type": "typo3-cms-extension",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.",
   "keywords": ["login"],
   "homepage": "https://www.oliverklee.de",
