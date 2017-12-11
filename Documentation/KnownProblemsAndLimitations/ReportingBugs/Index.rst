@@ -16,10 +16,12 @@
 Reporting bugs
 ^^^^^^^^^^^^^^
 
-If you find any bugs or would like to propose a feature, please create
-yourself an account at the `bug tracker
-<https://bugs.oliverklee.com/>`_ and then report the issue under the
-product  *One-time FE account* . Make sure to provide the following
+If you find any bugs or would like to propose a feature, please
+report the issue in the bug tracker:
+
+https://github.com/oliverklee/ext-onetimeaccount/issues
+
+Make sure to provide the following
 data when reporting a bug:
 
 - the version of this extension which you're using

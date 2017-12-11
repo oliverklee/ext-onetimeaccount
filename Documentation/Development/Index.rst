@@ -25,5 +25,4 @@ Development
    :glob:
 
    ChangingOrCustomizingTheExtension/Index
-   GettingTheExtensionFromGit/Index
    DevelopmentWorkflowAndCodingStyleGuidelines/Index

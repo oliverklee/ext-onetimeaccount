@@ -4,9 +4,6 @@
   "description": "This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.",
   "keywords": ["login"],
   "homepage": "https://www.oliverklee.de",
-  "support": {
-    "issues": "https://bugs.oliverklee.com/"
-  },
   "authors": [
     {
       "name": "Oliver Klee",
@@ -14,6 +11,10 @@
       "homepage": "https://www.oliverklee.de"
     }
   ],
+  "support": {
+    "issues": "https://github.com/oliverklee/ext-onetimeaccount/issues",
+    "source": "https://github.com/oliverklee/ext-onetimeaccount"
+  },
   "license": "GPL-3.0+",
   "replace": {
     "onetimeaccount": "self.version",

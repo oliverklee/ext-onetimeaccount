@@ -25,4 +25,3 @@ Support and keeping up-to-date
    :glob:
 
    PaidServicesOfferedByTheAuthor/Index
-   FreePublicSupport/Index
