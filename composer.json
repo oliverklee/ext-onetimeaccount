@@ -1,36 +1,42 @@
 {
-  "name": "oliverklee/onetimeaccount",
-  "type": "typo3-cms-extension",
-  "description": "This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.",
-  "keywords": ["login"],
-  "homepage": "https://www.oliverklee.de",
-  "authors": [
-    {
-      "name": "Oliver Klee",
-      "role": "Developer",
-      "homepage": "https://www.oliverklee.de"
+    "name": "oliverklee/onetimeaccount",
+    "type": "typo3-cms-extension",
+    "description": "This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.",
+    "keywords": [
+        "login"
+    ],
+    "homepage": "https://www.oliverklee.de",
+    "authors": [
+        {
+            "name": "Oliver Klee",
+            "role": "Developer",
+            "homepage": "https://www.oliverklee.de"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/oliverklee/ext-onetimeaccount/issues",
+        "source": "https://github.com/oliverklee/ext-onetimeaccount"
+    },
+    "license": "GPL-3.0+",
+    "replace": {
+        "onetimeaccount": "self.version",
+        "typo3-ter/onetimeaccount": "self.version"
+    },
+    "require": {
+        "php": ">=5.5.0,<8.0",
+        "typo3/cms-core": ">=6.2.0,<8.0",
+        "sjbr/static-info-tables": ">=6.2.0",
+        "oliverklee/oelib": "^1.0.0",
+        "dmk/mkforms": "~2.0 || ~3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8.0"
+    },
+    "autoload": {
+        "classmap": [
+            "Classes",
+            "pi1",
+            "Tests"
+        ]
     }
-  ],
-  "support": {
-    "issues": "https://github.com/oliverklee/ext-onetimeaccount/issues",
-    "source": "https://github.com/oliverklee/ext-onetimeaccount"
-  },
-  "license": "GPL-3.0+",
-  "replace": {
-    "onetimeaccount": "self.version",
-    "typo3-ter/onetimeaccount": "self.version"
-  },
-  "require": {
-    "php": ">=5.5.0,<8.0",
-    "typo3/cms-core": ">=6.2.0,<8.0",
-    "sjbr/static-info-tables": ">=6.2.0",
-    "oliverklee/oelib": "^1.0.0",
-    "dmk/mkforms": "~2.0 || ~3.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "~4.8.0"
-  },
-  "autoload": {
-    "classmap": ["Classes", "pi1", "Tests"]
-  }
 }
