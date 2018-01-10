@@ -18,8 +18,6 @@
 Installing the extension
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Make sure that you’re using at least PHP 5.5 and TYPO3 CMS 6.2.0.
-
 #. Install the required extensions:
 
 #. **static\_info\_tables**

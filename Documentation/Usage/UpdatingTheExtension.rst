@@ -18,7 +18,7 @@
 Updating the extension from 1.0.x to 1.1.x
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. Make sure that you’re using at least PHP 5.5 and TYPO3 CMS 6.2.0.
+#. Make sure that you’re using at least TYPO3 CMS 6.2.0.
 
 #. Update the oelib and static\_info\_tables extensions to the latest
    versions.
