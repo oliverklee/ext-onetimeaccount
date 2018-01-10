@@ -1,17 +1,20 @@
 {
     "name": "oliverklee/onetimeaccount",
-    "description": "This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.",
+    "description": "Allow users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password).",
     "type": "typo3-cms-extension",
     "keywords": [
-        "login"
+        "account",
+        "login",
+        "onetime"
     ],
-    "homepage": "https://www.oliverklee.de",
-    "license": "GPL-3.0+",
+    "homepage": "https://www.oliverklee.de/typo3-services/typo3-extensions.html",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Oliver Klee",
-            "role": "Developer",
-            "homepage": "https://www.oliverklee.de"
+            "email": "typo3-coding@oliverklee.de",
+            "homepage": "https://www.oliverklee.de",
+            "role": "developer"
         }
     ],
     "support": {
@@ -19,8 +22,8 @@
         "source": "https://github.com/oliverklee/ext-onetimeaccount"
     },
     "require": {
-        "php": "^5.5.0 || ~7.0.0 || ~7.1.0",
-        "typo3/cms-core": "^6.2.0 || ^7.6.0 || ^8.7.0",
+        "php": "^5.5.0 || ~7.0.0",
+        "typo3/cms-core": "^6.2.0 || ^7.6.0",
         "sjbr/static-info-tables": "^6.2.0",
         "oliverklee/oelib": "^1.0.0",
         "dmk/mkforms": "~2.0 || ~3.0"
@@ -42,5 +45,17 @@
         "classmap": [
             "Tests"
         ]
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.typo3.org/"
+        }
+    ],
+    "config": {
+    },
+    "scripts": {
+    },
+    "extra": {
     }
 }

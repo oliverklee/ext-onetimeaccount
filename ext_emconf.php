@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'One-time FE account',
-    'description' => 'This extension allows users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password). This extension also supports saltedpasswords and rsaauth.',
+    'description' => 'Allow users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password).',
     'category' => 'plugin',
     'author' => 'Oliver Klee',
     'author_email' => 'typo3-coding@oliverklee.de',
@@ -32,7 +32,7 @@ $EM_CONF[$_EXTKEY] = [
     'version' => '2.0.1',
     'constraints' => [
         'depends' => [
-            'php' => '5.5.0-7.1.99',
+            'php' => '5.5.0-7.0.99',
             'typo3' => '6.2.0-7.9.99',
             'mkforms' => '2.0.0-3.99.99',
             'oelib' => '1.0.0-1.99.99',
@@ -47,6 +47,9 @@ $EM_CONF[$_EXTKEY] = [
     ],
     '_md5_values_when_last_written' => '',
     'autoload' => [
-        'classmap' => ['Classes', 'pi1', 'Tests'],
+        'classmap' => ['Classes', 'pi1'],
+    ],
+    'autoload.dev' => [
+        'classmap' => ['Tests'],
     ],
 ];
