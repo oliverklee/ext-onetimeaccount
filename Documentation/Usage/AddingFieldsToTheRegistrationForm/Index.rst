@@ -101,7 +101,3 @@ If you want to add other types of form fields (textareas, radio
 buttons, checkboxes, etc.) please have a look at the default
 TypoScript setup configuration of onetimeaccount in
 plugin.tx\_onetimeaccount\_pi1.form and/or the FORMidable manual.
-
-There also is an example extension “marijo” that adds a few
-radiobuttons to the FE users table and to the form. You can find it in
-the doc/ directory.
