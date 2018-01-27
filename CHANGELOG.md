@@ -10,8 +10,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - add TravisCI builds
 
 ### Changed
-- #4 require mkforms >= 3.0.0
-- #2 require static_info_tables >= 6.3.7
+- require mkforms >= 3.0.0 (#4)
+- require static_info_tables >= 6.3.7 (#2)
 - move the extension to GitHub
 
 ### Deprecated
@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - remove the example extension
 
 ### Fixed
+- fix autoloading when running the tests in the BE module in non-composer mode (#11)
 - use the correct package name for mkforms in composer.json
 - allow mkforms 3.x
 
