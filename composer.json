@@ -32,6 +32,8 @@
     "require-dev": {
         "helhum/typo3-console": "^4.6.1",
 
+        "helmich/typo3-typoscript-lint": "^1.4.4",
+
         "oliverklee/phpunit": "^4.8.37",
         "phpunit/phpunit": "^4.8.0"
     },
@@ -61,6 +63,7 @@
     },
     "scripts": {
         "ci:php:lint": "find *.php Classes/ Configuration/ Migrations/ pi1/ Tests/ -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+<<<<<<< HEAD
         "ci:tests:unit": ".Build/public/typo3/cli_dispatch.phpsh phpunit Tests/Unit/",
         "ci:tests": [
             "@ci:tests:unit"
@@ -68,8 +71,12 @@
         "ci:dynamic": [
             "@ci:tests"
         ],
+=======
+        "ci:ts:lint": "typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript/",
+>>>>>>> [TASK] Lint the TypoScript in TravisCI
         "ci:static": [
-            "@ci:php:lint"
+            "@ci:php:lint",
+            "@ci:ts:lint"
         ],
         "ci": [
             "@ci:static",
