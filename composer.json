@@ -33,6 +33,8 @@
     "require-dev": {
         "helhum/typo3-console": "^4.9.6",
 
+        "helmich/typo3-typoscript-lint": "^1.5.0",
+
         "oliverklee/phpunit": "^5.7.27",
         "phpunit/phpunit": "^5.7.27"
     },
@@ -62,6 +64,7 @@
     },
     "scripts": {
         "ci:php:lint": "find *.php Classes/ Configuration/ pi1/ Tests/ -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+        "ci:ts:lint": "typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript",
         "ci:tests:unit-legacy": "$RUN_TESTS_COMMAND Tests/LegacyUnit/",
         "ci:tests": [
             "@ci:tests:unit-legacy"
@@ -70,7 +73,8 @@
             "@ci:tests"
         ],
         "ci:static": [
-            "@ci:php:lint"
+            "@ci:php:lint",
+            "@ci:ts:lint"
         ],
         "ci": [
             "@ci:static",
