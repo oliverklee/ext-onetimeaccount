@@ -30,8 +30,10 @@
         "dmk/mkforms": "^3.0.14"
     },
     "require-dev": {
-        "helhum/typo3-composer-setup": "^0.5.1",
-        "phpunit/phpunit": "~4.8.0"
+        "helhum/typo3-console": "^4.6.1",
+
+        "oliverklee/phpunit": "^4.8.37",
+        "phpunit/phpunit": "^4.8.0"
     },
     "replace": {
         "onetimeaccount": "self.version",
@@ -59,11 +61,19 @@
     },
     "scripts": {
         "ci:php:lint": "find *.php Classes/ Configuration/ Migrations/ pi1/ Tests/ -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
+        "ci:tests:unit": ".Build/public/typo3/cli_dispatch.phpsh phpunit Tests/Unit/",
+        "ci:tests": [
+            "@ci:tests:unit"
+        ],
+        "ci:dynamic": [
+            "@ci:tests"
+        ],
         "ci:static": [
             "@ci:php:lint"
         ],
         "ci": [
-            "@ci:static"
+            "@ci:static",
+            "@ci:dynamic"
         ],
         "link-extension": [
             "@php -r 'is_dir($extFolder=__DIR__.\"/.Build/public/typo3conf/ext/\") || mkdir($extFolder, 0777, true);'",
@@ -80,6 +90,9 @@
         "typo3/cms": {
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
             "web-dir": ".Build/public"
+        },
+        "helhum/typo3-console": {
+            "install-extension-dummy": "0"
         }
     }
 }
