@@ -47,9 +47,10 @@ $EM_CONF[$_EXTKEY] = [
     ],
     '_md5_values_when_last_written' => '',
     'autoload' => [
-        'classmap' => ['Classes', 'pi1'],
-    ],
-    'autoload.dev' => [
-        'classmap' => ['Tests'],
+        'classmap' => [
+            'Classes',
+            'pi1',
+            'Tests',
+        ],
     ],
 ];
