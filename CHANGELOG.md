@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Composer script for PHP linting
+- Composer script for PHP linting (#5)
 - add TravisCI builds
 
 ### Changed
@@ -17,7 +17,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Removed
-- remove the example extension
+- remove the example extension (#6)
 
 ### Fixed
 - fix autoloading when running the tests in the BE module in non-composer mode (#11)
