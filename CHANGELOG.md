@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - remove the example extension (#6)
 
 ### Fixed
+- require mkforms >= 3.0.14 (#14)
 - fix autoloading when running the tests in the BE module in non-composer mode (#11)
 - use the correct package name for mkforms in composer.json
 - allow mkforms 3.x
