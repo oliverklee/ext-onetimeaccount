@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add an SVG extension icon (#15)
 - Composer script for PHP linting (#5)
 - add TravisCI builds
 
