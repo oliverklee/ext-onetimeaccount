@@ -89,7 +89,8 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             GeneralUtility::trimExplode(
                 ',',
                 $this->objectToCheck->getConfValueString(
-                    'feUserFieldsToDisplay', 's_general'
+                    'feUserFieldsToDisplay',
+                    's_general'
                 ),
                 true
             )
