@@ -54,7 +54,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         $GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, [], [], '', false);
         $this->frontEndUser = $this->getMock(
-            FrontendUserAuthentication::class, ['getAuthInfoArray', 'fetchUserRecord', 'createUserSession']
+            FrontendUserAuthentication::class,
+            ['getAuthInfoArray', 'fetchUserRecord', 'createUserSession']
         );
         $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
@@ -286,7 +287,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormData(['email' => 'foo@example.com']);
 
         self::assertRegExp(
-            '/^foo@example\.com/',
+            '/^foo@example\\.com/',
             $this->fixture->getUserName()
         );
     }
@@ -341,7 +342,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getUserNameWithEmptyEmailAndDefaultUserNameAlreadyExistingReturnsNewUniqueUsernameString()
     {
         $this->testingFramework->createFrontEndUser(
-            '', ['username' => 'user']
+            '',
+            ['username' => 'user']
         );
         $this->fixture->setFormData(['email' => '']);
 
@@ -591,7 +593,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getPidForNewUserRecordsForEmptyConfigValueReturnsZero()
     {
         $this->fixture->setConfigurationValue(
-            'systemFolderForNewFeUserRecords', ''
+            'systemFolderForNewFeUserRecords',
+            ''
         );
 
         self::assertSame(
@@ -606,7 +609,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getPidForNewUserRecordsForConfigValueStringReturnsZero()
     {
         $this->fixture->setConfigurationValue(
-            'systemFolderForNewFeUserRecords', 'foo'
+            'systemFolderForNewFeUserRecords',
+            'foo'
         );
 
         self::assertSame(
@@ -621,7 +625,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function getPidForNewUserRecordsForConfigValueIntegerReturnsInteger()
     {
         $this->fixture->setConfigurationValue(
-            'systemFolderForNewFeUserRecords', 42
+            'systemFolderForNewFeUserRecords',
+            42
         );
 
         self::assertSame(
@@ -644,11 +649,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid
+            'groupForNewFeUsers',
+            $userGroupUid
         );
 
         self::assertSame(
-            [['caption' => 'foo', 'value' => (string) $userGroupUid]],
+            [['caption' => 'foo', 'value' => (string)$userGroupUid]],
             $this->fixture->listUserGroups()
         );
     }
@@ -679,11 +685,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid
+            'groupForNewFeUsers',
+            $userGroupUid
         );
 
         self::assertSame(
-            [['caption' => 'foo', 'value' => (string) $userGroupUid]],
+            [['caption' => 'foo', 'value' => (string)$userGroupUid]],
             $this->fixture->listUserGroups()
         );
     }
@@ -701,13 +708,14 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid1 . ', ' . $userGroupUid2
+            'groupForNewFeUsers',
+            $userGroupUid1 . ', ' . $userGroupUid2
         );
 
         self::assertSame(
             [
-                ['caption' => 'foo', 'value' => (string) $userGroupUid1],
-                ['caption' => 'bar', 'value' => (string) $userGroupUid2],
+                ['caption' => 'foo', 'value' => (string)$userGroupUid1],
+                ['caption' => 'bar', 'value' => (string)$userGroupUid2],
             ],
             $this->fixture->listUserGroups()
         );
@@ -924,7 +932,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function preprocessFormDataForNameHiddenUsesFirstNameAndLastNameAsName()
     {
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'first_name, last_name'
+            'feUserFieldsToDisplay',
+            'first_name, last_name'
         );
         $this->fixture->setFormFieldsToShow();
 
@@ -944,7 +953,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     public function preprocessFormDataForShownNameFieldUsesValueOfNameField()
     {
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'name,first_name,last_name'
+            'feUserFieldsToDisplay',
+            'name,first_name,last_name'
         );
         $this->fixture->setFormFieldsToShow();
 
@@ -965,17 +975,19 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'name'
+            'feUserFieldsToDisplay',
+            'name'
         );
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid
+            'groupForNewFeUsers',
+            $userGroupUid
         );
         $this->fixture->setFormFieldsToShow();
 
         $formData = $this->fixture->preprocessFormData(['name' => 'bar']);
 
         self::assertSame(
-            (string) $userGroupUid,
+            (string)$userGroupUid,
             $formData['usergroup']
         );
     }
@@ -988,10 +1000,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'name,usergroups'
+            'feUserFieldsToDisplay',
+            'name,usergroups'
         );
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid . ',' . $userGroupUid2
+            'groupForNewFeUsers',
+            $userGroupUid . ',' . $userGroupUid2
         );
         $this->fixture->setFormFieldsToShow();
 
@@ -1013,10 +1027,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'name'
+            'feUserFieldsToDisplay',
+            'name'
         );
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid . ',' . $userGroupUid2
+            'groupForNewFeUsers',
+            $userGroupUid . ',' . $userGroupUid2
         );
         $this->fixture->setFormFieldsToShow();
 
@@ -1035,10 +1051,12 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
-            'feUserFieldsToDisplay', 'name,usergroup'
+            'feUserFieldsToDisplay',
+            'name,usergroup'
         );
         $this->fixture->setConfigurationValue(
-            'groupForNewFeUsers', $userGroupUid
+            'groupForNewFeUsers',
+            $userGroupUid
         );
         $this->fixture->setFormFieldsToShow();
 
@@ -1047,7 +1065,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         );
 
         self::assertSame(
-            (string) $userGroupUid,
+            (string)$userGroupUid,
             $formData['usergroup']
         );
     }
