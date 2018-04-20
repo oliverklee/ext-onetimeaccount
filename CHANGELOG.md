@@ -21,8 +21,9 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - remove the example extension (#6)
 
 ### Fixed
+- Provide cli_dispatch.phpsh for 8.7 on Travis (#18)
 - Require typo3/minimal for installing TYPO3 (#17)
-- require mkforms >= 3.0.14 (#14)
+- Require mkforms >= 3.0.14 (#14)
 - fix autoloading when running the tests in the BE module in non-composer mode (#11)
 - use the correct package name for mkforms in composer.json
 - allow mkforms 3.x
