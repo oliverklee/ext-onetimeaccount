@@ -32,7 +32,7 @@ install:
   echo;
   echo "Restoring the composer.json";
   git checkout .;
-->
+- >
   export TYPO3_PATH_ROOT=$PWD/.Build/public;
 
 script:
