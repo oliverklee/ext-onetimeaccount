@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Removed
+- Drop the incorrect TYPO3 Core license headers (#20)
 - remove the example extension (#6)
 
 ### Fixed
