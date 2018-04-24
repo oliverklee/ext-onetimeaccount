@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - add TravisCI builds
 
 ### Changed
+- Require oelib ^1.4.0 (#21)
 - require mkforms >= 3.0.0 (#4)
 - require static_info_tables >= 6.3.7 (#2)
 - move the extension to GitHub
