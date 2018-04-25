@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - remove the example extension (#6)
 
 ### Fixed
+- Fix the unit tests concerning the redirect URL on CLI (#22)
 - Provide cli_dispatch.phpsh for 8.7 on Travis (#18)
 - Require typo3/minimal for installing TYPO3 (#17)
 - Require mkforms >= 3.0.14 (#14)
