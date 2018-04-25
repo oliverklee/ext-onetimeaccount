@@ -118,7 +118,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
                 'will be assigned. If this value is not set correctly, the ' .
                 'users will not be placed in one of those groups.'
         );
-        if ($this->getRawMessage() != '') {
+        if ($this->getRawMessage() !== '') {
             return;
         }
 
@@ -132,10 +132,8 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'uid IN (' . $valueToCheck . ')' .
                 Tx_Oelib_Db::enableFields('fe_groups')
         );
-        $elementsInValueToCheck = count(
-            $this->objectToCheck->getUncheckedUidsOfAllowedUserGroups()
-        );
-        if ($groupCounter['number'] != $elementsInValueToCheck) {
+        $elementsInValueToCheck = count($this->objectToCheck->getUncheckedUidsOfAllowedUserGroups());
+        if ((int)$groupCounter['number'] !== $elementsInValueToCheck) {
             $this->setErrorMessageAndRequestCorrection(
                 'groupForNewFeUsers',
                 true,
