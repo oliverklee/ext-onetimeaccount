@@ -113,8 +113,8 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         \tx_rnbase::load(\Tx_Rnbase_Database_Connection::class);
         $this->form = GeneralUtility::makeInstance(\tx_mkforms_forms_Base::class);
 
-        /** @var \tx_rnbase_configurations $pluginConfiguration */
-        $pluginConfiguration = GeneralUtility::makeInstance(\tx_rnbase_configurations::class);
+        /** @var \Tx_Rnbase_Configuration_Processor $pluginConfiguration */
+        $pluginConfiguration = GeneralUtility::makeInstance(\Tx_Rnbase_Configuration_Processor::class);
         $pluginConfiguration->init($this->conf, $this->cObj, 'onetimeaccount', 'tx_onetimeaccount_pi1_form');
 
         $this->form->initFromTs(
