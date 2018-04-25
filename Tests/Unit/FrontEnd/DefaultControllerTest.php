@@ -759,9 +759,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['name', 'gender', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('all_names', $fieldsToHide)
-        );
+        self::assertContains('all_names', $fieldsToHide);
     }
 
     /**
@@ -772,9 +770,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['gender', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('all_names', $fieldsToHide)
-        );
+        self::assertNotContains('all_names', $fieldsToHide);
     }
 
     /**
@@ -785,9 +781,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['name', 'gender', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('all_names', $fieldsToHide)
-        );
+        self::assertNotContains('all_names', $fieldsToHide);
     }
 
     /**
@@ -798,9 +792,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['name', 'gender', 'first_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('all_names', $fieldsToHide)
-        );
+        self::assertNotContains('all_names', $fieldsToHide);
     }
 
     /**
@@ -811,9 +803,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['name', 'first_name', 'last_name'];
         $this->fixture->setAllNamesSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('all_names', $fieldsToHide)
-        );
+        self::assertNotContains('all_names', $fieldsToHide);
     }
 
     /*
@@ -828,9 +818,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['zip', 'city'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('zip_only', $fieldsToHide)
-        );
+        self::assertContains('zip_only', $fieldsToHide);
     }
 
     /**
@@ -841,9 +829,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = [];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('zip_only', $fieldsToHide)
-        );
+        self::assertContains('zip_only', $fieldsToHide);
     }
 
     /**
@@ -854,9 +840,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['zip'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('zip_only', $fieldsToHide)
-        );
+        self::assertContains('zip_only', $fieldsToHide);
     }
 
     /**
@@ -867,9 +851,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = ['city'];
         $this->fixture->setZipSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('zip_only', $fieldsToHide)
-        );
+        self::assertNotContains('zip_only', $fieldsToHide);
     }
 
     /*
@@ -889,9 +871,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('usergroup', $fieldsToHide)
-        );
+        self::assertContains('usergroup', $fieldsToHide);
     }
 
     /**
@@ -907,9 +887,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = [];
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-        self::assertTrue(
-            in_array('usergroup', $fieldsToHide)
-        );
+        self::assertContains('usergroup', $fieldsToHide);
     }
 
     /**
@@ -926,9 +904,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $fieldsToHide = [];
         $this->fixture->setUserGroupSubpartVisibility($fieldsToHide);
 
-        self::assertFalse(
-            in_array('usergroup', $fieldsToHide)
-        );
+        self::assertNotContains('usergroup', $fieldsToHide);
     }
 
     /*
