@@ -234,8 +234,8 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public function isFormFieldEnabled(array $parameters)
     {
         $key = $parameters['elementName'];
-        $result = in_array($key, $this->formFieldsToShow);
-        if ($key == 'usergroup') {
+        $result = in_array($key, $this->formFieldsToShow, true);
+        if ($key === 'usergroup') {
             $result = $result && $this->hasAtLeastTwoUserGroups();
         }
         return $result;
@@ -272,7 +272,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         foreach ($allCountries as $alpha3Code => $currentCountryName) {
             $result[] = [
                 'caption' => $currentCountryName,
-                'value' => (isset($parameters['alpha3']))
+                'value' => isset($parameters['alpha3'])
                     ? $alpha3Code : $currentCountryName,
             ];
         }
@@ -480,17 +480,11 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     {
         $result = '';
 
-        $availableCharacters
-            = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' .
-                '0123456789!$%&/()=?*+#,;.:-_<>';
+        $availableCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!$%&/()=?*+#,;.:-_<>';
         $indexOfLastCharacter = strlen($availableCharacters) - 1;
 
         for ($i = 0; $i < 8; $i++) {
-            $result .= substr(
-                $availableCharacters,
-                mt_rand(0, $indexOfLastCharacter),
-                1
-            );
+            $result .= $availableCharacters[mt_rand(0, $indexOfLastCharacter)];
         }
 
         return $result;
@@ -533,7 +527,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     public function setCurrentUserGroup(array $formData)
     {
-        if (isset($formData['usergroup']) && ($formData['usergroup'] != '')) {
+        if (!empty($formData['usergroup'])) {
             return $formData;
         }
 
@@ -558,7 +552,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     {
         $userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
 
-        return (int)$userGroups[0];
+        return $userGroups[0];
     }
 
     /**
@@ -571,7 +565,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public function listUserGroups()
     {
         $listOfUserGroupUids = $this->getConfValueString('groupForNewFeUsers', 's_general');
-        if (($listOfUserGroupUids === '') || !preg_match('/^([0-9]+(,( *)[0-9]+)*)?$/', $listOfUserGroupUids)) {
+        if (($listOfUserGroupUids === '') || !preg_match('/^(\\d+(,( *)\\d+)*)?$/', $listOfUserGroupUids)) {
             return [];
         }
 
@@ -602,24 +596,20 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     public function getUncheckedUidsOfAllowedUserGroups()
     {
-        return GeneralUtility::trimExplode(
-            ',',
-            $this->getConfValueString('groupForNewFeUsers', 's_general'),
-            true
-        );
+        return GeneralUtility::intExplode(',', $this->getConfValueString('groupForNewFeUsers', 's_general'), true);
     }
 
     /**
      * Checks whether a radiobutton in a radiobutton group is selected.
      *
-     * @param array $radiogroupValue
+     * @param array $radioGroupValue
      *        the currently selected value in an associative array with the key "value"
      *
      * @return bool
      *         TRUE if a radiobutton is selected or if the form field is hidden,
      *         FALSE if none is selected although the field is visible
      */
-    public function isRadiobuttonSelected(array $radiogroupValue)
+    public function isRadiobuttonSelected(array $radioGroupValue)
     {
         if (!$this->isFormFieldEnabled(['elementname' => 'usergroup'])) {
             return true;
@@ -627,7 +617,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
 
         $allowedValues = $this->getUncheckedUidsOfAllowedUserGroups();
 
-        return in_array($radiogroupValue['value'], $allowedValues);
+        return in_array((int)$radioGroupValue['value'], $allowedValues, true);
     }
 
     /**
@@ -658,9 +648,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         foreach ($formFieldsToCheck as $formField) {
             $this->setMarker(
                 $formField . '_required',
-                in_array($formField, $this->requiredFormFields)
-                    ? ' class="required"'
-                    : ''
+                in_array($formField, $this->requiredFormFields, true) ? ' class="required"' : ''
             );
         }
     }
@@ -682,7 +670,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             return true;
         }
 
-        return (trim($formData['value']) != '');
+        return trim($formData['value']) !== '';
     }
 
     /**
@@ -719,7 +707,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     private function checkPremises(array $formData)
     {
-        if ($formData['elementName'] == '') {
+        if (empty($formData['elementName'])) {
             throw new InvalidArgumentException('The given field name was empty.');
         }
 
@@ -727,7 +715,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             $this->setRequiredFormFields();
         }
 
-        return !in_array($formData['elementName'], $this->requiredFormFields);
+        return !in_array($formData['elementName'], $this->requiredFormFields, true);
     }
 
     /**
@@ -765,7 +753,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     protected function setZipSubpartVisibility(array &$formFieldsToHide)
     {
-        if (!in_array('city', $formFieldsToHide) || in_array('zip', $formFieldsToHide)) {
+        if (!in_array('city', $formFieldsToHide, true) || in_array('zip', $formFieldsToHide, true)) {
             $formFieldsToHide[] = 'zip_only';
         }
     }
@@ -813,14 +801,12 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     private function buildFullName(array $formData)
     {
-        if (in_array('name', $this->formFieldsToShow)) {
+        if (in_array('name', $this->formFieldsToShow, true)) {
             return $formData;
         }
 
-        $firstName = (in_array('first_name', $this->formFieldsToShow))
-            ? $formData['first_name'] : '';
-        $lastName = (in_array('last_name', $this->formFieldsToShow))
-            ? $formData['last_name'] : '';
+        $firstName = in_array('first_name', $this->formFieldsToShow, true) ? $formData['first_name'] : '';
+        $lastName = in_array('last_name', $this->formFieldsToShow, true) ? $formData['last_name'] : '';
 
         $formData['name'] = trim($firstName . ' ' . $lastName);
 
