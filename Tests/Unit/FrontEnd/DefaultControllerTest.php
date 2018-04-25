@@ -33,8 +33,16 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     private $frontEndUser = null;
 
+    /**
+     * @var array
+     */
+    private $serverBackup = [];
+
     protected function setUp()
     {
+        $this->serverBackup = $_SERVER;
+        $this->setDummyServerVariables();
+
         \Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->setAsBoolean('enableConfigCheck', false);
 
         $this->testingFramework = new \Tx_Oelib_TestingFramework('tx_seminars');
@@ -58,6 +66,17 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->testingFramework->cleanUp();
 
         $GLOBALS['TSFE'] = null;
+
+        $_SERVER = $this->serverBackup;
+    }
+
+    /**
+     * @return void
+     */
+    private function setDummyServerVariables()
+    {
+        $_SERVER['HTTP_HOST'] = 'www.example.com';
+        $_SERVER['REQUEST_URI'] = '/index.php?id=42';
     }
 
     /*
