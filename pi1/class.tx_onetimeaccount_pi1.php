@@ -413,7 +413,9 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     protected function getFormData($key)
     {
-        return $this->form->oDataHandler->_getThisFormData($key);
+        /** @var \formidable_maindatahandler $dataHandler */
+        $dataHandler = $this->form->oDataHandler;
+        return $dataHandler->getThisFormData($key);
     }
 
     /**
