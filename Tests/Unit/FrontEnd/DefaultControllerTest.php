@@ -876,7 +876,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function setUserGroupSubpartVisibilityForNonExistingUsergroupAddsUsergroupSubpartToHideFields()
+    public function setUserGroupSubpartVisibilityForNonExistingUserGroupAddsUserGroupSubpartToHideFields()
     {
         $this->fixture->setConfigurationValue(
             'groupForNewFeUsers',
@@ -894,7 +894,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function setUserGroupSubpartVisibilityForOneAvailableUsergroupAddsUsergroupSubpartToHideFields()
+    public function setUserGroupSubpartVisibilityForOneAvailableUserGroupAddsUserGroupSubpartToHideFields()
     {
         $this->fixture->setConfigurationValue(
             'groupForNewFeUsers',
@@ -912,7 +912,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function setUserGroupSubpartVisibilityForTwoAvailableUsergroupDoesNotAddUsergroupSubpartToHideFields()
+    public function setUserGroupSubpartVisibilityForTwoAvailableUserGroupDoesNotAddUserGroupSubpartToHideFields()
     {
         $this->fixture->setConfigurationValue(
             'groupForNewFeUsers',
@@ -1001,7 +1001,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUsergroupInFormData()
+    public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUserGroupInFormData()
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
@@ -1028,7 +1028,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUsergroupsFromConfiguration()
+    public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUserGroupsFromConfiguration()
     {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
