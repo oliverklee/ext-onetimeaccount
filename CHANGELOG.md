@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Remove the example extension (#6)
 
 ### Fixed
+- Use a public method instead of the internal _getThisFormData (#25)
 - Update use of deprecated rn_base configuration class (#24)
 - Fix the unit tests concerning the redirect URL on CLI (#22)
 - Provide cli_dispatch.phpsh for 8.7 on Travis (#18)
