@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 2.1.0
+
+### Added
 - Run the unit tests on TravisCI (#12)
 - Add an SVG extension icon (#15)
 - Composer script for PHP linting (#5)
@@ -16,8 +26,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require mkforms >= 3.0.0 (#4)
 - Require static_info_tables >= 6.3.7 (#2)
 - Move the extension to GitHub
-
-### Deprecated
 
 ### Removed
 - Drop the incorrect TYPO3 Core license headers (#20)
