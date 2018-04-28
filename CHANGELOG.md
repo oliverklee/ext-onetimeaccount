@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 ### Removed
+- Drop support for PHP 5.5 (#29)
 
 ### Fixed
 
