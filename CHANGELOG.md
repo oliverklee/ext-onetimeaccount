@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update to PHPUnit 5.3 (#31)
 
 ### Removed
+- Require TYPO3 7.6 and drop support for TYPO3 6.2 (#32)
 - Drop support for PHP 5.5 (#29)
 
 ### Fixed
