@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Update to PHPUnit 5.3 (#31)
 
 ### Removed
 - Drop support for PHP 5.5 (#29)
