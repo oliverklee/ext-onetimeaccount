@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Require static_info_tables >= 6.4.0 (#33)
 - Update to PHPUnit 5.3 (#31)
 
 ### Removed
