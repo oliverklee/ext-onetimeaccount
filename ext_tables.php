@@ -10,7 +10,7 @@ defined('TYPO3_MODE') or die('Access denied.');
     [
         'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1',
         'onetimeaccount_pi1',
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('onetimeaccount') . 'ext_icon.gif',
+        'EXT:onetimeaccount/ext_icon.svg',
     ],
     'list_type'
 );
