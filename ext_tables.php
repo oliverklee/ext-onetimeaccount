@@ -22,7 +22,11 @@ defined('TYPO3_MODE') or die('Access denied.');
 );
 
 if (TYPO3_MODE === 'BE') {
-    $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses'][\OliverKlee\Onetimeaccount\BackEnd\ContentElementWizard::class]
-        = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('onetimeaccount')
-            . 'Classes/BackEnd/ContentElementWizard.php';
+    /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
+    $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+    $iconRegistry->registerIcon(
+        'ext-onetimeaccount-wizard-icon',
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:onetimeaccount/ext_icon.svg']
+    );
 }
