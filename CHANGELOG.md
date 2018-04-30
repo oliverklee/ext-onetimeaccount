@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for PHP 5.5 (#29)
 
 ### Fixed
+- Fix the redirect_url on TravisCI on TYPO3 8.7 (#40)
 - Make the PHPUnit test runner configurable (#37)
 
 ## 2.1.0
