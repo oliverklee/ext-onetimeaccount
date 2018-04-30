@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update to PHPUnit 5.3 (#31)
 
 ### Removed
+- Remove the class alias map (#38)
 - Drop ext_autoload.php (#34)
 - Require TYPO3 7.6 and drop support for TYPO3 6.2 (#32)
 - Drop support for PHP 5.5 (#29)
