@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Add support for PHP 7.1 and 7.2 (#36)
 
 ### Changed
+- Switch to the SVG icon in the BE for the content element (#38)
 - Require oelib >= 2.0.0 (#35)
 - Require static_info_tables >= 6.4.0 (#33)
 - Update to PHPUnit 5.3 (#31)
