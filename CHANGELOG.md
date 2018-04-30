@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 3.0.0
+
+### Added
 - Add support for TYPO3 8.7 (#41)
 - Add support for PHP 7.1 and 7.2 (#36)
 
