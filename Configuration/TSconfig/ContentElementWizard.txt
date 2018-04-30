@@ -1,0 +1,13 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+    elements {
+        onetimeaccount {
+            iconIdentifier = ext-onetimeaccount-wizard-icon
+            title = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:pi1_title
+            description = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:pi1_description
+            tt_content_defValues {
+                CType = list
+                list_type = onetimeaccount_pi1
+            }
+        }
+    }
+}
