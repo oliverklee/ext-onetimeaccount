@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Use the public mkforms render method (#45)
 
 ## 3.0.0
 

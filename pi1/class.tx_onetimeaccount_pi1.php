@@ -189,7 +189,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     private function renderForm()
     {
-        $rawForm = $this->form->_render();
+        $rawForm = $this->form->render();
 
         $this->processTemplate($rawForm);
         $this->hideUnusedFormFields();
