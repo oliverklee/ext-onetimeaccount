@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Stop PHP-linting the removed Migrations/ folder (#46)
 - Use the public mkforms render method (#45)
 
 ## 3.0.0
