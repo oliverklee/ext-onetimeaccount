@@ -1,4 +1,5 @@
 <?php
+
 namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd;
 
 use OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures\FakeDefaultController;
@@ -451,10 +452,15 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormData(['username' => $userName]);
 
         $authenticationData = ['some authentication data'];
-        $this->frontEndUser->expects(self::once())->method('getAuthInfoArray')->will(self::returnValue(['db_user' => $authenticationData]));
+        $this->frontEndUser->expects(self::once())
+            ->method('getAuthInfoArray')
+            ->will(self::returnValue(['db_user' => $authenticationData]));
 
         $userData = ['uid' => 42, 'username' => $userName, 'password' => 'secret'];
-        $this->frontEndUser->expects(self::once())->method('fetchUserRecord')->with($authenticationData, $userName)->will(self::returnValue($userData));
+        $this->frontEndUser->expects(self::once())
+            ->method('fetchUserRecord')
+            ->with($authenticationData, $userName)
+            ->will(self::returnValue($userData));
         $this->frontEndUser->expects(self::once())->method('createUserSession')->with($userData);
 
         $this->fixture->loginUserAndCreateRedirectUrl();
@@ -892,7 +898,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setConfigurationValue(
             'groupForNewFeUsers',
             $this->testingFramework->createFrontEndUserGroup() . ',' .
-                $this->testingFramework->createFrontEndUserGroup()
+            $this->testingFramework->createFrontEndUserGroup()
         );
 
         $fieldsToHide = [];
@@ -917,7 +923,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormFieldsToShow();
 
         $formData = $this->fixture->preprocessFormData([
-            'first_name' => 'foo', 'last_name' => 'bar',
+            'first_name' => 'foo',
+            'last_name' => 'bar',
         ]);
 
         self::assertSame(
@@ -938,7 +945,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setFormFieldsToShow();
 
         $formData = $this->fixture->preprocessFormData([
-            'name' => 'foobar', 'first_name' => 'foo', 'last_name' => 'bar',
+            'name' => 'foobar',
+            'first_name' => 'foo',
+            'last_name' => 'bar',
         ]);
 
         self::assertSame(
@@ -974,8 +983,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUserGroupInFormData()
-    {
+    public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUserGroupInFormData(
+    ) {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
@@ -1001,8 +1010,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUserGroupsFromConfiguration()
-    {
+    public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUserGroupsFromConfiguration(
+    ) {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
@@ -1026,8 +1035,8 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInFormSetsTheUsersGroupFromConfiguration()
-    {
+    public function preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInFormSetsTheUsersGroupFromConfiguration(
+    ) {
         $userGroupUid = $this->testingFramework->createFrontEndUserGroup();
         $this->fixture->setConfigurationValue(
             'feUserFieldsToDisplay',
