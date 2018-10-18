@@ -1,279 +1,279 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-		<style type="text/css">
-			@import "../../Public/CSS/OneTimeAccount.css";
-		</style>
-		<title>
-			HTML template for the One-time FE account TYPO3 extension
-		</title>
-	</head>
-	<body>
-		<h1>
-			HTML template for the <em>One-time FE account</em> TYPO3 extension
-		</h1>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<style type="text/css">
+		@import "../../Public/CSS/OneTimeAccount.css";
+	</style>
+	<title>
+		HTML template for the One-time FE account TYPO3 extension
+	</title>
+</head>
+<body>
+<h1>
+	HTML template for the <em>One-time FE account</em> TYPO3 extension
+</h1>
 
-		<div class="tx-onetimeaccount-pi1">
+<div class="tx-onetimeaccount-pi1">
 
-<!-- ###ONETIMEACCOUNT_FORM### -->
-<p class="tx-onetimeaccount-pi1-error">
-	{errors}
-</p>
+	<!-- ###ONETIMEACCOUNT_FORM### -->
+	<p class="tx-onetimeaccount-pi1-error">
+		{errors}
+	</p>
 
-<fieldset>
-	<legend>###LABEL_YOUR_DATA###</legend>
-	<dl>
-<!-- ###WRAPPER_COMPANY### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_company"###COMPANY_REQUIRED###>
-				{company.label}
-			</label>
-		</dt>
-		<dd>
-			{company}
-		</dd>
-<!-- ###WRAPPER_COMPANY### -->
+	<fieldset>
+		<legend>###LABEL_YOUR_DATA###</legend>
+		<dl>
+			<!-- ###WRAPPER_COMPANY### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_company" ###COMPANY_REQUIRED###>
+					{company.label}
+				</label>
+			</dt>
+			<dd>
+				{company}
+			</dd>
+			<!-- ###WRAPPER_COMPANY### -->
 
-<!-- ###WRAPPER_ALL_NAMES### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_name"###NAME_REQUIRED###>
-				{name.label}
-			</label>
-		</dt>
-		<dd>
-<!-- ###WRAPPER_GENDER### -->
-			<span class="tx-onetimeaccount-pi1-gender">
+			<!-- ###WRAPPER_ALL_NAMES### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_name" ###NAME_REQUIRED###>
+					{name.label}
+				</label>
+			</dt>
+			<dd>
+				<!-- ###WRAPPER_GENDER### -->
+				<span class="tx-onetimeaccount-pi1-gender">
 				{gender}
 			</span>
-<!-- ###WRAPPER_GENDER### -->
-<!-- ###WRAPPER_NAME### -->
-			<span class="tx-onetimeaccount-pi1-name">
+				<!-- ###WRAPPER_GENDER### -->
+				<!-- ###WRAPPER_NAME### -->
+				<span class="tx-onetimeaccount-pi1-name">
 				{name}
 			</span>
-<!-- ###WRAPPER_NAME### -->
-<!-- ###WRAPPER_FIRST_NAME### -->
-			<span class="tx-onetimeaccount-pi1-first_name">
+				<!-- ###WRAPPER_NAME### -->
+				<!-- ###WRAPPER_FIRST_NAME### -->
+				<span class="tx-onetimeaccount-pi1-first_name">
 				{first_name}
 			</span>
-<!-- ###WRAPPER_FIRST_NAME### -->
-<!-- ###WRAPPER_LAST_NAME### -->
-			<span class="tx-onetimeaccount-pi1-last_name">
+				<!-- ###WRAPPER_FIRST_NAME### -->
+				<!-- ###WRAPPER_LAST_NAME### -->
+				<span class="tx-onetimeaccount-pi1-last_name">
 				{last_name}
 			</span>
-<!-- ###WRAPPER_LAST_NAME### -->
-		</dd>
-<!-- ###WRAPPER_ALL_NAMES### -->
+				<!-- ###WRAPPER_LAST_NAME### -->
+			</dd>
+			<!-- ###WRAPPER_ALL_NAMES### -->
 
-<!-- ###WRAPPER_TITLE### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_title"###TITLE_REQUIRED###>
-				{title.label}
-			</label>
-		</dt>
-		<dd>
-			{title}
-		</dd>
-<!-- ###WRAPPER_TITLE### -->
+			<!-- ###WRAPPER_TITLE### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_title" ###TITLE_REQUIRED###>
+					{title.label}
+				</label>
+			</dt>
+			<dd>
+				{title}
+			</dd>
+			<!-- ###WRAPPER_TITLE### -->
 
-<!-- ###WRAPPER_ADDRESS### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_address"###ADDRESS_REQUIRED###>
-				{address.label}
-			</label>
-		</dt>
-		<dd>
-			{address}
-		</dd>
-<!-- ###WRAPPER_ADDRESS### -->
+			<!-- ###WRAPPER_ADDRESS### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_address" ###ADDRESS_REQUIRED###>
+					{address.label}
+				</label>
+			</dt>
+			<dd>
+				{address}
+			</dd>
+			<!-- ###WRAPPER_ADDRESS### -->
 
-<!-- ###WRAPPER_CITY### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_city"###CITY_REQUIRED###>
-				{city.label}
-			</label>
-		</dt>
-		<dd>
-<!-- ###WRAPPER_ZIP### -->
-			<span class="tx-onetimeaccount-pi1-zip">
+			<!-- ###WRAPPER_CITY### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_city" ###CITY_REQUIRED###>
+					{city.label}
+				</label>
+			</dt>
+			<dd>
+				<!-- ###WRAPPER_ZIP### -->
+				<span class="tx-onetimeaccount-pi1-zip">
 				{zip}
 			</span>
-<!-- ###WRAPPER_ZIP### -->
-			<span class="tx-onetimeaccount-pi1-city">
+				<!-- ###WRAPPER_ZIP### -->
+				<span class="tx-onetimeaccount-pi1-city">
 				{city}
 			</span>
-		</dd>
-<!-- ###WRAPPER_CITY### -->
+			</dd>
+			<!-- ###WRAPPER_CITY### -->
 
-<!-- ###WRAPPER_ZIP_ONLY### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_zip"###ZIP_REQUIRED###>
-				{zip.label}
-			</label>
-		</dt>
-		<dd>
+			<!-- ###WRAPPER_ZIP_ONLY### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_zip" ###ZIP_REQUIRED###>
+					{zip.label}
+				</label>
+			</dt>
+			<dd>
 			<span class="tx-onetimeaccount-pi1-zip">
 				{zip}
 			</span>
-		</dd>
-<!-- ###WRAPPER_ZIP_ONLY### -->
+			</dd>
+			<!-- ###WRAPPER_ZIP_ONLY### -->
 
-<!-- ###WRAPPER_ZONE### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_zone"###ZONE_REQUIRED###>
-				{zone.label}
-			</label>
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-zone">
-			{zone}
-		</dd>
-<!-- ###WRAPPER_ZONE### -->
+			<!-- ###WRAPPER_ZONE### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_zone" ###ZONE_REQUIRED###>
+					{zone.label}
+				</label>
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-zone">
+				{zone}
+			</dd>
+			<!-- ###WRAPPER_ZONE### -->
 
-<!-- ###WRAPPER_COUNTRY### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_country"###COUNTRY_REQUIRED###>
-				{country.label}
-			</label>
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-country">
-			{country}
-		</dd>
-<!-- ###WRAPPER_COUNTRY### -->
+			<!-- ###WRAPPER_COUNTRY### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_country" ###COUNTRY_REQUIRED###>
+					{country.label}
+				</label>
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-country">
+				{country}
+			</dd>
+			<!-- ###WRAPPER_COUNTRY### -->
 
-<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_static_info_country"###STATIC_INFO_COUNTRY_REQUIRED###>
-				{country.label}
-			</label>
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-country">
-			{static_info_country}
-		</dd>
-<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
+			<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_static_info_country" ###STATIC_INFO_COUNTRY_REQUIRED###>
+					{country.label}
+				</label>
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-country">
+				{static_info_country}
+			</dd>
+			<!-- ###WRAPPER_STATIC_INFO_COUNTRY### -->
 
-<!-- ###WRAPPER_EMAIL### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_email"###EMAIL_REQUIRED###>
-				{email.label}
-			</label>
-		</dt>
-		<dd>
-			{email}
-		</dd>
-<!-- ###WRAPPER_EMAIL### -->
+			<!-- ###WRAPPER_EMAIL### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_email" ###EMAIL_REQUIRED###>
+					{email.label}
+				</label>
+			</dt>
+			<dd>
+				{email}
+			</dd>
+			<!-- ###WRAPPER_EMAIL### -->
 
-<!-- ###WRAPPER_WWW### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_www"###WWW_REQUIRED###>
-				{www.label}
-			</label>
-		</dt>
-		<dd>
-			{www}
-		</dd>
-<!-- ###WRAPPER_WWW### -->
+			<!-- ###WRAPPER_WWW### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_www" ###WWW_REQUIRED###>
+					{www.label}
+				</label>
+			</dt>
+			<dd>
+				{www}
+			</dd>
+			<!-- ###WRAPPER_WWW### -->
 
-<!-- ###WRAPPER_TELEPHONE### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_telephone"###TELEPHONE_REQUIRED###>
-				{telephone.label}
-			</label>
-		</dt>
-		<dd>
-			{telephone}
-		</dd>
-<!-- ###WRAPPER_TELEPHONE### -->
+			<!-- ###WRAPPER_TELEPHONE### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_telephone" ###TELEPHONE_REQUIRED###>
+					{telephone.label}
+				</label>
+			</dt>
+			<dd>
+				{telephone}
+			</dd>
+			<!-- ###WRAPPER_TELEPHONE### -->
 
-<!-- ###WRAPPER_FAX### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_fax"###FAX_REQUIRED###>
-				{fax.label}
-			</label>
-		</dt>
-		<dd>
-			{fax}
-		</dd>
-<!-- ###WRAPPER_FAX### -->
+			<!-- ###WRAPPER_FAX### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_fax" ###FAX_REQUIRED###>
+					{fax.label}
+				</label>
+			</dt>
+			<dd>
+				{fax}
+			</dd>
+			<!-- ###WRAPPER_FAX### -->
 
-<!-- ###WRAPPER_DATE_OF_BIRTH### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_date_of_birth"###DATE_OF_BIRTH_REQUIRED###>
-				{date_of_birth.label}
-			</label>
-		</dt>
-		<dd>
-			{date_of_birth}
-		</dd>
-<!-- ###WRAPPER_DATE_OF_BIRTH### -->
+			<!-- ###WRAPPER_DATE_OF_BIRTH### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_date_of_birth" ###DATE_OF_BIRTH_REQUIRED###>
+					{date_of_birth.label}
+				</label>
+			</dt>
+			<dd>
+				{date_of_birth}
+			</dd>
+			<!-- ###WRAPPER_DATE_OF_BIRTH### -->
 
-<!-- ###WRAPPER_STATUS### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_status"###STATUS_REQUIRED###>
-				{status.label}
-			</label>
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-status">
-			{status}
-		</dd>
-<!-- ###WRAPPER_STATUS### -->
+			<!-- ###WRAPPER_STATUS### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_status" ###STATUS_REQUIRED###>
+					{status.label}
+				</label>
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-status">
+				{status}
+			</dd>
+			<!-- ###WRAPPER_STATUS### -->
 
-<!-- ###WRAPPER_USERGROUP### -->
-		<dt>
-			<label class="required">
-				{usergroup.label}
-			</label>
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-usergroup">
-			{usergroup.input}
+			<!-- ###WRAPPER_USERGROUP### -->
+			<dt>
+				<label class="required">
+					{usergroup.label}
+				</label>
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-usergroup">
+				{usergroup.input}
+			</dd>
+			<!-- ###WRAPPER_USERGROUP### -->
+			<!-- ###WRAPPER_MODULE_SYS_DMAIL_NEWSLETTER### -->
+			<dt>
+				&nbsp;
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-module_sys_dmail_newsletter">
+				{module_sys_dmail_newsletter}
+				<label for="tx_onetimeaccount_pi1_form_module_sys_dmail_newsletter">
+					{module_sys_dmail_newsletter.label}
+				</label>
+				<div class="tx-onetimeaccount-pi1-clear"></div>
+			</dd>
+			<!-- ###WRAPPER_MODULE_SYS_DMAIL_NEWSLETTER### -->
+			<!-- ###WRAPPER_MODULE_SYS_DMAIL_HTML### -->
+			<dt>
+				&nbsp;
+			</dt>
+			<dd class="tx-onetimeaccount-pi1-module_sys_dmail_html">
+				{module_sys_dmail_html}
+				<label for="tx_onetimeaccount_pi1_form_module_sys_dmail_html">
+					{module_sys_dmail_html.label}
+				</label>
+				<div class="tx-onetimeaccount-pi1-clear"></div>
+			</dd>
+			<!-- ###WRAPPER_MODULE_SYS_DMAIL_HTML### -->
+			<!-- ###WRAPPER_COMMENTS### -->
+			<dt>
+				<label for="tx_onetimeaccount_pi1_form_comments" ###COMMENTS_REQUIRED###>
+					{comments.label}
+				</label>
+			</dt>
+			<dd>
+				{comments}
+				<div class="tx-onetimeaccount-pi1-clear"></div>
+			</dd>
+			<!-- ###WRAPPER_COMMENTS### -->
+		</dl>
+	</fieldset>
+
+	<dl>
+		<dd class="tx-onetimeaccount-pi1-submit">
+			{button_submit}
 		</dd>
-<!-- ###WRAPPER_USERGROUP### -->
-<!-- ###WRAPPER_MODULE_SYS_DMAIL_NEWSLETTER### -->
-		<dt>
-			&nbsp;
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-module_sys_dmail_newsletter">
-			{module_sys_dmail_newsletter}
-			<label for="tx_onetimeaccount_pi1_form_module_sys_dmail_newsletter">
-				{module_sys_dmail_newsletter.label}
-			</label>
-			<div class="tx-onetimeaccount-pi1-clear"></div>
-		</dd>
-<!-- ###WRAPPER_MODULE_SYS_DMAIL_NEWSLETTER### -->
-<!-- ###WRAPPER_MODULE_SYS_DMAIL_HTML### -->
-		<dt>
-			&nbsp;
-		</dt>
-		<dd class="tx-onetimeaccount-pi1-module_sys_dmail_html">
-			{module_sys_dmail_html}
-			<label for="tx_onetimeaccount_pi1_form_module_sys_dmail_html">
-				{module_sys_dmail_html.label}
-			</label>
-			<div class="tx-onetimeaccount-pi1-clear"></div>
-		</dd>
-<!-- ###WRAPPER_MODULE_SYS_DMAIL_HTML### -->
-<!-- ###WRAPPER_COMMENTS### -->
-		<dt>
-			<label for="tx_onetimeaccount_pi1_form_comments"###COMMENTS_REQUIRED###>
-				{comments.label}
-			</label>
-		</dt>
-		<dd>
-			{comments}
-			<div class="tx-onetimeaccount-pi1-clear"></div>
-		</dd>
-<!-- ###WRAPPER_COMMENTS### -->
 	</dl>
-</fieldset>
 
-<dl>
-	<dd class="tx-onetimeaccount-pi1-submit">
-		{button_submit}
-	</dd>
-</dl>
+	<div class="tx-onetimeaccount-pi1-clear"></div>
+	<!-- ###ONETIMEACCOUNT_FORM### -->
 
-<div class="tx-onetimeaccount-pi1-clear"></div>
-<!-- ###ONETIMEACCOUNT_FORM### -->
-
-		</div>
-	</body>
+</div>
+</body>
 </html>

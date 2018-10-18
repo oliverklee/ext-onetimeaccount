@@ -1,4 +1,5 @@
 <?php
+
 namespace OliverKlee\Onetimeaccount\BackEnd;
 
 use TYPO3\CMS\Core\Localization\Parser\XliffParser;
@@ -17,29 +18,69 @@ class FlexForms
      * @var string[]
      */
     protected static $fieldsForRequiring = [
-        'company', 'title', 'name', 'first_name', 'last_name', 'address', 'zip', 'city', 'country', 'email', 'www',
-        'telephone', 'fax', 'gender', 'static_info_country', 'date_of_birth', 'status', 'comments',
+        'company',
+        'title',
+        'name',
+        'first_name',
+        'last_name',
+        'address',
+        'zip',
+        'city',
+        'country',
+        'email',
+        'www',
+        'telephone',
+        'fax',
+        'gender',
+        'static_info_country',
+        'date_of_birth',
+        'status',
+        'comments',
     ];
 
     /**
      * @var string[]
      */
     protected static $fieldsFromSystemExtensions = [
-        'company', 'title', 'name', 'first_name', 'last_name', 'address', 'zip', 'city', 'country', 'email', 'www',
-        'telephone', 'fax', 'usergroup',
+        'company',
+        'title',
+        'name',
+        'first_name',
+        'last_name',
+        'address',
+        'zip',
+        'city',
+        'country',
+        'email',
+        'www',
+        'telephone',
+        'fax',
+        'usergroup',
     ];
 
     /**
      * @var string[]
      */
     protected static $fieldsFromSrFrontEndUserRegister = [
-        'gender', 'zone', 'static_info_country', 'date_of_birth', 'status', 'comments',
+        'gender',
+        'zone',
+        'static_info_country',
+        'date_of_birth',
+        'status',
+        'comments',
     ];
 
     /**
      * @var string[]
      */
-    protected static $fieldsFromSfRegister = ['gender', 'zone', 'static_info_country', 'date_of_birth', 'status', 'comments'];
+    protected static $fieldsFromSfRegister = [
+        'gender',
+        'zone',
+        'static_info_country',
+        'date_of_birth',
+        'status',
+        'comments',
+    ];
 
     /**
      * @var string[]
@@ -47,8 +88,8 @@ class FlexForms
     protected static $fieldsFromDirectMail = ['module_sys_dmail_newsletter', 'module_sys_dmail_html'];
 
     /**
-     * The labels are static in order to avoid loading the language file multiple times for multiple user functions called from
-     * the FlexForms.
+     * The labels are static in order to avoid loading the language file multiple times for multiple user functions
+     * called from the FlexForms.
      *
      * @var string[]
      */
@@ -154,7 +195,8 @@ class FlexForms
             return;
         }
 
-        $languageFilePath = ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang_db.xlf';
+        $languageFilePath =
+            ExtensionManagementUtility::extPath('onetimeaccount') . 'Resources/Private/Language/locallang_db.xlf';
         /** @var XliffParser $xmlParser */
         $xmlParser = GeneralUtility::makeInstance(XliffParser::class);
         self::$languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);

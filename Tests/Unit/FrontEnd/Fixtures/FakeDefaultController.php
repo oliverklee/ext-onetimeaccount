@@ -1,4 +1,5 @@
 <?php
+
 namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures;
 
 /**

@@ -40,7 +40,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies which form fields will be displayed. ' .
-                'Incorrect values will cause those fields to not get displayed.',
+            'Incorrect values will cause those fields to not get displayed.',
             $this->getAvailableFields()
         );
     }
@@ -57,11 +57,13 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies which form fields are required to be filled in. ' .
-                'Incorrect values will cause those fields to not get ' .
-                'validated correctly.',
+            'Incorrect values will cause those fields to not get ' .
+            'validated correctly.',
             $this->getAvailableFields(
                 [
-                    'gender', 'usergroup', 'module_sys_dmail_newsletter',
+                    'gender',
+                    'usergroup',
+                    'module_sys_dmail_newsletter',
                     'module_sys_dmail_html',
                 ]
             )
@@ -72,8 +74,8 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies which form fields are required to be filled ' .
-                'in. Incorrect values will cause the user not to be able to ' .
-                'send the registration form.',
+            'in. Incorrect values will cause the user not to be able to ' .
+            'send the registration form.',
             GeneralUtility::trimExplode(
                 ',',
                 $this->objectToCheck->getConfValueString(
@@ -97,9 +99,9 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies the system folder in which new FE user' .
-                'records will be stored.' .
-                'If this value is not set correctly, the records will be ' .
-                'stored in the wrong page.'
+            'records will be stored.' .
+            'If this value is not set correctly, the records will be ' .
+            'stored in the wrong page.'
         );
     }
 
@@ -115,8 +117,8 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies the FE user groups to which new FE user records ' .
-                'will be assigned. If this value is not set correctly, the ' .
-                'users will not be placed in one of those groups.'
+            'will be assigned. If this value is not set correctly, the ' .
+            'users will not be placed in one of those groups.'
         );
         if ($this->getRawMessage() !== '') {
             return;
@@ -130,7 +132,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'COUNT(*) AS number',
             'fe_groups',
             'uid IN (' . $valueToCheck . ')' .
-                Tx_Oelib_Db::enableFields('fe_groups')
+            Tx_Oelib_Db::enableFields('fe_groups')
         );
         $elementsInValueToCheck = count($this->objectToCheck->getUncheckedUidsOfAllowedUserGroups());
         if ((int)$groupCounter['number'] !== $elementsInValueToCheck) {
@@ -138,12 +140,12 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
                 'groupForNewFeUsers',
                 true,
                 'The TS setup variable <strong>' .
-                    $this->getTSSetupPath() . 'groupForNewFeUsers</strong> ' .
-                    'contains the value ' . $valueToCheck . ' which isn\'t valid. ' .
-                    'This value specifies the FE user groups to which new ' .
-                    'FE user records will be assigned. ' .
-                    'If this value is not set correctly, the users will not ' .
-                    'be placed in one of those groups.'
+                $this->getTSSetupPath() . 'groupForNewFeUsers</strong> ' .
+                'contains the value ' . $valueToCheck . ' which isn\'t valid. ' .
+                'This value specifies the FE user groups to which new ' .
+                'FE user records will be assigned. ' .
+                'If this value is not set correctly, the users will not ' .
+                'be placed in one of those groups.'
             );
         }
     }
@@ -160,8 +162,8 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             true,
             's_general',
             'This value specifies how to generate the user name.' .
-                'An incorrect value might cause the generated user names look ' .
-                'different than intended.',
+            'An incorrect value might cause the generated user names look ' .
+            'different than intended.',
             ['email', 'name']
         );
     }

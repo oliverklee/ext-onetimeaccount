@@ -24,10 +24,12 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * @var string same as class name
      */
     public $prefixId = 'tx_onetimeaccount_pi1';
+
     /**
      * @var string path to this script relative to the extension dir
      */
     public $scriptRelPath = 'pi1/class.tx_onetimeaccount_pi1.php';
+
     /**
      * @var string the extension key
      */
@@ -309,7 +311,8 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         } else {
             $currentLanguageCode = Tx_Oelib_ConfigurationRegistry::get('config')->getAsString('language');
             $identifiers = ['iso' => $defaultCountryCode];
-            $result = LocalizationUtility::getLabelFieldValue($identifiers, 'static_countries', $currentLanguageCode, true);
+            $result =
+                LocalizationUtility::getLabelFieldValue($identifiers, 'static_countries', $currentLanguageCode, true);
         }
 
         return $result;
@@ -355,7 +358,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     {
         $this->workAroundModSecurity();
 
-        $url = GeneralUtility::sanitizeLocalUrl((string) GeneralUtility::_GP('redirect_url'));
+        $url = GeneralUtility::sanitizeLocalUrl((string)GeneralUtility::_GP('redirect_url'));
         if ($url === '') {
             $url = GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL');
             $this->log('redirect_url is empty, using the request URL: ' . $url, 2);
@@ -450,7 +453,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public function createInitialUserName()
     {
         if ($this->getConfValueString('userNameSource', 's_general') === 'name') {
-            $fullName = (string) $this->getFormData('name');
+            $fullName = (string)$this->getFormData('name');
             if ($fullName === '') {
                 $fullName = $this->getFormData('first_name') . ' ' . $this->getFormData('last_name');
             }
@@ -460,7 +463,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             $userNameParts = GeneralUtility::trimExplode(' ', $safeLowercasedName, true);
             $userName = implode('.', $userNameParts);
         } else {
-            $userName = trim((string) $this->getFormData('email'));
+            $userName = trim((string)$this->getFormData('email'));
         }
 
         if ($userName === '') {
@@ -507,7 +510,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
 
         $this->log(
             'Creating user "' . $result['username'] . '" with groups ' .
-                $result['usergroup'] . ' in sysfolder ' . $result['pid'] . '.'
+            $result['usergroup'] . ' in sysfolder ' . $result['pid'] . '.'
         );
 
         return $result;
@@ -574,7 +577,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             'uid, title',
             'fe_groups',
             'uid IN(' . $listOfUserGroupUids . ')' .
-                Tx_Oelib_Db::enableFields('fe_groups')
+            Tx_Oelib_Db::enableFields('fe_groups')
         );
 
         foreach ($groupData as $item) {
@@ -641,7 +644,9 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $formFieldsToCheck = array_diff(
             self::$availableFormFields,
             [
-                'usergroup', 'gender', 'module_sys_dmail_newsletter',
+                'usergroup',
+                'gender',
+                'module_sys_dmail_newsletter',
                 'module_sys_dmail_html',
             ]
         );
