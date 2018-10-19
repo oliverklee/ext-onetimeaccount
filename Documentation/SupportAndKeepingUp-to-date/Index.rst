@@ -23,3 +23,10 @@ Support and keeping up-to-date
    :glob:
 
    PaidServicesOfferedByTheAuthor/Index
+
+
+Get a service level agreement (SLA)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This extension is part of the service level agreements (SLAs) offered
+by the `coders.care project <https://coders.care/>`_.
