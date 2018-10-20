@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Add a conflict with a PHP-7.0-incompatible static_info_tables version (#51)
 - Update the composer package name of static-info-tables (#47)
 - Stop PHP-linting the removed Migrations/ folder (#46)
 - Use the public mkforms render method (#45)
