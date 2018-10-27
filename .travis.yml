@@ -39,8 +39,8 @@ script:
   composer ci:php:lint;
 - >
   echo;
-  echo "Running the unit tests";
-  composer ci:tests:unit;
+  echo "Running the legacy unit tests";
+  composer ci:tests:unit-legacy;
 
 jobs:
   include:

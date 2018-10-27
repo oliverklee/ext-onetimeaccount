@@ -68,9 +68,9 @@
     },
     "scripts": {
         "ci:php:lint": "find *.php Classes/ Configuration/ pi1/ Tests/ -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-        "ci:tests:unit": "$RUN_TESTS_COMMAND Tests/Unit/",
+        "ci:tests:unit-legacy": "$RUN_TESTS_COMMAND Tests/LegacyUnit/",
         "ci:tests": [
-            "@ci:tests:unit"
+            "@ci:tests:unit-legacy"
         ],
         "ci:dynamic": [
             "@ci:tests"

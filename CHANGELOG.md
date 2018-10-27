@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Auto-release to the TER (#48)
 
 ### Changed
+- Move the old tests to Tests/LegacyUnit/ (#55)
 
 ### Removed
 

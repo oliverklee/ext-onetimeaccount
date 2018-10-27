@@ -1,8 +1,8 @@
 <?php
 
-namespace OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd;
+namespace OliverKlee\Onetimeaccount\Tests\LegacyUnit\FrontEnd;
 
-use OliverKlee\Onetimeaccount\Tests\Unit\FrontEnd\Fixtures\FakeDefaultController;
+use OliverKlee\Onetimeaccount\Tests\LegacyUnit\FrontEnd\Fixtures\FakeDefaultController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
