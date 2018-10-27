@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Don't HTML-encode the data from the FE editor on saving (#56)
 - Use the current composer names of static_info_tables (#54)
 - Add a conflict with a PHP-7.0-incompatible static_info_tables version (#51)
 - Update the composer package name of static-info-tables (#47)
