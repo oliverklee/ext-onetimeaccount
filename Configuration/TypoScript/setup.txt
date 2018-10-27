@@ -73,6 +73,7 @@ plugin.tx_onetimeaccount_pi1 {
             company {
                 name = company
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_company
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -123,6 +124,7 @@ plugin.tx_onetimeaccount_pi1 {
             title {
                 name = title
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_title
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -152,6 +154,7 @@ plugin.tx_onetimeaccount_pi1 {
             name {
                 name = name
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_name
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -170,6 +173,7 @@ plugin.tx_onetimeaccount_pi1 {
             first_name = renderlet:TEXT
             first_name {
                 name = first_name
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -198,6 +202,7 @@ plugin.tx_onetimeaccount_pi1 {
             last_name = renderlet:TEXT
             last_name {
                 name = last_name
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -227,6 +232,7 @@ plugin.tx_onetimeaccount_pi1 {
             address {
                 name = address
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_address
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -256,6 +262,7 @@ plugin.tx_onetimeaccount_pi1 {
             zip {
                 name = zip
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_zip
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -285,6 +292,7 @@ plugin.tx_onetimeaccount_pi1 {
             city {
                 name = city
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_city
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -314,6 +322,7 @@ plugin.tx_onetimeaccount_pi1 {
             zone {
                 name = zone
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_zone
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -433,6 +442,7 @@ plugin.tx_onetimeaccount_pi1 {
             email {
                 name = email
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_email
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -464,6 +474,7 @@ plugin.tx_onetimeaccount_pi1 {
             www {
                 name = www
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_www
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -493,6 +504,7 @@ plugin.tx_onetimeaccount_pi1 {
             telephone {
                 name = telephone
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_telephone
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -528,6 +540,7 @@ plugin.tx_onetimeaccount_pi1 {
             fax {
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_fax
                 name = fax
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
@@ -720,6 +733,7 @@ plugin.tx_onetimeaccount_pi1 {
             comments {
                 name = comments
                 label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_comments
+                sanitize = false
                 process.userobj {
                     extension = this
                     method = isFormFieldEnabled
