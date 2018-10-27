@@ -118,7 +118,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function createInitialUserNameForInvaliedSourceAndForNonEmptyEmailReturnsTheEmail()
+    public function createInitialUserNameForInvalidSourceAndForNonEmptyEmailReturnsTheEmail()
     {
         $this->fixture->setConfigurationValue('userNameSource', 'somethingInvalid');
         $this->fixture->setFormData(['email' => 'foo@example.com']);
