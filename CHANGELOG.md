@@ -6,12 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 3.0.1
+
+### Added
 - Auto-release to the TER (#48)
 
 ### Changed
 - Move the old tests to Tests/LegacyUnit/ (#55)
-
-### Removed
 
 ### Fixed
 - Don't HTML-encode the data from the FE editor on saving (#56)
