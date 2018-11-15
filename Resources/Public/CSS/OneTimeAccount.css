@@ -1,87 +1,87 @@
 .tx-onetimeaccount-pi1-clear {
-	clear: both;
-	width: 1px;
-	height: 1px;
+    clear: both;
+    width: 1px;
+    height: 1px;
 }
 
 .tx-onetimeaccount-pi1-error {
-	color: #f00;
-	background-color: inherit;
-	font-weight: bold;
+    color: #f00;
+    background-color: inherit;
+    font-weight: bold;
 }
 
 .tx-onetimeaccount-pi1 fieldset {
-	margin: 0 0 1em;
+    margin: 0 0 1em;
 }
 
 .tx-onetimeaccount-pi1 dl {
-	margin: 0;
+    margin: 0;
 }
 
 .tx-onetimeaccount-pi1 dt {
-	width: 11em;
-	margin: 0 .5em .5em 0;
-	clear: both;
-	float: left;
+    width: 11em;
+    margin: 0 .5em .5em 0;
+    clear: both;
+    float: left;
 }
 
 .tx-onetimeaccount-pi1 dd {
-	margin: 0 0 .5em 12em;
+    margin: 0 0 .5em 12em;
 }
 
 .tx-onetimeaccount-pi1 label.required {
-	font-weight: bold;
+    font-weight: bold;
 }
 
 .tx-onetimeaccount-pi1 dd select,
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-first_name,
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-zip {
-	margin: 0 .5em 0 0;
+    margin: 0 .5em 0 0;
 }
 
 .tx-onetimeaccount-pi1 input,
 .tx-onetimeaccount-pi1 textarea,
 .tx-onetimeaccount-pi1-country select,
 .tx-onetimeaccount-pi1-status select {
-	width: 20em;
+    width: 20em;
 }
 
 .tx-onetimeaccount-pi1 textarea {
-	height: 6em;
+    height: 6em;
 }
 
 .tx-onetimeaccount-pi1-gender select {
-	width: 5em;
+    width: 5em;
 }
 
 .tx-onetimeaccount-pi1-name input,
 .tx-onetimeaccount-pi1-city input {
-	width: 14em;
+    width: 14em;
 }
 
 .tx-onetimeaccount-pi1-first_name input,
 .tx-onetimeaccount-pi1-title input {
-	width: 4em;
+    width: 4em;
 }
 
 .tx-onetimeaccount-pi1-last_name input {
-	width: 9em;
+    width: 9em;
 }
 
 .tx-onetimeaccount-pi1-zip input {
-	width: 4em;
+    width: 4em;
 }
 
 .tx-onetimeaccount-pi1-module_sys_dmail_html input,
 .tx-onetimeaccount-pi1-usergroup input {
-	width: auto;
+    width: auto;
 }
 
 .tx-onetimeaccount-pi1 .tx-onetimeaccount-pi1-submit {
-	margin: .5em 0;
-	float: right;
+    margin: .5em 0;
+    float: right;
 }
 
 .tx-onetimeaccount-pi1-submit input {
-	width: auto;
+    width: auto;
 }
