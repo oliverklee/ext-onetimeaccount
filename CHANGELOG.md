@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Also provide the extension icon in `Resources/` (#62)
 - Add a dependency to felogin (#59)
 
 ## 3.0.1
