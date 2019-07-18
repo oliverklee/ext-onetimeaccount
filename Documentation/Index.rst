@@ -40,3 +40,9 @@ The content of this document is related to TYPO3 - a GNU/GPL CMS/Framework avail
    Reference/Index
    Development/Index
    KnownProblemsAndLimitations/Index
+
+Compatibility with TYPO3 9LTS/9.5
+----------------------------------
+If you would like to use this extension with TYPO3 9LTS/9.5, please consider
+supporting the `crowdfunding campaign <https://coders.care/for/crowdfunding/seminars/>`_
+to help make this happen.

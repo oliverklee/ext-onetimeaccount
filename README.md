@@ -12,3 +12,9 @@ be automatically logged in (without having to enter a user name or password).
 Most of the documentation is in ReST format
 [in the Documentation/ folder](Documentation/) and is rendered
 [as part of the TYPO3 documentation](https://docs.typo3.org/typo3cms/extensions/onetimeaccount/).
+
+## Compatibility with TYPO3 9LTS/9.5
+
+If you need this extension to work with TYPO3 9LTS/9.5, please consider
+supporting the [crowdfunding campaign](https://coders.care/for/crowdfunding/seminars/)
+to make this happen.
