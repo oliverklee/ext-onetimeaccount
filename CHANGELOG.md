@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Explicitly provide the extension name in the composer.json (#85)
 - Also provide the extension icon in `Resources/` (#62)
 - Add a dependency to felogin (#59)
 
