@@ -2,6 +2,9 @@ sudo: false
 
 language: php
 
+services:
+  - mysql
+
 env:
   global:
   - DATABASE_USER=travis DATABASE_HOST=localhost DATABASE_PORT=3306 DATABASE_NAME=typo3 DATABASE_PASSWORD=''
@@ -45,26 +48,26 @@ script:
 jobs:
   include:
   - stage: test
-    php: 7.2
+    php: "7.2"
     env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
   - stage: test
-    php: 7.1
+    php: "7.1"
     env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
   - stage: test
-    php: 7.0
+    php: "7.0"
     env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
   - stage: test
-    php: 7.2
+    php: "7.2"
     env: TYPO3=^7.6 RUN_TESTS_COMMAND=".Build/public/typo3/cli_dispatch.phpsh phpunit"
   - stage: test
-    php: 7.1
+    php: "7.1"
     env: TYPO3=^7.6 RUN_TESTS_COMMAND=".Build/public/typo3/cli_dispatch.phpsh phpunit"
   - stage: test
-    php: 7.0
+    php: "7.0"
     env: TYPO3=^7.6 RUN_TESTS_COMMAND=".Build/public/typo3/cli_dispatch.phpsh phpunit"
   - stage: release to ter
     if: tag IS present AND env(TYPO3_ORG_USERNAME) IS present AND env(TYPO3_ORG_PASSWORD) IS present
-    php: 7.0
+    php: "7.0"
     before_install: skip
     install: skip
     before_script: skip
