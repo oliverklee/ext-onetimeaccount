@@ -40,7 +40,6 @@
         "sjbr/static-info-tables": "6.7.1"
     },
     "replace": {
-        "onetimeaccount": "self.version",
         "typo3-ter/onetimeaccount": "self.version"
     },
     "autoload": {
