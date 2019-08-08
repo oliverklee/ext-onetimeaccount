@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Pin the dev dependency versions (#88)
 - Enable MySQL on Travis CI (#66)
 - Explicitly provide the extension name in the composer.json (#85)
 - Also provide the extension icon in `Resources/` (#62)
