@@ -28,7 +28,7 @@
         "typo3/cms-felogin": "^7.6.23 || ^8.7.9",
         "sjbr/static-info-tables": "^6.4",
         "oliverklee/oelib": "^2.3 || ^3.0",
-        "dmk/mkforms": "^3.0.14"
+        "dmk/mkforms": "^3.0.21"
     },
     "require-dev": {
         "helhum/typo3-console": "^4.9.6",
