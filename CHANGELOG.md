@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Update the mkforms dependency (#70)
 - Change from GPL V3+ to GPL V2+ (#67)
 - Require oelib >= 2.3.0 (#63)
 - Use spaces for indenting HTML and .htaccess files (#60)
