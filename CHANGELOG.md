@@ -30,6 +30,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Move the old tests to Tests/LegacyUnit/ (#55)
 
 ### Fixed
+- Drop an obsolete "replace" entry from composer.json (#68)
 - Don't HTML-encode the data from the FE editor on saving (#56)
 - Use the current composer names of static_info_tables (#54)
 - Add a conflict with a PHP-7.0-incompatible static_info_tables version (#51)
