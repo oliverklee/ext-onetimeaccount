@@ -33,8 +33,8 @@
     "require-dev": {
         "helhum/typo3-console": "^4.9.6",
 
-        "oliverklee/phpunit": "~5.3.5",
-        "phpunit/phpunit": "~5.3.5"
+        "oliverklee/phpunit": "^5.7.27",
+        "phpunit/phpunit": "^5.7.27"
     },
     "conflict": {
         "sjbr/static-info-tables": "6.7.1"

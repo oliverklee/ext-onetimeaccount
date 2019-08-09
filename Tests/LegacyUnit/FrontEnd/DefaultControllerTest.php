@@ -3,6 +3,7 @@
 namespace OliverKlee\Onetimeaccount\Tests\LegacyUnit\FrontEnd;
 
 use OliverKlee\Onetimeaccount\Tests\LegacyUnit\FrontEnd\Fixtures\FakeDefaultController;
+use OliverKlee\PhpUnit\TestCase;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -12,7 +13,7 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class DefaultControllerTest extends \PHPUnit_Framework_TestCase
+class DefaultControllerTest extends TestCase
 {
     /**
      * @var bool
@@ -48,11 +49,9 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->testingFramework = new \Tx_Oelib_TestingFramework('tx_seminars');
 
-        $GLOBALS['TSFE'] = $this->getMock(TypoScriptFrontendController::class, [], [], '', false);
-        $this->frontEndUser = $this->getMock(
-            FrontendUserAuthentication::class,
-            ['getAuthInfoArray', 'fetchUserRecord', 'createUserSession']
-        );
+        $GLOBALS['TSFE'] = $this->createMock(TypoScriptFrontendController::class);
+        $this->frontEndUser = $this->getMockBuilder(FrontendUserAuthentication::class)
+            ->setMethods(['getAuthInfoArray', 'fetchUserRecord', 'createUserSession'])->getMock();
         $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
 
         $this->fixture = new FakeDefaultController();
@@ -384,8 +383,7 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function loginUserAndCreateRedirectUrlWithLocalRedirectUrlReturnsRedirectUrl()
     {
-        $url = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
-        $GLOBALS['_POST']['redirect_url'] = $url;
+        $GLOBALS['_POST']['redirect_url'] = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
 
         self::assertContains('index.php?id=42', $this->fixture->loginUserAndCreateRedirectUrl());
     }
@@ -454,13 +452,13 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
         $authenticationData = ['some authentication data'];
         $this->frontEndUser->expects(self::once())
             ->method('getAuthInfoArray')
-            ->will(self::returnValue(['db_user' => $authenticationData]));
+            ->willReturn(['db_user' => $authenticationData]);
 
         $userData = ['uid' => 42, 'username' => $userName, 'password' => 'secret'];
         $this->frontEndUser->expects(self::once())
             ->method('fetchUserRecord')
             ->with($authenticationData, $userName)
-            ->will(self::returnValue($userData));
+            ->willReturn($userData);
         $this->frontEndUser->expects(self::once())->method('createUserSession')->with($userData);
 
         $this->fixture->loginUserAndCreateRedirectUrl();
@@ -486,11 +484,11 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function validateStringFieldForMissingFieldNameThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->fixture->validateStringField([]);
     }
 
@@ -584,11 +582,11 @@ class DefaultControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     *
-     * @expectedException \InvalidArgumentException
      */
     public function validateIntegerFieldForMissingFieldNameThrowsException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->fixture->validateIntegerField([]);
     }
 
