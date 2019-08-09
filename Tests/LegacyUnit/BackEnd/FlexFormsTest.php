@@ -3,13 +3,14 @@
 namespace OliverKlee\Onetimeaccount\Tests\LegacyUnit\BackEnd;
 
 use OliverKlee\Onetimeaccount\BackEnd\FlexForms;
+use OliverKlee\PhpUnit\TestCase;
 
 /**
  * Test case.
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class FlexFormsTest extends \PHPUnit_Framework_TestCase
+class FlexFormsTest extends TestCase
 {
     /**
      * @var bool
