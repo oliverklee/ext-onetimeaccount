@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Streamline ext_emconf.php (#58)
 
 ### Removed
+- Drop the TYPO3 package repository from composer.json (#72)
 
 ### Fixed
 - Pin the dev dependency versions (#88)
