@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Convert the tests to nimut/testing-framework (#74)
 - Use CamelCase in the PHP namespace (#73)
 - Upgrade to PHPUnit 5.7 (#71)
 - Update the mkforms dependency (#70)
