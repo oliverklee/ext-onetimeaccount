@@ -1,0 +1,785 @@
+plugin.tx_onetimeaccount_pi1.form =< config.tx_mkforms
+plugin.tx_onetimeaccount_pi1.form {
+    meta {
+        name = One-time FE account generation form
+        description = This form allows users to create one-time FE accounts
+        form.formid = tx_onetimeaccount_pi1_form
+        debug = false
+        displaylabels = false
+    }
+
+    control {
+        datahandler = datahandler:DB
+        datahandler {
+            tablename = fe_users
+            keyname = uid
+            labelname = name
+            process.beforeinsertion.userobj {
+                extension = this
+                method = preprocessFormData
+            }
+        }
+
+        renderer = renderer:TEMPLATE
+        renderer.template {
+            path.userobj {
+                extension = this
+                method = getTemplatePath
+            }
+
+            subpart = ###ONETIMEACCOUNT_FORM###
+            errortag = errors
+        }
+
+        actionlets {
+            10 = actionlet:REDIRECT
+            10.url.userobj {
+                extension = this
+                method = loginUserAndCreateRedirectUrl
+            }
+        }
+    }
+
+    elements {
+        company = renderlet:TEXT
+        company {
+            name = company
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_company
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = company
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_company
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = company
+                        }
+                    }
+                }
+            }
+        }
+
+        gender = renderlet:LISTBOX
+        gender {
+            name = gender
+            data.items {
+                10 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_gender.I.0
+                    value = 0
+                }
+
+                20 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_gender.I.1
+                    value = 1
+                }
+            }
+
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = gender
+                }
+            }
+        }
+
+        title = renderlet:TEXT
+        title {
+            name = title
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_title
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = title
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_title
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = title
+                        }
+                    }
+                }
+            }
+        }
+
+        name = renderlet:TEXT
+        name {
+            name = name
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_name
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = name
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.required.message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_name
+            }
+        }
+
+        first_name = renderlet:TEXT
+        first_name {
+            name = first_name
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = first_name
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_first_name
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = first_name
+                        }
+                    }
+                }
+            }
+        }
+
+        last_name = renderlet:TEXT
+        last_name {
+            name = last_name
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = last_name
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_last_name
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = last_name
+                        }
+                    }
+                }
+            }
+        }
+
+        address = renderlet:TEXTAREA
+        address {
+            name = address
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_address
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = address
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_address
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = address
+                        }
+                    }
+                }
+            }
+        }
+
+        zip = renderlet:TEXT
+        zip {
+            name = zip
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_zip
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = zip
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_zip
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = zip
+                        }
+                    }
+                }
+            }
+        }
+
+        city = renderlet:TEXT
+        city {
+            name = city
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_city
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = city
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_city
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = city
+                        }
+                    }
+                }
+            }
+        }
+
+        zone = renderlet:TEXT
+        zone {
+            name = zone
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_zone
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = zone
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_zone
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = zone
+                        }
+                    }
+                }
+            }
+        }
+
+        country = renderlet:LISTBOX
+        country {
+            name = country
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_country
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = country
+                }
+            }
+
+            data {
+                userobj {
+                    extension = this
+                    method = populateListCountries
+                }
+
+                defaultvalue.userobj {
+                    extension = this
+                    method = getDefaultCountry
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_country
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = country
+                        }
+                    }
+                }
+            }
+        }
+
+        static_info_country = renderlet:LISTBOX
+        static_info_country {
+            name = static_info_country
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_country
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = static_info_country
+                }
+            }
+
+            data {
+                userobj {
+                    extension = this
+                    method = populateListCountries
+                    params.10 {
+                        name = alpha3
+                        value = 1
+                    }
+                }
+
+                defaultvalue.userobj {
+                    extension = this
+                    method = getDefaultCountry
+                    params.10 {
+                        name = alpha3
+                        value = 1
+                    }
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_country
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = static_info_country
+                        }
+                    }
+                }
+            }
+        }
+
+        email = renderlet:TEXT
+        email {
+            name = email
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_email
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = email
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10 {
+                    custom {
+                        message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_email
+                        userobj {
+                            extension = this
+                            method = validateStringField
+                            params.10 {
+                                name = elementName
+                                value = email
+                            }
+                        }
+                    }
+
+                    email.message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_malformed_email
+                }
+            }
+        }
+
+        www = renderlet:TEXT
+        www {
+            name = www
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_www
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = www
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_www
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = www
+                        }
+                    }
+                }
+            }
+        }
+
+        telephone = renderlet:TEXT
+        telephone {
+            name = telephone
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_telephone
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = telephone
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_telephone
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = telephone
+                        }
+                    }
+                }
+
+                20 = validator:PREG
+                20.pattern {
+                    value = /^([\d\+][\d \-\+\/]*[\d\+])?$/
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_malformed_telephone
+                }
+            }
+        }
+
+        fax = renderlet:TEXT
+        fax {
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_fax
+            name = fax
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = fax
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_fax
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = fax
+                        }
+                    }
+                }
+
+                20 = validator:PREG
+                20.pattern {
+                    value = /^([\d\+][\d \-\+\/]*[\d\+])?$/
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_malformed_fax
+                }
+            }
+        }
+
+        date_of_birth = renderlet:DATE
+        date_of_birth {
+            name = date_of_birth
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_date_of_birth
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = date_of_birth
+                }
+            }
+
+            data.datetime {
+                format = %d.%m.%Y
+                converttotimestamp = true
+                allowmanualedition = true
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_date_of_birth
+                    userobj {
+                        extension = this
+                        method = validateIntegerField
+                        params.10 {
+                            name = elementName
+                            value = date_of_birth
+                        }
+                    }
+                }
+            }
+        }
+
+        status = renderlet:LISTBOX
+        status {
+            name = status
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_status
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = status
+                }
+            }
+
+            data.items {
+                10 {
+                    caption =
+                    value = 0
+                }
+
+                20 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_status.I.1
+                    value = 1
+                }
+
+                30 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_status.I.2
+                    value = 2
+                }
+
+                40 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_status.I.3
+                    value = 3
+                }
+
+                50 {
+                    caption = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_status.I.4
+                    value = 4
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_status
+                    userobj {
+                        extension = this
+                        method = validateIntegerField
+                        params.10 {
+                            name = elementName
+                            value = status
+                        }
+                    }
+                }
+            }
+        }
+
+        usergroup = renderlet:RADIOBUTTON
+        usergroup {
+            name = usergroup
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_usergroup
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = usergroup
+                }
+            }
+
+            data {
+                userobj {
+                    extension = this
+                    method = listUserGroups
+                }
+
+                defaultvalue.userobj {
+                    extension = this
+                    method = getUidOfFirstUserGroup
+                }
+            }
+
+            wrapitem = |<br/>
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_choose_usergroup
+                    userobj {
+                        extension = this
+                        method = isRadiobuttonSelected
+                    }
+                }
+            }
+        }
+
+        module_sys_dmail_newsletter = renderlet:CHECKSINGLE
+        module_sys_dmail_newsletter {
+            name = module_sys_dmail_newsletter
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_module_sys_dmail_newsletter
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = module_sys_dmail_newsletter
+                }
+            }
+        }
+
+        module_sys_dmail_html = renderlet:CHECKSINGLE
+        module_sys_dmail_html {
+            name = module_sys_dmail_html
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_module_sys_dmail_html
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = module_sys_dmail_html
+                }
+            }
+        }
+
+        comments = renderlet:TEXTAREA
+        comments {
+            name = comments
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_comments
+            sanitize = false
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = comments
+                }
+            }
+
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_comments
+                    userobj {
+                        extension = this
+                        method = validateIntegerField
+                        params.10 {
+                            name = elementName
+                            value = comments
+                        }
+                    }
+                }
+            }
+        }
+
+        button_submit = renderlet:SUBMIT
+        button_submit {
+            name = button_submit
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_submit
+        }
+
+        crdate = renderlet:PASSTHRU
+        crdate {
+            name = crdate
+            data.value = CURRENT_TIMESTAMP
+        }
+
+        tstamp = renderlet:PASSTHRU
+        tstamp {
+            name = tstamp
+            data.value = CURRENT_TIMESTAMP
+        }
+
+        pid = renderlet:PASSTHRU
+        pid {
+            name = pid
+            data.value.userobj {
+                extension = this
+                method = getPidForNewUserRecords
+            }
+        }
+
+        username = renderlet:PASSTHRU
+        username {
+            name = username
+            data.value.userobj {
+                extension = this
+                method = getUserName
+            }
+        }
+
+        password = renderlet:PASSTHRU
+        password {
+            name = password
+            data.value.userobj {
+                extension = this
+                method = getPassword
+            }
+        }
+    }
+}

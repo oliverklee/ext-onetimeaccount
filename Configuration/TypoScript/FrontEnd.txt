@@ -1,0 +1,25 @@
+plugin.tx_onetimeaccount_pi1 {
+    # Do not copy this variable into your TS setup! This is needed for checking whether this static template has been included correctly.
+    isStaticTemplateLoaded = 1
+
+    # location of the HTML template file
+    templateFile = EXT:onetimeaccount/Resources/Private/Templates/FrontEnd.html
+
+    # whether to use formal or informal language
+    salutation = formal
+
+    # comma-separated list of the FE user fields that can be edited in the form
+    feUserFieldsToDisplay = company, name, address, zip, country, email, telephone, fax
+
+    # comma-separated list of FE user fields which the user is required to fill in
+    requiredFeUserFields = name, email
+
+    # PID of the system folder in which new FE user accounts will be stored
+    systemFolderForNewFeUserRecords =
+
+    # UID of the group for new FE users
+    groupForNewFeUsers =
+
+    # The source from which to generate the user login name (email or name)
+    userNameSource = email
+}
