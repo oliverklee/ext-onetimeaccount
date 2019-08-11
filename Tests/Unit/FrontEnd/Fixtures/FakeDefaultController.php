@@ -1,6 +1,6 @@
 <?php
 
-namespace OliverKlee\OneTimeAccount\Tests\LegacyUnit\FrontEnd\Fixtures;
+namespace OliverKlee\OneTimeAccount\Tests\Unit\FrontEnd\Fixtures;
 
 /**
  * Fake version of the plugin "One-time FE account creator".

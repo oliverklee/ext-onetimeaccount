@@ -1,6 +1,11 @@
-sudo: false
+sudo: required
 
 language: php
+
+addons:
+  apt:
+    packages:
+      - parallel
 
 services:
   - mysql
@@ -32,9 +37,6 @@ install:
   echo "Restoring the composer.json";
   git checkout .;
 
-before_script:
-- mysql -u ${DATABASE_USER} ${DATABASE_NAME} -e "INSERT INTO be_users (username, password) VALUES ('_cli_phpunit', 'password')"
-
 script:
 - >
   echo;
@@ -45,23 +47,22 @@ script:
   echo "Linting all TypoScript files";
   composer ci:ts:lint;
 - >
-  echo "Running the legacy unit tests";
-  composer ci:tests:unit-legacy;
+  echo;
+  echo "Running the unit tests";
+  composer ci:tests:unit;
+- >
+  echo;
+  echo "Running the functional tests";
+  composer ci:tests:functional;
 
 jobs:
   include:
-  - stage: test
-    php: "7.2"
-    env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
   - stage: test
     php: "7.1"
     env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
   - stage: test
     php: "7.0"
     env: TYPO3=^8.7 RUN_TESTS_COMMAND=".Build/vendor/bin/typo3 phpunit:run"
-  - stage: test
-    php: "7.2"
-    env: TYPO3=^7.6 RUN_TESTS_COMMAND=".Build/public/typo3/cli_dispatch.phpsh phpunit"
   - stage: test
     php: "7.1"
     env: TYPO3=^7.6 RUN_TESTS_COMMAND=".Build/public/typo3/cli_dispatch.phpsh phpunit"
