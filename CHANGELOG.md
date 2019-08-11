@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Use CamelCase in the PHP namespace (#73)
 - Upgrade to PHPUnit 5.7 (#71)
 - Update the mkforms dependency (#70)
 - Change from GPL V3+ to GPL V2+ (#67)

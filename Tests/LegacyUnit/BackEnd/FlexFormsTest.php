@@ -1,8 +1,8 @@
 <?php
 
-namespace OliverKlee\Onetimeaccount\Tests\LegacyUnit\BackEnd;
+namespace OliverKlee\OneTimeAccount\Tests\LegacyUnit\BackEnd;
 
-use OliverKlee\Onetimeaccount\BackEnd\FlexForms;
+use OliverKlee\OneTimeAccount\BackEnd\FlexForms;
 use OliverKlee\PhpUnit\TestCase;
 
 /**

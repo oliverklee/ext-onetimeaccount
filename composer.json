@@ -49,9 +49,9 @@
         ]
     },
     "autoload-dev": {
-        "classmap": [
-            "Tests"
-        ]
+        "psr-4": {
+            "OliverKlee\\OneTimeAccount\\Tests\\": "Tests/"
+        }
     },
     "prefer-stable": true,
     "config": {
