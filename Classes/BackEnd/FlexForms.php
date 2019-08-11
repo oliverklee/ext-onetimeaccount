@@ -1,6 +1,6 @@
 <?php
 
-namespace OliverKlee\Onetimeaccount\BackEnd;
+namespace OliverKlee\OneTimeAccount\BackEnd;
 
 use TYPO3\CMS\Core\Localization\Parser\XliffParser;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
