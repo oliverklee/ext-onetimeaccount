@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop the TYPO3 package repository from composer.json (#72)
 
 ### Fixed
+- Use the correct name for the extension icon file (#82)
 - Keep development files out of the packages (#81)
 - Clean up and lint the TypoScript (#75)
 - Pin the dev dependency versions (#88)
