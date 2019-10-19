@@ -31,7 +31,11 @@ $EM_CONF[$_EXTKEY] = [
         'classmap' => [
             'Classes',
             'pi1',
-            'Tests',
+        ],
+    ],
+    'autoload-dev' => [
+        'psr-4' => [
+            'OliverKlee\\OneTimeAccount\\Tests\\' => 'Tests/'
         ],
     ],
 ];
