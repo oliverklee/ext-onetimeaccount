@@ -2,7 +2,10 @@
 
 use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
@@ -539,7 +542,8 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         if (!$this->isFormFieldEnabled(['elementname' => 'usergroup'])) {
             $result['usergroup'] = $this->getConfValueString(
                 'groupForNewFeUsers',
-                's_general');
+                's_general'
+            );
         }
 
         return $result;
@@ -562,7 +566,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * Returns the user groups choosable in the front end.
      *
      * @return array
-     *         user groups choosable in the FE, will not be empty if configured
+     *         user groups selectable in the FE, will not be empty if configured
      *         correctly
      */
     public function listUserGroups()
@@ -573,17 +577,24 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         }
 
         $result = [];
-        $groupData = Tx_Oelib_Db::selectMultiple(
-            'uid, title',
-            'fe_groups',
-            'uid IN(' . $listOfUserGroupUids . ')' .
-            Tx_Oelib_Db::enableFields('fe_groups')
-        );
+        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8004000) {
+            $queryBuilder = $this->getQueryBuilderForTable('fe_groups');
+            $queryBuilder->select('uid', 'title')->from('fe_groups')
+                ->where($queryBuilder->expr()->in('uid', GeneralUtility::intExplode(',', $listOfUserGroupUids)));
+            $groupData = $queryBuilder->execute()->fetchAll();
+        } else {
+            $groupData = \Tx_Oelib_Db::selectMultiple(
+                'uid, title',
+                'fe_groups',
+                'uid IN(' . $listOfUserGroupUids . ')' .
+                \Tx_Oelib_Db::enableFields('fe_groups')
+            );
+        }
 
         foreach ($groupData as $item) {
             $result[] = [
                 'caption' => $item['title'],
-                'value' => $item['uid'],
+                'value' => (int)$item['uid'],
             ];
         }
 
@@ -631,7 +642,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      */
     private function hasAtLeastTwoUserGroups()
     {
-        return (count($this->listUserGroups()) > 1);
+        return count($this->listUserGroups()) > 1;
     }
 
     /**
@@ -845,5 +856,23 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public function getTypoScriptNamespace()
     {
         return 'plugin.tx_onetimeaccount_pi1.';
+    }
+
+    /**
+     * @param string $tableName
+     *
+     * @return QueryBuilder
+     */
+    private function getQueryBuilderForTable($tableName)
+    {
+        return $this->getConnectionPool()->getQueryBuilderForTable($tableName);
+    }
+
+    /**
+     * @return ConnectionPool
+     */
+    private function getConnectionPool()
+    {
+        return GeneralUtility::makeInstance(ConnectionPool::class);
     }
 }

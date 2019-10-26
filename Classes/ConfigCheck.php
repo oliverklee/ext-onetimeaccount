@@ -120,34 +120,6 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'will be assigned. If this value is not set correctly, the ' .
             'users will not be placed in one of those groups.'
         );
-        if ($this->getRawMessage() !== '') {
-            return;
-        }
-
-        $valueToCheck = $this->objectToCheck->getConfValueString(
-            'groupForNewFeUsers',
-            's_general'
-        );
-        $groupCounter = Tx_Oelib_Db::selectSingle(
-            'COUNT(*) AS number',
-            'fe_groups',
-            'uid IN (' . $valueToCheck . ')' .
-            Tx_Oelib_Db::enableFields('fe_groups')
-        );
-        $elementsInValueToCheck = count($this->objectToCheck->getUncheckedUidsOfAllowedUserGroups());
-        if ((int)$groupCounter['number'] !== $elementsInValueToCheck) {
-            $this->setErrorMessageAndRequestCorrection(
-                'groupForNewFeUsers',
-                true,
-                'The TS setup variable <strong>' .
-                $this->getTSSetupPath() . 'groupForNewFeUsers</strong> ' .
-                'contains the value ' . $valueToCheck . ' which isn\'t valid. ' .
-                'This value specifies the FE user groups to which new ' .
-                'FE user records will be assigned. ' .
-                'If this value is not set correctly, the users will not ' .
-                'be placed in one of those groups.'
-            );
-        }
     }
 
     /**
