@@ -8,6 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+
+### Removed
+
+### Fixed
+
+## 3.0.2
+
+### Changed
 - Simplify the dependecy versions in composer.json (#87)
 - Use the nimut TF for creating test records (#83)
 - Update the oelib dependency (#80)
