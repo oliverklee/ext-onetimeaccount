@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Use the nimut TF for creating test records (#83)
 - Update the oelib dependency (#80)
 - Convert the tests to nimut/testing-framework (#74)
 - Use CamelCase in the PHP namespace (#73)
