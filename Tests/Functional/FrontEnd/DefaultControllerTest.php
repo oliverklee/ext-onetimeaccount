@@ -26,11 +26,6 @@ class DefaultControllerTest extends FunctionalTestCase
     private $subject = null;
 
     /**
-     * @var \Tx_Oelib_TestingFramework
-     */
-    private $testingFramework = null;
-
-    /**
      * @var FrontendUserAuthentication|\PHPUnit_Framework_MockObject_MockObject
      */
     private $frontEndUser = null;
@@ -39,8 +34,6 @@ class DefaultControllerTest extends FunctionalTestCase
     {
         parent::setUp();
         $this->setDummyServerVariables();
-
-        $this->testingFramework = new \Tx_Oelib_TestingFramework('tx_onetimeaccount');
 
         $this->frontEndUser = $this->getMockBuilder(FrontendUserAuthentication::class)
             ->setMethods(['getAuthInfoArray', 'fetchUserRecord', 'createUserSession'])->getMock();
@@ -54,12 +47,6 @@ class DefaultControllerTest extends FunctionalTestCase
         $configurationProxy->setAsBoolean('enableLogging', false);
     }
 
-    protected function tearDown()
-    {
-        $this->testingFramework->cleanUpWithoutDatabase();
-        parent::tearDown();
-    }
-
     /**
      * @return void
      */
@@ -67,6 +54,11 @@ class DefaultControllerTest extends FunctionalTestCase
     {
         $_SERVER['HTTP_HOST'] = 'www.example.com';
         $_SERVER['REQUEST_URI'] = '/index.php?id=42';
+    }
+
+    private function importFrontEndUsers()
+    {
+        $this->importDataSet(__DIR__ . '/../Fixtures/FrontEndUsers.xml');
     }
 
     /*
@@ -118,10 +110,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function getUserNameWithEmailOfExistingUserNameReturnsDifferentName()
     {
-        $this->testingFramework->createFrontEndUser(
-            $this->testingFramework->createFrontEndUserGroup(),
-            ['username' => 'foo@example.com']
-        );
+        $this->importFrontEndUsers();
+
         $this->subject->setFormData(['email' => 'foo@example.com']);
 
         self::assertNotSame(
@@ -148,10 +138,7 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function getUserNameWithEmptyEmailAndDefaultUserNameAlreadyExistingReturnsNewUniqueUsernameString()
     {
-        $this->testingFramework->createFrontEndUser(
-            '',
-            ['username' => 'user']
-        );
+        $this->importFrontEndUsers();
         $this->subject->setFormData(['email' => '']);
 
         self::assertNotSame(
@@ -259,9 +246,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function listUserGroupsForExistingAndConfiguredUserGroupReturnsGroupTitleAndUid()
     {
-        $userGroupUid = $this->testingFramework->createFrontEndUserGroup(
-            ['title' => 'foo']
-        );
+        $this->importFrontEndUsers();
+        $userGroupUid = 1;
 
         $this->subject->setConfigurationValue(
             'groupForNewFeUsers',
@@ -279,6 +265,7 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function listUserGroupsForStringConfiguredAsUserGroupReturnsEmptyArray()
     {
+        $this->importFrontEndUsers();
         $this->subject->setConfigurationValue('groupForNewFeUsers', 'foo');
 
         self::assertSame(
@@ -292,12 +279,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function listUserGroupsForTwoExistingButOnlyOneConfiguredUserGroupReturnsOnlyConfiguredGroup()
     {
-        $userGroupUid = $this->testingFramework->createFrontEndUserGroup(
-            ['title' => 'foo']
-        );
-        $this->testingFramework->createFrontEndUserGroup(
-            ['title' => 'bar']
-        );
+        $this->importFrontEndUsers();
+        $userGroupUid = 1;
 
         $this->subject->setConfigurationValue(
             'groupForNewFeUsers',
@@ -315,12 +298,9 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function listUserGroupsForTwoExistingButAndConfiguredUserGroupsReturnsBothConfiguredGroup()
     {
-        $userGroupUid1 = $this->testingFramework->createFrontEndUserGroup(
-            ['title' => 'foo', 'crdate' => 1]
-        );
-        $userGroupUid2 = $this->testingFramework->createFrontEndUserGroup(
-            ['title' => 'bar', 'crdate' => 2]
-        );
+        $this->importFrontEndUsers();
+        $userGroupUid1 = 1;
+        $userGroupUid2 = 2;
 
         $this->subject->setConfigurationValue(
             'groupForNewFeUsers',
@@ -358,10 +338,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function setUserGroupSubpartVisibilityForNonExistingUserGroupAddsUserGroupSubpartToHideFields()
     {
-        $this->subject->setConfigurationValue(
-            'groupForNewFeUsers',
-            $this->testingFramework->getAutoIncrement('fe_groups')
-        );
+        $this->importFrontEndUsers();
+        $this->subject->setConfigurationValue('groupForNewFeUsers', 3);
         $fieldsToHide = [];
 
         $this->subject->setUserGroupSubpartVisibility($fieldsToHide);
@@ -374,10 +352,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function setUserGroupSubpartVisibilityForOneAvailableUserGroupAddsUserGroupSubpartToHideFields()
     {
-        $this->subject->setConfigurationValue(
-            'groupForNewFeUsers',
-            $this->testingFramework->createFrontEndUserGroup()
-        );
+        $this->importFrontEndUsers();
+        $this->subject->setConfigurationValue('groupForNewFeUsers', 1);
 
         $fieldsToHide = [];
         $this->subject->setUserGroupSubpartVisibility($fieldsToHide);
@@ -390,11 +366,8 @@ class DefaultControllerTest extends FunctionalTestCase
      */
     public function setUserGroupSubpartVisibilityForTwoAvailableUserGroupDoesNotAddUserGroupSubpartToHideFields()
     {
-        $this->subject->setConfigurationValue(
-            'groupForNewFeUsers',
-            $this->testingFramework->createFrontEndUserGroup() . ',' .
-            $this->testingFramework->createFrontEndUserGroup()
-        );
+        $this->importFrontEndUsers();
+        $this->subject->setConfigurationValue('groupForNewFeUsers', '1,2');
 
         $fieldsToHide = [];
         $this->subject->setUserGroupSubpartVisibility($fieldsToHide);
