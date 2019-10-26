@@ -255,7 +255,7 @@ class DefaultControllerTest extends FunctionalTestCase
         );
 
         self::assertSame(
-            [['caption' => 'foo', 'value' => (string)$userGroupUid]],
+            [['caption' => 'foo', 'value' => $userGroupUid]],
             $this->subject->listUserGroups()
         );
     }
@@ -288,7 +288,7 @@ class DefaultControllerTest extends FunctionalTestCase
         );
 
         self::assertSame(
-            [['caption' => 'foo', 'value' => (string)$userGroupUid]],
+            [['caption' => 'foo', 'value' => $userGroupUid]],
             $this->subject->listUserGroups()
         );
     }
@@ -309,8 +309,8 @@ class DefaultControllerTest extends FunctionalTestCase
 
         self::assertSame(
             [
-                ['caption' => 'foo', 'value' => (string)$userGroupUid1],
-                ['caption' => 'bar', 'value' => (string)$userGroupUid2],
+                ['caption' => 'foo', 'value' => $userGroupUid1],
+                ['caption' => 'bar', 'value' => $userGroupUid2],
             ],
             $this->subject->listUserGroups()
         );
