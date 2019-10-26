@@ -665,4 +665,50 @@ class DefaultControllerTest extends UnitTestCase
             $formData['usergroup']
         );
     }
+
+    /**
+     * @return string[][]
+     */
+    public function nameFieldsDataProvider()
+    {
+        return [
+            'name only' => ['name'],
+            'first name only' => ['first_name'],
+            'last name only' => ['last_name'],
+            'first and last name' => ['first_name, last_name'],
+            'name and email' => ['name, email'],
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @param string $enabledFields
+     *
+     * @dataProvider nameFieldsDataProvider
+     */
+    public function isAnyNameFieldEnabledForAnyNameFieldEnabledReturnsTrue($enabledFields)
+    {
+        $this->subject->setConfigurationValue('feUserFieldsToDisplay', $enabledFields);
+        $this->subject->setFormFieldsToShow();
+
+        $result = $this->subject->isAnyNameFieldEnabled();
+
+        self::assertTrue($result);
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider nameFieldsDataProvider
+     */
+    public function isAnyNameFieldEnabledForOnlyNoNameFieldEnabledReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('feUserFieldsToDisplay', 'email, city');
+        $this->subject->setFormFieldsToShow();
+
+        $result = $this->subject->isAnyNameFieldEnabled();
+
+        self::assertFalse($result);
+    }
 }

@@ -133,11 +133,7 @@ plugin.tx_onetimeaccount_pi1.form {
             sanitize = false
             process.userobj {
                 extension = this
-                method = isFormFieldEnabled
-                params.10 {
-                    name = elementName
-                    value = name
-                }
+                method = isAnyNameFieldEnabled
             }
 
             validators {

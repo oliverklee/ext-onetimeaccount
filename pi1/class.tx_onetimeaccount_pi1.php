@@ -247,6 +247,14 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     }
 
     /**
+     * @return bool
+     */
+    public function isAnyNameFieldEnabled()
+    {
+        return \array_intersect($this->formFieldsToShow, ['name', 'first_name', 'last_name']) !== [];
+    }
+
+    /**
      * Provides a localized list of localized country names from static_tables.
      *
      * If $parameters['alpha3'] is set, the alpha3 codes will be used as form

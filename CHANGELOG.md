@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop the TYPO3 package repository from composer.json (#72)
 
 ### Fixed
+- Show the name label if first and last name are visible (#64, #89)
 - Drop surplus trailing slashes from Composer scripts (#77, #88)
 - Add the transitive dependencies to composer.json (#85)
 - Use the ConnectionPool for database queries in TYPO3 8LTS (#84)
