@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Update the testing libraries (#93)
 
 ### Removed
 - Drop support for PHP 5 (#92)

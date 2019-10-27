@@ -36,8 +36,8 @@
 
         "helmich/typo3-typoscript-lint": "^1.5.0",
 
-        "nimut/testing-framework": "^2.0.3",
-        "phpunit/phpunit": "^5.7.27"
+        "nimut/testing-framework": "^4.1.8",
+        "phpunit/phpunit": "^6.5.14"
     },
     "conflict": {
         "sjbr/static-info-tables": "6.7.1"
