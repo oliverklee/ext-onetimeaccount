@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 7.6 (#91)
 
 ### Fixed
+- Add a dependency on typo3/cms-lang (#86, #94)
 
 ## 3.0.2
 
