@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Display the name of the current functional test (#97)
+- Display the name of the current functional test (#97, #98)
 
 ### Changed
 - Update the testing libraries (#93, #96)
