@@ -5,7 +5,6 @@ use SJBR\StaticInfoTables\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
@@ -584,22 +583,11 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
             return [];
         }
 
+        $queryBuilder = $this->getQueryBuilderForTable('fe_groups');
+        $queryBuilder->select('uid', 'title')->from('fe_groups')
+            ->where($queryBuilder->expr()->in('uid', GeneralUtility::intExplode(',', $listOfUserGroupUids)));
         $result = [];
-        if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 8004000) {
-            $queryBuilder = $this->getQueryBuilderForTable('fe_groups');
-            $queryBuilder->select('uid', 'title')->from('fe_groups')
-                ->where($queryBuilder->expr()->in('uid', GeneralUtility::intExplode(',', $listOfUserGroupUids)));
-            $groupData = $queryBuilder->execute()->fetchAll();
-        } else {
-            $groupData = \Tx_Oelib_Db::selectMultiple(
-                'uid, title',
-                'fe_groups',
-                'uid IN(' . $listOfUserGroupUids . ')' .
-                \Tx_Oelib_Db::enableFields('fe_groups')
-            );
-        }
-
-        foreach ($groupData as $item) {
+        foreach ($queryBuilder->execute()->fetchAll() as $item) {
             $result[] = [
                 'caption' => $item['title'],
                 'value' => (int)$item['uid'],
