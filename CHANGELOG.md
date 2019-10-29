@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 - Drop unneeded Travis CI configuration settings (#99, #100, #101)
 - Drop support for PHP 5 (#92)
-- Drop support for TYPO3 7.6 (#91)
+- Drop support for TYPO3 7.6 (#91, #104)
 
 ### Fixed
 - Add a dependency on typo3/cms-lang (#86, #94)
