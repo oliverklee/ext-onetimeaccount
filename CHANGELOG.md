@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update the testing libraries (#93, #96)
 
 ### Removed
-- Drop unneeded Travis CI configuration settings (#99)
+- Drop unneeded Travis CI configuration settings (#99, #100)
 - Drop support for PHP 5 (#92)
 - Drop support for TYPO3 7.6 (#91)
 
