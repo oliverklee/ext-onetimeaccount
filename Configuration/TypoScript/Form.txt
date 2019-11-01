@@ -138,7 +138,17 @@ plugin.tx_onetimeaccount_pi1.form {
 
             validators {
                 10 = validator:STANDARD
-                10.required.message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_name
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_name
+                    userobj {
+                        extension = this
+                        method = validateStringField
+                        params.10 {
+                            name = elementName
+                            value = name
+                        }
+                    }
+                }
             }
         }
 
