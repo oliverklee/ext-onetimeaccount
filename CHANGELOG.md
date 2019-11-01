@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 7.6 (#91, #104)
 
 ### Fixed
+- Allow an empty name if the field is hidden or non-required (#105, #106)
 - Add a dependency on typo3/cms-lang (#86, #94)
 
 ## 3.0.2
