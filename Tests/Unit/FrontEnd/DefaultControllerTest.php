@@ -237,20 +237,6 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function validateStringFieldForNotRequiredFieldReturnsTrue()
-    {
-        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
-
-        self::assertTrue(
-            $this->subject->validateStringField(
-                ['elementName' => 'address']
-            )
-        );
-    }
-
-    /**
-     * @test
-     */
     public function validateStringFieldForMissingFieldNameThrowsException()
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -261,29 +247,61 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function validateStringFieldForNonEmptyRequiredFieldReturnsTrue()
+    public function validateStringFieldForRequiredFieldAndNonEmptyValueReturnsTrue()
     {
         $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
 
-        self::assertTrue(
-            $this->subject->validateStringField(
-                ['elementName' => 'name', 'value' => 'foo']
-            )
-        );
+        self::assertTrue($this->subject->validateStringField(['elementName' => 'name', 'value' => 'foo']));
     }
 
     /**
      * @test
      */
-    public function validateStringFieldForEmptyRequiredFieldReturnsFalse()
+    public function validateStringFieldRequiredFieldAndEmptyValueReturnsFalse()
     {
         $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
 
-        self::assertFalse(
-            $this->subject->validateStringField(
-                ['elementName' => 'name', 'value' => '']
-            )
-        );
+        self::assertFalse($this->subject->validateStringField(['elementName' => 'name', 'value' => '']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateStringFieldRequiredFieldAndMissingValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
+
+        self::assertFalse($this->subject->validateStringField(['elementName' => 'name']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateStringFieldForNonRequiredFieldAndNonEmptyValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateStringField(['elementName' => 'name', 'value' => 'hello']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateStringFieldForNonRequiredFieldAndEmptyValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateStringField(['elementName' => 'name', 'value' => '']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateStringFieldForNonRequiredFieldAndMissingValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateStringField(['elementName' => 'name']));
     }
 
     /*
@@ -293,67 +311,83 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function validateIntegerFieldForRequiredFieldValueZeroReturnsFalse()
-    {
-        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
-
-        self::assertFalse(
-            $this->subject->validateIntegerField(
-                ['elementName' => 'name', 'value' => 0]
-            )
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function validateIntegerFieldForNonRequiredFieldReturnsTrue()
-    {
-        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
-
-        self::assertTrue(
-            $this->subject->validateIntegerField(
-                ['elementName' => 'address']
-            )
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function validateIntegerFieldForRequiredFieldValueNonZeroReturnsTrue()
-    {
-        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
-
-        self::assertTrue(
-            $this->subject->validateIntegerField(
-                ['elementName' => 'name', 'value' => 1]
-            )
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function validateIntegerFieldForRequiredFieldValueStringReturnsFalse()
-    {
-        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
-
-        self::assertFalse(
-            $this->subject->validateIntegerField(
-                ['elementName' => 'name', 'value' => 'foo']
-            )
-        );
-    }
-
-    /**
-     * @test
-     */
     public function validateIntegerFieldForMissingFieldNameThrowsException()
     {
         $this->expectException(\InvalidArgumentException::class);
 
         $this->subject->validateIntegerField([]);
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForRequiredFieldAndPositiveValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
+
+        self::assertTrue(
+            $this->subject->validateIntegerField(['elementName' => 'name', 'value' => 1])
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForRequiredFieldAndStringValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
+
+        self::assertFalse($this->subject->validateIntegerField(['elementName' => 'name', 'value' => 'foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForRequiredFieldAndZeroValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
+
+        self::assertFalse($this->subject->validateIntegerField(['elementName' => 'name', 'value' => 0]));
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForRequiredFieldAndMissingValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'name');
+
+        self::assertFalse($this->subject->validateIntegerField(['elementName' => 'name']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForNonRequiredFieldAndPositiveValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateIntegerField(['elementName' => 'name', 'value' => 12]));
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForNonRequiredFieldAndZeroValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateIntegerField(['elementName' => 'name', 'value' => 0]));
+    }
+
+    /**
+     * @test
+     */
+    public function validateIntegerFieldForNonRequiredFieldAndMissingValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateIntegerField(['elementName' => 'name']));
     }
 
     /*

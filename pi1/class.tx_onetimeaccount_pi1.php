@@ -238,7 +238,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     public function isFormFieldEnabled(array $parameters)
     {
         $key = $parameters['elementName'];
-        $result = in_array($key, $this->formFieldsToShow, true);
+        $result = \in_array($key, $this->formFieldsToShow, true);
         if ($key === 'usergroup') {
             $result = $result && $this->hasAtLeastTwoUserGroups();
         }
@@ -673,16 +673,16 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *        "value" and the name with the key "elementName" of the form field
      *        to check, must not be empty
      *
-     * @return bool
-     *         TRUE if this field is not empty or not required, FALSE otherwise
+     * @return bool true if everything is okay, false is there is a validation error
      */
     public function validateStringField(array $formData)
     {
-        if ($this->checkPremises($formData)) {
+        $this->validateFieldName($formData);
+        if (!$this->isFormFieldRequired($formData)) {
             return true;
         }
 
-        return trim($formData['value']) !== '';
+        return \trim($formData['value']) !== '';
     }
 
     /**
@@ -693,16 +693,35 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *        "value" and the name with the key "elementName" of the form field
      *        to check, must not be empty
      *
-     * @return bool
-     *         TRUE if this field is not zero or not required, FALSE otherwise
+     * @return bool true if everything is okay, false is there is a validation error
      */
     public function validateIntegerField(array $formData)
     {
-        if ($this->checkPremises($formData)) {
+        $this->validateFieldName($formData);
+        if (!$this->isFormFieldRequired($formData)) {
             return true;
         }
 
         return (int)$formData['value'] !== 0;
+    }
+
+    /**
+     * Checks that the given form data provides the field name.
+     *
+     * @param array $formData
+     *        associative array containing the current value with the key
+     *        "value" and the name with the key "elementName" of the form field
+     *        to check
+     *
+     * @return void
+     *
+     * @throws \InvalidArgumentException
+     */
+    private function validateFieldName(array $formData)
+    {
+        if (empty($formData['elementName'])) {
+            throw new \InvalidArgumentException('The given field name was empty.');
+        }
     }
 
     /**
@@ -713,21 +732,13 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *        "value" and the name with the key "elementName" of the form field
      *        to check, must not be empty
      *
-     * @return bool TRUE if the element was not required, FALSE otherwise
-     *
-     * @throws InvalidArgumentException
+     * @return bool
      */
-    private function checkPremises(array $formData)
+    private function isFormFieldRequired(array $formData)
     {
-        if (empty($formData['elementName'])) {
-            throw new InvalidArgumentException('The given field name was empty.');
-        }
-
-        if (empty($this->requiredFormFields)) {
-            $this->setRequiredFormFields();
-        }
-
-        return !in_array($formData['elementName'], $this->requiredFormFields, true);
+        $this->setRequiredFormFields();
+        $fieldName = $formData['elementName'];
+        return \in_array($fieldName, $this->requiredFormFields, true);
     }
 
     /**
