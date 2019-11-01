@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-## x.y.z
+## 3.0.4
 
 ### Added
 
@@ -12,6 +12,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+
+## 3.0.3
+
+### Fixed
+- Allow an empty name if the field is hidden or non-required (#105, #106)
 
 ## 3.0.2
 
