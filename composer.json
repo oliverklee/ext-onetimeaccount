@@ -29,7 +29,7 @@
         "typo3/cms-lang": "^8.7",
         "sjbr/static-info-tables": "^6.4",
         "oliverklee/oelib": "^2.3.3 || ^3.0",
-        "dmk/mkforms": "^3.0.21",
+        "dmk/mkforms": "^3.0.21 || ^9.5.0",
         "digedag/rn-base": "^1.8.2"
     },
     "require-dev": {
