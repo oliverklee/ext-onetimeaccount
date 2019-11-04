@@ -3,14 +3,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
-## 3.0.4
+## 3.0.5
 
 ### Added
 
 ### Changed
-- Allow 9.5-compatible versions of mkforms and rn_base (#108)
 
 ### Removed
+
+### Fixed
+
+## 3.0.4
+
+### Changed
+- Allow 9.5-compatible versions of mkforms and rn_base (#108)
 
 ### Fixed
 - Explicitly add transitive dependencies (#107)
