@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Display the name of the current functional test (#97, #98)
 
 ### Changed
+- Allow 9.5-compatible versions of mkforms and rn_base (#108)
 - Update the testing libraries (#93, #96)
 
 ### Removed
