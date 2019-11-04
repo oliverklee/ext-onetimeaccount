@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Explicitly add transitive dependencies (#107)
 
 ## 3.0.3
 
