@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace OliverKlee\OneTimeAccount\Tests\Unit\FrontEnd;
 
@@ -226,7 +227,7 @@ class DefaultControllerTest extends UnitTestCase
     {
         self::assertSame(
             8,
-            strlen($this->subject->getPassword())
+            \strlen($this->subject->getPassword())
         );
     }
 
@@ -703,7 +704,7 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @return string[][]
      */
-    public function nameFieldsDataProvider()
+    public function nameFieldsDataProvider(): array
     {
         return [
             'name only' => ['name'],

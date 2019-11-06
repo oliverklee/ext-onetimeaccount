@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace OliverKlee\OneTimeAccount\BackEnd;
 
@@ -165,7 +166,7 @@ class FlexForms
      *
      * @throws \BadFunctionCallException
      */
-    protected function getAvailableFieldNames()
+    protected function getAvailableFieldNames(): array
     {
         $availableFieldNames = static::$fieldsFromSystemExtensions;
         if (ExtensionManagementUtility::isLoaded('sr_feuser_register')) {
@@ -191,7 +192,7 @@ class FlexForms
      */
     protected function loadLanguageLabels()
     {
-        if (count(self::$languageLabels) > 0) {
+        if (\count(self::$languageLabels) > 0) {
             return;
         }
 
@@ -209,7 +210,7 @@ class FlexForms
      *
      * @return string
      */
-    protected function getLanguageLabelForFrontEndUserField($fieldName)
+    protected function getLanguageLabelForFrontEndUserField(string $fieldName): string
     {
         $fullKey = 'fe_users.' . $fieldName;
 
@@ -221,7 +222,7 @@ class FlexForms
      *
      * @return LanguageService
      */
-    protected function getLanguageService()
+    protected function getLanguageService(): LanguageService
     {
         return $GLOBALS['LANG'];
     }

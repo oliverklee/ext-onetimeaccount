@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace OliverKlee\OneTimeAccount\Tests\Unit\FrontEnd\Fixtures;
 
@@ -25,13 +26,9 @@ class FakeDefaultController extends \tx_onetimeaccount_pi1
      *         data for the requested form element or an empty string if the
      *         form field is not set
      */
-    public function getFormData($key)
+    public function getFormData(string $key)
     {
-        if (!isset($this->formData[$key])) {
-            return '';
-        }
-
-        return $this->formData[$key];
+        return $this->formData[$key] ?? '';
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
@@ -88,12 +89,12 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     /**
      * Creates the plugin output.
      *
-     * @param string $content (ignored)
+     * @param string $unused (ignored)
      * @param array $configuration the plug-in configuration
      *
      * @return string HTML output of the plug-in
      */
-    public function main($content, array $configuration)
+    public function main(string $unused, array $configuration): string
     {
         $this->init($configuration);
         $this->pi_initPIflexForm();
@@ -179,7 +180,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         the path to the HTML template as an absolute path in the file
      *         system, will not be empty in a correct configuration
      */
-    public function getTemplatePath()
+    public function getTemplatePath(): string
     {
         return GeneralUtility::getFileAbsFileName(
             $this->getConfValueString('templateFile', 's_template_special', true)
@@ -191,7 +192,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string HTML of the form
      */
-    private function renderForm()
+    private function renderForm(): string
     {
         $rawForm = $this->form->render();
 
@@ -235,7 +236,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * @return bool
      *         TRUE if the current form field should be displayed, FALSE otherwise
      */
-    public function isFormFieldEnabled(array $parameters)
+    public function isFormFieldEnabled(array $parameters): bool
     {
         $key = $parameters['elementName'];
         $result = \in_array($key, $this->formFieldsToShow, true);
@@ -248,7 +249,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     /**
      * @return bool
      */
-    public function isAnyNameFieldEnabled()
+    public function isAnyNameFieldEnabled(): bool
     {
         return \array_intersect($this->formFieldsToShow, ['name', 'first_name', 'last_name']) !== [];
     }
@@ -268,7 +269,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         keys "caption" (for the localized title) and "value" (either the
      *         country's alpha3 code or the localized name)
      */
-    public function populateListCountries(array $parameters)
+    public function populateListCountries(array $parameters): array
     {
         $this->initStaticInfo();
         $allCountries = $this->staticInfo->initCountries('ALL', '', true);
@@ -306,7 +307,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         the default country (either the country's alpha3 code or the
      *         localized name), will be empty if no default country has been set
      */
-    public function getDefaultCountry(array $parameters)
+    public function getDefaultCountry(array $parameters): string
     {
         $defaultCountryCode = Tx_Oelib_ConfigurationRegistry::get('plugin.tx_staticinfotables_pi1')
             ->getAsString('countryCode');
@@ -347,7 +348,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return int the PID of the page where FE-created events will be stored
      */
-    public function getPidForNewUserRecords()
+    public function getPidForNewUserRecords(): int
     {
         return $this->getConfValueInteger(
             'systemFolderForNewFeUserRecords',
@@ -364,7 +365,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string the fully-qualified URL to redirect to, will not be empty
      */
-    public function loginUserAndCreateRedirectUrl()
+    public function loginUserAndCreateRedirectUrl(): string
     {
         $this->workAroundModSecurity();
 
@@ -424,7 +425,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return mixed data for the requested form element
      */
-    protected function getFormData($key)
+    protected function getFormData(string $key)
     {
         /** @var \formidable_maindatahandler $dataHandler */
         $dataHandler = $this->form->oDataHandler;
@@ -437,7 +438,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string a user name, will not be empty
      */
-    public function getUserName()
+    public function getUserName(): string
     {
         $initialUsername = $this->createInitialUserName();
         $numberToAppend = 1;
@@ -460,7 +461,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string an initial user name, is not guaranteed to be unique
      */
-    public function createInitialUserName()
+    public function createInitialUserName(): string
     {
         if ($this->getConfValueString('userNameSource', 's_general') === 'name') {
             $fullName = (string)$this->getFormData('name');
@@ -489,7 +490,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string a random 8 character password
      */
-    public function getPassword()
+    public function getPassword(): string
     {
         $result = '';
 
@@ -497,7 +498,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $indexOfLastCharacter = strlen($availableCharacters) - 1;
 
         for ($i = 0; $i < 8; $i++) {
-            $result .= $availableCharacters[mt_rand(0, $indexOfLastCharacter)];
+            $result .= $availableCharacters[random_int(0, $indexOfLastCharacter)];
         }
 
         return $result;
@@ -511,7 +512,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return array processed form data, will not be empty
      */
-    public function preprocessFormData(array $formData)
+    public function preprocessFormData(array $formData): array
     {
         $this->log('Submitted data is valid on FE page: ' . $this->getFrontEndController()->id);
 
@@ -538,7 +539,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         group(s) of groupForNewFeUsers are added to the form data,
      *         otherwise it is returned without modifications.
      */
-    public function setCurrentUserGroup(array $formData)
+    public function setCurrentUserGroup(array $formData): array
     {
         if (!empty($formData['usergroup'])) {
             return $formData;
@@ -562,7 +563,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return int UID of the first user group
      */
-    public function getUidOfFirstUserGroup()
+    public function getUidOfFirstUserGroup(): int
     {
         $userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
 
@@ -576,7 +577,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         user groups selectable in the FE, will not be empty if configured
      *         correctly
      */
-    public function listUserGroups()
+    public function listUserGroups(): array
     {
         $listOfUserGroupUids = $this->getConfValueString('groupForNewFeUsers', 's_general');
         if (($listOfUserGroupUids === '') || !preg_match('/^(\\d+(,( *)\\d+)*)?$/', $listOfUserGroupUids)) {
@@ -604,7 +605,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         UIDs set via groupForNewFeUsers, will not be empty for a valid
      *         configuration
      */
-    public function getUncheckedUidsOfAllowedUserGroups()
+    public function getUncheckedUidsOfAllowedUserGroups(): array
     {
         return GeneralUtility::intExplode(',', $this->getConfValueString('groupForNewFeUsers', 's_general'), true);
     }
@@ -619,7 +620,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         TRUE if a radiobutton is selected or if the form field is hidden,
      *         FALSE if none is selected although the field is visible
      */
-    public function isRadiobuttonSelected(array $radioGroupValue)
+    public function isRadiobuttonSelected(array $radioGroupValue): bool
     {
         if (!$this->isFormFieldEnabled(['elementname' => 'usergroup'])) {
             return true;
@@ -636,7 +637,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * @return bool
      *         TRUE if we have at least two allowed user groups, FALSE otherwise
      */
-    private function hasAtLeastTwoUserGroups()
+    private function hasAtLeastTwoUserGroups(): bool
     {
         return count($this->listUserGroups()) > 1;
     }
@@ -675,14 +676,14 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return bool true if everything is okay, false is there is a validation error
      */
-    public function validateStringField(array $formData)
+    public function validateStringField(array $formData): bool
     {
         $this->validateFieldName($formData);
         if (!$this->isFormFieldRequired($formData)) {
             return true;
         }
 
-        return \trim($formData['value']) !== '';
+        return \trim((string)$formData['value']) !== '';
     }
 
     /**
@@ -695,7 +696,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return bool true if everything is okay, false is there is a validation error
      */
-    public function validateIntegerField(array $formData)
+    public function validateIntegerField(array $formData): bool
     {
         $this->validateFieldName($formData);
         if (!$this->isFormFieldRequired($formData)) {
@@ -734,7 +735,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return bool
      */
-    private function isFormFieldRequired(array $formData)
+    private function isFormFieldRequired(array $formData): bool
     {
         $this->setRequiredFormFields();
         $fieldName = $formData['elementName'];
@@ -822,7 +823,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *         the form data with the modified name field, will be empty
      *         if the given form data was empty
      */
-    private function buildFullName(array $formData)
+    private function buildFullName(array $formData): array
     {
         if (in_array('name', $this->formFieldsToShow, true)) {
             return $formData;
@@ -846,7 +847,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return void
      */
-    private function log($message, $severity = 0)
+    private function log(string $message, int $severity = 0)
     {
         if (!Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
             return;
@@ -860,7 +861,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return string the namespace prefix, will end with a dot
      */
-    public function getTypoScriptNamespace()
+    public function getTypoScriptNamespace(): string
     {
         return 'plugin.tx_onetimeaccount_pi1.';
     }
@@ -870,7 +871,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      *
      * @return QueryBuilder
      */
-    private function getQueryBuilderForTable($tableName)
+    private function getQueryBuilderForTable(string $tableName): QueryBuilder
     {
         return $this->getConnectionPool()->getQueryBuilderForTable($tableName);
     }
@@ -878,7 +879,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     /**
      * @return ConnectionPool
      */
-    private function getConnectionPool()
+    private function getConnectionPool(): ConnectionPool
     {
         return GeneralUtility::makeInstance(ConnectionPool::class);
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -151,7 +152,7 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
      *
      * @return array list of available field names, will not be empty
      */
-    private function getAvailableFields(array $excludeFields = [])
+    private function getAvailableFields(array $excludeFields = []): array
     {
         $providedFields = [
             'company',
