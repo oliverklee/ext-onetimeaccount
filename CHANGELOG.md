@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 - Drop unneeded Travis CI configuration settings (#99, #100, #101)
 - Drop support for PHP 5 (#92)
-- Drop support for TYPO3 7.6 (#91, #104)
+- Drop support for TYPO3 7.6 (#91, #104, #113)
 
 ### Fixed
 - Allow an empty name if the field is hidden or non-required (#105, #106)
