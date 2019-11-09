@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Display the name of the current functional test (#97, #98)
 
 ### Changed
+- Use the EXT: notation for language files (#76, #117)
 - Sort the Composer dependencies (#111)
 - Allow 9.5-compatible versions of mkforms and rn_base (#108)
 - Update the testing libraries (#93, #96)
