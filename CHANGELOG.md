@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 7.6 (#91, #104, #113)
 
 ### Fixed
+- git-ignore the tests-generated `var/log/` folder (#118)
 - Allow an empty name if the field is hidden or non-required (#105, #106)
 - Add a dependency on typo3/cms-lang (#86, #94)
 
