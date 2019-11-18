@@ -10,7 +10,7 @@ defined('TYPO3_MODE') or die('Access denied.');
     [
         'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang_db.xlf:tt_content.list_type_pi1',
         'onetimeaccount_pi1',
-        'EXT:onetimeaccount/ext_icon.svg',
+        'EXT:onetimeaccount/Resources/Public/Icons/Extension.svg',
     ],
     'list_type'
 );
@@ -27,6 +27,6 @@ if (TYPO3_MODE === 'BE') {
     $iconRegistry->registerIcon(
         'ext-onetimeaccount-wizard-icon',
         \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        ['source' => 'EXT:onetimeaccount/ext_icon.svg']
+        ['source' => 'EXT:onetimeaccount/Resources/Public/Icons/Extension.svg']
     );
 }
