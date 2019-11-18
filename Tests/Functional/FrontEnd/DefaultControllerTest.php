@@ -6,6 +6,7 @@ namespace OliverKlee\OneTimeAccount\Tests\Functional\FrontEnd;
 
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
 use OliverKlee\OneTimeAccount\Tests\Unit\FrontEnd\Fixtures\FakeDefaultController;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
@@ -28,7 +29,7 @@ class DefaultControllerTest extends FunctionalTestCase
     private $subject = null;
 
     /**
-     * @var FrontendUserAuthentication|\PHPUnit_Framework_MockObject_MockObject
+     * @var FrontendUserAuthentication|MockObject
      */
     private $frontEndUser = null;
 
@@ -38,9 +39,11 @@ class DefaultControllerTest extends FunctionalTestCase
         $this->setDummyServerVariables();
 
         $this->frontEndUser = $this->getMockBuilder(FrontendUserAuthentication::class)
-            ->setMethods(['getAuthInfoArray', 'fetchUserRecord', 'createUserSession'])->getMock();
-        $GLOBALS['TSFE'] = $this->createMock(TypoScriptFrontendController::class);
-        $GLOBALS['TSFE']->fe_user = $this->frontEndUser;
+            ->setMethods(['createUserSession', 'fetchUserRecord', 'getAuthInfoArray', 'writeUC'])->getMock();
+        /** @var TypoScriptFrontendController|MockObject $frontEndController */
+        $frontEndController = $this->createMock(TypoScriptFrontendController::class);
+        $frontEndController->fe_user = $this->frontEndUser;
+        $GLOBALS['TSFE'] = $frontEndController;
 
         $this->subject = new FakeDefaultController();
 
