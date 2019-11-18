@@ -39,7 +39,7 @@ class DefaultControllerTest extends FunctionalTestCase
         $this->setDummyServerVariables();
 
         $this->frontEndUser = $this->getMockBuilder(FrontendUserAuthentication::class)
-            ->setMethods(['createUserSession', 'fetchUserRecord', 'getAuthInfoArray', 'writeUC'])->getMock();
+            ->setMethods(['createUserSession', 'writeUC'])->getMock();
         /** @var TypoScriptFrontendController|MockObject $frontEndController */
         $frontEndController = $this->createMock(TypoScriptFrontendController::class);
         $frontEndController->fe_user = $this->frontEndUser;
@@ -163,6 +163,9 @@ class DefaultControllerTest extends FunctionalTestCase
     {
         $GLOBALS['_POST']['redirect_url'] = GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . 'index.php?id=42';
 
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
+
         self::assertContains('index.php?id=42', $this->subject->loginUserAndCreateRedirectUrl());
     }
 
@@ -172,6 +175,9 @@ class DefaultControllerTest extends FunctionalTestCase
     public function loginUserAndCreateRedirectUrlWithForeignUrlReturnsCurrentUri()
     {
         $GLOBALS['_POST']['redirect_url'] = 'http://google.com/';
+
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
 
         self::assertSame(
             GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
@@ -186,6 +192,9 @@ class DefaultControllerTest extends FunctionalTestCase
     {
         $GLOBALS['_POST']['redirect_url'] = '';
 
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
+
         self::assertSame(
             GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
             $this->subject->loginUserAndCreateRedirectUrl()
@@ -199,6 +208,9 @@ class DefaultControllerTest extends FunctionalTestCase
     {
         unset($GLOBALS['_POST']['redirect_url']);
 
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
+
         self::assertSame(
             GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL'),
             $this->subject->loginUserAndCreateRedirectUrl()
@@ -211,6 +223,9 @@ class DefaultControllerTest extends FunctionalTestCase
     public function loginUserAndCreateRedirectUrlDisablesFrontEndUserPidCheck()
     {
         $GLOBALS['TSFE']->fe_user->checkPid = true;
+
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
 
         $this->subject->loginUserAndCreateRedirectUrl();
 
@@ -227,16 +242,10 @@ class DefaultControllerTest extends FunctionalTestCase
         $userName = 'john.doe';
         $this->subject->setFormData(['username' => $userName]);
 
-        $authenticationData = ['some authentication data'];
-        $this->frontEndUser->expects(self::once())
-            ->method('getAuthInfoArray')
-            ->willReturn(['db_user' => $authenticationData]);
+        $this->importFrontEndUsers();
+        $this->subject->setFormData(['username' => 'foo@example.com']);
+        $userData = $this->getDatabaseConnection()->selectSingleRow('*', 'fe_users', 'uid = 1');
 
-        $userData = ['uid' => 42, 'username' => $userName, 'password' => 'secret'];
-        $this->frontEndUser->expects(self::once())
-            ->method('fetchUserRecord')
-            ->with($authenticationData, $userName)
-            ->willReturn($userData);
         $this->frontEndUser->expects(self::once())->method('createUserSession')->with($userData);
 
         $this->subject->loginUserAndCreateRedirectUrl();
