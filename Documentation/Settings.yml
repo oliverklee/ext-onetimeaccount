@@ -6,8 +6,8 @@
 conf.py:
   copyright: 2019
   project: One-time FE account
-  version: 3.0
-  release: 3.0.2
+  version: 4.0
+  release: 4.0.0
   latex_documents:
   - - Index
     - onetimeaccount.tex

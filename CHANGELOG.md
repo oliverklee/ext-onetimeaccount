@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 4.0.0
+
+### Added
 - Add support for TYPO3 9LTS (#123)
 - Add code sniffing and fixing (#120)
 - Build with PHP 7.2 on Travis CI (#115)
@@ -21,7 +31,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update the testing libraries (#93, #96)
 
 ### Removed
-- Skip the loggin in TYPO3 >= 9 (#127)
+- Skip the logging in TYPO3 >= 9 (#127)
 - Drop unneeded Travis CI configuration settings (#99, #100, #101)
 - Drop support for PHP 5 (#92, #114)
 - Drop support for TYPO3 7.6 (#91, #104, #113)
