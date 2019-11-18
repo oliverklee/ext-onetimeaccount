@@ -7,6 +7,7 @@ use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -387,8 +388,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $frontEndUser = $this->getFrontEndController()->fe_user;
         $frontEndUser->checkPid = false;
 
-        $authenticationData = $this->getFrontEndController()->fe_user->getAuthInfoArray();
-        $userData = $frontEndUser->fetchUserRecord($authenticationData['db_user'], $this->getFormData('username'));
+        $userData = $this->fetchUserRecord($this->getFormData('username'));
         $frontEndUser->user = $userData;
         $frontEndUser->createUserSession($userData);
         $frontEndUser->setKey('user', 'onetimeaccount', true);
@@ -399,6 +399,16 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $this->log('Redirecting to: ' . $url);
 
         return $url;
+    }
+
+    private function fetchUserRecord(string $username): array
+    {
+        $query = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
+        $query->getRestrictions()->removeAll()->add(GeneralUtility::makeInstance(DeletedRestriction::class));
+        $query->select('*')->from('fe_users');
+        $query->andWhere($query->expr()->eq('username', $query->createNamedParameter($username)));
+
+        return $query->execute()->fetch();
     }
 
     /**

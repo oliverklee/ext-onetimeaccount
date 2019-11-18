@@ -27,7 +27,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 7.6 (#91, #104, #113)
 
 ### Fixed
-- Avoid accessing the logger in the tests (#126)
+- Avoid using deprecated Core functionality in TYPO3 9LTS (#128)
+- Use the new mock class name (#126)
 - Move the plugin registration to `Configuration/TCA/Overrides/` (#125)
 - Fix the path to the content element icon (#124)
 - git-ignore the tests-generated `var/log/` folder (#118)
