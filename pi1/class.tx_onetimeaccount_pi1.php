@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use OliverKlee\OneTimeAccount\Configuration\ConfigurationCheck;
 use SJBR\StaticInfoTables\PiBaseApi;
 use SJBR\StaticInfoTables\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -106,6 +107,11 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         $result = $this->renderForm() . $this->checkConfiguration();
 
         return $this->pi_wrapInBaseClass($result);
+    }
+
+    protected function getConfigurationCheckClassName(): string
+    {
+        return ConfigurationCheck::class;
     }
 
     /**
