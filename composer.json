@@ -27,10 +27,10 @@
         "dmk/mkforms": "^3.0.21 || ^9.5.0",
         "oliverklee/oelib": "^3.0",
         "sjbr/static-info-tables": "^6.7.5",
-        "typo3/cms-core": "^8.7.9",
-        "typo3/cms-felogin": "^8.7",
-        "typo3/cms-frontend": "^8.7",
-        "typo3/cms-lang": "^8.7"
+        "typo3/cms-core": "^8.7.9 || ^9.5.7",
+        "typo3/cms-felogin": "^8.7 || ^9.5",
+        "typo3/cms-frontend": "^8.7 || ^9.5",
+        "typo3/cms-lang": "^8.7 || ^9.5"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16.0",
