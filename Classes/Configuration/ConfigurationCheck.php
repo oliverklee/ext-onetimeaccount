@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace OliverKlee\OneTimeAccount\Configuration;
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -11,7 +13,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
+class ConfigurationCheck extends \Tx_Oelib_ConfigCheck
 {
     /**
      * Checks the configuration for tx_onetimeaccount_pi1.
@@ -181,12 +183,12 @@ class Tx_Onetimeaccount_ConfigCheck extends Tx_Oelib_ConfigCheck
             'usergroup',
             'comments',
         ];
-        $formFields = array_diff($providedFields, $excludeFields);
+        $formFields = \array_diff($providedFields, $excludeFields);
         $fieldsFromFeUsers = $this->getDbColumnNames('fe_users');
 
         // Makes sure that only fields are allowed that are actually available.
         // (Some fields don't come with the vanilla TYPO3 installation and are
-        // provided by the sr_feusers_register extension.)
-        return array_intersect($formFields, $fieldsFromFeUsers);
+        // provided by the third-party extension.)
+        return \array_intersect($formFields, $fieldsFromFeUsers);
     }
 }

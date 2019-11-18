@@ -48,8 +48,10 @@
         "typo3-ter/onetimeaccount": "self.version"
     },
     "autoload": {
+        "psr-4": {
+            "OliverKlee\\OneTimeAccount\\": "Classes/"
+        },
         "classmap": [
-            "Classes",
             "pi1"
         ]
     },

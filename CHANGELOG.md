@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Display the name of the current functional test (#97, #98)
 
 ### Changed
+- Use the new configuration check (#122, #79)
 - Bump the `static_info_tables` dependency (#121)
 - Require oelib 3.0 (#119)
 - Use the EXT: notation for language files (#76, #117)
