@@ -25,7 +25,7 @@
         "php": "~7.0 || ~7.1 || ~7.2",
         "digedag/rn-base": "^1.8.2",
         "dmk/mkforms": "^3.0.21 || ^9.5.0",
-        "oliverklee/oelib": "^2.3.3 || ^3.0",
+        "oliverklee/oelib": "^3.0",
         "sjbr/static-info-tables": "^6.4",
         "typo3/cms-core": "^8.7.9",
         "typo3/cms-felogin": "^8.7",
