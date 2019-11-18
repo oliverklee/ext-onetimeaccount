@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add support for TYPO3 9LTS (#123)
 - Add code sniffing and fixing (#120)
 - Build with PHP 7.2 on Travis CI (#115)
 - Display the name of the current functional test (#97, #98)
