@@ -8,6 +8,7 @@ use SJBR\StaticInfoTables\Utility\LocalizationUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
@@ -849,14 +850,16 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
      * this extension.
      *
      * @param string $message the message to log, must not be empty
-     * @param int $severity
-     *        0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
+     * @param int $severity 0 = info, 1 = notice, 2 = warning, 3 = fatal error, -1 = OK
      *
      * @return void
      */
     private function log(string $message, int $severity = 0)
     {
-        if (!Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')) {
+        if (
+            VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 9000000
+            || !\Tx_Oelib_ConfigurationProxy::getInstance('onetimeaccount')->getAsBoolean('enableLogging')
+        ) {
             return;
         }
 

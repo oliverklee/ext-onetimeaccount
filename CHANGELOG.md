@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update the testing libraries (#93, #96)
 
 ### Removed
+- Skip the loggin in TYPO3 >= 9 (#127)
 - Drop unneeded Travis CI configuration settings (#99, #100, #101)
 - Drop support for PHP 5 (#92, #114)
 - Drop support for TYPO3 7.6 (#91, #104, #113)
