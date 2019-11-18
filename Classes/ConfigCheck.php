@@ -1,10 +1,13 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class checks this extension's configuration for basic sanity.
+ *
+ * phpcs:disable PSR1.Methods.CamelCapsMethodName
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
