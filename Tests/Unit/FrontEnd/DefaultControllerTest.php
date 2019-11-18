@@ -1,5 +1,6 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace OliverKlee\OneTimeAccount\Tests\Unit\FrontEnd;
 
@@ -626,8 +627,8 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationAndOneSelectedInFormSetsTheSelectedUserGroupInFormData(
-    ) {
+    public function preprocessFormDataForTwoUserGroupsInConfigurationAndOneInFormSetsTheSelectedUserGroupInFormData()
+    {
         $userGroupUid = 1;
         $userGroupUid2 = 2;
         $this->subject->setConfigurationValue(
@@ -653,8 +654,8 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function preprocessFormDataForTwoUserGroupsSetInConfigurationTheGroupFieldHiddenSetsTheUserGroupsFromConfiguration(
-    ) {
+    public function preprocessFormDataForTwoUserGroupsInConfigurationTheGroupFieldHiddenSetsGroupsFromConfiguration()
+    {
         $userGroupUid = 1;
         $userGroupUid2 = 2;
         $this->subject->setConfigurationValue(
@@ -678,8 +679,8 @@ class DefaultControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function preprocessFormDataForUserGroupSetInConfigurationButNoGroupChosenInFormSetsTheUsersGroupFromConfiguration(
-    ) {
+    public function preprocessFormDataForUserGroupInConfigurationButNoGroupInFormSetsTheUsersGroupFromConfiguration()
+    {
         $userGroupUid = 1;
         $this->subject->setConfigurationValue(
             'feUserFieldsToDisplay',
