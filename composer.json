@@ -26,7 +26,7 @@
         "digedag/rn-base": "^1.8.2",
         "dmk/mkforms": "^3.0.21 || ^9.5.0",
         "oliverklee/oelib": "^3.0",
-        "sjbr/static-info-tables": "^6.4",
+        "sjbr/static-info-tables": "^6.7.5",
         "typo3/cms-core": "^8.7.9",
         "typo3/cms-felogin": "^8.7",
         "typo3/cms-frontend": "^8.7",
@@ -40,8 +40,9 @@
         "phpunit/phpunit": "^6.5.14",
         "squizlabs/php_codesniffer": "^3.5.2"
     },
-    "conflict": {
-        "sjbr/static-info-tables": "6.7.1"
+    "suggest": {
+        "in2code/femanager": "^5.1",
+        "sjbr/sr-feuser-register": "^5.1 || ^6.0"
     },
     "replace": {
         "typo3-ter/onetimeaccount": "self.version"

@@ -12,13 +12,14 @@ $EM_CONF[$_EXTKEY] = [
             'felogin' => '8.7.0-8.7.99',
             'mkforms' => '3.0.21-9.5.99',
             'oelib' => '3.0.0-3.99.99',
-            'static_info_tables' => '6.4.0-',
+            'static_info_tables' => '6.7.5-',
         ],
         'conflicts' => [
             'kb_md5fepw' => '0.0.0-',
         ],
         'suggests' => [
-            'sr_feuser_register' => '2.2.0-',
+            'femanager' => '5.1.0-',
+            'sr_feuser_register' => '5.1.0-',
         ],
     ],
     'state' => 'stable',
