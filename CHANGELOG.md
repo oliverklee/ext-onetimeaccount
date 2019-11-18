@@ -25,6 +25,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 7.6 (#91, #104, #113)
 
 ### Fixed
+- Move the plugin registration to `Configuration/TCA/Overrides/` (#125)
 - Fix the path to the content element icon (#124)
 - git-ignore the tests-generated `var/log/` folder (#118)
 - Allow an empty name if the field is hidden or non-required (#105, #106)
