@@ -72,6 +72,7 @@
         "php:fix": "php-cs-fixer --config=Configuration/php-cs-fixer.php fix Classes pi1 Tests",
         "ci:php:lint": "find *.php Classes Configuration pi1 Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
         "ci:php:sniff": "phpcs Classes Configuration pi1 Tests",
+        "ci:php:fixer": "php-cs-fixer --config=Configuration/php-cs-fixer.php fix --dry-run -v --show-progress=dots --diff-format=udiff Classes pi1 Tests",
         "ci:ts:lint": "typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript",
         "ci:tests:unit": "phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit",
         "ci:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}';",
