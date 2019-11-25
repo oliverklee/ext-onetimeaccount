@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Add php-cs-fixer to the CI (#131)
+- Add php-cs-fixer to the CI (#131, #132)
 
 ### Changed
 - Use PHP 7.2 for the TER release script (#130)
