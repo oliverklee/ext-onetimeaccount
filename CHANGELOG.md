@@ -9,6 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Add php-cs-fixer to the CI (#131, #132)
 
 ### Changed
+- Sort the entries in the `.gitignore` and `.gitattributes` (#134)
 - Require oelib >= 3.0.3 (#133)
 - Use PHP 7.2 for the TER release script (#130)
 
