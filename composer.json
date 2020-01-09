@@ -23,7 +23,7 @@
     },
     "require": {
         "php": "~7.0 || ~7.1 || ~7.2",
-        "digedag/rn-base": "^1.8.2",
+        "digedag/rn-base": "^1.10.5",
         "dmk/mkforms": "^9.5.2",
         "oliverklee/oelib": "^3.0.3",
         "sjbr/static-info-tables": "^6.7.5",
