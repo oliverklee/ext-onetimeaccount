@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 4.0.1
+
+### Added
 - Add php-cs-fixer to the CI (#131, #132)
 
 ### Changed
@@ -13,9 +23,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require oelib >= 3.0.3 (#133)
 - Use PHP 7.2 for the TER release script (#130)
 
-### Removed
-
 ### Fixed
+- Update the locations of the mkforms JavaScript includes (#135)
 
 ## 4.0.0
 
