@@ -20,7 +20,7 @@ One-time FE account
 
 :Extension Key: onetimeaccount
 :Language:      en
-:Copyright:     `2007-2015, Oliver Klee, typo3-coding@oliverklee.de`
+:Copyright:     `2007-2020, Oliver Klee, typo3-coding@oliverklee.de`
 :Maintainer:    `Oliver Klee, typo3-coding@oliverklee.de`
 :License:       `CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_
 :Rendered:      |today|
