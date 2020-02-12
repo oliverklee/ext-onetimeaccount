@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Stop using a deprecated TYPO3 Console option (#141)
 - Do not crash if no user groups are selected in the flexforms (#137, #138)
 
 ## 4.0.1
