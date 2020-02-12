@@ -576,16 +576,15 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
     }
 
     /**
-     * Returns the UID of the first user group shown in the FE. If there are no
-     * user groups, the result will be zero.
+     * Returns the UID of the first user group shown in the FE.
      *
-     * @return int UID of the first user group
+     * @return int UID of the first user group, will be 0 if no group is configured
      */
     public function getUidOfFirstUserGroup(): int
     {
         $userGroups = $this->getUncheckedUidsOfAllowedUserGroups();
 
-        return $userGroups[0];
+        return $userGroups[0] ?? 0;
     }
 
     /**
