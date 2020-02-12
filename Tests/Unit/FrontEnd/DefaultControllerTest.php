@@ -747,4 +747,41 @@ class DefaultControllerTest extends UnitTestCase
 
         self::assertFalse($result);
     }
+
+    /**
+     * @test
+     */
+    public function getUidOfFirstUserGroupForOneGroupReturnsThatGroupUid()
+    {
+        $groupUid = 42;
+        $this->subject->setConfigurationValue('groupForNewFeUsers', (string)$groupUid);
+
+        $result = $this->subject->getUidOfFirstUserGroup();
+
+        self::assertSame($groupUid, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function getUidOfFirstUserGroupForTwoGroupsReturnsFirstGroupUid()
+    {
+        $this->subject->setConfigurationValue('groupForNewFeUsers', '1,2');
+
+        $result = $this->subject->getUidOfFirstUserGroup();
+
+        self::assertSame(1, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function getUidOfFirstUserGroupForNoGroupReturnsZero()
+    {
+        $this->subject->setConfigurationValue('groupForNewFeUsers', '');
+
+        $result = $this->subject->getUidOfFirstUserGroup();
+
+        self::assertSame(0, $result);
+    }
 }
