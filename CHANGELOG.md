@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Do not cache `vendor/` on Travis CI (#142)
 - Do not crash if no user groups are selected in the flexforms (#137, #138)
 
 ## 4.0.1
