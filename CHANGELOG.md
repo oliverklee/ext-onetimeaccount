@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Use `helhum/typo3-console` 6 for TYPO3 >= 9.5 (#144)
 - Upgrade PHPUnit and nimut/testing-framework (#143)
 - Improve the code autoformatting (#139)
 
