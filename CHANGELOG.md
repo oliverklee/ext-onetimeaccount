@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Upgrade PHPUnit and nimut/testing-framework (#143)
 - Improve the code autoformatting (#139)
 
 ### Removed
