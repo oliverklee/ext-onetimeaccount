@@ -182,6 +182,7 @@ class ConfigurationCheck extends \Tx_Oelib_ConfigCheck
             'module_sys_dmail_html',
             'usergroup',
             'comments',
+            'privacy',
         ];
         $formFields = \array_diff($providedFields, $excludeFields);
         $fieldsFromFeUsers = $this->getDbColumnNames('fe_users');

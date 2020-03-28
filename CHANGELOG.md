@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add a privacy policy checkbox (#152)
 
 ### Changed
 - Change the HTML template from XHTML to HTML5 (#151)

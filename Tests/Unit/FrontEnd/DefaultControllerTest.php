@@ -393,6 +393,92 @@ class DefaultControllerTest extends UnitTestCase
     }
 
     /*
+     * Tests concerning validateBooleanField
+     */
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForMissingFieldNameThrowsException()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+
+        $this->subject->validateBooleanField([]);
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForRequiredFieldAndOneValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'privacy');
+
+        self::assertTrue(
+            $this->subject->validateBooleanField(['elementName' => 'privacy', 'value' => '1'])
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForRequiredFieldAndStringValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'privacy');
+
+        self::assertTrue($this->subject->validateBooleanField(['elementName' => 'privacy', 'value' => 'foo']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForRequiredFieldAndZeroValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'privacy');
+
+        self::assertFalse($this->subject->validateBooleanField(['elementName' => 'privacy', 'value' => '0']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForRequiredFieldAndMissingValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', 'privacy');
+
+        self::assertFalse($this->subject->validateBooleanField(['elementName' => 'privacy']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForNonRequiredFieldAndPositiveValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateBooleanField(['elementName' => 'privacy', 'value' => '12']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForNonRequiredFieldAndZeroValueReturnsFalse()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateBooleanField(['elementName' => 'privacy', 'value' => '0']));
+    }
+
+    /**
+     * @test
+     */
+    public function validateBooleanFieldForNonRequiredFieldAndMissingValueReturnsTrue()
+    {
+        $this->subject->setConfigurationValue('requiredFeUserFields', '');
+
+        self::assertTrue($this->subject->validateBooleanField(['elementName' => 'privacy']));
+    }
+
+    /*
      * Tests concerning getPidForNewUserRecords
      */
 

@@ -38,6 +38,7 @@ class FlexForms
         'date_of_birth',
         'status',
         'comments',
+        'privacy',
     ];
 
     /**
@@ -82,6 +83,7 @@ class FlexForms
         'date_of_birth',
         'status',
         'comments',
+        'privacy',
     ];
 
     /**
@@ -171,16 +173,16 @@ class FlexForms
     {
         $availableFieldNames = static::$fieldsFromSystemExtensions;
         if (ExtensionManagementUtility::isLoaded('sr_feuser_register')) {
-            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromSrFrontEndUserRegister);
+            $availableFieldNames = \array_merge($availableFieldNames, static::$fieldsFromSrFrontEndUserRegister);
         }
         if (ExtensionManagementUtility::isLoaded('sf_register')) {
-            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromSfRegister);
+            $availableFieldNames = \array_merge($availableFieldNames, static::$fieldsFromSfRegister);
         }
         if (ExtensionManagementUtility::isLoaded('direct_mail')) {
-            $availableFieldNames = array_merge($availableFieldNames, static::$fieldsFromDirectMail);
+            $availableFieldNames = \array_merge($availableFieldNames, static::$fieldsFromDirectMail);
         }
 
-        return array_unique($availableFieldNames);
+        return \array_unique($availableFieldNames);
     }
 
     /**

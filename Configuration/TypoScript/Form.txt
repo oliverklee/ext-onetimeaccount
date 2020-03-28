@@ -743,6 +743,34 @@ plugin.tx_onetimeaccount_pi1.form {
             }
         }
 
+        privacy = renderlet:CHECKSINGLE
+        privacy {
+            name = privacy
+            label = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:label_privacy
+            process.userobj {
+                extension = this
+                method = isFormFieldEnabled
+                params.10 {
+                    name = elementName
+                    value = privacy
+                }
+            }
+            validators {
+                10 = validator:STANDARD
+                10.custom {
+                    message = LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:message_privacy
+                    userobj {
+                        extension = this
+                        method = validateBooleanField
+                        params.10 {
+                            name = elementName
+                            value = privacy
+                        }
+                    }
+                }
+            }
+        }
+
         button_submit = renderlet:SUBMIT
         button_submit {
             name = button_submit

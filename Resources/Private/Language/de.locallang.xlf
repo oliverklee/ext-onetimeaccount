@@ -176,6 +176,16 @@
                 <source>Comments:</source>
                 <target>Kommentare:</target>
             </trans-unit>
+            <trans-unit id="label_privacy" approved="yes">
+                <source>
+                    I consent that the data I enter will be stored electronically.
+                    You can withdraw your consent for the future via email at any time.
+                </source>
+                <target>
+                    Ich stimme zu, dass meine Angaben und Daten elektronisch erhoben und gespeichert werden.
+                    Sie können Ihre Einwilligung jederzeit für die Zukunft per Email widerrufen.
+                </target>
+            </trans-unit>
             <trans-unit id="label_submit" xml:space="preserve" approved="yes">
                 <source>Proceed</source>
                 <target>Weiter</target>
@@ -251,6 +261,10 @@
             <trans-unit id="message_comments" xml:space="preserve" approved="yes">
                 <source>Please enter some comments.</source>
                 <target>Bitte geben Sie Kommentare ein.</target>
+            </trans-unit>
+            <trans-unit id="message_privacy" approved="yes">
+                <source>Please consent to processing and saving your entered data.</source>
+                <target>Bitte stimmen Sie der Verarbeitung und Speicherung Ihrer Daten zu.</target>
             </trans-unit>
             <trans-unit id="message_malformed_telephone" xml:space="preserve" approved="yes">
                 <source>Please enter a valid telephone number.</source>
