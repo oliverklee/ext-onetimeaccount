@@ -310,7 +310,7 @@ class DefaultControllerTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function listUserGroupsForTwoExistingButAndConfiguredUserGroupsReturnsBothConfiguredGroup()
+    public function listUserGroupsForTwoExistingAndConfiguredUserGroupsReturnsBothConfiguredGroups()
     {
         $this->importFrontEndUsers();
         $userGroupUid1 = 1;
@@ -325,6 +325,29 @@ class DefaultControllerTest extends FunctionalTestCase
             [
                 ['caption' => 'foo', 'value' => $userGroupUid1],
                 ['caption' => 'bar', 'value' => $userGroupUid2],
+            ],
+            $this->subject->listUserGroups()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function listUserGroupsUsesGivenSorting()
+    {
+        $this->importFrontEndUsers();
+        $userGroupUid1 = 2;
+        $userGroupUid2 = 1;
+
+        $this->subject->setConfigurationValue(
+            'groupForNewFeUsers',
+            $userGroupUid1 . ', ' . $userGroupUid2
+        );
+
+        self::assertSame(
+            [
+                ['caption' => 'bar', 'value' => $userGroupUid1],
+                ['caption' => 'foo', 'value' => $userGroupUid2],
             ],
             $this->subject->listUserGroups()
         );

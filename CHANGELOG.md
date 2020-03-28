@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Keep the order of the FE user groups (#147)
 - Fix warnings in the `.travis.yml` (#145)
 - Do not cache `vendor/` on Travis CI (#142)
 - Do not crash if no user groups are selected in the flexforms (#137, #138)
