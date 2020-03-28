@@ -600,19 +600,24 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         if (($listOfUserGroupUids === '') || !preg_match('/^(\\d+(,( *)\\d+)*)?$/', $listOfUserGroupUids)) {
             return [];
         }
+        /** @var int[] $uids */
+        $uids = GeneralUtility::intExplode(',', $listOfUserGroupUids);
 
         $queryBuilder = $this->getQueryBuilderForTable('fe_groups');
-        $queryBuilder->select('uid', 'title')->from('fe_groups')
-            ->where($queryBuilder->expr()->in('uid', GeneralUtility::intExplode(',', $listOfUserGroupUids)));
-        $result = [];
+        $queryBuilder->select('uid', 'title')->from('fe_groups')->where($queryBuilder->expr()->in('uid', $uids));
+        $unsortedResult = [];
         foreach ($queryBuilder->execute()->fetchAll() as $item) {
-            $result[] = [
-                'caption' => $item['title'],
-                'value' => (int)$item['uid'],
-            ];
+            $uid = (int)$item['uid'];
+            $unsortedResult[$uid] = ['caption' => $item['title'], 'value' => $uid];
+        }
+        $sortedResult = [];
+        foreach ($uids as $uid) {
+            if (isset($unsortedResult[$uid])) {
+                $sortedResult[] = $unsortedResult[$uid];
+            }
         }
 
-        return $result;
+        return $sortedResult;
     }
 
     /**
