@@ -72,6 +72,9 @@
             <trans-unit id="fe_users.comments" xml:space="preserve">
                 <source>Comments</source>
             </trans-unit>
+            <trans-unit id="fe_users.privacy">
+                <source>Privacy policy agreement</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -96,6 +96,10 @@
                 <source>Comments</source>
                 <target>Kommentare</target>
             </trans-unit>
+            <trans-unit id="fe_users.privacy" approved="yes">
+                <source>Privacy policy agreement</source>
+                <target>Zustimmung zu den Datenschutzbestimmungen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

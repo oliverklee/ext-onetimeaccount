@@ -88,6 +88,7 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         'module_sys_dmail_html',
         'usergroup',
         'comments',
+        'privacy',
     ];
 
     /**
@@ -726,6 +727,26 @@ class tx_onetimeaccount_pi1 extends Tx_Oelib_TemplateHelper implements Tx_Oelib_
         }
 
         return (int)$formData['value'] !== 0;
+    }
+
+    /**
+     * Checks whether the content of a given field is true or not required.
+     *
+     * @param array $formData
+     *        associative array containing the current value with the key
+     *        "value" and the name with the key "elementName" of the form field
+     *        to check, must not be empty
+     *
+     * @return bool true if everything is okay, false is there is a validation error
+     */
+    public function validateBooleanField(array $formData): bool
+    {
+        $this->validateFieldName($formData);
+        if (!$this->isFormFieldRequired($formData)) {
+            return true;
+        }
+
+        return (bool)$formData['value'];
     }
 
     /**
