@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Change the HTML template from XHTML to HTML5 (#151)
 - Stop using the TYPO3 console for the CI build (#146)
 - Upgrade PHPUnit and nimut/testing-framework (#143)
 - Improve the code autoformatting (#139)
