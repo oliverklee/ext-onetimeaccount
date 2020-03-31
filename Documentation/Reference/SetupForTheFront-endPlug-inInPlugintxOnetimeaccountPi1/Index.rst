@@ -99,7 +99,7 @@ override the corresponding value from TS Setup.**
    Description
          comma-separated list of FE user fields which the user is required to
          fill inNote: If displayed, the gender, usergroup and
-         module\_sys\_dmail\_html fieldsautomatically are required.
+         module\_sys\_dmail\_html fields automatically are required.
 
    Default
          name, email

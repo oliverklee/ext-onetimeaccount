@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Fix a typo in the documentation (#149)
 - Keep the order of the FE user groups (#147)
 - Fix warnings in the `.travis.yml` (#145)
 - Do not cache `vendor/` on Travis CI (#142)
