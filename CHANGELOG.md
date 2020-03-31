@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 4.1.0
+
+### Added
 - Add a privacy policy checkbox (#152)
 
 ### Changed
@@ -13,8 +23,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Stop using the TYPO3 console for the CI build (#146)
 - Upgrade PHPUnit and nimut/testing-framework (#143)
 - Improve the code autoformatting (#139)
-
-### Removed
 
 ### Fixed
 - Fix the layout of checkboxes in the FE (#150)
