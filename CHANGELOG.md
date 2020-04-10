@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Always use Composer-installed versions of the dev tools (#157)
 
 ## 4.1.0
 
