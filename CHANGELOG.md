@@ -12,6 +12,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+
+## 4.1.1
+
+### Fixed
 - Add `.0` version suffixes to PHP version requirements (#161)
 - Update the "for" attribute of labels (#156, #160)
 - Load the flexforms language labels in the default language as well (#158, #159)
