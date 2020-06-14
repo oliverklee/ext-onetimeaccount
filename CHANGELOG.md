@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Load the flexforms language labels in the default language as well (#158, #159)
 - Always use Composer-installed versions of the dev tools (#157)
 
 ## 4.1.0

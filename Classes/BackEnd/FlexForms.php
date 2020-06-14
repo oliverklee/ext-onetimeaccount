@@ -199,7 +199,8 @@ class FlexForms
             return;
         }
 
-        $languageFilePath = 'EXT:onetimeaccount/Resources/Private/Language/locallang_db.xlf';
+        $languageKey = 'EXT:onetimeaccount/Resources/Private/Language/locallang_db.xlf';
+        $languageFilePath = GeneralUtility::getFileAbsFileName($languageKey);
         /** @var XliffParser $xmlParser */
         $xmlParser = GeneralUtility::makeInstance(XliffParser::class);
         self::$languageLabels = $xmlParser->getParsedData($languageFilePath, $this->getLanguageService()->lang);
