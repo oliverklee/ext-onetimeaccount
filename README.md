@@ -13,8 +13,9 @@ Most of the documentation is in ReST format
 [in the Documentation/ folder](Documentation/) and is rendered
 [as part of the TYPO3 documentation](https://docs.typo3.org/typo3cms/extensions/onetimeaccount/).
 
-## Compatibility with TYPO3 9LTS/9.5
+## Compatibility with TYPO3 10LTS/10.4
 
-If you need this extension to work with TYPO3 9LTS/9.5, please consider
-supporting the [crowdfunding campaign](https://coders.care/for/crowdfunding/seminars/)
+This extension is not compatible TYPO3 10LTS/10.4 yet.
+Please consider supporting the
+[crowdfunding campaign](https://github.com/oliverklee/ext-seminars/wiki/10LTS-Crowdfunding-Campaign)
 to make this happen.
