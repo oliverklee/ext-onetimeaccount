@@ -1,6 +1,6 @@
 # "One time account" TYPO3 extension
 
-[![Build Status](https://travis-ci.org/oliverklee/ext-onetimeaccount.svg?branch=main)](https://travis-ci.org/oliverklee/ext-onetimeaccount)
+[![GitHub CI Status](https://github.com/oliverklee/ext-onetimeaccount/workflows/CI/badge.svg?branch=main)](https://github.com/oliverklee/ext-onetimeaccount/actions)
 [![Latest Stable Version](https://poser.pugx.org/oliverklee/onetimeaccount/v/stable.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Total Downloads](https://poser.pugx.org/oliverklee/onetimeaccount/downloads.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Latest Unstable Version](https://poser.pugx.org/oliverklee/onetimeaccount/v/unstable.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
@@ -15,7 +15,7 @@ Most of the documentation is in ReST format
 
 ## Compatibility with TYPO3 10LTS/10.4
 
-This extension is not compatible TYPO3 10LTS/10.4 yet.
+This extension is not compatible TYPO3 with 10LTS/10.4 yet.
 Please consider supporting the
 [crowdfunding campaign](https://github.com/oliverklee/ext-seminars/wiki/10LTS-Crowdfunding-Campaign)
 to make this happen.
