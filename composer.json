@@ -102,7 +102,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.1.x-dev"
+            "dev-main": "4.1.x-dev"
         },
         "typo3/cms": {
             "extension-key": "onetimeaccount",

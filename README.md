@@ -1,6 +1,6 @@
 # "One time account" TYPO3 extension
 
-[![Build Status](https://travis-ci.org/oliverklee/ext-onetimeaccount.svg?branch=master)](https://travis-ci.org/oliverklee/ext-onetimeaccount)
+[![Build Status](https://travis-ci.org/oliverklee/ext-onetimeaccount.svg?branch=main)](https://travis-ci.org/oliverklee/ext-onetimeaccount)
 [![Latest Stable Version](https://poser.pugx.org/oliverklee/onetimeaccount/v/stable.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Total Downloads](https://poser.pugx.org/oliverklee/onetimeaccount/downloads.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Latest Unstable Version](https://poser.pugx.org/oliverklee/onetimeaccount/v/unstable.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
