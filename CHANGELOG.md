@@ -6,16 +6,22 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 4.2.0
+
+### Added
 - Add support for PHP 7.3 and 7.4 (#177)
 
 ### Changed
 - Update the dependencies (#175, #176)
 - Switch from Travis CI to GitHub Actions (#173, #174)
 - Switch the default branch from master to main (#172)
-
-### Removed
-
-### Fixed
 
 ## 4.1.1
 
