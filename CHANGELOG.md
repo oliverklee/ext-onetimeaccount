@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add support for PHP 7.3 and 7.4 (#177)
 
 ### Changed
 - Update the dependencies (#175, #176)
