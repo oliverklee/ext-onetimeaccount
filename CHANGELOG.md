@@ -8,7 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
-- Switch from Travis CI to GitHub Actions (#173)
+- Switch from Travis CI to GitHub Actions (#173, #174)
 - Switch the default branch from master to main (#172)
 
 ### Removed
