@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Relax the dependencies to allow non-Composer installations again (#181)
 
 ## 4.2.0
 
