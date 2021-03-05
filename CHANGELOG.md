@@ -8,9 +8,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
-- Require oelib >= 3.2.0 (#180)
 
 ### Removed
+
+### Fixed
+
+## 4.2.1
+
+### Changed
+- Require oelib >= 3.2.0 (#180)
 
 ### Fixed
 - Relax the dependencies to allow non-Composer installations again (#181)

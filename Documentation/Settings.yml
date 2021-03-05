@@ -4,10 +4,10 @@
 
 ---
 conf.py:
-  copyright: 2020
+  copyright: 2021
   project: One-time FE account
   version: 4.2
-  release: 4.2.0
+  release: 4.2.1
   latex_documents:
   - - Index
     - onetimeaccount.tex
