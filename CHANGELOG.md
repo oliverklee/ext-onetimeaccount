@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add an `.editorconfig` to match the Core (#183)
 
 ### Changed
 - Require oelib >= 3.3.0 (#182)
