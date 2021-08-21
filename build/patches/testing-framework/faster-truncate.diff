@@ -1,0 +1,47 @@
+commit 77980214fc32faf374129f1edf90cb711803944b
+Author: Oliver Klee <typo3-coding@oliverklee.de>
+Date:   Thu Aug 19 22:26:24 2021 +0200
+
+    [TASK] Only truncate tables that have been touched
+    
+    "Touched" means "the auto increment has been changed (if there is
+    one)" or "there are some records in it".
+    
+    This massively speeds up functional tests (as the table truncation
+    is the slowest part of the test setup).
+
+diff --git a/src/TestingFramework/TestSystem/AbstractTestSystem.php b/src/TestingFramework/TestSystem/AbstractTestSystem.php
+index 468ba3b..87cd256 100644
+--- a/src/TestingFramework/TestSystem/AbstractTestSystem.php
++++ b/src/TestingFramework/TestSystem/AbstractTestSystem.php
+@@ -19,6 +19,7 @@ use Nimut\TestingFramework\Exception\Exception;
+ use Nimut\TestingFramework\File\NtfStreamWrapper;
+ use TYPO3\CMS\Core\Core\Bootstrap;
+ use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
++use TYPO3\CMS\Core\Database\Connection;
+ use TYPO3\CMS\Core\Database\ConnectionPool;
+ use TYPO3\CMS\Core\Utility\GeneralUtility;
+ 
+@@ -224,11 +225,19 @@ abstract class AbstractTestSystem
+      */
+     protected function initializeTestDatabase()
+     {
++        /** @var Connection $connection */
+         $connection = GeneralUtility::makeInstance(ConnectionPool::class)
+             ->getConnectionByName(ConnectionPool::DEFAULT_CONNECTION_NAME);
+-        $schemaManager = $connection->getSchemaManager();
+-        foreach ($schemaManager->listTables() as $table) {
+-            $connection->truncate($table->getName());
++
++        $databaseName = $connection->getDatabase();
++        $query = "SHOW TABLE STATUS FROM $databaseName";
++        $result = $connection->executeQuery($query)->fetchAll();
++        foreach ($result as $tableData) {
++            $isChanged = ((int) $tableData['Auto_increment']) > 1 || ((int) $tableData['Rows']) > 0;
++            if ($isChanged) {
++                $tableName = $tableData['Name'];
++                $connection->truncate($tableName);
++            }
+         }
+     }
+ 
