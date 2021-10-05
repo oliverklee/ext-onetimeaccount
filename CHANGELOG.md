@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Add an `.editorconfig` to match the Core (#183)
 
 ### Changed
-- Require oelib >= 3.3.0 (#182)
+- Require oelib >= 3.6.3 (#182, #189)
 
 ### Removed
 
