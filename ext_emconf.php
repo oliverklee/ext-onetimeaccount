@@ -12,7 +12,7 @@ $EM_CONF[$_EXTKEY] = [
             'felogin' => '8.7.0-9.5.99',
             'mkforms' => '9.5.2-9.5.99',
             'oelib' => '3.6.3-3.99.99',
-            'static_info_tables' => '6.7.0-6.99.99',
+            'static_info_tables' => '6.8.0-6.99.99',
         ],
         'conflicts' => [
             'kb_md5fepw' => '0.0.0-',
