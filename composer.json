@@ -26,18 +26,18 @@
         "digedag/rn-base": "^1.11.4",
         "dmk/mkforms": "^9.5.2",
         "oliverklee/oelib": "^3.6.3",
-        "sjbr/static-info-tables": "^6.7.0",
+        "sjbr/static-info-tables": "^6.8.0",
         "typo3/cms-core": "^8.7.9 || ^9.5.7",
         "typo3/cms-felogin": "^8.7 || ^9.5",
         "typo3/cms-frontend": "^8.7 || ^9.5",
         "typo3/cms-lang": "^8.7 || ^9.5"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.19.2",
+        "friendsofphp/php-cs-fixer": "^2.19.3",
         "helmich/typo3-typoscript-lint": "^1.5.0",
         "nimut/testing-framework": "^5.3.0",
         "phpunit/phpunit": "^6.5.14 || ^7.5.20",
-        "squizlabs/php_codesniffer": "^3.6.1"
+        "squizlabs/php_codesniffer": "^3.6.2"
     },
     "suggest": {
         "in2code/femanager": "^5.4 || ^6.0",
