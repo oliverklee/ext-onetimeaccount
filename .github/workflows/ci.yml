@@ -24,6 +24,7 @@ jobs:
       - name: "Run PHP lint"
         run: "composer ci:php:lint"
     strategy:
+      fail-fast: false
       matrix:
         php-version:
           - 7.0
@@ -58,6 +59,7 @@ jobs:
       - name: "Run command"
         run: "composer ci:${{ matrix.command }}"
     strategy:
+      fail-fast: false
       matrix:
         command:
           - "php:sniff"
@@ -100,6 +102,7 @@ jobs:
       - name: "Run unit tests"
         run: "composer ci:tests:unit"
     strategy:
+      fail-fast: false
       matrix:
         include:
           - typo3-version: ^8.7
@@ -156,6 +159,7 @@ jobs:
           export typo3DatabasePassword="root";
           composer ci:tests:functional
     strategy:
+      fail-fast: false
       matrix:
         include:
           - typo3-version: ^8.7
