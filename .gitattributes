@@ -1,7 +1,11 @@
-# Please keep the lines in this file sorted.
+/.Build/ export-ignore
+/.editorconfig export-ignore
 /.gitattributes export-ignore
 /.github/ export-ignore
 /.gitignore export-ignore
-/CODE_OF_CONDUCT.md export-ignore
+/.php-cs-fixer.php export-ignore
+/.phpstorm.meta.php export-ignore
 /Tests/ export-ignore
-/phpcs.xml.dist export-ignore
+/phpcs.xml export-ignore
+/phpstan-baseline.neon export-ignore
+/phpstan.neon export-ignore

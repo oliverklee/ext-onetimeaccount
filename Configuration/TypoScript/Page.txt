@@ -1,3 +1,0 @@
-page.includeCSS {
-    tx_onetimeaccount_pi1 = {$plugin.tx_onetimeaccount_pi1.cssFile}
-}

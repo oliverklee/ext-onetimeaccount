@@ -5,8 +5,6 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
   schedule:
     - cron: '15 3 * * 1'
 jobs:
@@ -20,19 +18,19 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-version }}"
-          tools: composer:v2.2
+          coverage: none
+          tools: composer:v2.3
       - name: "Run PHP lint"
         run: "composer ci:php:lint"
     strategy:
       fail-fast: false
       matrix:
         php-version:
-          - 7.0
-          - 7.1
           - 7.2
           - 7.3
           - 7.4
           - 8.0
+          - 8.1
   code-quality:
     name: "Code quality checks"
     runs-on: ubuntu-20.04
@@ -43,16 +41,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-version }}"
-          tools: composer:v2.2
-          extensions: zip
+          coverage: none
+          tools: composer:v2.3
       - name: "Show Composer version"
         run: composer --version
       - name: "Cache dependencies installed with composer"
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
-          key: "php${{ matrix.php-version }}-
-          composer-${{ hashFiles('**/composer.json') }}"
-          path: ~/.composer/cache
+          key: "php${{ matrix.php-version }}-composer-${{ hashFiles('**/composer.json') }}"
+          path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-composer-\n"
       - name: "Install Composer dependencies"
         run: "composer install --no-progress"
@@ -62,11 +59,23 @@ jobs:
       fail-fast: false
       matrix:
         command:
+          - "composer:normalize"
+          - "json:lint"
+          - "php:copypaste"
+          - "php:cs-fixer"
           - "php:sniff"
-          - "php:fixer"
-          - "ts:lint"
+          - "php:stan"
+          - "yaml:lint"
         php-version:
           - 7.4
+  xliff-lint:
+    name: "Xliff linter"
+    runs-on: ubuntu-20.04
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - name: "Run the xliff lint"
+        uses: TYPO3-Continuous-Integration/TYPO3-CI-Xliff-Lint@v1
   unit-tests:
     name: "Unit tests"
     runs-on: ubuntu-20.04
@@ -78,24 +87,29 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-version }}"
-          tools: composer:v2.2
-          extensions: zip
+          coverage: none
+          tools: composer:v2.3
       - name: "Show Composer version"
         run: composer --version
       - name: "Cache dependencies installed with composer"
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
-          key: "php${{ matrix.php-version }}
-               -composer-${{ hashFiles('**/composer.json') }}"
-          path: ~/.composer/cache
-          restore-keys: "php${{ matrix.php-version }}-composer-\n"
-      - env:
+          key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
+          path: ~/.cache/composer
+          restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
+      - name: "Install TYPO3 Core"
+        env:
           TYPO3: "${{ matrix.typo3-version }}"
-        name: "Install TYPO3 Core"
         run: |
-          composer require --no-progress typo3/minimal:"$TYPO3"
+          composer require --no-ansi --no-interaction --no-progress --no-install typo3/minimal:"$TYPO3"
           composer show
-      - name: "Install dependencies with composer"
+      - name: "Install lowest dependencies with composer"
+        if: "matrix.composer-dependencies == 'lowest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest
+          composer show
+      - name: "Install highest dependencies with composer"
+        if: "matrix.composer-dependencies == 'highest'"
         run: |
           composer update --no-ansi --no-interaction --no-progress --with-dependencies
           composer show
@@ -105,18 +119,24 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - typo3-version: ^8.7
-            php-version: 7.0
-          - typo3-version: ^8.7
-            php-version: 7.1
-          - typo3-version: ^8.7
+          - typo3-version: ^10.4
             php-version: 7.2
-          - typo3-version: ^9.5
+            composer-dependencies: highest
+          - typo3-version: ^10.4
             php-version: 7.2
-          - typo3-version: ^9.5
+            composer-dependencies: lowest
+          - typo3-version: ^10.4
             php-version: 7.3
-          - typo3-version: ^9.5
+            composer-dependencies: highest
+          - typo3-version: ^10.4
+            php-version: 7.3
+            composer-dependencies: lowest
+          - typo3-version: ^10.4
             php-version: 7.4
+            composer-dependencies: highest
+          - typo3-version: ^10.4
+            php-version: 7.4
+            composer-dependencies: lowest
   functional-tests:
     name: "Functional tests"
     runs-on: ubuntu-18.04
@@ -128,24 +148,30 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-version }}"
-          tools: composer:v2.2
-          extensions: zip, mysqli
+          tools: composer:v2.3
+          extensions: mysqli
+          coverage: none
       - name: "Show Composer version"
         run: composer --version
       - name: "Cache dependencies installed with composer"
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
-          key: "php${{ matrix.php-version }}
-          -composer-${{ hashFiles('**/composer.json') }}"
-          path: ~/.composer/cache
-          restore-keys: "php${{ matrix.php-version }}-composer-\n"
-      - env:
+          key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
+          path: ~/.cache/composer
+          restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
+      - name: "Install TYPO3 Core"
+        env:
           TYPO3: "${{ matrix.typo3-version }}"
-        name: "Install TYPO3 Core"
         run: |
-          composer require --no-progress typo3/minimal:"$TYPO3"
+          composer require --no-ansi --no-interaction --no-progress --no-install typo3/minimal:"$TYPO3"
           composer show
-      - name: "Install dependencies with composer"
+      - name: "Install lowest dependencies with composer"
+        if: "matrix.composer-dependencies == 'lowest'"
+        run: |
+          composer update --no-ansi --no-interaction --no-progress --with-dependencies --prefer-lowest
+          composer show
+      - name: "Install highest dependencies with composer"
+        if: "matrix.composer-dependencies == 'highest'"
         run: |
           composer update --no-ansi --no-interaction --no-progress --with-dependencies
           composer show
@@ -162,15 +188,21 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - typo3-version: ^8.7
-            php-version: 7.0
-          - typo3-version: ^8.7
-            php-version: 7.1
-          - typo3-version: ^8.7
+          - typo3-version: ^10.4
             php-version: 7.2
-          - typo3-version: ^9.5
+            composer-dependencies: highest
+          - typo3-version: ^10.4
             php-version: 7.2
-          - typo3-version: ^9.5
+            composer-dependencies: lowest
+          - typo3-version: ^10.4
             php-version: 7.3
-          - typo3-version: ^9.5
+            composer-dependencies: highest
+          - typo3-version: ^10.4
+            php-version: 7.3
+            composer-dependencies: lowest
+          - typo3-version: ^10.4
             php-version: 7.4
+            composer-dependencies: highest
+          - typo3-version: ^10.4
+            php-version: 7.4
+            composer-dependencies: lowest
