@@ -14,7 +14,11 @@ final class HelloWorldTest extends FunctionalTestCase
     /**
      * @var array<int, non-empty-string>
      */
-    protected $testExtensionsToLoad = ['typo3conf/ext/onetimeaccount'];
+    protected $testExtensionsToLoad = [
+        'typo3conf/ext/feuserextrafields',
+        'typo3conf/ext/oelib',
+        'typo3conf/ext/onetimeaccount',
+    ];
 
     /**
      * @test
