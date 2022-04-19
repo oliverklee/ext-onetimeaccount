@@ -3,6 +3,14 @@
 	<file source-language="en" target-language="de" datatype="plaintext" original="messages">
 		<header/>
 		<body>
+			<trans-unit id="plugin.withAutologin">
+				<source>One-time FE account creator with autologin</source>
+				<target>Einmal-FE-Account-Generator mit Autologin</target>
+			</trans-unit>
+			<trans-unit id="plugin.withoutAutologin">
+				<source>One-time FE account creator without autologin</source>
+				<target>Einmal-FE-Account-Generator ohne Autologin</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

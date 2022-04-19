@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Complete rewrite with support for TYPO3 10LTS (#197, #198, #199)
+- Complete rewrite with support for TYPO3 10LTS (#197, #198, #199, #200)
 
 ### Changed
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <general>
+            <ROOT>
+                <TCEforms>
+                    <!--
+                        The sheet title will not be visible in the BE. Still, the XML element needs to be present to
+                        avoid a crash in the BE.
+                    -->
+                    <sheetTitle/>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                </el>
+            </ROOT>
+        </general>
+    </sheets>
+</T3DataStructure>

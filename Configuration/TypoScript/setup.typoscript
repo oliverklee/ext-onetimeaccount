@@ -1,0 +1,15 @@
+plugin.tx_onetimeaccount {
+  view {
+    templateRootPath = {$plugin.tx_onetimeaccount.view.templateRootPath}
+    partialRootPath = {$plugin.tx_onetimeaccount.view.partialRootPath}
+    layoutRootPath = {$plugin.tx_onetimeaccount.view.layoutRootPath}
+  }
+
+  persistence {
+    storagePid = {$plugin.tx_onetimeaccount.persistence.storagePid}
+  }
+
+  settings {
+    singleViewPageUid = {$plugin.tx_onetimeaccount.settings.singleViewPageUid}
+  }
+}
