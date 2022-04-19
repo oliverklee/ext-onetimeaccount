@@ -1,116 +1,208 @@
 {
-    "name": "oliverklee/onetimeaccount",
-    "description": "Allow users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password).",
-    "type": "typo3-cms-extension",
-    "keywords": [
-        "account",
-        "login",
-        "onetime"
-    ],
-    "homepage": "https://www.oliverklee.de/typo3-services/typo3-extensions.html",
-    "license": "GPL-2.0-or-later",
-    "authors": [
-        {
-            "name": "Oliver Klee",
-            "email": "typo3-coding@oliverklee.de",
-            "homepage": "https://www.oliverklee.de",
-            "role": "developer"
-        }
-    ],
-    "support": {
-        "issues": "https://github.com/oliverklee/ext-onetimeaccount/issues",
-        "source": "https://github.com/oliverklee/ext-onetimeaccount"
-    },
-    "require": {
-        "php": "~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0",
-        "digedag/rn-base": "^1.11.4",
-        "dmk/mkforms": "^9.5.2",
-        "oliverklee/oelib": "^3.6.3",
-        "sjbr/static-info-tables": "^6.8.0",
-        "typo3/cms-core": "^8.7.9 || ^9.5.7",
-        "typo3/cms-felogin": "^8.7 || ^9.5",
-        "typo3/cms-frontend": "^8.7 || ^9.5",
-        "typo3/cms-lang": "^8.7 || ^9.5"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.19.3",
-        "helmich/typo3-typoscript-lint": "^1.5.0",
-        "nimut/testing-framework": "^5.3.0",
-        "phpunit/phpunit": "^6.5.14 || ^7.5.20",
-        "squizlabs/php_codesniffer": "^3.6.2"
-    },
-    "suggest": {
-        "in2code/femanager": "^5.4 || ^6.0",
-        "sjbr/sr-feuser-register": "^5.1 || ^6.0 || 7.0"
-    },
-    "replace": {
-        "typo3-ter/onetimeaccount": "self.version"
-    },
-    "autoload": {
-        "psr-4": {
-            "OliverKlee\\OneTimeAccount\\": "Classes/"
-        },
-        "classmap": [
-            "pi1"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "OliverKlee\\OneTimeAccount\\Tests\\": "Tests/"
-        }
-    },
-    "prefer-stable": true,
-    "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true,
-        "vendor-dir": ".Build/vendor",
-        "allow-plugins": {
-            "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true
-        }
-    },
-    "scripts": {
-        "php:fix": ".Build/vendor/bin/php-cs-fixer --config=Configuration/php-cs-fixer.php fix Classes pi1 Tests && .Build/vendor/bin/phpcbf Classes Configuration pi1 Tests",
-        "ci:php:lint": "find *.php Classes Configuration pi1 Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-        "ci:php:sniff": ".Build/vendor/bin/phpcs Classes Configuration pi1 Tests",
-        "ci:php:fixer": ".Build/vendor/bin/php-cs-fixer --config=Configuration/php-cs-fixer.php fix --dry-run -v --show-progress=dots --diff-format=udiff Classes pi1 Tests",
-        "ci:ts:lint": ".Build/vendor/bin/typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript",
-        "ci:tests:unit": ".Build/vendor/bin/phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit",
-        "ci:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/vendor/bin/phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/FunctionalTests.xml {}';",
-        "ci:tests": [
-            "@ci:tests:unit",
-            "@ci:tests:functional"
-        ],
-        "ci:dynamic": [
-            "@ci:tests"
-        ],
-        "ci:static": [
-            "@ci:php:lint",
-            "@ci:php:sniff",
-            "@ci:php:fixer",
-            "@ci:ts:lint"
-        ],
-        "ci": [
-            "@ci:static",
-            "@ci:dynamic"
-        ],
-        "link-extension": [
-            "@php -r 'is_dir($extFolder=__DIR__.\"/.Build/public/typo3conf/ext/\") || mkdir($extFolder, 0777, true);'",
-            "@php -r 'file_exists($extFolder=__DIR__.\"/.Build/public/typo3conf/ext/onetimeaccount\") || symlink(__DIR__,$extFolder);'"
-        ],
-        "post-autoload-dump": [
-            "@link-extension"
-        ]
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-main": "4.1.x-dev"
-        },
-        "typo3/cms": {
-            "extension-key": "onetimeaccount",
-            "web-dir": ".Build/public"
-        }
-    }
+	"name": "oliverklee/onetimeaccount",
+	"description": "Allow users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password).",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
+	"keywords": [
+		"account",
+		"login",
+		"onetime"
+	],
+	"authors": [
+		{
+			"name": "Oliver Klee",
+			"email": "typo3-coding@oliverklee.de",
+			"homepage": "https://www.oliverklee.de",
+			"role": "developer"
+		}
+	],
+	"homepage": "https://www.oliverklee.de/typo3-services/typo3-extensions/",
+	"support": {
+		"issues": "https://github.com/oliverklee/ext-onetimeaccount/issues",
+		"source": "https://github.com/oliverklee/ext-onetimeaccount"
+	},
+	"require": {
+		"php": "^7.2.0 || ~8.0.0 || ~8.1.0",
+		"typo3/cms-core": "^10.4.1",
+		"typo3/cms-extbase": "^10.4",
+		"typo3/cms-fluid": "^10.4"
+	},
+	"require-dev": {
+		"ergebnis/composer-normalize": "^2.19.0",
+		"friendsofphp/php-cs-fixer": "^3.4.0",
+		"jangregor/phpstan-prophecy": "^1.0.0",
+		"php-coveralls/php-coveralls": "^2.5.2",
+		"phpstan/extension-installer": "^1.1.0",
+		"phpstan/phpstan": "^1.5.4",
+		"phpstan/phpstan-phpunit": "^1.1.0",
+		"phpunit/phpcov": "^6.0.1",
+		"phpunit/phpunit": "^8.5.26",
+		"saschaegerer/phpstan-typo3": "^1.1.2",
+		"sebastian/phpcpd": "^4.1.0",
+		"seld/jsonlint": "^1.9.0",
+		"sjbr/static-info-tables": "^6.9.6",
+		"squizlabs/php_codesniffer": "^3.6.2",
+		"symfony/yaml": "^4.4.37 || ^5.3.14 || ^6.0.2",
+		"typo3/coding-standards": "^0.5.1",
+		"typo3/testing-framework": "^6.16.3"
+	},
+	"replace": {
+		"typo3-ter/onetimeaccount": "self.version"
+	},
+	"prefer-stable": true,
+	"autoload": {
+		"psr-4": {
+			"OliverKlee\\OneTimeAccount\\": "Classes/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"OliverKlee\\OneTimeAccount\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
+			"phpstan/extension-installer": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"preferred-install": {
+			"*": "dist"
+		},
+		"process-timeout": 1000,
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-main": "5.0.0-dev"
+		},
+		"typo3/cms": {
+			"app-dir": ".Build",
+			"extension-key": "onetimeaccount",
+			"web-dir": ".Build/public"
+		}
+	},
+	"scripts": {
+		"post-autoload-dump": [
+			"@link-extension"
+		],
+		"ci": [
+			"@ci:static"
+		],
+		"ci:composer:normalize": "@composer normalize --dry-run",
+		"ci:coverage": [
+			"@ci:coverage:unit",
+			"@ci:coverage:functional"
+		],
+		"ci:coverage:functional": [
+			"@coverage:create-directories",
+			".Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml --whitelist Classes --coverage-php=.Build/coverage/functional.cov Tests/Functional"
+		],
+		"ci:coverage:merge": [
+			"@coverage:create-directories",
+			".Build/vendor/bin/phpcov merge --clover=./build/logs/clover.xml ./.Build/coverage/"
+		],
+		"ci:coverage:unit": [
+			"@coverage:create-directories",
+			".Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml --whitelist Classes --coverage-php=.Build/coverage/unit.cov Tests/Unit"
+		],
+		"ci:dynamic": [
+			"@ci:tests"
+		],
+		"ci:json:lint": "find . ! -path '*.Build/*' -name '*.json' | xargs -r php .Build/vendor/bin/jsonlint -q",
+		"ci:php": [
+			"@ci:php:copypaste",
+			"@ci:php:cs-fixer",
+			"@ci:php:lint",
+			"@ci:php:sniff",
+			"@ci:php:stan"
+		],
+		"ci:php:copypaste": "phpcpd Classes",
+		"ci:php:cs-fixer": "php-cs-fixer fix --config .php-cs-fixer.php -v --dry-run --using-cache no --diff",
+		"ci:php:lint": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -r -0 -n 1 -P 4 php -l",
+		"ci:php:sniff": "phpcs Classes Configuration Tests",
+		"ci:php:stan": "phpstan --no-progress",
+		"ci:static": [
+			"@ci:composer:normalize",
+			"@ci:json:lint",
+			"@ci:php:copypaste",
+			"@ci:php:cs-fixer",
+			"@ci:php:lint",
+			"@ci:php:sniff",
+			"@ci:php:stan",
+			"@ci:yaml:lint"
+		],
+		"ci:tests": [
+			"@ci:tests:unit",
+			"@ci:tests:functional"
+		],
+		"ci:tests:create-directories": "mkdir -p .Build/public/typo3temp/var/tests",
+		"ci:tests:functional": [
+			"@ci:tests:create-directories",
+			"find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTests.xml {}';"
+		],
+		"ci:tests:unit": [
+			"@ci:tests:create-directories",
+			".Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit"
+		],
+		"ci:yaml:lint": "find . ! -path '*.Build/*' -name '*.yml' | xargs -r php ./.Build/vendor/bin/yaml-lint",
+		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
+		"docs:generate": [
+			"docker run --rm t3docs/render-documentation show-shell-commands > tempfile.sh; echo 'dockrun_t3rd makehtml' >> tempfile.sh; bash tempfile.sh; rm tempfile.sh"
+		],
+		"fix:php": [
+			"@fix:php:cs",
+			"@fix:php:sniff"
+		],
+		"fix:php:cs": "php-cs-fixer fix --config .php-cs-fixer.php",
+		"fix:php:sniff": "phpcbf Classes Configuration Tests",
+		"link-extension": [
+			"@php -r 'is_dir($extFolder=__DIR__.\"/.Build/public/typo3conf/ext/\") || mkdir($extFolder, 0777, true);'",
+			"@php -r 'file_exists($extFolder=__DIR__.\"/.Build/public/typo3conf/ext/onetimeaccount\") || symlink(__DIR__,$extFolder);'"
+		],
+		"phpstan:baseline": ".Build/vendor/bin/phpstan  --generate-baseline=phpstan-baseline.neon",
+		"prepare-release": [
+			"rm -rf .Build",
+			"rm -rf .github",
+			"rm -rf Tests",
+			"rm .editorconfig",
+			"rm .gitattributes",
+			"rm .gitignore",
+			"rm .php-cs-fixer.php",
+			"rm .phpstorm.meta.php",
+			"rm phpcs.xml",
+			"rm phpstan-baseline.neon",
+			"rm phpstan.neon"
+		]
+	},
+	"scripts-descriptions": {
+		"ci": "Runs all dynamic and static code checks.",
+		"ci:composer:normalize": "Checks the composer.json.",
+		"ci:coverage": "Generates the code coverage report for unit and functional tests.",
+		"ci:coverage:functional": "Generates the code coverage report for functional tests.",
+		"ci:coverage:merge": "Merges the code coverage reports for unit and functional tests.",
+		"ci:coverage:unit": "Generates the code coverage report for unit tests.",
+		"ci:dynamic": "Runs all PHPUnit tests (unit and functional).",
+		"ci:json:lint": "Lints the JSON files.",
+		"ci:php": "Runs all static checks for the PHP files.",
+		"ci:php:copypaste": "Checks for copy'n'pasted PHP code.",
+		"ci:php:cs-fixer": "Checks the code style with the PHP Coding Standards Fixer (PHP-CS-Fixer).",
+		"ci:php:lint": "Lints the PHP files for syntax errors.",
+		"ci:php:sniff": "Checks the code style with PHP_CodeSniffer (PHPCS).",
+		"ci:php:stan": "Checks the PHP types using PHPStan.",
+		"ci:static": "Runs all static code checks (syntax, style, types).",
+		"ci:tests": "Runs all PHPUnit tests (unit and functional).",
+		"ci:tests:functional": "Runs the functional tests.",
+		"ci:tests:unit": "Runs the unit tests.",
+		"ci:yaml:lint": "Lints the YAML files.",
+		"coverage:create-directories": "Creates the directories needed for recording and merging the code coverage reports.",
+		"docs:generate": "Renders the extension ReST documentation.",
+		"fix:php": "Runs all fixers for the PHP code.",
+		"fix:php:cs": "Fixes the code style with PHP-CS-Fixer.",
+		"fix:php:sniff": "Fixes the code style with PHP_CodeSniffer.",
+		"phpstan:baseline": "Updates the PHPStan baseline file to match the code.",
+		"prepare-release": "Removes development-only files in preparation of a TER release."
+	}
 }

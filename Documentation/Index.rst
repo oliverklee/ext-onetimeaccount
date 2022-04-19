@@ -1,49 +1,50 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: /Includes.rst.txt
 
-.. ==================================================
-.. DEFINE SOME TEXTROLES
-.. --------------------------------------------------
-.. role::   underline
-.. role::   typoscript(code)
-.. role::   ts(typoscript)
-   :class:  typoscript
-.. role::   php(code)
+.. _start:
 
+==================================
+TYPO3 extension ``onetimeaccount``
+==================================
 
-===================
-One-time FE account
-===================
+:Extension key:
+   onetimeaccount
 
+:Package name:
+   oliverklee/onetimeaccount
 
-:Extension Key: onetimeaccount
-:Language:      en
-:Copyright:     `2007-2021, Oliver Klee, typo3-coding@oliverklee.de`
-:Maintainer:    `Oliver Klee, typo3-coding@oliverklee.de`
-:License:       `CC BY-SA 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_
-:Rendered:      |today|
+:Version:
+   |release|
 
-The content of this document is related to TYPO3 - a GNU/GPL CMS/Framework available from www.typo3.org
+:Language:
+   en
+
+:Author:
+   Oliver Klee
+
+:License:
+   This extension is published under the
+   `GNU General Public License v2.0 <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>`__.
+
+:Rendered:
+   |today|
+
+----
+
+This extension allows users to create a one-time FE account to which they will
+be automatically logged in (without having to enter a username or password).
+
+----
+
+**Table of Contents:**
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :titlesonly:
-   :glob:
 
-   Introduction/Index
-   Screenshots/Index
-   SupportAndKeepingUp-to-date/Index
-   YourHelpIsWanted/Index
-   Usage/Index
-   Reference/Index
-   Development/Index
-   KnownProblemsAndLimitations/Index
+.. Meta Menu
 
-Compatibility with TYPO3 10LTS/10.4
------------------------------------
+.. toctree::
+   :hidden:
 
-If you would like to use this extension with TYPO3 10LTS/10.4, please consider
-supporting the `crowdfunding campaign <https://github.com/oliverklee/ext-seminars/wiki/10LTS-Crowdfunding-Campaign>`_
-to help make this happen.
+   Sitemap
+   genindex
