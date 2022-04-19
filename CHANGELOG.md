@@ -6,13 +6,21 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 4.2.2
+
+### Added
 - Add an `.editorconfig` to match the Core (#183)
 
 ### Changed
 - Update the dependencies (#193)
 - Require oelib >= 3.6.3 (#182, #189)
-
-### Removed
 
 ### Fixed
 - Allow the development Composer plugins (#192)
