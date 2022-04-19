@@ -10,14 +10,14 @@
 This extension allows users to create a one-time FE account to which they will
 be automatically logged in (without having to enter a username or password).
 
-## Give it a try!
-
-If you would like to test the extension yourself, there is a
-[DDEV-based TYPO3 distribution](https://github.com/oliverklee/TYPO3-testing-distribution)
-with this extension installed and some test records ready to go.
-
 |                  | URL                                                            |
 |------------------|----------------------------------------------------------------|
 | **Repository:**  | https://github.com/oliverklee/ext-onetimeaccount               |
 | **Read online:** | https://docs.typo3.org/p/oliverklee/onetimeaccount/main/en-us/ |
 | **TER:**         | https://extensions.typo3.org/extension/onetimeaccount/         |
+
+## Give it a try!
+
+If you would like to test the extension yourself, there is a
+[DDEV-based TYPO3 distribution](https://github.com/oliverklee/TYPO3-testing-distribution)
+with this extension installed and some test records ready to go.
