@@ -18,11 +18,11 @@ defined('TYPO3_MODE') || die();
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['onetimeaccount_withautologin']
     = 'recursive,select_key,pages';
 // These two commands add the flexform configuration for the plugin.
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withoutautologin'] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'onetimeaccount_withautologin',
-    'FILE:EXT:onetimeaccount/Configuration/FlexForms/Plugin.xml'
-);
+// $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withautologin'] = 'pi_flexform';
+// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+//     'onetimeaccount_withautologin',
+//     'FILE:EXT:onetimeaccount/Configuration/FlexForms/Plugin.xml'
+// );
 
 // This makes the plugin selectable in the BE.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
@@ -40,8 +40,8 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccou
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['onetimeaccount_withoutautologin']
     = 'recursive,select_key,pages';
 // These two commands add the flexform configuration for the plugin.
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withoutautologin'] = 'pi_flexform';
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    'onetimeaccount_withoutautologin',
-    'FILE:EXT:onetimeaccount/Configuration/FlexForms/Plugin.xml'
-);
+// $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withoutautologin'] = 'pi_flexform';
+// \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+//     'onetimeaccount_withoutautologin',
+//     'FILE:EXT:onetimeaccount/Configuration/FlexForms/Plugin.xml'
+// );
