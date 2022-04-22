@@ -16,7 +16,5 @@ plugin.tx_onetimeaccount {
   }
 
   settings {
-    # cat=plugin.tx_onetimeaccount//a; type=int; label=UID of the page with the single view
-    singleViewPageUid =
   }
 }
