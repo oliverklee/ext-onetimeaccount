@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 
+use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
 use PHPUnit\Framework\MockObject\MockObject;
+use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Fluid\View\TemplateView;
@@ -56,10 +58,33 @@ class UserWithoutAutologinControllerTest extends UnitTestCase
 
     /**
      * @test
-     * @doesNotPerformAssertions
      */
-    public function newActionCanBeCalled(): void
+    public function newActionWithUserPassesUserToView(): void
     {
+        $user = new FrontendUser();
+
+        $this->viewProphecy->assign('user', $user)->shouldBeCalled();
+
+        $this->subject->newAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithoutUserPassesVirginUserToView(): void
+    {
+        $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
+
         $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithNullUserPassesVirginUserToView(): void
+    {
+        $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
+
+        $this->subject->newAction(null);
     }
 }

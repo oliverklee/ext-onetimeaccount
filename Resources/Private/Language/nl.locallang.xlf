@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="nl" datatype="plaintext" original="messages">
+		<header/>
+		<body>
+			<trans-unit id="gender">
+				<source>Gender</source>
+				<target>Dhr./Mevr.</target>
+			</trans-unit>
+			<trans-unit id="gender.0">
+				<source>Mr.</source>
+				<target>Dhr.</target>
+			</trans-unit>
+			<trans-unit id="gender.1">
+				<source>Mrs.</source>
+				<target>Mevr.</target>
+			</trans-unit>
+			<trans-unit id="zone">
+				<source>County/Region</source>
+				<target>Provincie</target>
+			</trans-unit>
+			<trans-unit id="dateOfBirth">
+				<source>Birth date</source>
+				<target>Geboortedatum</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
