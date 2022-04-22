@@ -1,8 +1,19 @@
 plugin.tx_onetimeaccount {
   view {
-    templateRootPath = {$plugin.tx_onetimeaccount.view.templateRootPath}
-    partialRootPath = {$plugin.tx_onetimeaccount.view.partialRootPath}
-    layoutRootPath = {$plugin.tx_onetimeaccount.view.layoutRootPath}
+    templateRootPaths {
+      0 = EXT:onetimeaccount/Resources/Private/Templates/
+      1 = {$plugin.tx_onetimeaccount.view.templateRootPath}
+    }
+
+    partialRootPaths {
+      0 = EXT:onetimeaccount/Resources/Private/Partials/
+      1 = {$plugin.tx_onetimeaccount.view.partialRootPath}
+    }
+
+    layoutRootPaths {
+      0 = EXT:onetimeaccount/Resources/Private/Layouts/
+      1 = {$plugin.tx_onetimeaccount.view.layoutRootPath}
+    }
   }
 
   persistence {
