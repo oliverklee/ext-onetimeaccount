@@ -14,6 +14,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * @covers \OliverKlee\OneTimeAccount\Controller\UserWithAutologinController
+ * @covers \OliverKlee\OneTimeAccount\Controller\AbstractUserController
  */
 class UserWithAutologinControllerTest extends UnitTestCase
 {
