@@ -32,6 +32,7 @@
 	"require-dev": {
 		"ergebnis/composer-normalize": "^2.19.0",
 		"friendsofphp/php-cs-fixer": "^3.4.0",
+		"helmich/typo3-typoscript-lint": "^2.5.2",
 		"jangregor/phpstan-prophecy": "^1.0.0",
 		"php-coveralls/php-coveralls": "^2.5.2",
 		"phpstan/extension-installer": "^1.1.0",
@@ -134,6 +135,7 @@
 			"@ci:php:lint",
 			"@ci:php:sniff",
 			"@ci:php:stan",
+			"@ci:ts:lint",
 			"@ci:yaml:lint"
 		],
 		"ci:tests": [
@@ -149,6 +151,7 @@
 			"@ci:tests:create-directories",
 			".Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit"
 		],
+		"ci:ts:lint": "typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript",
 		"ci:yaml:lint": "find . ! -path '*.Build/*' -name '*.yml' | xargs -r php ./.Build/vendor/bin/yaml-lint",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
 		"docs:generate": [
@@ -174,6 +177,7 @@
 			"rm .gitignore",
 			"rm .php-cs-fixer.php",
 			"rm .phpstorm.meta.php",
+			"rm Configuration/TsLint.yml",
 			"rm phpcs.xml",
 			"rm phpstan-baseline.neon",
 			"rm phpstan.neon"
@@ -198,6 +202,7 @@
 		"ci:tests": "Runs all PHPUnit tests (unit and functional).",
 		"ci:tests:functional": "Runs the functional tests.",
 		"ci:tests:unit": "Runs the unit tests.",
+		"ci:ts:lint": "Lints the TypoScript files.",
 		"ci:yaml:lint": "Lints the YAML files.",
 		"coverage:create-directories": "Creates the directories needed for recording and merging the code coverage reports.",
 		"docs:generate": "Renders the extension ReST documentation.",
