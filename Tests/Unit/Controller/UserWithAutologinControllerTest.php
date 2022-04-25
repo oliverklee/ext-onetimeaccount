@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\OneTimeAccount\Tests\Unit\Controller;
+namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 
-use OliverKlee\OneTimeAccount\Controller\UserWithAutologinController;
+use OliverKlee\Onetimeaccount\Controller\UserWithAutologinController;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -13,8 +13,8 @@ use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * @covers \OliverKlee\OneTimeAccount\Controller\UserWithAutologinController
- * @covers \OliverKlee\OneTimeAccount\Controller\AbstractUserController
+ * @covers \OliverKlee\Onetimeaccount\Controller\UserWithAutologinController
+ * @covers \OliverKlee\Onetimeaccount\Controller\AbstractUserController
  */
 class UserWithAutologinControllerTest extends UnitTestCase
 {
