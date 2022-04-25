@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\OneTimeAccount\Tests\Functional;
+namespace OliverKlee\Onetimeaccount\Tests\Functional;
 
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

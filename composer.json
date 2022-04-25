@@ -55,12 +55,12 @@
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
-			"OliverKlee\\OneTimeAccount\\": "Classes/"
+			"OliverKlee\\Onetimeaccount\\": "Classes/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"OliverKlee\\OneTimeAccount\\Tests\\": "Tests/"
+			"OliverKlee\\Onetimeaccount\\Tests\\": "Tests/"
 		}
 	},
 	"config": {

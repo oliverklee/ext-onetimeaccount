@@ -26,12 +26,12 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'oliverklee.de',
     'autoload' => [
         'psr-4' => [
-            'OliverKlee\\OneTimeAccount\\' => 'Classes/',
+            'OliverKlee\\Onetimeaccount\\' => 'Classes/',
         ],
     ],
     'autoload-dev' => [
         'psr-4' => [
-            'OliverKlee\\OneTimeAccount\\Tests\\' => 'Tests/',
+            'OliverKlee\\Onetimeaccount\\Tests\\' => 'Tests/',
         ],
     ],
 ];
