@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OliverKlee\Onetimeaccount\Controller;
 
+use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -15,7 +16,10 @@ abstract class AbstractUserController extends ActionController
     /**
      * Creates the user creation form (which initially is empty).
      */
-    public function newAction(): void
+    public function newAction(?FrontendUser $user = null): void
     {
+        $newUser = ($user instanceof FrontendUser) ? $user : new FrontendUser();
+
+        $this->view->assign('user', $newUser);
     }
 }
