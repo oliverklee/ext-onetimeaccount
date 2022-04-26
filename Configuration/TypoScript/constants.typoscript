@@ -16,5 +16,6 @@ plugin.tx_onetimeaccount {
   }
 
   settings {
+
   }
 }

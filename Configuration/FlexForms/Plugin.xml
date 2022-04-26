@@ -12,6 +12,20 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
+                    <settings.fieldsToShow>
+                        <TCEforms>
+                            <label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.fieldsToShow
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectCheckBox</renderType>
+                                <minitems>0</minitems>
+                                <maxitems>999</maxitems>
+                                <itemsProcFunc>OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
+                                </itemsProcFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.fieldsToShow>
                 </el>
             </ROOT>
         </general>
