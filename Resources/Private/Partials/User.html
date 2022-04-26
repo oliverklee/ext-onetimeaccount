@@ -9,7 +9,8 @@
                 <label for="onetimeaccount-company" class="form-label">
                     <f:translate key="company"/>
                 </label>
-                <f:form.textfield property="company" id="onetimeaccount-company" class="form-control"/>
+                <f:form.textfield property="company" id="onetimeaccount-company" class="form-control"
+                                  additionalAttributes="{autocomplete: 'organization'}"/>
             </div>
 
             <div class="form-group">
@@ -40,7 +41,8 @@
                 <label for="onetimeaccount-name" class="form-label">
                     <f:translate key="name"/>
                 </label>
-                <f:form.textfield property="name" id="onetimeaccount-name" class="form-control"/>
+                <f:form.textfield property="name" id="onetimeaccount-name" class="form-control"
+                                  additionalAttributes="{autocomplete: 'name'}"/>
             </div>
 
             <div class="row">
@@ -49,7 +51,8 @@
                         <label for="onetimeaccount-firstName" class="form-label">
                             <f:translate key="firstName"/>
                         </label>
-                        <f:form.textfield property="firstName" id="onetimeaccount-firstName" class="form-control"/>
+                        <f:form.textfield property="firstName" id="onetimeaccount-firstName" class="form-control"
+                                          additionalAttributes="{autocomplete: 'given-name'}"/>
                     </div>
                 </div>
                 <div class="col">
@@ -57,7 +60,8 @@
                         <label for="onetimeaccount-lastName" class="form-label">
                             <f:translate key="lastName"/>
                         </label>
-                        <f:form.textfield property="lastName" id="onetimeaccount-lastName" class="form-control"/>
+                        <f:form.textfield property="lastName" id="onetimeaccount-lastName" class="form-control"
+                                          additionalAttributes="{autocomplete: 'family-name'}"/>
                     </div>
                 </div>
             </div>
@@ -66,14 +70,16 @@
                 <label for="onetimeaccount-title" class="form-label">
                     <f:translate key="title"/>
                 </label>
-                <f:form.textfield property="title" id="onetimeaccount-title" class="form-control"/>
+                <f:form.textfield property="title" id="onetimeaccount-title" class="form-control"
+                                  additionalAttributes="{autocomplete: 'organization-title'}"/>
             </div>
 
             <div class="form-group">
                 <label for="onetimeaccount-address" class="form-label">
                     <f:translate key="address"/>
                 </label>
-                <f:form.textfield property="address" id="onetimeaccount-address" class="form-control"/>
+                <f:form.textfield property="address" id="onetimeaccount-address" class="form-control"
+                                  additionalAttributes="{autocomplete: 'street-address'}"/>
             </div>
 
             <div class="row">
@@ -82,7 +88,8 @@
                         <label for="onetimeaccount-zip" class="form-label">
                             <f:translate key="zip"/>
                         </label>
-                        <f:form.textfield property="zip" id="onetimeaccount-zip" class="form-control"/>
+                        <f:form.textfield property="zip" id="onetimeaccount-zip" class="form-control"
+                                          additionalAttributes="{autocomplete: 'postal-code'}"/>
                     </div>
                 </div>
                 <div class="col">
@@ -90,7 +97,8 @@
                         <label for="onetimeaccount-city" class="form-label">
                             <f:translate key="city"/>
                         </label>
-                        <f:form.textfield property="city" id="onetimeaccount-city" class="form-control"/>
+                        <f:form.textfield property="city" id="onetimeaccount-city" class="form-control"
+                                          additionalAttributes="{autocomplete: 'address-level2'}"/>
                     </div>
                 </div>
             </div>
@@ -106,35 +114,40 @@
                 <label for="onetimeaccount-country" class="form-label">
                     <f:translate key="country"/>
                 </label>
-                <f:form.textfield property="country" id="onetimeaccount-country" class="form-control"/>
+                <f:form.textfield property="country" id="onetimeaccount-country" class="form-control"
+                                  additionalAttributes="{autocomplete: 'country-name'}"/>
             </div>
 
             <div class="form-group">
                 <label for="onetimeaccount-email" class="form-label">
                     <f:translate key="email"/>
                 </label>
-                <f:form.textfield property="email" id="onetimeaccount-email" class="form-control"/>
+                <f:form.textfield property="email" id="onetimeaccount-email" class="form-control"
+                                  type="email" additionalAttributes="{autocomplete: 'email'}"/>
             </div>
 
             <div class="form-group">
                 <label for="onetimeaccount-telephone" class="form-label">
                     <f:translate key="telephone"/>
                 </label>
-                <f:form.textfield property="telephone" id="onetimeaccount-telephone" class="form-control"/>
+                <f:form.textfield property="telephone" id="onetimeaccount-telephone" class="form-control"
+                                  type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
             </div>
 
             <div class="form-group">
                 <label for="onetimeaccount-www" class="form-label">
                     <f:translate key="www"/>
                 </label>
-                <f:form.textfield property="www" id="onetimeaccount-www" class="form-control"/>
+                <f:form.textfield property="www" id="onetimeaccount-www" class="form-control"
+                                  type="url" additionalAttributes="{autocomplete: 'url'}"/>
             </div>
 
             <div class="form-group">
                 <label for="onetimeaccount-dateOfBirth" class="form-label">
                     <f:translate key="dateOfBirth"/>
                 </label>
-                <f:form.textfield property="dateOfBirth" id="onetimeaccount-dateOfBirth" class="form-control"/>
+                <f:form.textfield property="dateOfBirth" id="onetimeaccount-dateOfBirth" class="form-control"
+                                  type="date" additionalAttributes="{autocomplete: 'bday'}"/>
             </div>
 
             <div class="form-group">
