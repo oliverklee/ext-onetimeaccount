@@ -18,7 +18,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  * @covers \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController
  * @covers \OliverKlee\Onetimeaccount\Controller\AbstractUserController
  */
-class UserWithoutAutologinControllerTest extends UnitTestCase
+final class UserWithoutAutologinControllerTest extends UnitTestCase
 {
     /**
      * @var UserWithoutAutologinController&MockObject&AccessibleObjectInterface
