@@ -11,6 +11,10 @@
 				<source>One-time FE account creator without autologin</source>
 				<target>Einmal-FE-Account-Generator ohne Autologin</target>
 			</trans-unit>
+			<trans-unit id="plugin.fieldsToShow">
+				<source>FE user fields in the form</source>
+				<target>FE-User-Felder im Formular</target>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 				<target>Ihre persönlichen Daten</target>
@@ -124,6 +128,10 @@
 				<target>Anmerkungen</target>
 			</trans-unit>
 			<trans-unit id="privacy">
+				<source>Privacy policy agreement</source>
+				<target>Zustimmung zu den Datenschutzbestimmungen</target>
+			</trans-unit>
+			<trans-unit id="privacy.long">
 				<source>
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.

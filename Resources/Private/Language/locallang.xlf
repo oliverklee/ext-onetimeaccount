@@ -9,6 +9,9 @@
 			<trans-unit id="plugin.withoutAutologin">
 				<source>One-time FE account creator without autologin</source>
 			</trans-unit>
+			<trans-unit id="plugin.fieldsToShow">
+				<source>FE user fields in the form</source>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 			</trans-unit>
@@ -96,6 +99,9 @@
 				<source>Comments</source>
 			</trans-unit>
 			<trans-unit id="privacy">
+				<source>Privacy policy agreement</source>
+			</trans-unit>
+			<trans-unit id="privacy.long">
 				<source>
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.

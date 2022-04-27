@@ -3,6 +3,10 @@
 	<file source-language="en" target-language="nl" datatype="plaintext" original="messages">
 		<header/>
 		<body>
+			<trans-unit id="plugin.fieldsToShow">
+				<source>FE user fields in the form</source>
+				<target>FE user velden in het formulier</target>
+			</trans-unit>
 			<trans-unit id="gender">
 				<source>Gender</source>
 				<target>Dhr./Mevr.</target>
