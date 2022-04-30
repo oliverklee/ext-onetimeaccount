@@ -69,9 +69,9 @@ class IsFieldEnabledViewHelper extends AbstractConditionViewHelper
 
     /**
      * @param array{
-     *               then: null, else: null,
-     *               fieldName: string,
-     *               __thenClosure: \Closure, __elseClosures: array<int, \Closure>
+     *               then?: null, else?: null,
+     *               fieldName?: string,
+     *               __thenClosure?: \Closure, __elseClosures?: array<int, \Closure>
      *        } $arguments
      */
     public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
@@ -91,9 +91,9 @@ class IsFieldEnabledViewHelper extends AbstractConditionViewHelper
 
     /**
      * @param array{
-     *               then: null, else: null,
-     *               fieldName: string,
-     *               __thenClosure: \Closure, __elseClosures: array<int, \Closure>
+     *               then?: null, else?: null,
+     *               fieldName?: string,
+     *               __thenClosure?: \Closure, __elseClosures?: array<int, \Closure>
      *        } $arguments
      *
      * @return array<int, string>
@@ -102,7 +102,7 @@ class IsFieldEnabledViewHelper extends AbstractConditionViewHelper
      */
     private static function getFieldsToCheck(array $arguments): array
     {
-        $fieldsNamesArgument = $arguments['fieldName'];
+        $fieldsNamesArgument = $arguments['fieldName'] ?? '';
         if ($fieldsNamesArgument === '') {
             throw new \InvalidArgumentException('The argument "fieldName" must not be empty.', 1651155957);
         }
