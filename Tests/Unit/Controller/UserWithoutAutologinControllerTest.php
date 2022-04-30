@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
+use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
@@ -34,6 +35,13 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     protected $viewProphecy;
 
+    /**
+     * @var ObjectProphecy<FrontendUserRepository>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $userRepositoryProphecy;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -46,6 +54,10 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->viewProphecy = $this->prophesize(TemplateView::class);
         $view = $this->viewProphecy->reveal();
         $this->subject->_set('view', $view);
+
+        $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
+        $userRepository = $this->userRepositoryProphecy->reveal();
+        $this->subject->injectFrontendUserRepository($userRepository);
     }
 
     /**
@@ -86,5 +98,16 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
 
         $this->subject->newAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionAddsProvidedUserToRepository(): void
+    {
+        $user = new FrontendUser();
+        $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+
+        $this->subject->createAction($user);
     }
 }

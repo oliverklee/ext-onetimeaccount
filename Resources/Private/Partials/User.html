@@ -1,6 +1,6 @@
 {namespace ota=OliverKlee\Onetimeaccount\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <f:form name="user" object="{user}">
+    <f:form name="user" object="{user}" controller="{controller}" action="create">
         <fieldset>
             <legend>
                 <f:translate key="userDataLegend" extensionName="onetimeaccount"/>

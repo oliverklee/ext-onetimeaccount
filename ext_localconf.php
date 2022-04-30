@@ -44,11 +44,11 @@ defined('TYPO3_MODE') or die('Access denied.');
             'WithAutologin',
             // all actions
             [
-                'UserWithAutologin' => 'new',
+                'UserWithAutologin' => 'new, create',
             ],
             // non-cacheable actions
             [
-                'UserWithAutologin' => 'new',
+                'UserWithAutologin' => 'new, create',
             ]
         );
         // This makes the plugin available for front-end rendering.
@@ -59,11 +59,11 @@ defined('TYPO3_MODE') or die('Access denied.');
             'WithoutAutologin',
             // all actions
             [
-                'UserWithoutAutologin' => 'new',
+                'UserWithoutAutologin' => 'new, create',
             ],
             // non-cacheable actions
             [
-                'UserWithoutAutologin' => 'new',
+                'UserWithoutAutologin' => 'new, create',
             ]
         );
         // TYPO3 V9

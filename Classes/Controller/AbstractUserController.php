@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Onetimeaccount\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
+use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -14,6 +15,16 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 abstract class AbstractUserController extends ActionController
 {
     /**
+     * @var FrontendUserRepository
+     */
+    protected $userRepository;
+
+    public function injectFrontendUserRepository(FrontendUserRepository $repository): void
+    {
+        $this->userRepository = $repository;
+    }
+
+    /**
      * Creates the user creation form (which initially is empty).
      */
     public function newAction(?FrontendUser $user = null): void
@@ -21,5 +32,12 @@ abstract class AbstractUserController extends ActionController
         $newUser = ($user instanceof FrontendUser) ? $user : new FrontendUser();
 
         $this->view->assign('user', $newUser);
+    }
+
+    public function createAction(FrontendUser $user): string
+    {
+        $this->userRepository->add($user);
+
+        return 'User has been created';
     }
 }

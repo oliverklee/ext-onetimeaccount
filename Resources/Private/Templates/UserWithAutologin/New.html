@@ -3,6 +3,6 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <f:render partial="User" arguments="{_all}"/>
+        <f:render partial="User" arguments="{user: user, controller: 'UserWithAutologin'}"/>
     </f:section>
 </html>
