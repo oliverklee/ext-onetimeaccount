@@ -6,190 +6,234 @@
                 <f:translate key="userDataLegend" extensionName="onetimeaccount"/>
             </legend>
 
-            <div class="form-group">
-                <label for="onetimeaccount-company" class="form-label">
-                    <f:translate key="company"/>
-                </label>
-                <f:form.textfield property="company" id="onetimeaccount-company" class="form-control"
-                                  additionalAttributes="{autocomplete: 'organization'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="company">
+                <div class="form-group">
+                    <label for="onetimeaccount-company" class="form-label">
+                        <f:translate key="company"/>
+                    </label>
+                    <f:form.textfield property="company" id="onetimeaccount-company" class="form-control"
+                                      additionalAttributes="{autocomplete: 'organization'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-gender" class="form-label">
-                    <f:translate key="gender"/>
-                </label>
-                <f:form.select property="gender" id="onetimeaccount-gender" class="form-select">
-                    <f:form.select.option value="99">
-                        <f:translate key="gender.99"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="0">
-                        <f:translate key="gender.0"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="1">
-                        <f:translate key="gender.1"/>
-                    </f:form.select.option>
-                </f:form.select>
-            </div>
+            <ota:isFieldEnabled fieldName="gender">
+                <div class="form-group">
+                    <label for="onetimeaccount-gender" class="form-label">
+                        <f:translate key="gender"/>
+                    </label>
+                    <f:form.select property="gender" id="onetimeaccount-gender" class="form-select">
+                        <f:form.select.option value="99">
+                            <f:translate key="gender.99"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="0">
+                            <f:translate key="gender.0"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="1">
+                            <f:translate key="gender.1"/>
+                        </f:form.select.option>
+                    </f:form.select>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-fullSalutation" class="form-label">
-                    <f:translate key="fullSalutation"/>
-                </label>
-                <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation" class="form-control"/>
-            </div>
+            <ota:isFieldEnabled fieldName="fullSalutation">
+                <div class="form-group">
+                    <label for="onetimeaccount-fullSalutation" class="form-label">
+                        <f:translate key="fullSalutation"/>
+                    </label>
+                    <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation"
+                                      class="form-control"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-name" class="form-label">
-                    <f:translate key="name"/>
-                </label>
-                <f:form.textfield property="name" id="onetimeaccount-name" class="form-control"
-                                  additionalAttributes="{autocomplete: 'name'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="name">
+                <div class="form-group">
+                    <label for="onetimeaccount-name" class="form-label">
+                        <f:translate key="name"/>
+                    </label>
+                    <f:form.textfield property="name" id="onetimeaccount-name" class="form-control"
+                                      additionalAttributes="{autocomplete: 'name'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="onetimeaccount-firstName" class="form-label">
-                            <f:translate key="firstName"/>
-                        </label>
-                        <f:form.textfield property="firstName" id="onetimeaccount-firstName" class="form-control"
-                                          additionalAttributes="{autocomplete: 'given-name'}"/>
+            <ota:isFieldEnabled fieldName="firstName|lastName">
+                <div class="row">
+                    <div class="col">
+                        <ota:isFieldEnabled fieldName="firstName">
+                            <div class="form-group">
+                                <label for="onetimeaccount-firstName" class="form-label">
+                                    <f:translate key="firstName"/>
+                                </label>
+                                <f:form.textfield property="firstName" id="onetimeaccount-firstName"
+                                                  class="form-control"
+                                                  additionalAttributes="{autocomplete: 'given-name'}"/>
+                            </div>
+                        </ota:isFieldEnabled>
+                    </div>
+                    <div class="col">
+                        <ota:isFieldEnabled fieldName="lastName">
+                            <div class="form-group">
+                                <label for="onetimeaccount-lastName" class="form-label">
+                                    <f:translate key="lastName"/>
+                                </label>
+                                <f:form.textfield property="lastName" id="onetimeaccount-lastName" class="form-control"
+                                                  additionalAttributes="{autocomplete: 'family-name'}"/>
+                            </div>
+                        </ota:isFieldEnabled>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="onetimeaccount-lastName" class="form-label">
-                            <f:translate key="lastName"/>
-                        </label>
-                        <f:form.textfield property="lastName" id="onetimeaccount-lastName" class="form-control"
-                                          additionalAttributes="{autocomplete: 'family-name'}"/>
+            </ota:isFieldEnabled>
+
+            <ota:isFieldEnabled fieldName="title">
+                <div class="form-group">
+                    <label for="onetimeaccount-title" class="form-label">
+                        <f:translate key="title"/>
+                    </label>
+                    <f:form.textfield property="title" id="onetimeaccount-title" class="form-control"
+                                      additionalAttributes="{autocomplete: 'organization-title'}"/>
+                </div>
+            </ota:isFieldEnabled>
+
+            <ota:isFieldEnabled fieldName="address">
+                <div class="form-group">
+                    <label for="onetimeaccount-address" class="form-label">
+                        <f:translate key="address"/>
+                    </label>
+                    <f:form.textfield property="address" id="onetimeaccount-address" class="form-control"
+                                      additionalAttributes="{autocomplete: 'street-address'}"/>
+                </div>
+            </ota:isFieldEnabled>
+
+            <ota:isFieldEnabled fieldName="zip|city">
+                <div class="row">
+                    <div class="col">
+                        <ota:isFieldEnabled fieldName="zip">
+                            <div class="form-group">
+                                <label for="onetimeaccount-zip" class="form-label">
+                                    <f:translate key="zip"/>
+                                </label>
+                                <f:form.textfield property="zip" id="onetimeaccount-zip" class="form-control"
+                                                  additionalAttributes="{autocomplete: 'postal-code'}"/>
+                            </div>
+                        </ota:isFieldEnabled>
+                    </div>
+                    <div class="col">
+                        <ota:isFieldEnabled fieldName="city">
+                            <div class="form-group">
+                                <label for="onetimeaccount-city" class="form-label">
+                                    <f:translate key="city"/>
+                                </label>
+                                <f:form.textfield property="city" id="onetimeaccount-city" class="form-control"
+                                                  additionalAttributes="{autocomplete: 'address-level2'}"/>
+                            </div>
+                        </ota:isFieldEnabled>
                     </div>
                 </div>
-            </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-title" class="form-label">
-                    <f:translate key="title"/>
-                </label>
-                <f:form.textfield property="title" id="onetimeaccount-title" class="form-control"
-                                  additionalAttributes="{autocomplete: 'organization-title'}"/>
-            </div>
-
-            <div class="form-group">
-                <label for="onetimeaccount-address" class="form-label">
-                    <f:translate key="address"/>
-                </label>
-                <f:form.textfield property="address" id="onetimeaccount-address" class="form-control"
-                                  additionalAttributes="{autocomplete: 'street-address'}"/>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <div class="form-group">
-                        <label for="onetimeaccount-zip" class="form-label">
-                            <f:translate key="zip"/>
-                        </label>
-                        <f:form.textfield property="zip" id="onetimeaccount-zip" class="form-control"
-                                          additionalAttributes="{autocomplete: 'postal-code'}"/>
-                    </div>
+            <ota:isFieldEnabled fieldName="zone">
+                <div class="form-group">
+                    <label for="onetimeaccount-zone" class="form-label">
+                        <f:translate key="zone"/>
+                    </label>
+                    <f:form.textfield property="zone" id="onetimeaccount-zone" class="form-control"/>
                 </div>
-                <div class="col">
-                    <div class="form-group">
-                        <label for="onetimeaccount-city" class="form-label">
-                            <f:translate key="city"/>
-                        </label>
-                        <f:form.textfield property="city" id="onetimeaccount-city" class="form-control"
-                                          additionalAttributes="{autocomplete: 'address-level2'}"/>
-                    </div>
+            </ota:isFieldEnabled>
+
+            <ota:isFieldEnabled fieldName="country">
+                <div class="form-group">
+                    <label for="onetimeaccount-country" class="form-label">
+                        <f:translate key="country"/>
+                    </label>
+                    <f:form.textfield property="country" id="onetimeaccount-country" class="form-control"
+                                      additionalAttributes="{autocomplete: 'country-name'}"/>
                 </div>
-            </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-zone" class="form-label">
-                    <f:translate key="zone"/>
-                </label>
-                <f:form.textfield property="zone" id="onetimeaccount-zone" class="form-control"/>
-            </div>
+            <ota:isFieldEnabled fieldName="email">
+                <div class="form-group">
+                    <label for="onetimeaccount-email" class="form-label">
+                        <f:translate key="email"/>
+                    </label>
+                    <f:form.textfield property="email" id="onetimeaccount-email" class="form-control"
+                                      type="email" additionalAttributes="{autocomplete: 'email'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-country" class="form-label">
-                    <f:translate key="country"/>
-                </label>
-                <f:form.textfield property="country" id="onetimeaccount-country" class="form-control"
-                                  additionalAttributes="{autocomplete: 'country-name'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="telephone">
+                <div class="form-group">
+                    <label for="onetimeaccount-telephone" class="form-label">
+                        <f:translate key="telephone"/>
+                    </label>
+                    <f:form.textfield property="telephone" id="onetimeaccount-telephone" class="form-control"
+                                      type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-email" class="form-label">
-                    <f:translate key="email"/>
-                </label>
-                <f:form.textfield property="email" id="onetimeaccount-email" class="form-control"
-                                  type="email" additionalAttributes="{autocomplete: 'email'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="www">
+                <div class="form-group">
+                    <label for="onetimeaccount-www" class="form-label">
+                        <f:translate key="www"/>
+                    </label>
+                    <f:form.textfield property="www" id="onetimeaccount-www" class="form-control"
+                                      type="url" additionalAttributes="{autocomplete: 'url'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-telephone" class="form-label">
-                    <f:translate key="telephone"/>
-                </label>
-                <f:form.textfield property="telephone" id="onetimeaccount-telephone" class="form-control"
-                                  type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="dateOfBirth">
+                <div class="form-group">
+                    <label for="onetimeaccount-dateOfBirth" class="form-label">
+                        <f:translate key="dateOfBirth"/>
+                    </label>
+                    <f:form.textfield property="dateOfBirth" id="onetimeaccount-dateOfBirth" class="form-control"
+                                      type="date" additionalAttributes="{autocomplete: 'bday'}"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-www" class="form-label">
-                    <f:translate key="www"/>
-                </label>
-                <f:form.textfield property="www" id="onetimeaccount-www" class="form-control"
-                                  type="url" additionalAttributes="{autocomplete: 'url'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="status">
+                <div class="form-group">
+                    <label for="onetimeaccount-status" class="form-label">
+                        <f:translate key="status"/>
+                    </label>
+                    <f:form.select property="status" id="onetimeaccount-status" class="form-select">
+                        <f:form.select.option value="0">
+                            &nbsp;
+                        </f:form.select.option>
+                        <f:form.select.option value="1">
+                            <f:translate key="status.1"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="2">
+                            <f:translate key="status.2"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="3">
+                            <f:translate key="status.3"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="4">
+                            <f:translate key="status.4"/>
+                        </f:form.select.option>
+                        <f:form.select.option value="5">
+                            <f:translate key="status.5"/>
+                        </f:form.select.option>
+                    </f:form.select>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-dateOfBirth" class="form-label">
-                    <f:translate key="dateOfBirth"/>
-                </label>
-                <f:form.textfield property="dateOfBirth" id="onetimeaccount-dateOfBirth" class="form-control"
-                                  type="date" additionalAttributes="{autocomplete: 'bday'}"/>
-            </div>
+            <ota:isFieldEnabled fieldName="comments">
+                <div class="form-group">
+                    <label for="onetimeaccount-comments" class="form-label">
+                        <f:translate key="comments"/>
+                    </label>
+                    <f:form.textarea property="comments" id="onetimeaccount-comments" class="form-control"/>
+                </div>
+            </ota:isFieldEnabled>
 
-            <div class="form-group">
-                <label for="onetimeaccount-status" class="form-label">
-                    <f:translate key="status"/>
-                </label>
-                <f:form.select property="status" id="onetimeaccount-status" class="form-select">
-                    <f:form.select.option value="0">
-                        &nbsp;
-                    </f:form.select.option>
-                    <f:form.select.option value="1">
-                        <f:translate key="status.1"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="2">
-                        <f:translate key="status.2"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="3">
-                        <f:translate key="status.3"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="4">
-                        <f:translate key="status.4"/>
-                    </f:form.select.option>
-                    <f:form.select.option value="5">
-                        <f:translate key="status.5"/>
-                    </f:form.select.option>
-                </f:form.select>
-            </div>
-
-            <div class="form-group">
-                <label for="onetimeaccount-comments" class="form-label">
-                    <f:translate key="comments"/>
-                </label>
-                <f:form.textarea property="comments" id="onetimeaccount-comments" class="form-control"/>
-            </div>
-
-            <div class="form-check">
-                <f:form.checkbox property="privacy" id="onetimeaccount-privacy" class="form-check-input" value="1"/>
-                <label for="onetimeaccount-privacy" class="form-check-label">
-                    <f:translate key="privacy.long"/>
-                </label>
-            </div>
+            <ota:isFieldEnabled fieldName="privacy">
+                <div class="form-check">
+                    <f:form.checkbox property="privacy" id="onetimeaccount-privacy" class="form-check-input" value="1"/>
+                    <label for="onetimeaccount-privacy" class="form-check-label">
+                        <f:translate key="privacy.long"/>
+                    </label>
+                </div>
+            </ota:isFieldEnabled>
         </fieldset>
 
         <p class="mt-3">
