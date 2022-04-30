@@ -161,6 +161,24 @@ final class IsFieldEnabledViewHelperTest extends UnitTestCase
     /**
      * @test
      */
+    public function renderStaticForMissingFieldNameThrowsException(): void
+    {
+        $this->expectExceptionCode(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The argument "fieldName" must not be empty.');
+        $this->expectExceptionCode(1651155957);
+
+        $this->variableProviderProphecy->get('settings')->willReturn(['fieldsToShow' => 'company']);
+
+        IsFieldEnabledViewHelper::renderStatic(
+            [],
+            $this->renderChildrenClosure,
+            $this->renderingContext
+        );
+    }
+
+    /**
+     * @test
+     */
     public function renderStaticForEmptyFieldNameThrowsException(): void
     {
         $this->expectExceptionCode(\InvalidArgumentException::class);
