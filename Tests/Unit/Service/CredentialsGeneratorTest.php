@@ -6,18 +6,18 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Service;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
-use OliverKlee\Onetimeaccount\Service\UsernameGenerator;
+use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
- * @covers \OliverKlee\Onetimeaccount\Service\UsernameGenerator
+ * @covers \OliverKlee\Onetimeaccount\Service\CredentialsGenerator
  */
-final class UsernameGeneratorTest extends UnitTestCase
+final class CredentialsGeneratorTest extends UnitTestCase
 {
     /**
-     * @var UsernameGenerator
+     * @var CredentialsGenerator
      *
      * We can make this property private once we drop support for TYPO3 V9.
      */
@@ -34,7 +34,7 @@ final class UsernameGeneratorTest extends UnitTestCase
     {
         parent::setUp();
 
-        $this->subject = new UsernameGenerator();
+        $this->subject = new CredentialsGenerator();
 
         $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
         $userRepository = $this->userRepositoryProphecy->reveal();

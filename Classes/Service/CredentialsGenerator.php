@@ -9,10 +9,10 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * Generate a unique username for the given user (either from the email address possibly with a number attached, or
- * a 32-character random hex username if the email address is empty).
+ * Generates a unique username for the given user (either from the email address possibly with a number attached,
+ * or a 32-character random hex username if the email address is empty).
  */
-class UsernameGenerator implements SingletonInterface
+class CredentialsGenerator implements SingletonInterface
 {
     /**
      * @var FrontendUserRepository

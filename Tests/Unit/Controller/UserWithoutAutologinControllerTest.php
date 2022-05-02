@@ -7,7 +7,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
-use OliverKlee\Onetimeaccount\Service\UsernameGenerator;
+use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -44,7 +44,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     protected $userRepositoryProphecy;
 
     /**
-     * @var ObjectProphecy<UsernameGenerator>
+     * @var ObjectProphecy<CredentialsGenerator>
      */
     protected $usernameGeneratorProphecy;
 
@@ -65,9 +65,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $userRepository = $this->userRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserRepository($userRepository);
 
-        $this->usernameGeneratorProphecy = $this->prophesize(UsernameGenerator::class);
+        $this->usernameGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $usernameGenerator = $this->usernameGeneratorProphecy->reveal();
-        $this->subject->injectUsernameGenerator($usernameGenerator);
+        $this->subject->injectCredentialsGenerator($usernameGenerator);
     }
 
     /**
