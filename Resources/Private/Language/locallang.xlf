@@ -12,6 +12,9 @@
 			<trans-unit id="plugin.fieldsToShow">
 				<source>FE user fields in the form</source>
 			</trans-unit>
+			<trans-unit id="plugin.systemFolderForNewUsers">
+				<source>System folder for the new FE user records</source>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 			</trans-unit>

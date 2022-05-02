@@ -7,6 +7,10 @@
 				<source>FE user fields in the form</source>
 				<target>FE user velden in het formulier</target>
 			</trans-unit>
+			<trans-unit id="plugin.systemFolderForNewUsers">
+				<source>System folder for the new FE user records</source>
+				<target>Systeemfolder voor de nieuwe FE user records</target>
+			</trans-unit>
 			<trans-unit id="gender">
 				<source>Gender</source>
 				<target>Dhr./Mevr.</target>

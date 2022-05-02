@@ -27,6 +27,20 @@
                             </config>
                         </TCEforms>
                     </settings.fieldsToShow>
+                    <settings.systemFolderForNewUsers>
+                        <TCEforms>
+                            <label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.systemFolderForNewUsers</label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <minitems>1</minitems>
+                                <maxitems>1</maxitems>
+                                <show_thumbs>1</show_thumbs>
+                            </config>
+                        </TCEforms>
+                    </settings.systemFolderForNewUsers>
                 </el>
             </ROOT>
         </general>
