@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\OneTimeAccount\Tests\Unit\ViewHelpers;
+namespace OliverKlee\Onetimeaccount\Tests\Unit\ViewHelpers;
 
 use OliverKlee\Onetimeaccount\ViewHelpers\IsFieldEnabledViewHelper;
 use Prophecy\Prophecy\ObjectProphecy;
