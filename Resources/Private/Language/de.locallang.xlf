@@ -15,6 +15,10 @@
 				<source>FE user fields in the form</source>
 				<target>FE-User-Felder im Formular</target>
 			</trans-unit>
+			<trans-unit id="plugin.systemFolderForNewUsers">
+                <source>System folder for the new FE user records</source>
+				<target>Systemordner für die neuen FE-User</target>
+            </trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 				<target>Ihre persönlichen Daten</target>

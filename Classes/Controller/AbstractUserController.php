@@ -36,8 +36,21 @@ abstract class AbstractUserController extends ActionController
 
     public function createAction(FrontendUser $user): string
     {
+        $this->enrichUser($user);
         $this->userRepository->add($user);
 
         return 'User has been created';
+    }
+
+    /**
+     * Adds data from the configuration to the user before it can be saved.
+     */
+    private function enrichUser(FrontendUser $user): void
+    {
+        $settings = $this->settings;
+        $pageUid = $settings['systemFolderForNewUsers'] ?? 0;
+        if (\is_numeric($pageUid)) {
+            $user->setPid((int)$pageUid);
+        }
     }
 }

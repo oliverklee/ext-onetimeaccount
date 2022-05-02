@@ -103,6 +103,20 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     /**
      * @test
      */
+    public function createActionSetsUserPidFromSettings(): void
+    {
+        $systemFolderUid = 42;
+        $this->subject->_set('settings', ['systemFolderForNewUsers' => (string)$systemFolderUid]);
+        $user = new FrontendUser();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($systemFolderUid, $user->getPid());
+    }
+
+    /**
+     * @test
+     */
     public function createActionAddsProvidedUserToRepository(): void
     {
         $user = new FrontendUser();
