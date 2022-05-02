@@ -1,4 +1,4 @@
-# Extra fields for TYPO3 frontend users
+# "One time account" TYPO3 extension
 
 [![TYPO3 V9](https://img.shields.io/badge/TYPO3-9-orange.svg)](https://get.typo3.org/version/9)
 [![TYPO3 V10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
