@@ -13,11 +13,11 @@ defined('TYPO3_MODE') or die('Access denied.');
             'WithAutologin',
             // all actions
             [
-                \OliverKlee\Onetimeaccount\Controller\UserWithAutologinController::class => 'new',
+                \OliverKlee\Onetimeaccount\Controller\UserWithAutologinController::class => 'new, create',
             ],
             // non-cacheable actions
             [
-                \OliverKlee\Onetimeaccount\Controller\UserWithAutologinController::class => 'new',
+                \OliverKlee\Onetimeaccount\Controller\UserWithAutologinController::class => 'new, create',
             ]
         );
         // This makes the plugin available for front-end rendering.
@@ -28,11 +28,11 @@ defined('TYPO3_MODE') or die('Access denied.');
             'WithoutAutologin',
             // all actions
             [
-                \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController::class => 'new',
+                \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController::class => 'new, create',
             ],
             // non-cacheable actions
             [
-                \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController::class => 'new',
+                \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController::class => 'new, create',
             ]
         );
     } else {
