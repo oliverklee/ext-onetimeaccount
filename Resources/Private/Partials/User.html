@@ -184,8 +184,9 @@
                     <label for="onetimeaccount-dateOfBirth" class="form-label">
                         <f:translate key="dateOfBirth"/>
                     </label>
-                    <f:form.textfield property="dateOfBirth" id="onetimeaccount-dateOfBirth" class="form-control"
-                                      type="date" additionalAttributes="{autocomplete: 'bday'}"/>
+                    <f:form.textfield name="user[dateOfBirth][date]" id="onetimeaccount-dateOfBirth"
+                                      class="form-control" type="date" additionalAttributes="{autocomplete: 'bday'}"/>
+                    <f:form.hidden name="user[dateOfBirth][dateFormat]" value="Y-m-d"/>
                 </div>
             </ota:isFieldEnabled>
 
