@@ -20,3 +20,6 @@ parameters:
     - Classes
     - Configuration
     - Tests
+
+  # Allow instanceof checks, particularly in tests
+  checkAlwaysTrueCheckTypeFunctionCall: false
