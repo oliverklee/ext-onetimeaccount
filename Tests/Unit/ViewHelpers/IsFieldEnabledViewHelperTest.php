@@ -197,6 +197,24 @@ final class IsFieldEnabledViewHelperTest extends UnitTestCase
     /**
      * @test
      */
+    public function renderStaticForNonStringFieldNameThrowsException(): void
+    {
+        $this->expectExceptionCode(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The argument "fieldName" must be a string, but was array');
+        $this->expectExceptionCode(1651496544);
+
+        $this->variableProviderProphecy->get('settings')->willReturn(['fieldsToShow' => 'company']);
+
+        IsFieldEnabledViewHelper::renderStatic(
+            ['fieldName' => []],
+            $this->renderChildrenClosure,
+            $this->renderingContext
+        );
+    }
+
+    /**
+     * @test
+     */
     public function renderForSingleRequestedFieldEnabledRendersThenChild(): void
     {
         $this->variableProviderProphecy->get('settings')->willReturn(['fieldsToShow' => 'company']);
