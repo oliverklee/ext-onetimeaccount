@@ -6,6 +6,7 @@ namespace OliverKlee\Onetimeaccount\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
+use OliverKlee\Onetimeaccount\Service\UsernameGenerator;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -19,9 +20,19 @@ abstract class AbstractUserController extends ActionController
      */
     protected $userRepository;
 
+    /**
+     * @var UsernameGenerator
+     */
+    protected $usernameGenerator;
+
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
+    }
+
+    public function injectUsernameGenerator(UsernameGenerator $generator): void
+    {
+        $this->usernameGenerator = $generator;
     }
 
     /**
@@ -52,5 +63,6 @@ abstract class AbstractUserController extends ActionController
         if (\is_numeric($pageUid)) {
             $user->setPid((int)$pageUid);
         }
+        $this->usernameGenerator->generateUsernameForUser($user);
     }
 }
