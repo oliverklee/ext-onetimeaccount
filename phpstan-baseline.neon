@@ -1,2 +1,12 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$arguments \\(array\\{then\\?\\: null, else\\?\\: null, fieldName\\?\\: string, __thenClosure\\?\\: Closure, __elseClosures\\?\\: array\\<int, Closure\\>\\}\\) of method OliverKlee\\\\Onetimeaccount\\\\ViewHelpers\\\\IsFieldEnabledViewHelper\\:\\:verdict\\(\\) should be contravariant with parameter \\$arguments \\(array\\) of method TYPO3Fluid\\\\Fluid\\\\Core\\\\ViewHelper\\\\AbstractConditionViewHelper\\:\\:verdict\\(\\)$#"
+			count: 1
+			path: Classes/ViewHelpers/IsFieldEnabledViewHelper.php
+
+		-
+			message: "#^PHPDoc type array\\<int, string\\> of property OliverKlee\\\\Onetimeaccount\\\\Tests\\\\Functional\\\\HelloWorldTest\\:\\:\\$testExtensionsToLoad is not the same as PHPDoc type array\\<string\\> of overridden property TYPO3\\\\TestingFramework\\\\Core\\\\Functional\\\\FunctionalTestCase\\:\\:\\$testExtensionsToLoad\\.$#"
+			count: 1
+			path: Tests/Functional/HelloWorldTest.php
+
