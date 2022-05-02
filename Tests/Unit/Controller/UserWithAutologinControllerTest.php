@@ -7,6 +7,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithAutologinController;
+use OliverKlee\Onetimeaccount\Service\UsernameGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
@@ -42,6 +43,11 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      */
     protected $userRepositoryProphecy;
 
+    /**
+     * @var ObjectProphecy<UsernameGenerator>
+     */
+    protected $usernameGeneratorProphecy;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -58,6 +64,10 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
         $userRepository = $this->userRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserRepository($userRepository);
+
+        $this->usernameGeneratorProphecy = $this->prophesize(UsernameGenerator::class);
+        $usernameGenerator = $this->usernameGeneratorProphecy->reveal();
+        $this->subject->injectUsernameGenerator($usernameGenerator);
     }
 
     /**
@@ -112,6 +122,17 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->subject->createAction($user);
 
         self::assertSame($systemFolderUid, $user->getPid());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionGeneratesUsername(): void
+    {
+        $user = new FrontendUser();
+        $this->usernameGeneratorProphecy->generateUsernameForUser($user)->shouldBeCalled();
+
+        $this->subject->createAction($user);
     }
 
     /**
