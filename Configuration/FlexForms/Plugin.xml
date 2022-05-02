@@ -21,7 +21,8 @@
                                 <renderType>selectCheckBox</renderType>
                                 <minitems>1</minitems>
                                 <maxitems>99</maxitems>
-                                <itemsProcFunc>OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
+                                <itemsProcFunc>
+                                    OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
                                 </itemsProcFunc>
                             </config>
                         </TCEforms>
