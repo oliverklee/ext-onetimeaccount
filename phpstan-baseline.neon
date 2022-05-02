@@ -1,7 +1,2 @@
 parameters:
 	ignoreErrors:
-		-
-			message: "#^Parameter \\#1 \\$arguments \\(array\\{then\\?\\: null, else\\?\\: null, fieldName\\?\\: string, __thenClosure\\?\\: Closure, __elseClosures\\?\\: array\\<int, Closure\\>\\}\\) of method OliverKlee\\\\Onetimeaccount\\\\ViewHelpers\\\\IsFieldEnabledViewHelper\\:\\:verdict\\(\\) should be contravariant with parameter \\$arguments \\(array\\) of method TYPO3Fluid\\\\Fluid\\\\Core\\\\ViewHelper\\\\AbstractConditionViewHelper\\:\\:verdict\\(\\)$#"
-			count: 1
-			path: Classes/ViewHelpers/IsFieldEnabledViewHelper.php
-
