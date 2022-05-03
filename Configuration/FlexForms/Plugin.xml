@@ -14,7 +14,8 @@
                 <el>
                     <settings.fieldsToShow>
                         <TCEforms>
-                            <label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.fieldsToShow
+                            <label>
+                                LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.fieldsToShow
                             </label>
                             <config>
                                 <type>select</type>
@@ -29,7 +30,9 @@
                     </settings.fieldsToShow>
                     <settings.systemFolderForNewUsers>
                         <TCEforms>
-                            <label>LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.systemFolderForNewUsers</label>
+                            <label>
+                                LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.systemFolderForNewUsers
+                            </label>
                             <config>
                                 <type>group</type>
                                 <internal_type>db</internal_type>
