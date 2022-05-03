@@ -63,7 +63,7 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      *
      * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $usernameGeneratorProphecy;
+    protected $credentialsGeneratorProphecy;
 
     protected function setUp(): void
     {
@@ -90,8 +90,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $persistenceManager = $this->persistenceManagerProphecy->reveal();
         $this->subject->injectPersistenceManager($persistenceManager);
 
-        $this->usernameGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
-        $usernameGenerator = $this->usernameGeneratorProphecy->reveal();
+        $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
+        $usernameGenerator = $this->credentialsGeneratorProphecy->reveal();
         $this->subject->injectCredentialsGenerator($usernameGenerator);
     }
 
@@ -175,8 +175,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     public function createActionGeneratesUsername(): void
     {
         $user = new FrontendUser();
-        $this->usernameGeneratorProphecy->generateUsernameForUser($user)->shouldBeCalled();
-        $this->usernameGeneratorProphecy->generatePasswordForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generateUsernameForUser($user)->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any());
 
         $this->subject->createAction($user);
     }
@@ -187,8 +187,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     public function createActionGeneratesPassword(): void
     {
         $user = new FrontendUser();
-        $this->usernameGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->usernameGeneratorProphecy->generatePasswordForUser($user)->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->shouldBeCalled();
 
         $this->subject->createAction($user);
     }
