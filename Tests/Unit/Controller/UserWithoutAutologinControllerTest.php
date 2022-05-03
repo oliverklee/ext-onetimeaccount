@@ -14,6 +14,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -53,6 +54,11 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     protected $userGroupRepositoryProphecy;
 
     /**
+     * @var ObjectProphecy<PersistenceManagerInterface>
+     */
+    protected $persistenceManagerProphecy;
+
+    /**
      * @var ObjectProphecy<CredentialsGenerator>
      *
      * We can make this property private once we drop support for TYPO3 V9.
@@ -79,6 +85,10 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->userGroupRepositoryProphecy = $this->prophesize(FrontendUserGroupRepository::class);
         $userGroupRepository = $this->userGroupRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserGroupRepository($userGroupRepository);
+
+        $this->persistenceManagerProphecy = $this->prophesize(PersistenceManagerInterface::class);
+        $persistenceManager = $this->persistenceManagerProphecy->reveal();
+        $this->subject->injectPersistenceManager($persistenceManager);
 
         $this->usernameGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $usernameGenerator = $this->usernameGeneratorProphecy->reveal();
@@ -186,10 +196,21 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function createActionAddsProvidedUserToRepository(): void
+    public function createActionWithUserAddsProvidedUserToRepository(): void
     {
         $user = new FrontendUser();
         $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+
+        $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserPersistsEverything(): void
+    {
+        $user = new FrontendUser();
+        $this->persistenceManagerProphecy->persistAll()->shouldBeCalled();
 
         $this->subject->createAction($user);
     }
@@ -210,6 +231,26 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionWithoutUserNotAddsAnythingToRepository(): void
     {
         $this->userRepositoryProphecy->add(Argument::any())->shouldNotBeCalled();
+
+        $this->subject->createAction();
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithNullUserNotPersistsAnything(): void
+    {
+        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+
+        $this->subject->createAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithoutUserNotPersistsAnything(): void
+    {
+        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
 
         $this->subject->createAction();
     }
