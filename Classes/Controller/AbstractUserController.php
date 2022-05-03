@@ -71,13 +71,22 @@ abstract class AbstractUserController extends ActionController
      */
     private function enrichUser(FrontendUser $user): void
     {
-        $settings = $this->settings;
-        $pageUid = $settings['systemFolderForNewUsers'] ?? null;
+        $this->enrichWithPid($user);
+        $this->enrichWithGroups($user);
+        $this->credentialsGenerator->generateUsernameForUser($user);
+    }
+
+    private function enrichWithPid(FrontendUser $user): void
+    {
+        $pageUid = $this->settings['systemFolderForNewUsers'] ?? null;
         if (\is_numeric($pageUid)) {
             $user->setPid((int)$pageUid);
         }
+    }
 
-        $userGroupSetting = $settings['groupsForNewUsers'] ?? null;
+    private function enrichWithGroups(FrontendUser $user): void
+    {
+        $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
         $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
         foreach ($userGroupUids as $uid) {
             $group = $this->userGroupRepository->findByUid($uid);
@@ -85,7 +94,5 @@ abstract class AbstractUserController extends ActionController
                 $user->addUserGroup($group);
             }
         }
-
-        $this->credentialsGenerator->generateUsernameForUser($user);
     }
 }
