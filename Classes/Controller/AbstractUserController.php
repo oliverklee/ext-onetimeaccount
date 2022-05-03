@@ -11,6 +11,7 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * Base class to implement most of the functionality of the plugin except for the specifics of what should
@@ -29,6 +30,11 @@ abstract class AbstractUserController extends ActionController
     protected $userGroupRepository;
 
     /**
+     * @var PersistenceManagerInterface
+     */
+    protected $persistenceManager;
+
+    /**
      * @var CredentialsGenerator
      */
     protected $credentialsGenerator;
@@ -41,6 +47,11 @@ abstract class AbstractUserController extends ActionController
     public function injectFrontendUserGroupRepository(FrontendUserGroupRepository $repository): void
     {
         $this->userGroupRepository = $repository;
+    }
+
+    public function injectPersistenceManager(PersistenceManagerInterface $persistenceManager): void
+    {
+        $this->persistenceManager = $persistenceManager;
     }
 
     public function injectCredentialsGenerator(CredentialsGenerator $generator): void
@@ -73,6 +84,7 @@ abstract class AbstractUserController extends ActionController
 
         $password = $this->enrichUser($user);
         $this->userRepository->add($user);
+        $this->persistenceManager->persistAll();
 
         $username = $user->getUsername();
 
