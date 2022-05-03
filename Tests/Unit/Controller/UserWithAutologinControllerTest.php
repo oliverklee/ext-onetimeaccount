@@ -9,6 +9,7 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithAutologinController;
+use OliverKlee\Onetimeaccount\Service\Autologin;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
@@ -65,6 +66,13 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      */
     protected $credentialsGeneratorProphecy;
 
+    /**
+     * @var ObjectProphecy<Autologin>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $autologinProphecy;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -91,8 +99,12 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->subject->injectPersistenceManager($persistenceManager);
 
         $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
-        $usernameGenerator = $this->credentialsGeneratorProphecy->reveal();
-        $this->subject->injectCredentialsGenerator($usernameGenerator);
+        $credentialsGenerator = $this->credentialsGeneratorProphecy->reveal();
+        $this->subject->injectCredentialsGenerator($credentialsGenerator);
+
+        $this->autologinProphecy = $this->prophesize(Autologin::class);
+        $autologinProphecy = $this->autologinProphecy->reveal();
+        $this->subject->injectAutoLogin($autologinProphecy);
     }
 
     /**
@@ -143,6 +155,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $systemFolderUid = 42;
         $this->subject->_set('settings', ['systemFolderForNewUsers' => (string)$systemFolderUid]);
         $user = new FrontendUser();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -161,6 +175,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn($group1);
         $this->userGroupRepositoryProphecy->findByUid($groupUid2)->willReturn($group2);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user);
@@ -200,6 +216,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -211,6 +229,38 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->persistenceManagerProphecy->persistAll()->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserForFailedPasswordGenerationThrowsException(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Could not generate user credentials.');
+        $this->expectExceptionCode(1651673684);
+
+        $user = new FrontendUser();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->willReturn(null);
+
+        $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserCreatesSessionWithGeneratedPlainTextPassword(): void
+    {
+        $user = new FrontendUser();
+        $hashedPassword = 'hashed-password';
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->willReturn($hashedPassword);
+        $this->autologinProphecy->createSessionForUser($user, $hashedPassword)->shouldBeCalled();
 
         $this->subject->createAction($user);
     }
