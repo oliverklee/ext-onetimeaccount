@@ -19,6 +19,10 @@
                 <source>System folder for the new FE user records</source>
 				<target>Systemordner für die neuen FE-User</target>
             </trans-unit>
+			<trans-unit id="plugin.groupsForNewUsers">
+                <source>Groups for the new FE users</source>
+				<target>Gruppen für die neuen FE-User</target>
+            </trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 				<target>Ihre persönlichen Daten</target>

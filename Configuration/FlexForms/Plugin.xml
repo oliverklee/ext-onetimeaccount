@@ -43,6 +43,21 @@
                             </config>
                         </TCEforms>
                     </settings.systemFolderForNewUsers>
+                    <settings.groupsForNewUsers>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.groupsForNewUsers
+                            </label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>fe_groups</allowed>
+                                <size>5</size>
+                                <minitems>1</minitems>
+                                <maxitems>99</maxitems>
+                            </config>
+                        </TCEforms>
+                    </settings.groupsForNewUsers>
                 </el>
             </ROOT>
         </general>
