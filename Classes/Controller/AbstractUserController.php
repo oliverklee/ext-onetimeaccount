@@ -58,6 +58,13 @@ abstract class AbstractUserController extends ActionController
         $this->view->assign('user', $newUser);
     }
 
+    /**
+     * Creates and persists a new user.
+     *
+     * Note: `$user` is optional in order to avoid a crash when someone is using a FE login form on the sane page
+     * after creating a user with this action. (This will use the current URL as form target, causing the user to be
+     * null as it had been sent via a POST request.)
+     */
     public function createAction(?FrontendUser $user = null): string
     {
         if (!$user instanceof FrontendUser) {
