@@ -11,6 +11,10 @@
 				<source>System folder for the new FE user records</source>
 				<target>Cartella di sistema per nuovi utenti di FE</target>
 			</trans-unit>
+			<trans-unit id="plugin.groupsForNewUsers">
+				<source>Groups for the new FE users</source>
+				<target>Gruppo per i nuovi utenti di FE</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

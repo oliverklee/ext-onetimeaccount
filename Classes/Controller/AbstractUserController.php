@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace OliverKlee\Onetimeaccount\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
+use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
+use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 /**
@@ -21,6 +24,11 @@ abstract class AbstractUserController extends ActionController
     protected $userRepository;
 
     /**
+     * @var FrontendUserGroupRepository
+     */
+    protected $userGroupRepository;
+
+    /**
      * @var CredentialsGenerator
      */
     protected $credentialsGenerator;
@@ -28,6 +36,11 @@ abstract class AbstractUserController extends ActionController
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
+    }
+
+    public function injectFrontendUserGroupRepository(FrontendUserGroupRepository $repository): void
+    {
+        $this->userGroupRepository = $repository;
     }
 
     public function injectCredentialsGenerator(CredentialsGenerator $generator): void
@@ -59,10 +72,20 @@ abstract class AbstractUserController extends ActionController
     private function enrichUser(FrontendUser $user): void
     {
         $settings = $this->settings;
-        $pageUid = $settings['systemFolderForNewUsers'] ?? 0;
+        $pageUid = $settings['systemFolderForNewUsers'] ?? null;
         if (\is_numeric($pageUid)) {
             $user->setPid((int)$pageUid);
         }
+
+        $userGroupSetting = $settings['groupsForNewUsers'] ?? null;
+        $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
+        foreach ($userGroupUids as $uid) {
+            $group = $this->userGroupRepository->findByUid($uid);
+            if ($group instanceof FrontendUserGroup) {
+                $user->addUserGroup($group);
+            }
+        }
+
         $this->credentialsGenerator->generateUsernameForUser($user);
     }
 }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
+use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
+use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithAutologinController;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
@@ -44,7 +46,16 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     protected $userRepositoryProphecy;
 
     /**
+     * @var ObjectProphecy<FrontendUserGroupRepository>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $userGroupRepositoryProphecy;
+
+    /**
      * @var ObjectProphecy<CredentialsGenerator>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
      */
     protected $usernameGeneratorProphecy;
 
@@ -64,6 +75,10 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
         $userRepository = $this->userRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserRepository($userRepository);
+
+        $this->userGroupRepositoryProphecy = $this->prophesize(FrontendUserGroupRepository::class);
+        $userGroupRepository = $this->userGroupRepositoryProphecy->reveal();
+        $this->subject->injectFrontendUserGroupRepository($userGroupRepository);
 
         $this->usernameGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $usernameGenerator = $this->usernameGeneratorProphecy->reveal();
@@ -122,6 +137,26 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->subject->createAction($user);
 
         self::assertSame($systemFolderUid, $user->getPid());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionSetsGroupsFromConfiguration(): void
+    {
+        $groupUid1 = 4;
+        $group1 = new FrontendUserGroup();
+        $group2 = new FrontendUserGroup();
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn($group1);
+        $this->userGroupRepositoryProphecy->findByUid($groupUid2)->willReturn($group2);
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user);
+
+        self::assertContains($group1, $user->getUserGroup());
+        self::assertContains($group1, $user->getUserGroup());
     }
 
     /**

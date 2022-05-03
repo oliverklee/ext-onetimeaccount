@@ -11,6 +11,10 @@
 				<source>System folder for the new FE user records</source>
 				<target>Répertoire pour le stockage des nouveaux utilisateurs FE</target>
 			</trans-unit>
+			<trans-unit id="plugin.groupsForNewUsers">
+				<source>Groups for the new FE users</source>
+				<target>Groupes des nouveaux utilisateurs FE</target>
+			</trans-unit>
 			<trans-unit id="gender">
 				<source>Gender</source>
 				<target>Genre</target>
