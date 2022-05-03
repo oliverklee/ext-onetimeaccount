@@ -71,20 +71,30 @@ abstract class AbstractUserController extends ActionController
             return '';
         }
 
-        $this->enrichUser($user);
+        $password = $this->enrichUser($user);
         $this->userRepository->add($user);
 
-        return 'User has been created';
+        $username = $user->getUsername();
+
+        return '<p>User has been created.</p>' .
+            '<p>Username: ' . \htmlspecialchars($username, ENT_QUOTES | ENT_HTML5) . '<br/>' .
+            'Password: ' . \htmlspecialchars($password, ENT_QUOTES | ENT_HTML5) . '</p>';
     }
 
     /**
      * Adds data from the configuration to the user before it can be saved.
+     *
+     * @return string the plaintext password
      */
-    private function enrichUser(FrontendUser $user): void
+    private function enrichUser(FrontendUser $user): string
     {
+        $this->credentialsGenerator->generateUsernameForUser($user);
+        $password = $this->credentialsGenerator->generatePasswordForUser($user);
+
         $this->enrichWithPid($user);
         $this->enrichWithGroups($user);
-        $this->credentialsGenerator->generateUsernameForUser($user);
+
+        return (string)$password;
     }
 
     private function enrichWithPid(FrontendUser $user): void

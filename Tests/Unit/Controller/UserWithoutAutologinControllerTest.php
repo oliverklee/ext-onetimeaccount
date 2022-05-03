@@ -166,6 +166,19 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->usernameGeneratorProphecy->generateUsernameForUser($user)->shouldBeCalled();
+        $this->usernameGeneratorProphecy->generatePasswordForUser(Argument::any());
+
+        $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionGeneratesPassword(): void
+    {
+        $user = new FrontendUser();
+        $this->usernameGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->usernameGeneratorProphecy->generatePasswordForUser($user)->shouldBeCalled();
 
         $this->subject->createAction($user);
     }
