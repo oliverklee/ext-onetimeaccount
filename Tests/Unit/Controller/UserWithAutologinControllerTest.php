@@ -180,4 +180,24 @@ final class UserWithAutologinControllerTest extends UnitTestCase
 
         $this->subject->createAction($user);
     }
+
+    /**
+     * @test
+     */
+    public function createActionWithNullUserNotAddsAnythingToRepository(): void
+    {
+        $this->userRepositoryProphecy->add(Argument::any())->shouldNotBeCalled();
+
+        $this->subject->createAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithoutUserNotAddsAnythingToRepository(): void
+    {
+        $this->userRepositoryProphecy->add(Argument::any())->shouldNotBeCalled();
+
+        $this->subject->createAction();
+    }
 }

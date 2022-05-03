@@ -58,8 +58,12 @@ abstract class AbstractUserController extends ActionController
         $this->view->assign('user', $newUser);
     }
 
-    public function createAction(FrontendUser $user): string
+    public function createAction(?FrontendUser $user = null): string
     {
+        if (!$user instanceof FrontendUser) {
+            return '';
+        }
+
         $this->enrichUser($user);
         $this->userRepository->add($user);
 
