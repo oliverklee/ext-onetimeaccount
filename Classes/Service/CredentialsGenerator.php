@@ -6,26 +6,43 @@ namespace OliverKlee\Onetimeaccount\Service;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface;
 use TYPO3\CMS\Core\SingletonInterface;
 
 /**
- * Generates a unique username for the given user (either from the email address possibly with a number attached,
- * or a 32-character random hex username if the email address is empty).
+ * This class can generate a username and password for a user.
  */
 class CredentialsGenerator implements SingletonInterface
 {
     /**
+     * @var positive-int needs to be an even number
+     */
+    private const PASSWORD_LENGTH = 32;
+
+    /**
      * @var FrontendUserRepository
      */
     private $userRepository;
+
+    /**
+     * @var PasswordHashInterface
+     */
+    private $passwordHasher;
 
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
     }
 
+    public function injectPasswordHashFactory(PasswordHashFactory $factory): void
+    {
+        $this->passwordHasher = $factory->getDefaultHashInstance('FE');
+    }
+
     /**
-     * Generates and sets a unique username for the given user.
+     * Generates a unique username for the given user (either from the email address possibly with a number attached,
+     * or a 32-character random hex username if the email address is empty).
      */
     public function generateUsernameForUser(FrontendUser $user): void
     {
@@ -38,6 +55,22 @@ class CredentialsGenerator implements SingletonInterface
         } else {
             $this->generateRandomHexUsername($user);
         }
+    }
+
+    /**
+     * Generates a random long password, sets the password hash for the user, and returns the plain-text password.
+     */
+    public function generatePasswordForUser(FrontendUser $user): ?string
+    {
+        if ($user->getPassword() !== '') {
+            return null;
+        }
+
+        $password = \bin2hex(\random_bytes(self::PASSWORD_LENGTH / 2));
+        $passwordHash = $this->passwordHasher->getHashedPassword($password);
+        $user->setPassword($passwordHash);
+
+        return $password;
     }
 
     private function generateUsernameFromEmail(FrontendUser $user): void

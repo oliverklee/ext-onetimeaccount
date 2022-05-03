@@ -7,7 +7,10 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Service;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -30,6 +33,13 @@ final class CredentialsGeneratorTest extends UnitTestCase
      */
     protected $userRepositoryProphecy;
 
+    /**
+     * @var ObjectProphecy<PasswordHashInterface>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $passwordHasherProphecy;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -39,6 +49,12 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
         $userRepository = $this->userRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserRepository($userRepository);
+
+        $this->passwordHasherProphecy = $this->prophesize(PasswordHashInterface::class);
+        $passwordHasher = $this->passwordHasherProphecy->reveal();
+        $passwordHashFactoryProphecy = $this->prophesize(PasswordHashFactory::class);
+        $passwordHashFactoryProphecy->getDefaultHashInstance('FE')->willReturn($passwordHasher);
+        $this->subject->injectPasswordHashFactory($passwordHashFactoryProphecy->reveal());
     }
 
     /**
@@ -154,5 +170,62 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $this->subject->generateUsernameForUser($user);
 
         self::assertRegExp('/^[a-z\\d]{32}$/', $user->getUsername());
+    }
+
+    /**
+     * @test
+     */
+    public function generatePasswordForUserWithExistingPasswordKeepsOldPassword(): void
+    {
+        $user = new FrontendUser();
+        $existingPassword = 'gzuio134tfgzuiobft1234';
+        $user->setPassword($existingPassword);
+
+        $this->subject->generatePasswordForUser($user);
+
+        self::assertSame($existingPassword, $user->getPassword());
+    }
+
+    /**
+     * @test
+     */
+    public function generatePasswordForUserWithExistingPasswordReturnsNull(): void
+    {
+        $user = new FrontendUser();
+        $existingPassword = 'gzuio134tfgzuiobft1234';
+        $user->setPassword($existingPassword);
+
+        $result = $this->subject->generatePasswordForUser($user);
+
+        self::assertNull($result);
+    }
+
+    /**
+     * @test
+     */
+    public function generatePasswordForUserWithoutExistingPasswordReturnsTwelveCharacterPassword(): void
+    {
+        $user = new FrontendUser();
+        $this->passwordHasherProphecy->getHashedPassword(Argument::any())->willReturn('');
+
+        $result = $this->subject->generatePasswordForUser($user);
+
+        self::assertIsString($result);
+        self::assertRegExp('/^\\w{32}$/', $result);
+    }
+
+    /**
+     * @test
+     */
+    public function generatePasswordForUserWithoutExistingPasswordSetsHashOfTwelveCharacterPassword(): void
+    {
+        $passwordHash
+            = '$argon2i$v=19$m=65536,t=16,p=1$ODBXYmZrYkQ2akMwa1lHYg$iWz2uY5XHXAhjqG69uFSQDWvy/y1G931gk/s19sfBxo';
+        $this->passwordHasherProphecy->getHashedPassword(Argument::type('string'))->willReturn($passwordHash);
+        $user = new FrontendUser();
+
+        $this->subject->generatePasswordForUser($user);
+
+        self::assertSame($passwordHash, $user->getPassword());
     }
 }
