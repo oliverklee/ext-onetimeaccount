@@ -153,6 +153,14 @@
 				<source>Proceed</source>
 				<target>Weiter</target>
 			</trans-unit>
+			<trans-unit id="alert.userCreatedAndLoggedIn">
+				<source>The user has been created, and you now are logged in as the new user.</source>
+				<target>Der User wurde angelegt, und Sie sind jetzt als der neue User eingeloggt.</target>
+			</trans-unit>
+			<trans-unit id="alert.userCreatedNotLoggedIn">
+				<source>The user has been created, but the automatic login with the new user has not successful.</source>
+				<target>Der User wurde angelegt, aber der automatische Login mit den neuen User ist fehlgeschlagen.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
