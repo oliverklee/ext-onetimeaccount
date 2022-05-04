@@ -76,21 +76,15 @@ abstract class AbstractUserController extends ActionController
      * after creating a user with this action. (This will use the current URL as form target, causing the user to be
      * null as it had been sent via a POST request.)
      */
-    public function createAction(?FrontendUser $user = null): string
+    public function createAction(?FrontendUser $user = null): void
     {
         if (!$user instanceof FrontendUser) {
-            return '';
+            return;
         }
 
-        $password = $this->enrichUser($user);
+        $this->enrichUser($user);
         $this->userRepository->add($user);
         $this->persistenceManager->persistAll();
-
-        $username = $user->getUsername();
-
-        return '<p>User has been created.</p>' .
-            '<p>Username: ' . \htmlspecialchars($username, ENT_QUOTES | ENT_HTML5) . '<br/>' .
-            'Password: ' . \htmlspecialchars($password, ENT_QUOTES | ENT_HTML5) . '</p>';
     }
 
     /**
