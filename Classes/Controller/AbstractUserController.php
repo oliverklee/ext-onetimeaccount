@@ -75,6 +75,8 @@ abstract class AbstractUserController extends ActionController
      * Note: `$user` is optional in order to avoid a crash when someone is using a FE login form on the sane page
      * after creating a user with this action. (This will use the current URL as form target, causing the user to be
      * null as it had been sent via a POST request.)
+     *
+     * @throws \RuntimeException
      */
     public function createAction(?FrontendUser $user = null): void
     {
@@ -82,17 +84,28 @@ abstract class AbstractUserController extends ActionController
             return;
         }
 
-        $this->enrichUser($user);
+        $plaintextPassword = $this->enrichUser($user);
+        if (!\is_string($plaintextPassword)) {
+            throw new \RuntimeException('Could not generate user credentials.', 1651673684);
+        }
+
         $this->userRepository->add($user);
         $this->persistenceManager->persistAll();
+
+        $this->afterCreate($user, $plaintextPassword);
     }
+
+    /**
+     * This method will be executed as the last step of `createAction`.
+     */
+    abstract protected function afterCreate(FrontendUser $user, string $plaintextPassword): void;
 
     /**
      * Adds data from the configuration to the user before it can be saved.
      *
-     * @return string the plaintext password
+     * @return string the plaintext password, or null if no new password chould be generated
      */
-    private function enrichUser(FrontendUser $user): string
+    private function enrichUser(FrontendUser $user): ?string
     {
         $this->credentialsGenerator->generateUsernameForUser($user);
         $password = $this->credentialsGenerator->generatePasswordForUser($user);
@@ -100,7 +113,7 @@ abstract class AbstractUserController extends ActionController
         $this->enrichWithPid($user);
         $this->enrichWithGroups($user);
 
-        return (string)$password;
+        return $password;
     }
 
     private function enrichWithPid(FrontendUser $user): void

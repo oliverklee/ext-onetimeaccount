@@ -143,6 +143,8 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $systemFolderUid = 42;
         $this->subject->_set('settings', ['systemFolderForNewUsers' => (string)$systemFolderUid]);
         $user = new FrontendUser();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -161,6 +163,8 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn($group1);
         $this->userGroupRepositoryProphecy->findByUid($groupUid2)->willReturn($group2);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user);
@@ -200,6 +204,8 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -211,6 +217,24 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->persistenceManagerProphecy->persistAll()->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserForFailedPasswordGenerationThrowsException(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Could not generate user credentials.');
+        $this->expectExceptionCode(1651673684);
+
+        $user = new FrontendUser();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->willReturn(null);
 
         $this->subject->createAction($user);
     }
