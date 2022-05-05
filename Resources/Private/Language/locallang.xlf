@@ -120,7 +120,9 @@
 				<source>The user has been created, and you now are logged in as the new user.</source>
 			</trans-unit>
 			<trans-unit id="alert.userCreatedNotLoggedIn">
-				<source>The user has been created, but the automatic login with the new user has not successful.</source>
+				<source>
+					The user has been created, but the automatic login with the new user has not successful.
+				</source>
 			</trans-unit>
 		</body>
 	</file>
