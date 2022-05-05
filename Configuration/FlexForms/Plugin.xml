@@ -28,6 +28,22 @@
                             </config>
                         </TCEforms>
                     </settings.fieldsToShow>
+                    <settings.requiredFields>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.requiredFields
+                            </label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectCheckBox</renderType>
+                                <minitems>0</minitems>
+                                <maxitems>99</maxitems>
+                                <itemsProcFunc>
+                                    OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
+                                </itemsProcFunc>
+                            </config>
+                        </TCEforms>
+                    </settings.requiredFields>
                     <settings.systemFolderForNewUsers>
                         <TCEforms>
                             <label>
