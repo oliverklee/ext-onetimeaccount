@@ -16,13 +16,13 @@
 				<target>FE-User-Felder im Formular</target>
 			</trans-unit>
 			<trans-unit id="plugin.systemFolderForNewUsers">
-                <source>System folder for the new FE user records</source>
+				<source>System folder for the new FE user records</source>
 				<target>Systemordner für die neuen FE-User</target>
-            </trans-unit>
+			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">
-                <source>Groups for the new FE users</source>
+				<source>Groups for the new FE users</source>
 				<target>Gruppen für die neuen FE-User</target>
-            </trans-unit>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 				<target>Ihre persönlichen Daten</target>
@@ -158,8 +158,12 @@
 				<target>Der User wurde angelegt, und Sie sind jetzt als der neue User eingeloggt.</target>
 			</trans-unit>
 			<trans-unit id="alert.userCreatedNotLoggedIn">
-				<source>The user has been created, but the automatic login with the new user has not successful.</source>
-				<target>Der User wurde angelegt, aber der automatische Login mit den neuen User ist fehlgeschlagen.</target>
+				<source>
+					The user has been created, but the automatic login with the new user has not successful.
+				</source>
+				<target>
+					Der User wurde angelegt, aber der automatische Login mit den neuen User ist fehlgeschlagen.
+				</target>
 			</trans-unit>
 		</body>
 	</file>
