@@ -10,10 +10,13 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
+use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
@@ -65,6 +68,20 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     protected $credentialsGeneratorProphecy;
 
+    /**
+     * @var ObjectProphecy<UserValidator>
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $userValidatorProphecy;
+
+    /**
+     * @var Arguments
+     *
+     * We can make this property private once we drop support for TYPO3 V9.
+     */
+    protected $controllerArguments;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -93,6 +110,13 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $usernameGenerator = $this->credentialsGeneratorProphecy->reveal();
         $this->subject->injectCredentialsGenerator($usernameGenerator);
+
+        $this->userValidatorProphecy = $this->prophesize(UserValidator::class);
+        $userValidator = $this->userValidatorProphecy->reveal();
+        $this->subject->injectUserValidator($userValidator);
+
+        $this->controllerArguments = new Arguments();
+        $this->subject->_set('arguments', $this->controllerArguments);
     }
 
     /**
@@ -133,6 +157,37 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
 
         $this->subject->newAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function initializeCreateActionWithUserArgumentSetsUserValidatorWithSettings(): void
+    {
+        $user = new FrontendUser();
+        $userArgument = new ExtbaseArgument('user', FrontendUser::class);
+        $userArgument->setValue($user);
+        $this->controllerArguments->addArgument($userArgument);
+
+        $settings = ['fieldsToShow' => 'name,email', 'requiredFields' => 'email'];
+        $this->subject->_set('settings', $settings);
+        $this->userValidatorProphecy->setSettings($settings)->shouldBeCalled();
+
+        $this->subject->initializeCreateAction();
+
+        self::assertSame($this->userValidatorProphecy->reveal(), $userArgument->getValidator());
+    }
+
+    /**
+     * @test
+     */
+    public function initializeCreateActionWithoutUserArgumentNotTouchesUserValidator(): void
+    {
+        $this->subject->_set('settings', []);
+
+        $this->userValidatorProphecy->setSettings(Argument::any())->shouldNotBeCalled();
+
+        $this->subject->initializeCreateAction();
     }
 
     /**
