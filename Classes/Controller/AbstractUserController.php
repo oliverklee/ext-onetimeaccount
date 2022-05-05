@@ -61,6 +61,8 @@ abstract class AbstractUserController extends ActionController
 
     /**
      * Creates the user creation form (which initially is empty).
+     *
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation\IgnoreValidation("user")
      */
     public function newAction(?FrontendUser $user = null): void
     {
