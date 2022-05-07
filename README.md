@@ -7,8 +7,9 @@
 [![GitHub CI status](https://github.com/oliverklee/ext-onetimeaccount/workflows/CI/badge.svg?branch=main)](https://github.com/oliverklee/ext-onetimeaccount/actions)
 [![Coverage Status](https://coveralls.io/repos/github/oliverklee/ext-onetimeaccount/badge.svg?branch=main)](https://coveralls.io/github/oliverklee/ext-onetimeaccount?branch=main)
 
-This extension allows users to create a one-time FE account to which they will
-be automatically logged in (without having to enter a username or password).
+This extension provides a Bootstrap-5-compatible form that allows users to
+create a one-time FE account to which they will be automatically logged in
+(without having to enter a username or password).
 
 |                  | URL                                                            |
 |------------------|----------------------------------------------------------------|
