@@ -22,11 +22,7 @@ final class AutologinTest extends FunctionalTestCase
     /**
      * @var array<string>
      */
-    protected $testExtensionsToLoad = [
-        'typo3conf/ext/feuserextrafields',
-        'typo3conf/ext/oelib',
-        'typo3conf/ext/onetimeaccount',
-    ];
+    protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
 
     /**
      * @var array<int, string>
