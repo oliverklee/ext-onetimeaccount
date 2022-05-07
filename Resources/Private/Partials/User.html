@@ -324,6 +324,10 @@
         </fieldset>
 
         <p class="d-flex justify-content-end mt-3 mb-3">
+            <f:if condition="{redirectUrl}">
+                <input type="hidden" name="redirect_url" value="{redirectUrl}"/>
+            </f:if>
+
             <f:form.submit value="{f:translate(key: 'saveAndContinue')}" class="btn btn-primary"/>
         </p>
     </f:form>

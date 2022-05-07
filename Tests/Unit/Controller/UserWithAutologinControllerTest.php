@@ -15,6 +15,7 @@ use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
@@ -29,6 +30,16 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class UserWithAutologinControllerTest extends UnitTestCase
 {
+    /**
+     * @var non-empty-string
+     */
+    private const SITE_URL = 'https://www.example.com';
+
+    /**
+     * @var bool
+     */
+    protected $resetSingletonInstances = true;
+
     /**
      * @var UserWithAutologinController&MockObject&AccessibleObjectInterface
      *
@@ -93,11 +104,17 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        $this->setDummyRequestData();
 
         // We need to create an accessible mock in order to be able to set the protected `view`.
         // We can drop the additional arguments to skip the original constructor once we drop support for TYPO3 V9.
-        $this->subject
-            = $this->getAccessibleMock(UserWithAutologinController::class, ['redirect', 'forward'], [], '', false);
+        $this->subject = $this->getAccessibleMock(
+            UserWithAutologinController::class,
+            ['redirect', 'forward', 'redirectToUri'],
+            [],
+            '',
+            false
+        );
 
         $this->viewProphecy = $this->prophesize(TemplateView::class);
         $view = $this->viewProphecy->reveal();
@@ -129,6 +146,26 @@ final class UserWithAutologinControllerTest extends UnitTestCase
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
+    }
+
+    protected function tearDown(): void
+    {
+        $this->resetRequestData();
+        parent::tearDown();
+    }
+
+    private function setDummyRequestData(): void
+    {
+        $this->resetRequestData();
+        GeneralUtility::setIndpEnv('TYPO3_SITE_URL', self::SITE_URL);
+        GeneralUtility::setIndpEnv('TYPO3_REQUEST_HOST', 'https://www.example.com');
+    }
+
+    private function resetRequestData(): void
+    {
+        $_GET = [];
+        $_POST = [];
+        GeneralUtility::flushInternalRuntimeCaches();
     }
 
     /**
@@ -169,6 +206,75 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
 
         $this->subject->newAction(null);
+    }
+
+    /**
+     * @return array<string, array{0: ''|null}>
+     */
+    public function emptyParameterDataProvider(): array
+    {
+        return [
+            'empty string' => [''],
+            'null' => [null],
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider emptyParameterDataProvider
+     */
+    public function newActionWithEmptyRedirectUrlInGetNotPassesRedirectUrlToView(?string $redirectUrl): void
+    {
+        $_GET['redirect_url'] = $redirectUrl;
+
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
+
+        $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider emptyParameterDataProvider
+     */
+    public function newActionWithEmptyRedirectUrlInPostNotPassesRedirectUrlToView(?string $redirectUrl): void
+    {
+        $_POST['redirect_url'] = $redirectUrl;
+
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
+
+        $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithRedirectUrlInSiteInGetPassesRedirectUrlToView(): void
+    {
+        $redirectUrl = 'https://example.com/';
+        $_GET['redirect_url'] = $redirectUrl;
+
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
+
+        $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithRedirectUrlInSiteInPostPassesRedirectUrlToView(): void
+    {
+        $redirectUrl = 'https://example.com/';
+        $_POST['redirect_url'] = $redirectUrl;
+
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
+
+        $this->subject->newAction();
     }
 
     /**
@@ -473,6 +579,63 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     public function createActionWithoutUserNotPersistsAnything(): void
     {
         $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+
+        $this->subject->createAction();
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider emptyParameterDataProvider
+     */
+    public function createActionWithUserWithEmptyRedirectUrlInPostNotRedirects(?string $redirectUrl): void
+    {
+        $_POST['redirect_url'] = $redirectUrl;
+
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->subject->expects(self::never())->method('redirectToUri');
+
+        $this->subject->createAction(new FrontendUser());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserWithLocalRedirectUrlInPostRedirectsToRedirectUrl(): void
+    {
+        $redirectUrl = self::SITE_URL;
+        $_POST['redirect_url'] = $redirectUrl;
+
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->subject->expects(self::once())->method('redirectToUri')->with($redirectUrl);
+
+        $this->subject->createAction(new FrontendUser());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserWithExternalRedirectUrlNotRedirects(): void
+    {
+        $_POST['redirect_url'] = 'https://www.oliverklee.de/';
+
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->subject->expects(self::never())->method('redirectToUri');
+
+        $this->subject->createAction(new FrontendUser());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithoutUserWithRedirectUrlInSiteNotRedirects(): void
+    {
+        $_POST['redirect_url'] = self::SITE_URL;
+
+        $this->subject->expects(self::never())->method('redirectToUri');
 
         $this->subject->createAction();
     }
