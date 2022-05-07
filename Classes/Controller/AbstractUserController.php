@@ -131,6 +131,7 @@ abstract class AbstractUserController extends ActionController
      */
     private function enrichUser(FrontendUser $user): ?string
     {
+        $this->generateFullNameForUser($user);
         $this->credentialsGenerator->generateUsernameForUser($user);
         $password = $this->credentialsGenerator->generatePasswordForUser($user);
 
@@ -138,6 +139,16 @@ abstract class AbstractUserController extends ActionController
         $this->enrichWithGroups($user);
 
         return $password;
+    }
+
+    protected function generateFullNameForUser(FrontendUser $user): void
+    {
+        if ($user->getName() !== '') {
+            return;
+        }
+
+        $fullName = \trim($user->getFirstName() . ' ' . $user->getLastName());
+        $user->setName($fullName);
     }
 
     private function enrichWithPid(FrontendUser $user): void
