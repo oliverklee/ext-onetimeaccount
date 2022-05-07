@@ -7,58 +7,66 @@
             </legend>
 
             <ota:isFieldEnabled fieldName="company">
-                <div class="mb-3">
-                    <label for="onetimeaccount-company" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-company" class="col-sm-2 col-form-label">
                         <f:translate key="company"/>
                     </label>
-                    <f:form.textfield property="company" id="onetimeaccount-company"
-                                      class="form-control" errorClass="is-invalid"
-                                      additionalAttributes="{autocomplete: 'organization'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="company" id="onetimeaccount-company"
+                                          class="form-control" errorClass="is-invalid"
+                                          additionalAttributes="{autocomplete: 'organization'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="gender">
-                <div class="mb-3">
-                    <label for="onetimeaccount-gender" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-gender" class="col-sm-2 col-form-label">
                         <f:translate key="gender"/>
                     </label>
-                    <f:form.select property="gender" id="onetimeaccount-gender"
-                                   class="form-select" errorClass="is-invalid">
-                        <f:form.select.option value="99">
-                            <f:translate key="gender.99"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="0">
-                            <f:translate key="gender.0"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="1">
-                            <f:translate key="gender.1"/>
-                        </f:form.select.option>
-                    </f:form.select>
-                    <f:render partial="ValidationResult" arguments="{property: 'gender'}"/>
+                    <div class="col-sm-10">
+                        <f:form.select property="gender" id="onetimeaccount-gender"
+                                       class="form-select" errorClass="is-invalid">
+                            <f:form.select.option value="99">
+                                <f:translate key="gender.99"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="0">
+                                <f:translate key="gender.0"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="1">
+                                <f:translate key="gender.1"/>
+                            </f:form.select.option>
+                        </f:form.select>
+                        <f:render partial="ValidationResult" arguments="{property: 'gender'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="fullSalutation">
-                <div class="mb-3">
-                    <label for="onetimeaccount-fullSalutation" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-fullSalutation" class="col-sm-2 col-form-label">
                         <f:translate key="fullSalutation"/>
                     </label>
-                    <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation"
-                                      class="form-control" errorClass="is-invalid"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'fullSalutation'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation"
+                                          class="form-control" errorClass="is-invalid"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'fullSalutation'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="name">
-                <div class="mb-3">
-                    <label for="onetimeaccount-name" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-name" class="col-sm-2 col-form-label">
                         <f:translate key="name"/>
                     </label>
-                    <f:form.textfield property="name" id="onetimeaccount-name"
-                                      class="form-control" errorClass="is-invalid"
-                                      additionalAttributes="{autocomplete: 'name'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'name'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="name" id="onetimeaccount-name"
+                                          class="form-control" errorClass="is-invalid"
+                                          additionalAttributes="{autocomplete: 'name'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'name'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
@@ -66,27 +74,31 @@
                 <div class="row">
                     <div class="col">
                         <ota:isFieldEnabled fieldName="firstName">
-                            <div class="mb-3">
-                                <label for="onetimeaccount-firstName" class="form-label">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-firstName" class="col-sm-4 col-form-label">
                                     <f:translate key="firstName"/>
                                 </label>
-                                <f:form.textfield property="firstName" id="onetimeaccount-firstName"
-                                                  class="form-control" errorClass="is-invalid"
-                                                  additionalAttributes="{autocomplete: 'given-name'}"/>
-                                <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="firstName" id="onetimeaccount-firstName"
+                                                      class="form-control" errorClass="is-invalid"
+                                                      additionalAttributes="{autocomplete: 'given-name'}"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
+                                </div>
                             </div>
                         </ota:isFieldEnabled>
                     </div>
                     <div class="col">
                         <ota:isFieldEnabled fieldName="lastName">
-                            <div class="mb-3">
-                                <label for="onetimeaccount-lastName" class="form-label">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-lastName" class="col-sm-4 col-form-label">
                                     <f:translate key="lastName"/>
                                 </label>
-                                <f:form.textfield property="lastName" id="onetimeaccount-lastName"
-                                                  class="form-control" errorClass="is-invalid"
-                                                  additionalAttributes="{autocomplete: 'family-name'}"/>
-                                <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="lastName" id="onetimeaccount-lastName"
+                                                      class="form-control" errorClass="is-invalid"
+                                                      additionalAttributes="{autocomplete: 'family-name'}"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
+                                </div>
                             </div>
                         </ota:isFieldEnabled>
                     </div>
@@ -94,26 +106,30 @@
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="title">
-                <div class="mb-3">
-                    <label for="onetimeaccount-title" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-title" class="col-sm-2 col-form-label">
                         <f:translate key="title"/>
                     </label>
-                    <f:form.textfield property="title" id="onetimeaccount-title"
-                                      class="form-control" errorClass="is-invalid"
-                                      additionalAttributes="{autocomplete: 'organization-title'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'title'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="title" id="onetimeaccount-title"
+                                          class="form-control" errorClass="is-invalid"
+                                          additionalAttributes="{autocomplete: 'organization-title'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'title'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="address">
-                <div class="mb-3">
-                    <label for="onetimeaccount-address" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-address" class="col-sm-2 col-form-label">
                         <f:translate key="address"/>
                     </label>
-                    <f:form.textfield property="address" id="onetimeaccount-address"
-                                      class="form-control" errorClass="is-invalid"
-                                      additionalAttributes="{autocomplete: 'street-address'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'address'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="address" id="onetimeaccount-address"
+                                          class="form-control" errorClass="is-invalid"
+                                          additionalAttributes="{autocomplete: 'street-address'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'address'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
@@ -121,27 +137,31 @@
                 <div class="row">
                     <div class="col">
                         <ota:isFieldEnabled fieldName="zip">
-                            <div class="mb-3">
-                                <label for="onetimeaccount-zip" class="form-label">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-zip" class="col-sm-4 col-form-label">
                                     <f:translate key="zip"/>
                                 </label>
-                                <f:form.textfield property="zip" id="onetimeaccount-zip"
-                                                  class="form-control" errorClass="is-invalid"
-                                                  additionalAttributes="{autocomplete: 'postal-code'}"/>
-                                <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="zip" id="onetimeaccount-zip"
+                                                      class="form-control" errorClass="is-invalid"
+                                                      additionalAttributes="{autocomplete: 'postal-code'}"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
+                                </div>
                             </div>
                         </ota:isFieldEnabled>
                     </div>
                     <div class="col">
                         <ota:isFieldEnabled fieldName="city">
-                            <div class="mb-3">
-                                <label for="onetimeaccount-city" class="form-label">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-city" class="col-sm-4 col-form-label">
                                     <f:translate key="city"/>
                                 </label>
-                                <f:form.textfield property="city" id="onetimeaccount-city"
-                                                  class="form-control" errorClass="is-invalid"
-                                                  additionalAttributes="{autocomplete: 'address-level2'}"/>
-                                <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="city" id="onetimeaccount-city"
+                                                      class="form-control" errorClass="is-invalid"
+                                                      additionalAttributes="{autocomplete: 'address-level2'}"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
+                                </div>
                             </div>
                         </ota:isFieldEnabled>
                     </div>
@@ -149,141 +169,161 @@
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="zone">
-                <div class="mb-3">
-                    <label for="onetimeaccount-zone" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-zone" class="col-sm-2 col-form-label">
                         <f:translate key="zone"/>
                     </label>
-                    <f:form.textfield property="zone" id="onetimeaccount-zone"
-                                      class="form-control" errorClass="is-invalid"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'zone'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="zone" id="onetimeaccount-zone"
+                                          class="form-control" errorClass="is-invalid"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'zone'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="country">
-                <div class="mb-3">
-                    <label for="onetimeaccount-country" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-country" class="col-sm-2 col-form-label">
                         <f:translate key="country"/>
                     </label>
-                    <f:form.textfield property="country" id="onetimeaccount-country"
-                                      class="form-control" errorClass="is-invalid"
-                                      additionalAttributes="{autocomplete: 'country-name'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'country'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="country" id="onetimeaccount-country"
+                                          class="form-control" errorClass="is-invalid"
+                                          additionalAttributes="{autocomplete: 'country-name'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'country'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="email">
-                <div class="mb-3">
-                    <label for="onetimeaccount-email" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-email" class="col-sm-2 col-form-label">
                         <f:translate key="email"/>
                     </label>
-                    <f:form.textfield property="email" id="onetimeaccount-email"
-                                      class="form-control" errorClass="is-invalid"
-                                      type="email" additionalAttributes="{autocomplete: 'email'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'email'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="email" id="onetimeaccount-email"
+                                          class="form-control" errorClass="is-invalid"
+                                          type="email" additionalAttributes="{autocomplete: 'email'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'email'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="telephone">
-                <div class="mb-3">
-                    <label for="onetimeaccount-telephone" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-telephone" class="col-sm-2 col-form-label">
                         <f:translate key="telephone"/>
                     </label>
-                    <f:form.textfield property="telephone" id="onetimeaccount-telephone"
-                                      class="form-control" errorClass="is-invalid"
-                                      type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'telephone'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="telephone" id="onetimeaccount-telephone"
+                                          class="form-control" errorClass="is-invalid"
+                                          type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'telephone'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="www">
-                <div class="mb-3">
-                    <label for="onetimeaccount-www" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-www" class="col-sm-2 col-form-label">
                         <f:translate key="www"/>
                     </label>
-                    <f:form.textfield property="www" id="onetimeaccount-www"
-                                      class="form-control" errorClass="is-invalid"
-                                      type="url" additionalAttributes="{autocomplete: 'url'}"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'www'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textfield property="www" id="onetimeaccount-www"
+                                          class="form-control" errorClass="is-invalid"
+                                          type="url" additionalAttributes="{autocomplete: 'url'}"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'www'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="dateOfBirth">
-                <div class="mb-3">
-                    <label for="onetimeaccount-dateOfBirth" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-dateOfBirth" class="col-sm-2 col-form-label">
                         <f:translate key="dateOfBirth"/>
                     </label>
-                    <f:comment>
-                        We need this workaround because the validation error is on the `dateOfBirth` property,
-                        but we only have inputs for the `.date` and `.dateFormat` subfields and hence cannot use the
-                        `errorClass` argument.
-                    </f:comment>
-                    <f:form.validationResults for="user.dateOfBirth">
-                        <f:if condition="{validationResults.flattenedErrors}">
-                            <f:variable name="dateOfBirthErrorClass" value="is-invalid"/>
-                        </f:if>
-                    </f:form.validationResults>
-                    <f:form.textfield name="user[dateOfBirth][date]" id="onetimeaccount-dateOfBirth"
-                                      class="form-control {dateOfBirthErrorClass}"
-                                      type="date" additionalAttributes="{autocomplete: 'bday'}"/>
-                    <f:form.hidden name="user[dateOfBirth][dateFormat]" value="Y-m-d"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'dateOfBirth'}"/>
+                    <div class="col-sm-10">
+                        <f:comment>
+                            We need this workaround because the validation error is on the `dateOfBirth` property,
+                            but we only have inputs for the `.date` and `.dateFormat` subfields and hence cannot use the
+                            `errorClass` argument.
+                        </f:comment>
+                        <f:form.validationResults for="user.dateOfBirth">
+                            <f:if condition="{validationResults.flattenedErrors}">
+                                <f:variable name="dateOfBirthErrorClass" value="is-invalid"/>
+                            </f:if>
+                        </f:form.validationResults>
+                        <f:form.textfield name="user[dateOfBirth][date]" id="onetimeaccount-dateOfBirth"
+                                          class="form-control {dateOfBirthErrorClass}"
+                                          type="date" additionalAttributes="{autocomplete: 'bday'}"/>
+                        <f:form.hidden name="user[dateOfBirth][dateFormat]" value="Y-m-d"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'dateOfBirth'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="status">
-                <div class="mb-3">
-                    <label for="onetimeaccount-status" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-status" class="col-sm-2 col-form-label">
                         <f:translate key="status"/>
                     </label>
-                    <f:form.select property="status" id="onetimeaccount-status"
-                                   class="form-select" errorClass="is-invalid">
-                        <f:form.select.option value="0">
-                            &nbsp;
-                        </f:form.select.option>
-                        <f:form.select.option value="1">
-                            <f:translate key="status.1"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="2">
-                            <f:translate key="status.2"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="3">
-                            <f:translate key="status.3"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="4">
-                            <f:translate key="status.4"/>
-                        </f:form.select.option>
-                        <f:form.select.option value="5">
-                            <f:translate key="status.5"/>
-                        </f:form.select.option>
-                    </f:form.select>
-                    <f:render partial="ValidationResult" arguments="{property: 'status'}"/>
+                    <div class="col-sm-10">
+                        <f:form.select property="status" id="onetimeaccount-status"
+                                       class="form-select" errorClass="is-invalid">
+                            <f:form.select.option value="0">
+                                &nbsp;
+                            </f:form.select.option>
+                            <f:form.select.option value="1">
+                                <f:translate key="status.1"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="2">
+                                <f:translate key="status.2"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="3">
+                                <f:translate key="status.3"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="4">
+                                <f:translate key="status.4"/>
+                            </f:form.select.option>
+                            <f:form.select.option value="5">
+                                <f:translate key="status.5"/>
+                            </f:form.select.option>
+                        </f:form.select>
+                        <f:render partial="ValidationResult" arguments="{property: 'status'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="comments">
-                <div class="mb-3">
-                    <label for="onetimeaccount-comments" class="form-label">
+                <div class="row mb-3">
+                    <label for="onetimeaccount-comments" class="col-sm-2 col-form-label">
                         <f:translate key="comments"/>
                     </label>
-                    <f:form.textarea property="comments" id="onetimeaccount-comments"
-                                     class="form-control" errorClass="is-invalid"/>
-                    <f:render partial="ValidationResult" arguments="{property: 'comments'}"/>
+                    <div class="col-sm-10">
+                        <f:form.textarea property="comments" id="onetimeaccount-comments"
+                                         class="form-control" errorClass="is-invalid"/>
+                        <f:render partial="ValidationResult" arguments="{property: 'comments'}"/>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
 
             <ota:isFieldEnabled fieldName="privacy">
-                <div class="form-check">
-                    <f:form.checkbox property="privacy" id="onetimeaccount-privacy"
-                                     class="form-check-input" errorClass="is-invalid" value="1"/>
-                    <label for="onetimeaccount-privacy" class="form-check-label">
-                        <f:translate key="privacy.long"/>
-                    </label>
-                    <f:render partial="ValidationResult" arguments="{property: 'privacy'}"/>
+                <div class="row mb-3">
+                    <div class="col-sm-10 offset-sm-2">
+                        <div class="form-check">
+                            <f:form.checkbox property="privacy" id="onetimeaccount-privacy"
+                                             class="form-check-input" errorClass="is-invalid" value="1"/>
+                            <label for="onetimeaccount-privacy" class="form-check-label">
+                                <f:translate key="privacy.long"/>
+                            </label>
+                            <f:render partial="ValidationResult" arguments="{property: 'privacy'}"/>
+                        </div>
+                    </div>
                 </div>
             </ota:isFieldEnabled>
         </fieldset>
 
-        <p class="d-flex justify-content-end">
+        <p class="d-flex justify-content-end mt-3 mb-3">
             <f:form.submit value="{f:translate(key: 'saveAndContinue')}" class="btn btn-primary"/>
         </p>
     </f:form>
