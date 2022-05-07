@@ -9,6 +9,7 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
@@ -39,6 +40,11 @@ abstract class AbstractUserController extends ActionController
      */
     protected $credentialsGenerator;
 
+    /**
+     * @var UserValidator
+     */
+    protected $userValidator;
+
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
@@ -59,16 +65,32 @@ abstract class AbstractUserController extends ActionController
         $this->credentialsGenerator = $generator;
     }
 
+    public function injectUserValidator(UserValidator $validator): void
+    {
+        $this->userValidator = $validator;
+    }
+
     /**
      * Creates the user creation form (which initially is empty).
      *
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation\IgnoreValidation("user")
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("user")
      */
     public function newAction(?FrontendUser $user = null): void
     {
         $newUser = ($user instanceof FrontendUser) ? $user : new FrontendUser();
 
         $this->view->assign('user', $newUser);
+    }
+
+    public function initializeCreateAction(): void
+    {
+        if (!$this->arguments->hasArgument('user')) {
+            return;
+        }
+
+        $userValidator = $this->userValidator;
+        $userValidator->setSettings($this->settings);
+        $this->arguments->getArgument('user')->setValidator($userValidator);
     }
 
     /**

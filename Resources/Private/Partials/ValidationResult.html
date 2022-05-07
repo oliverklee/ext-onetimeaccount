@@ -3,7 +3,7 @@
         <f:if condition="{validationResults.flattenedErrors}">
             <f:for each="{validationResults.errors}" as="error">
                 <div class="invalid-feedback">
-                    {error}
+                    <f:translate key="{error.message}"/>
                 </div>
             </f:for>
         </f:if>
