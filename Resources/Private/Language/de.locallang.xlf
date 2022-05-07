@@ -153,9 +153,9 @@
 					Sie können Ihre Einwilligung jederzeit für die Zukunft per Email widerrufen.
 				</target>
 			</trans-unit>
-			<trans-unit id="submit">
-				<source>Proceed</source>
-				<target>Weiter</target>
+			<trans-unit id="saveAndContinue">
+				<source>Save and continue</source>
+				<target>Speichern und weiter</target>
 			</trans-unit>
 			<trans-unit id="alert.userCreatedAndLoggedIn">
 				<source>The user has been created, and you now are logged in as the new user.</source>
@@ -166,7 +166,7 @@
 					The user has been created, but the automatic login with the new user has not successful.
 				</source>
 				<target>
-					Der User wurde angelegt, aber der automatische Login mit den neuen User ist fehlgeschlagen.
+					Der User wurde angelegt, aber der automatische Login mit dem neuen User ist fehlgeschlagen.
 				</target>
 			</trans-unit>
 			<trans-unit id="validationError.fillInField">

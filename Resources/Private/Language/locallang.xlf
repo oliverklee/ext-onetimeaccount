@@ -116,8 +116,8 @@
 					You can withdraw your consent for the future via email at any time.
 				</source>
 			</trans-unit>
-			<trans-unit id="submit">
-				<source>Proceed</source>
+			<trans-unit id="saveAndContinue">
+				<source>Save and continue</source>
 			</trans-unit>
 			<trans-unit id="alert.userCreatedAndLoggedIn">
 				<source>The user has been created, and you now are logged in as the new user.</source>
