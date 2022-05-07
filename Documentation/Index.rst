@@ -30,8 +30,9 @@ TYPO3 extension ``onetimeaccount``
 
 ----
 
-This extension allows users to create a one-time FE account to which they will
-be automatically logged in (without having to enter a username or password).
+This extension provides a Bootstrap-5-compatible form that allows users to
+create a one-time FE account to which they will be automatically logged in
+(without having to enter a username or password).
 
 ----
 
