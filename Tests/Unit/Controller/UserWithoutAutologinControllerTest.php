@@ -255,6 +255,123 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     /**
      * @test
      */
+    public function createActionForUserWithFullNameAndFirstNameAndLastNameKeepsFullNameUnchanged(): void
+    {
+        $fullName = 'Max Performance';
+        $user = new FrontendUser();
+        $user->setName($fullName);
+        $user->setFirstName('Mini');
+        $user->setLastName('Slowness');
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($fullName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithFullNameAndFirstNameAndNoLastNameKeepsFullNameUnchanged(): void
+    {
+        $fullName = 'Max Performance';
+        $user = new FrontendUser();
+        $user->setName($fullName);
+        $user->setFirstName('Mini');
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($fullName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithFullNameAndLastNameAndNoFirstNameKeepsFullNameUnchanged(): void
+    {
+        $fullName = 'Max Performance';
+        $user = new FrontendUser();
+        $user->setName($fullName);
+        $user->setLastName('Slowness');
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($fullName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithoutFullNameAndFirstAndLastNameBuildsFullNameFromFirstAndLastName(): void
+    {
+        $user = new FrontendUser();
+        $firstName = 'Mini';
+        $user->setFirstName($firstName);
+        $lastName = 'Slowness';
+        $user->setLastName($lastName);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        $expectedFullName = $firstName . ' ' . $lastName;
+        self::assertSame($expectedFullName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithFirstNameOnlySetsFullNameToFirstName(): void
+    {
+        $user = new FrontendUser();
+        $firstName = 'Mini';
+        $user->setFirstName($firstName);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($firstName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithLastNameOnlySetsFullNameToLastName(): void
+    {
+        $user = new FrontendUser();
+        $lastName = 'Slowness';
+        $user->setLastName($lastName);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame($lastName, $user->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForUserWithNoNameAtAllKeepsEmptyFullyName(): void
+    {
+        $user = new FrontendUser();
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+
+        $this->subject->createAction($user);
+
+        self::assertSame('', $user->getName());
+    }
+
+    /**
+     * @test
+     */
     public function createActionWithUserAddsProvidedUserToRepository(): void
     {
         $user = new FrontendUser();
