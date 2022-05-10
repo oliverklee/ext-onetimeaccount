@@ -127,7 +127,7 @@ abstract class AbstractUserController extends ActionController
     /**
      * Adds data from the configuration to the user before it can be saved.
      *
-     * @return string the plaintext password, or null if no new password chould be generated
+     * @return string the plaintext password, or null if no new password should be generated
      */
     private function enrichUser(FrontendUser $user): ?string
     {
