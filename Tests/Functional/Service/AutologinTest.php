@@ -84,4 +84,24 @@ final class AutologinTest extends FunctionalTestCase
         self::assertSame(1, $userDataFromAuthentication['uid']);
         self::assertSame('max', $userDataFromAuthentication['username']);
     }
+
+    /**
+     * @test
+     */
+    public function createSessionForUserSetsOneTimeAccountFlagInSession(): void
+    {
+        $this->importDataSet(__DIR__ . '/Fixtures/User.xml');
+        $user = $this->userRepository->findByUid(1);
+        self::assertInstanceOf(FrontendUser::class, $user);
+        $password = 'max-has-a-password';
+
+        $this->subject->createSessionForUser($user, $password);
+
+        $frontEndController = $GLOBALS['TSFE'];
+        self::assertInstanceOf(TypoScriptFrontendController::class, $frontEndController);
+        $authentication = $frontEndController->fe_user;
+        self::assertInstanceOf(FrontendUserAuthentication::class, $authentication);
+
+        self::assertTrue($authentication->getKey('user', 'onetimeaccount'));
+    }
 }
