@@ -11,6 +11,8 @@ This extension provides a Bootstrap-5-compatible form that allows users to
 create a one-time FE account to which they will be automatically logged in
 (without having to enter a username or password).
 
+![screenshot of the user data form in the frontend](Documentation/images/form-in-frontend.png)
+
 |                  | URL                                                            |
 |------------------|----------------------------------------------------------------|
 | **Repository:**  | https://github.com/oliverklee/ext-onetimeaccount               |
