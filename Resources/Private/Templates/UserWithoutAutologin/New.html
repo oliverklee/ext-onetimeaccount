@@ -4,7 +4,8 @@
 
     <f:section name="main">
         <h2>
-            <f:render partial="User" arguments="{user: user, controller: 'UserWithoutAutologin'}"/>
+            <f:render partial="User"
+                      arguments="{user: user, controller: 'UserWithoutAutologin', redirectUrl: redirectUrl}"/>
         </h2>
     </f:section>
 </html>

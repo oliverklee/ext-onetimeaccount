@@ -80,6 +80,10 @@ abstract class AbstractUserController extends ActionController
         $newUser = ($user instanceof FrontendUser) ? $user : new FrontendUser();
 
         $this->view->assign('user', $newUser);
+        $redirectUrl = GeneralUtility::_GP('redirect_url');
+        if (\is_string($redirectUrl) && $redirectUrl !== '') {
+            $this->view->assign('redirectUrl', $redirectUrl);
+        }
     }
 
     public function initializeCreateAction(): void
@@ -117,10 +121,18 @@ abstract class AbstractUserController extends ActionController
         $this->persistenceManager->persistAll();
 
         $this->afterCreate($user, $plaintextPassword);
+
+        $redirectUrl = GeneralUtility::_POST('redirect_url');
+        if (\is_string($redirectUrl) && $redirectUrl !== '') {
+            $sanitizedUrl = GeneralUtility::sanitizeLocalUrl($redirectUrl);
+            if ($sanitizedUrl !== '') {
+                $this->redirectToUri($redirectUrl);
+            }
+        }
     }
 
     /**
-     * This method will be executed as the last step of `createAction`.
+     * This method will be executed as the last step of `createAction` (before the potential redirect).
      */
     abstract protected function afterCreate(FrontendUser $user, string $plaintextPassword): void;
 

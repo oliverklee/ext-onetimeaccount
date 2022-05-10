@@ -3,6 +3,6 @@
     <f:layout name="Default"/>
 
     <f:section name="main">
-        <f:render partial="User" arguments="{user: user, controller: 'UserWithAutologin'}"/>
+        <f:render partial="User" arguments="{user: user, controller: 'UserWithAutologin', redirectUrl: redirectUrl}"/>
     </f:section>
 </html>
