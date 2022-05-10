@@ -15,6 +15,11 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class Autologin implements SingletonInterface
 {
+    /**
+     * @var non-empty-string
+     */
+    public const ONETIMEACCOUNT_SESSION_MARKER = 'onetimeaccount';
+
     public function createSessionForUser(FrontendUser $user, string $plaintextPassword): void
     {
         $userAuthentication = $this->getFrontendUserAuthentication();
@@ -25,6 +30,8 @@ class Autologin implements SingletonInterface
 
         $userAuthentication->checkPid = false;
         $userAuthentication->start();
+        $userAuthentication->setKey('user', self::ONETIMEACCOUNT_SESSION_MARKER, true);
+        $userAuthentication->storeSessionData();
     }
 
     /**
