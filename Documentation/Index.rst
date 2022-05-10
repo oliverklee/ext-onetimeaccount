@@ -34,6 +34,9 @@ This extension provides a Bootstrap-5-compatible form that allows users to
 create a one-time FE account to which they will be automatically logged in
 (without having to enter a username or password).
 
+.. image:: images/form-in-frontend.png
+   :class: with-shadow
+
 ----
 
 **Table of Contents:**
