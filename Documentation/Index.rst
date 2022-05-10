@@ -34,6 +34,10 @@ This extension provides a Bootstrap-5-compatible form that allows users to
 create a one-time FE account to which they will be automatically logged in
 (without having to enter a username or password).
 
+It is often used together with the
+`seminars extension <https://extensions.typo3.org/extension/seminars>`__,
+allowing attendees to sign up for events without having to create an account.
+
 .. image:: images/form-in-frontend.png
    :class: with-shadow
 

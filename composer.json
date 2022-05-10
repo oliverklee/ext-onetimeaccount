@@ -56,6 +56,9 @@
 	"replace": {
 		"typo3-ter/onetimeaccount": "self.version"
 	},
+	"suggest": {
+		"oliverklee/seminars": "Event management"
+	},
 	"prefer-stable": true,
 	"autoload": {
 		"psr-4": {
