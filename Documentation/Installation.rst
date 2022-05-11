@@ -7,6 +7,8 @@ Installation and setup
 ======================
 
 #. Install the extension and its dependencies.
+#. In your site TypoScript template under "Includes, Include static (from
+   extensions)", include the static template "Onetimeaccount (onetimeaccount)".
 #. If you have not done so yet, create a system folder where the extension
    should store the front-end user it creates.
 #. Create one or multiple front-end user group(s) which the users created by

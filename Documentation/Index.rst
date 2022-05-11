@@ -50,6 +50,7 @@ allowing attendees to sign up for events without having to create an account.
    :titlesonly:
 
    Installation
+   Upgrading
 
 .. Meta Menu
 
