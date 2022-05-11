@@ -49,6 +49,7 @@ allowing attendees to sign up for events without having to create an account.
    :maxdepth: 2
    :titlesonly:
 
+   WhatDoesItDo
    Installation
    Upgrading
 
