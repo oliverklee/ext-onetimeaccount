@@ -6,13 +6,20 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Complete rewrite with support for TYPO3 10LTS
 
 ### Changed
 
 ### Removed
 
 ### Fixed
+
+## 5.0.0
+
+### Added
+- Complete rewrite with added support for TYPO3 9LTS and 10LTS
+
+### Removed
+- Drop support for TYPO3 8TLS
 
 ## 4.2.2
 
