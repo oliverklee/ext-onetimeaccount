@@ -16,10 +16,6 @@ plugin.tx_onetimeaccount {
     }
   }
 
-  persistence {
-    storagePid = {$plugin.tx_onetimeaccount.persistence.storagePid}
-  }
-
   settings {
 
   }
