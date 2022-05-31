@@ -19,14 +19,8 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 final class AutologinTest extends FunctionalTestCase
 {
-    /**
-     * @var array<string>
-     */
     protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
 
-    /**
-     * @var array<int, string>
-     */
     protected $coreExtensionsToLoad = ['extbase'];
 
     /**
