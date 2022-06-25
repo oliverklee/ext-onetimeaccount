@@ -10,7 +10,7 @@ on:
 jobs:
   php-lint:
     name: "PHP linter"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
           - "8.1"
   code-quality:
     name: "Code quality checks"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
@@ -71,7 +71,7 @@ jobs:
           - "7.4"
   xliff-lint:
     name: "Xliff linter"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: "Checkout"
         uses: actions/checkout@v3
@@ -79,7 +79,7 @@ jobs:
         uses: TYPO3-Continuous-Integration/TYPO3-CI-Xliff-Lint@v1
   unit-tests:
     name: "Unit tests"
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     needs: php-lint
     steps:
       - name: "Checkout"
