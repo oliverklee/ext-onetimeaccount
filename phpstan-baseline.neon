@@ -1,2 +1,6 @@
 parameters:
 	ignoreErrors:
+		-
+			message: "#^Cannot access offset 'onetimeaccount…' on mixed\\.$#"
+			count: 2
+			path: Configuration/TCA/Overrides/tt_content.php
