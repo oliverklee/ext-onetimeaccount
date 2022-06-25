@@ -48,7 +48,7 @@
 		"sebastian/phpcpd": "^4.1.0",
 		"seld/jsonlint": "^1.9.0",
 		"sjbr/static-info-tables": "^6.9.6",
-		"squizlabs/php_codesniffer": "^3.6.2",
+		"squizlabs/php_codesniffer": "^3.7.1",
 		"symfony/yaml": "^4.4.37 || ^5.3.14 || ^6.0.2",
 		"typo3/coding-standards": "^0.5.2",
 		"typo3/testing-framework": "^4.15.5 || ^6.16.5"
