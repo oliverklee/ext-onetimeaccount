@@ -40,7 +40,7 @@
 		"phpstan/extension-installer": "^1.1.0",
 		"phpstan/phpstan": "^1.8.2",
 		"phpstan/phpstan-phpunit": "^1.1.1",
-		"phpstan/phpstan-strict-rules": "^1.4.0",
+		"phpstan/phpstan-strict-rules": "^1.4.2",
 		"phpunit/phpunit": "^7.5.20 || ^8.5.26",
 		"psr/log": "^1.0 || ^2.0 || ^3.0",
 		"saschaegerer/phpstan-typo3": "^1.1.2",
