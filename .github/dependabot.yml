@@ -14,6 +14,10 @@ updates:
     allow:
       - dependency-type: "development"
     ignore:
+      - dependency-name: "ergebnis/composer-normalize"
+        versions: [ ">= 2.19.0" ]
+      - dependency-name: "friendsofphp/php-cs-fixer"
+        versions: [ ">= 3.4.0" ]
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
       - dependency-name: "symfony/yaml"
