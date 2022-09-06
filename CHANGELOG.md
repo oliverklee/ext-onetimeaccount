@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add a plugin that writes the user ID into the session (without autologin) (#390)
 
 ### Changed
 - Allow installations with feuserextrafields 5 (#371)
