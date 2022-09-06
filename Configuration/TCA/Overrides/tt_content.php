@@ -15,9 +15,11 @@ defined('TYPO3_MODE') || die();
 );
 
 // This removes the default controls from the plugin.
+// @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['onetimeaccount_withautologin']
     = 'recursive,select_key,pages';
 // These two commands add the flexform configuration for the plugin.
+// @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withautologin'] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     'onetimeaccount_withautologin',
