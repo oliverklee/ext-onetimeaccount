@@ -169,6 +169,10 @@
 					Der User wurde angelegt, aber der automatische Login mit dem neuen User ist fehlgeschlagen.
 				</target>
 			</trans-unit>
+			<trans-unit id="alert.userCreatedWithoutLogin">
+				<source>The user has been created.</source>
+				<target>Der User wurde angelegt.</target>
+			</trans-unit>
 			<trans-unit id="validationError.fillInField">
 				<source>Please fill in this field.</source>
 				<target>Bitte füllen Sie dieses Feld aus.</target>

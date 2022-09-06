@@ -127,6 +127,9 @@
 					The user has been created, but the automatic login with the new user has not successful.
 				</source>
 			</trans-unit>
+			<trans-unit id="alert.userCreatedWithoutLogin">
+				<source>The user has been created.</source>
+			</trans-unit>
 			<trans-unit id="validationError.fillInField">
 				<source>Please fill in this field.</source>
 			</trans-unit>
