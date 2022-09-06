@@ -120,10 +120,6 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $userGroupRepository = $this->userGroupRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserGroupRepository($userGroupRepository);
 
-        $this->persistenceManagerProphecy = $this->prophesize(PersistenceManagerInterface::class);
-        $persistenceManager = $this->persistenceManagerProphecy->reveal();
-        $this->subject->injectPersistenceManager($persistenceManager);
-
         $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $usernameGenerator = $this->credentialsGeneratorProphecy->reveal();
         $this->subject->injectCredentialsGenerator($usernameGenerator);
@@ -482,6 +478,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+        $this->userRepositoryProphecy->persistAll();
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
@@ -494,7 +491,8 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionWithUserPersistsEverything(): void
     {
         $user = new FrontendUser();
-        $this->persistenceManagerProphecy->persistAll()->shouldBeCalled();
+        $this->userRepositoryProphecy->add(Argument::any())->shouldBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldBeCalled();
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
@@ -542,7 +540,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithNullUserNotPersistsAnything(): void
     {
-        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
 
         $this->subject->createAction(null);
     }
@@ -552,7 +550,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithoutUserNotPersistsAnything(): void
     {
-        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
 
         $this->subject->createAction();
     }
