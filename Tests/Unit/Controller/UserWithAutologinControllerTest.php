@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -67,11 +66,6 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      * We can make this property private once we drop support for TYPO3 V9.
      */
     protected $userGroupRepositoryProphecy;
-
-    /**
-     * @var ObjectProphecy<PersistenceManagerInterface>
-     */
-    protected $persistenceManagerProphecy;
 
     /**
      * @var ObjectProphecy<CredentialsGenerator>
@@ -127,10 +121,6 @@ final class UserWithAutologinControllerTest extends UnitTestCase
         $this->userGroupRepositoryProphecy = $this->prophesize(FrontendUserGroupRepository::class);
         $userGroupRepository = $this->userGroupRepositoryProphecy->reveal();
         $this->subject->injectFrontendUserGroupRepository($userGroupRepository);
-
-        $this->persistenceManagerProphecy = $this->prophesize(PersistenceManagerInterface::class);
-        $persistenceManager = $this->persistenceManagerProphecy->reveal();
-        $this->subject->injectPersistenceManager($persistenceManager);
 
         $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
         $credentialsGenerator = $this->credentialsGeneratorProphecy->reveal();
@@ -494,6 +484,7 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryProphecy->add($user)->shouldBeCalled();
+        $this->userRepositoryProphecy->persistAll();
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
@@ -506,7 +497,8 @@ final class UserWithAutologinControllerTest extends UnitTestCase
     public function createActionWithUserPersistsEverything(): void
     {
         $user = new FrontendUser();
-        $this->persistenceManagerProphecy->persistAll()->shouldBeCalled();
+        $this->userRepositoryProphecy->add(Argument::any())->shouldBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldBeCalled();
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
@@ -568,7 +560,7 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithNullUserNotPersistsAnything(): void
     {
-        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
 
         $this->subject->createAction(null);
     }
@@ -578,7 +570,7 @@ final class UserWithAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithoutUserNotPersistsAnything(): void
     {
-        $this->persistenceManagerProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
 
         $this->subject->createAction();
     }
