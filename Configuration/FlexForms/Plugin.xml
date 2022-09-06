@@ -25,6 +25,7 @@
                                 <itemsProcFunc>
                                     OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
                                 </itemsProcFunc>
+                                <default>fullSalutation,name,address,zip,city,email,telephone</default>
                             </config>
                         </TCEforms>
                     </settings.fieldsToShow>
@@ -41,6 +42,7 @@
                                 <itemsProcFunc>
                                     OliverKlee\Onetimeaccount\Configuration\FlexForms->buildFields
                                 </itemsProcFunc>
+                                <default>name,email</default>
                             </config>
                         </TCEforms>
                     </settings.requiredFields>
