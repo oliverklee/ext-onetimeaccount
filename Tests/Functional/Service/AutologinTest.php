@@ -21,7 +21,7 @@ final class AutologinTest extends FunctionalTestCase
 {
     protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
 
-    protected $coreExtensionsToLoad = ['extbase'];
+    protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
     /**
      * @var Autologin
