@@ -25,9 +25,9 @@
 		"php": "^7.2.0 || ~8.0.0 || ~8.1.0",
 		"oliverklee/feuserextrafields": "^3.2.0 || ^4.2.1 || ^5.1.0",
 		"typo3/cms-core": "^9.5.16 || ^10.4.6",
-		"typo3/cms-extbase": "^9.5 || ^10.4.6",
-		"typo3/cms-fluid": "^9.5 || ^10.4",
-		"typo3/cms-frontend": "^9.5 || ^10.4",
+		"typo3/cms-extbase": "^9.5.16 || ^10.4.6",
+		"typo3/cms-fluid": "^9.5.16 || ^10.4.6",
+		"typo3/cms-frontend": "^9.5.16 || ^10.4.6",
 		"typo3fluid/fluid": "^2.6.10"
 	},
 	"require-dev": {
