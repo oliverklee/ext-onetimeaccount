@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add maxlength attributes to the HTML to match the fields in the DB (#395)
 - Add a plugin that writes the user ID into the session (without autologin) (#390)
 
 ### Changed
