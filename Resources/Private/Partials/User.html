@@ -12,7 +12,7 @@
                         <f:translate key="company"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="company" id="onetimeaccount-company"
+                        <f:form.textfield property="company" id="onetimeaccount-company" maxlength="80"
                                           class="form-control" errorClass="is-invalid"
                                           additionalAttributes="{autocomplete: 'organization'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
@@ -49,7 +49,7 @@
                         <f:translate key="fullSalutation"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation"
+                        <f:form.textfield property="fullSalutation" id="onetimeaccount-fullSalutation" maxlength="255"
                                           class="form-control" errorClass="is-invalid"/>
                         <f:render partial="ValidationResult" arguments="{property: 'fullSalutation'}"/>
                     </div>
@@ -62,7 +62,7 @@
                         <f:translate key="name"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="name" id="onetimeaccount-name"
+                        <f:form.textfield property="name" id="onetimeaccount-name" maxlength="160"
                                           class="form-control" errorClass="is-invalid"
                                           additionalAttributes="{autocomplete: 'name'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'name'}"/>
@@ -79,7 +79,7 @@
                                     <f:translate key="firstName"/>
                                 </label>
                                 <div class="col-sm-8">
-                                    <f:form.textfield property="firstName" id="onetimeaccount-firstName"
+                                    <f:form.textfield property="firstName" id="onetimeaccount-firstName" maxlength="50"
                                                       class="form-control" errorClass="is-invalid"
                                                       additionalAttributes="{autocomplete: 'given-name'}"/>
                                     <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
@@ -94,7 +94,7 @@
                                     <f:translate key="lastName"/>
                                 </label>
                                 <div class="col-sm-8">
-                                    <f:form.textfield property="lastName" id="onetimeaccount-lastName"
+                                    <f:form.textfield property="lastName" id="onetimeaccount-lastName" maxlength="50"
                                                       class="form-control" errorClass="is-invalid"
                                                       additionalAttributes="{autocomplete: 'family-name'}"/>
                                     <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
@@ -111,7 +111,7 @@
                         <f:translate key="title"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="title" id="onetimeaccount-title"
+                        <f:form.textfield property="title" id="onetimeaccount-title" maxlength="40"
                                           class="form-control" errorClass="is-invalid"
                                           additionalAttributes="{autocomplete: 'organization-title'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'title'}"/>
@@ -125,7 +125,7 @@
                         <f:translate key="address"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="address" id="onetimeaccount-address"
+                        <f:form.textfield property="address" id="onetimeaccount-address" maxlength="255"
                                           class="form-control" errorClass="is-invalid"
                                           additionalAttributes="{autocomplete: 'street-address'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'address'}"/>
@@ -142,7 +142,7 @@
                                     <f:translate key="zip"/>
                                 </label>
                                 <div class="col-sm-8">
-                                    <f:form.textfield property="zip" id="onetimeaccount-zip"
+                                    <f:form.textfield property="zip" id="onetimeaccount-zip" maxlength="10"
                                                       class="form-control" errorClass="is-invalid"
                                                       additionalAttributes="{autocomplete: 'postal-code'}"/>
                                     <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
@@ -157,7 +157,7 @@
                                     <f:translate key="city"/>
                                 </label>
                                 <div class="col-sm-8">
-                                    <f:form.textfield property="city" id="onetimeaccount-city"
+                                    <f:form.textfield property="city" id="onetimeaccount-city" maxlength="50"
                                                       class="form-control" errorClass="is-invalid"
                                                       additionalAttributes="{autocomplete: 'address-level2'}"/>
                                     <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
@@ -174,7 +174,7 @@
                         <f:translate key="zone"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="zone" id="onetimeaccount-zone"
+                        <f:form.textfield property="zone" id="onetimeaccount-zone" maxlength="45"
                                           class="form-control" errorClass="is-invalid"/>
                         <f:render partial="ValidationResult" arguments="{property: 'zone'}"/>
                     </div>
@@ -187,7 +187,7 @@
                         <f:translate key="country"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="country" id="onetimeaccount-country"
+                        <f:form.textfield property="country" id="onetimeaccount-country" maxlength="40"
                                           class="form-control" errorClass="is-invalid"
                                           additionalAttributes="{autocomplete: 'country-name'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'country'}"/>
@@ -201,7 +201,7 @@
                         <f:translate key="email"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="email" id="onetimeaccount-email"
+                        <f:form.textfield property="email" id="onetimeaccount-email" maxlength="255"
                                           class="form-control" errorClass="is-invalid"
                                           type="email" additionalAttributes="{autocomplete: 'email'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'email'}"/>
@@ -215,7 +215,7 @@
                         <f:translate key="telephone"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="telephone" id="onetimeaccount-telephone"
+                        <f:form.textfield property="telephone" id="onetimeaccount-telephone" maxlength="30"
                                           class="form-control" errorClass="is-invalid"
                                           type="tel" additionalAttributes="{autocomplete: 'tel'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'telephone'}"/>
@@ -229,7 +229,7 @@
                         <f:translate key="www"/>
                     </label>
                     <div class="col-sm-10">
-                        <f:form.textfield property="www" id="onetimeaccount-www"
+                        <f:form.textfield property="www" id="onetimeaccount-www" maxlength="80"
                                           class="form-control" errorClass="is-invalid"
                                           type="url" additionalAttributes="{autocomplete: 'url'}"/>
                         <f:render partial="ValidationResult" arguments="{property: 'www'}"/>
@@ -253,7 +253,7 @@
                                 <f:variable name="dateOfBirthErrorClass" value="is-invalid"/>
                             </f:if>
                         </f:form.validationResults>
-                        <f:form.textfield name="user[dateOfBirth][date]" id="onetimeaccount-dateOfBirth"
+                        <f:form.textfield name="user[dateOfBirth][date]" id="onetimeaccount-dateOfBirth" maxlength="10"
                                           class="form-control {dateOfBirthErrorClass}"
                                           type="date" additionalAttributes="{autocomplete: 'bday'}"/>
                         <f:form.hidden name="user[dateOfBirth][dateFormat]" value="Y-m-d"/>
