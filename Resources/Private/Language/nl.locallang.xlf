@@ -7,17 +7,21 @@
 				<source>FE user fields in the form</source>
 				<target>FE user velden in het formulier</target>
 			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>System folder for the new FE user records</source>
-				<target>Systeemfolder voor de nieuwe FE user records</target>
-			</trans-unit>
 			<trans-unit id="plugin.requiredFields">
 				<source>Required fields</source>
 				<target>Verplichte velden</target>
 			</trans-unit>
+			<trans-unit id="plugin.systemFolderForNewUsers">
+				<source>System folder for the new FE user records</source>
+				<target>Systeemfolder voor de nieuwe FE user records</target>
+			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>
 				<target>Groepen voor de nieuwe FE users</target>
+			</trans-unit>
+			<trans-unit id="company">
+				<source>Company</source>
+				<target>Bedrijfsnaam</target>
 			</trans-unit>
 			<trans-unit id="gender">
 				<source>Gender</source>
@@ -31,13 +35,89 @@
 				<source>Mrs.</source>
 				<target>Mevr.</target>
 			</trans-unit>
+			<trans-unit id="title">
+				<source>Department/Title</source>
+				<target>Afdeling/titel</target>
+			</trans-unit>
+			<trans-unit id="name">
+				<source>Full name</source>
+				<target>Voor-en achternaam</target>
+			</trans-unit>
+			<trans-unit id="firstName">
+				<source>First name</source>
+				<target>Voornaam</target>
+			</trans-unit>
+			<trans-unit id="lastName">
+				<source>Last name</source>
+				<target>Achternaam</target>
+			</trans-unit>
+			<trans-unit id="address">
+				<source>Street</source>
+				<target>Straat</target>
+			</trans-unit>
+			<trans-unit id="zip">
+				<source>ZIP</source>
+				<target>Postcode</target>
+			</trans-unit>
+			<trans-unit id="city">
+				<source>City</source>
+				<target>Plaats</target>
+			</trans-unit>
 			<trans-unit id="zone">
 				<source>County/Region</source>
-				<target>Provincie</target>
+				<target>Provincie/regio</target>
+			</trans-unit>
+			<trans-unit id="country">
+				<source>Country</source>
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="email">
+				<source>E-mail</source>
+				<target>E-mail</target>
+			</trans-unit>
+			<trans-unit id="www">
+				<source>Website</source>
+				<target>Website</target>
+			</trans-unit>
+			<trans-unit id="telephone">
+				<source>Phone number</source>
+				<target>Telefoon</target>
 			</trans-unit>
 			<trans-unit id="dateOfBirth">
 				<source>Birth date</source>
 				<target>Geboortedatum</target>
+			</trans-unit>
+			<trans-unit id="status">
+				<source>Job status</source>
+				<target>Arbeidsstatus</target>
+			</trans-unit>
+			<trans-unit id="status.1">
+				<source>student</source>
+				<target>in Ausbildung</target>
+			</trans-unit>
+			<trans-unit id="status.2">
+				<source>job seeking (full time)</source>
+				<target>werkzoekende (full time)</target>
+			</trans-unit>
+			<trans-unit id="status.3">
+				<source>working</source>
+				<target>werkend</target>
+			</trans-unit>
+			<trans-unit id="status.4">
+				<source>retired</source>
+				<target>gepensioneerd</target>
+			</trans-unit>
+			<trans-unit id="status.5">
+				<source>job seeking (part time)</source>
+				<target>werkzoekende (deeltijd)</target>
+			</trans-unit>
+			<trans-unit id="usergroup">
+				<source>User group</source>
+				<target>Gebruikersgroep</target>
+			</trans-unit>
+			<trans-unit id="comments">
+				<source>Comments</source>
+				<target>Notities</target>
 			</trans-unit>
 		</body>
 	</file>
