@@ -15,6 +15,10 @@
 				<source>Groups for the new FE users</source>
 				<target>Groupes des nouveaux utilisateurs FE</target>
 			</trans-unit>
+			<trans-unit id="company">
+				<source>Company</source>
+				<target>Société</target>
+			</trans-unit>
 			<trans-unit id="gender">
 				<source>Gender</source>
 				<target>Genre</target>
@@ -27,13 +31,97 @@
 				<source>Mrs.</source>
 				<target>Madame</target>
 			</trans-unit>
+			<trans-unit id="title">
+				<source>Department/Title</source>
+				<target>Département/titre</target>
+			</trans-unit>
+			<trans-unit id="name">
+				<source>Full name</source>
+				<target>Nom et prénom</target>
+			</trans-unit>
+			<trans-unit id="firstName">
+				<source>First name</source>
+				<target>Prénom</target>
+			</trans-unit>
+			<trans-unit id="lastName">
+				<source>Last name</source>
+				<target>Nom de famille</target>
+			</trans-unit>
+			<trans-unit id="address">
+				<source>Street</source>
+				<target>Rue</target>
+			</trans-unit>
+			<trans-unit id="zip">
+				<source>ZIP</source>
+				<target>Code postal</target>
+			</trans-unit>
+			<trans-unit id="city">
+				<source>City</source>
+				<target>Ville</target>
+			</trans-unit>
 			<trans-unit id="zone">
 				<source>County/Region</source>
 				<target>Canton/province</target>
 			</trans-unit>
+			<trans-unit id="country">
+				<source>Country</source>
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="email">
+				<source>E-mail</source>
+				<target>Adresse mail</target>
+			</trans-unit>
+			<trans-unit id="www">
+				<source>Website</source>
+				<target>Site web</target>
+			</trans-unit>
+			<trans-unit id="telephone">
+				<source>Phone number</source>
+				<target>Numéro de téléphone</target>
+			</trans-unit>
 			<trans-unit id="dateOfBirth">
 				<source>Birth date</source>
 				<target>Date de naissance</target>
+			</trans-unit>
+			<trans-unit id="status">
+				<source>Job status</source>
+				<target>Statut d'emploi</target>
+			</trans-unit>
+			<trans-unit id="status.1">
+				<source>student</source>
+				<target>étudiant</target>
+			</trans-unit>
+			<trans-unit id="status.2">
+				<source>job seeking (full time)</source>
+				<target>en recherche d'emploi (à plein temps)</target>
+			</trans-unit>
+			<trans-unit id="status.3">
+				<source>working</source>
+				<target>employé</target>
+			</trans-unit>
+			<trans-unit id="status.4">
+				<source>retired</source>
+				<target>retraité</target>
+			</trans-unit>
+			<trans-unit id="status.5">
+				<source>job seeking (part time)</source>
+				<target>en recherche d'emploi (à temps partiel)</target>
+			</trans-unit>
+			<trans-unit id="usergroup">
+				<source>User group</source>
+				<target>Groupe d'utilisateurs</target>
+			</trans-unit>
+			<trans-unit id="comments">
+				<source>Comments</source>
+				<target>Commentaires</target>
+			</trans-unit>
+			<trans-unit id="privacy">
+				<source>Privacy policy agreement</source>
+				<target>Consentement à la politique de confidentialité</target>
+			</trans-unit>
+			<trans-unit id="saveAndContinue">
+				<source>Save and continue</source>
+				<target>Sauvegarder et continuer</target>
 			</trans-unit>
 		</body>
 	</file>
