@@ -34,28 +34,13 @@ class Autologin implements SingletonInterface
         $userAuthentication->storeSessionData();
     }
 
-    /**
-     * @throws \RuntimeException
-     */
     private function getFrontendUserAuthentication(): FrontendUserAuthentication
     {
-        $authentication = $this->getFrontEndController()->fe_user;
-        if (!$authentication instanceof FrontendUserAuthentication) {
-            throw new \RuntimeException('No frontend user authentication found.', 1651593718);
-        }
+        $frontEndController = $GLOBALS['TSFE'] ?? null;
+        \assert($frontEndController instanceof TypoScriptFrontendController);
+        $authentication = $frontEndController->fe_user;
+        \assert($authentication instanceof FrontendUserAuthentication);
 
         return $authentication;
-    }
-
-    /**
-     * @throws \RuntimeException
-     */
-    private function getFrontEndController(): TypoScriptFrontendController
-    {
-        $frontEndController = $GLOBALS['TSFE'] ?? null;
-        if (!$frontEndController instanceof TypoScriptFrontendController) {
-            throw new \RuntimeException('No frontend controller found.', 1651593678);
-        }
-        return $frontEndController;
     }
 }

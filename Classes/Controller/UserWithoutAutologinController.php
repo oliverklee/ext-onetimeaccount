@@ -18,21 +18,16 @@ class UserWithoutAutologinController extends AbstractUserController
      */
     protected function afterCreate(FrontendUser $user, string $plaintextPassword): void
     {
-        $frontEndAuthentication = $this->getFrontEndAuthentication();
+        $frontEndAuthentication = $this->getFrontendUserAuthentication();
         $frontEndAuthentication->setAndSaveSessionData('onetimeaccountUserUid', $user->getUid());
     }
 
-    private function getFrontEndAuthentication(): FrontendUserAuthentication
+    private function getFrontendUserAuthentication(): FrontendUserAuthentication
     {
         $controller = $GLOBALS['TSFE'] ?? null;
-        if (!$controller instanceof TypoScriptFrontendController) {
-            throw new \RuntimeException('No frontend found.', 1662482002);
-        }
-
+        \assert($controller instanceof TypoScriptFrontendController);
         $user = $controller->fe_user;
-        if (!$user instanceof FrontendUserAuthentication) {
-            throw new \RuntimeException('No frontend user found.', 1662482058);
-        }
+        \assert($user instanceof FrontendUserAuthentication);
 
         return $user;
     }
