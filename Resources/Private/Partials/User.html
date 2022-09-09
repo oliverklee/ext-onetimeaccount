@@ -1,4 +1,4 @@
-{namespace ota=OliverKlee\Onetimeaccount\ViewHelpers}
+{namespace oelib=OliverKlee\Oelib\ViewHelpers}
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <f:form name="user" object="{user}" controller="{controller}" action="create">
         <fieldset>
@@ -6,7 +6,7 @@
                 <f:translate key="userDataLegend" extensionName="onetimeaccount"/>
             </legend>
 
-            <ota:isFieldEnabled fieldName="company">
+            <oelib:isFieldEnabled fieldName="company">
                 <div class="row mb-3">
                     <label for="onetimeaccount-company" class="col-sm-2 col-form-label">
                         <f:translate key="company"/>
@@ -18,9 +18,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="gender">
+            <oelib:isFieldEnabled fieldName="gender">
                 <div class="row mb-3">
                     <label for="onetimeaccount-gender" class="col-sm-2 col-form-label">
                         <f:translate key="gender"/>
@@ -41,9 +41,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'gender'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="fullSalutation">
+            <oelib:isFieldEnabled fieldName="fullSalutation">
                 <div class="row mb-3">
                     <label for="onetimeaccount-fullSalutation" class="col-sm-2 col-form-label">
                         <f:translate key="fullSalutation"/>
@@ -54,9 +54,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'fullSalutation'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="name">
+            <oelib:isFieldEnabled fieldName="name">
                 <div class="row mb-3">
                     <label for="onetimeaccount-name" class="col-sm-2 col-form-label">
                         <f:translate key="name"/>
@@ -68,12 +68,12 @@
                         <f:render partial="ValidationResult" arguments="{property: 'name'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="firstName|lastName">
+            <oelib:isFieldEnabled fieldName="firstName|lastName">
                 <div class="row">
                     <div class="col">
-                        <ota:isFieldEnabled fieldName="firstName">
+                        <oelib:isFieldEnabled fieldName="firstName">
                             <div class="row mb-3">
                                 <label for="onetimeaccount-firstName" class="col-sm-4 col-form-label">
                                     <f:translate key="firstName"/>
@@ -85,10 +85,10 @@
                                     <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
                                 </div>
                             </div>
-                        </ota:isFieldEnabled>
+                        </oelib:isFieldEnabled>
                     </div>
                     <div class="col">
-                        <ota:isFieldEnabled fieldName="lastName">
+                        <oelib:isFieldEnabled fieldName="lastName">
                             <div class="row mb-3">
                                 <label for="onetimeaccount-lastName" class="col-sm-4 col-form-label">
                                     <f:translate key="lastName"/>
@@ -100,12 +100,12 @@
                                     <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
                                 </div>
                             </div>
-                        </ota:isFieldEnabled>
+                        </oelib:isFieldEnabled>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="title">
+            <oelib:isFieldEnabled fieldName="title">
                 <div class="row mb-3">
                     <label for="onetimeaccount-title" class="col-sm-2 col-form-label">
                         <f:translate key="title"/>
@@ -117,9 +117,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'title'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="address">
+            <oelib:isFieldEnabled fieldName="address">
                 <div class="row mb-3">
                     <label for="onetimeaccount-address" class="col-sm-2 col-form-label">
                         <f:translate key="address"/>
@@ -131,12 +131,12 @@
                         <f:render partial="ValidationResult" arguments="{property: 'address'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="zip|city">
+            <oelib:isFieldEnabled fieldName="zip|city">
                 <div class="row">
                     <div class="col">
-                        <ota:isFieldEnabled fieldName="zip">
+                        <oelib:isFieldEnabled fieldName="zip">
                             <div class="row mb-3">
                                 <label for="onetimeaccount-zip" class="col-sm-4 col-form-label">
                                     <f:translate key="zip"/>
@@ -148,10 +148,10 @@
                                     <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
                                 </div>
                             </div>
-                        </ota:isFieldEnabled>
+                        </oelib:isFieldEnabled>
                     </div>
                     <div class="col">
-                        <ota:isFieldEnabled fieldName="city">
+                        <oelib:isFieldEnabled fieldName="city">
                             <div class="row mb-3">
                                 <label for="onetimeaccount-city" class="col-sm-4 col-form-label">
                                     <f:translate key="city"/>
@@ -163,12 +163,12 @@
                                     <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
                                 </div>
                             </div>
-                        </ota:isFieldEnabled>
+                        </oelib:isFieldEnabled>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="zone">
+            <oelib:isFieldEnabled fieldName="zone">
                 <div class="row mb-3">
                     <label for="onetimeaccount-zone" class="col-sm-2 col-form-label">
                         <f:translate key="zone"/>
@@ -179,9 +179,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'zone'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="country">
+            <oelib:isFieldEnabled fieldName="country">
                 <div class="row mb-3">
                     <label for="onetimeaccount-country" class="col-sm-2 col-form-label">
                         <f:translate key="country"/>
@@ -193,9 +193,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'country'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="email">
+            <oelib:isFieldEnabled fieldName="email">
                 <div class="row mb-3">
                     <label for="onetimeaccount-email" class="col-sm-2 col-form-label">
                         <f:translate key="email"/>
@@ -207,9 +207,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'email'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="telephone">
+            <oelib:isFieldEnabled fieldName="telephone">
                 <div class="row mb-3">
                     <label for="onetimeaccount-telephone" class="col-sm-2 col-form-label">
                         <f:translate key="telephone"/>
@@ -221,9 +221,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'telephone'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="www">
+            <oelib:isFieldEnabled fieldName="www">
                 <div class="row mb-3">
                     <label for="onetimeaccount-www" class="col-sm-2 col-form-label">
                         <f:translate key="www"/>
@@ -235,9 +235,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'www'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="dateOfBirth">
+            <oelib:isFieldEnabled fieldName="dateOfBirth">
                 <div class="row mb-3">
                     <label for="onetimeaccount-dateOfBirth" class="col-sm-2 col-form-label">
                         <f:translate key="dateOfBirth"/>
@@ -260,9 +260,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'dateOfBirth'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="status">
+            <oelib:isFieldEnabled fieldName="status">
                 <div class="row mb-3">
                     <label for="onetimeaccount-status" class="col-sm-2 col-form-label">
                         <f:translate key="status"/>
@@ -292,9 +292,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'status'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="comments">
+            <oelib:isFieldEnabled fieldName="comments">
                 <div class="row mb-3">
                     <label for="onetimeaccount-comments" class="col-sm-2 col-form-label">
                         <f:translate key="comments"/>
@@ -305,9 +305,9 @@
                         <f:render partial="ValidationResult" arguments="{property: 'comments'}"/>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
 
-            <ota:isFieldEnabled fieldName="privacy">
+            <oelib:isFieldEnabled fieldName="privacy">
                 <div class="row mb-3">
                     <div class="col-sm-10 offset-sm-2">
                         <div class="form-check">
@@ -320,7 +320,7 @@
                         </div>
                     </div>
                 </div>
-            </ota:isFieldEnabled>
+            </oelib:isFieldEnabled>
         </fieldset>
 
         <p class="d-flex justify-content-end mt-3 mb-3">

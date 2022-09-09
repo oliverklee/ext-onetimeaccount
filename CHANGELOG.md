@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Add a plugin that writes the user ID into the session (without autologin) (#390)
 
 ### Changed
-- Require oelib (#405)
+- Add a dependency on oelib (#405, #406)
 - !!! Move the localized validation error messages from the partial to the validator (#404)
 - Allow installations with feuserextrafields 5 (#371)
 - Require feuserextrafields >= 3.2.0 (#345)
