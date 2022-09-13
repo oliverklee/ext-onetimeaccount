@@ -173,10 +173,6 @@
 				<source>The user has been created.</source>
 				<target>Der User wurde angelegt.</target>
 			</trans-unit>
-			<trans-unit id="validationError.fillInField">
-				<source>Please fill in this field.</source>
-				<target>Bitte füllen Sie dieses Feld aus.</target>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

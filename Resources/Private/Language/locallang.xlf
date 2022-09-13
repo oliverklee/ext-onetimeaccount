@@ -130,9 +130,6 @@
 			<trans-unit id="alert.userCreatedWithoutLogin">
 				<source>The user has been created.</source>
 			</trans-unit>
-			<trans-unit id="validationError.fillInField">
-				<source>Please fill in this field.</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>
