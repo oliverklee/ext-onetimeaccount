@@ -183,7 +183,7 @@ final class UserValidatorTest extends FunctionalTestCase
         self::assertCount(1, $forProperty->getErrors());
         $firstError = $forProperty->getFirstError();
         self::assertInstanceOf(Error::class, $firstError);
-        $expected = LocalizationUtility::translate('validationError.fillInField', 'onetimeaccount');
+        $expected = LocalizationUtility::translate('validationError.fillInField', 'oelib');
         self::assertSame($expected, $firstError->getMessage());
     }
 

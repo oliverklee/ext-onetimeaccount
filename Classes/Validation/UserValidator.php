@@ -5,60 +5,27 @@ declare(strict_types=1);
 namespace OliverKlee\Onetimeaccount\Validation;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Validation\Error as ValidationError;
-use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
+use OliverKlee\Oelib\Validation\AbstractConfigurationDependentValidator;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
  * Checks that the fields that are configured to be required are filled in.
+ *
+ * @extends AbstractConfigurationDependentValidator<FrontendUser>
  */
-class UserValidator extends AbstractValidator
+class UserValidator extends AbstractConfigurationDependentValidator
 {
-    /**
-     * @var bool
-     */
-    protected $acceptsEmptyValues = false;
-
-    /**
-     * @var array<int, string>
-     */
-    private $requiredFields = [];
-
-    /**
-     * @param array<string, string> $settings
-     */
-    public function setSettings(array $settings): void
+    protected function getModelClassName(): string
     {
-        $requiredFieldsSetting = $settings['requiredFields'] ?? '';
-        if (\is_string($requiredFieldsSetting)) {
-            $this->requiredFields = GeneralUtility::trimExplode(',', $requiredFieldsSetting, true);
-        }
+        return FrontendUser::class;
     }
 
-    /**
-     * @param mixed $user
-     */
-    protected function isValid($user): void
+    protected function isFieldFilledIn(string $field, AbstractEntity $model): bool
     {
-        if (!$user instanceof FrontendUser) {
-            return;
-        }
-
-        foreach ($this->requiredFields as $field) {
-            if (!$this->isFieldFilledForInUser($field, $user)) {
-                $errorMessage = $this->translateErrorMessage('validationError.fillInField', 'onetimeaccount') ?? '';
-                $error = new ValidationError($errorMessage, 1651765504);
-                $this->result->forProperty($field)->addError($error);
-            }
-        }
-    }
-
-    private function isFieldFilledForInUser(string $field, FrontendUser $user): bool
-    {
-        return $this->isIdentityFieldFilledInForUser($field, $user)
-            && $this->isAddressFieldFilledInForUser($field, $user)
-            && $this->isContactFieldFilledInForUser($field, $user)
-            && $this->isMetaFieldFilledInForUser($field, $user);
+        return $this->isIdentityFieldFilledInForUser($field, $model)
+            && $this->isAddressFieldFilledInForUser($field, $model)
+            && $this->isContactFieldFilledInForUser($field, $model)
+            && $this->isMetaFieldFilledInForUser($field, $model);
     }
 
     private function isIdentityFieldFilledInForUser(string $field, FrontendUser $user): bool
