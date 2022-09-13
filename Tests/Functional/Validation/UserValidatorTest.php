@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\Onetimeaccount\Tests\Unit\Validation;
+namespace OliverKlee\Onetimeaccount\Tests\Functional\Validation;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Extbase\Validation\Error;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @covers \OliverKlee\Onetimeaccount\Validation\UserValidator
  */
-final class UserValidatorTest extends UnitTestCase
+final class UserValidatorTest extends FunctionalTestCase
 {
     /**
      * @var array<int, non-empty-string>
@@ -40,6 +40,12 @@ final class UserValidatorTest extends UnitTestCase
         'comments',
         'privacy',
     ];
+
+    protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
+
+    protected $coreExtensionsToLoad = ['extbase', 'fluid'];
+
+    protected $initializeDatabase = false;
 
     /**
      * @var UserValidator
