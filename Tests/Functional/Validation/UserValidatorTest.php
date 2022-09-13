@@ -45,7 +45,11 @@ final class UserValidatorTest extends FunctionalTestCase
         'privacy',
     ];
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
+    protected $testExtensionsToLoad = [
+        'typo3conf/ext/feuserextrafields',
+        'typo3conf/ext/oelib',
+        'typo3conf/ext/onetimeaccount',
+    ];
 
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
