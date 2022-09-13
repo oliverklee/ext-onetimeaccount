@@ -45,7 +45,11 @@ final class UserValidatorTest extends FunctionalTestCase
         'privacy',
     ];
 
-    protected $testExtensionsToLoad = ['typo3conf/ext/feuserextrafields', 'typo3conf/ext/onetimeaccount'];
+    protected $testExtensionsToLoad = [
+        'typo3conf/ext/feuserextrafields',
+        'typo3conf/ext/oelib',
+        'typo3conf/ext/onetimeaccount',
+    ];
 
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
@@ -179,7 +183,7 @@ final class UserValidatorTest extends FunctionalTestCase
         self::assertCount(1, $forProperty->getErrors());
         $firstError = $forProperty->getFirstError();
         self::assertInstanceOf(Error::class, $firstError);
-        $expected = LocalizationUtility::translate('validationError.fillInField', 'onetimeaccount');
+        $expected = LocalizationUtility::translate('validationError.fillInField', 'oelib');
         self::assertSame($expected, $firstError->getMessage());
     }
 
