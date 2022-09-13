@@ -46,7 +46,8 @@ class UserValidator extends AbstractValidator
 
         foreach ($this->requiredFields as $field) {
             if (!$this->isFieldFilledForInUser($field, $user)) {
-                $error = new ValidationError('validationError.fillInField', 1651765504);
+                $errorMessage = $this->translateErrorMessage('validationError.fillInField', 'onetimeaccount') ?? '';
+                $error = new ValidationError($errorMessage, 1651765504);
                 $this->result->forProperty($field)->addError($error);
             }
         }

@@ -6,6 +6,10 @@ namespace OliverKlee\Onetimeaccount\Tests\Functional\Validation;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Error;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 use TYPO3\CMS\Extbase\Validation\Validator\ValidatorInterface;
@@ -45,8 +49,6 @@ final class UserValidatorTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
-    protected $initializeDatabase = false;
-
     /**
      * @var UserValidator
      *
@@ -57,6 +59,11 @@ final class UserValidatorTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        if ((new Typo3Version())->getMajorVersion() < 10) {
+            $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageService::class);
+        } else {
+            $GLOBALS['LANG'] = $this->get(LanguageService::class);
+        }
 
         $this->subject = new UserValidator();
     }
@@ -172,7 +179,8 @@ final class UserValidatorTest extends FunctionalTestCase
         self::assertCount(1, $forProperty->getErrors());
         $firstError = $forProperty->getFirstError();
         self::assertInstanceOf(Error::class, $firstError);
-        self::assertSame('validationError.fillInField', $firstError->getMessage());
+        $expected = LocalizationUtility::translate('validationError.fillInField', 'onetimeaccount');
+        self::assertSame($expected, $firstError->getMessage());
     }
 
     /**
