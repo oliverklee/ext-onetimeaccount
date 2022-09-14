@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 5.1.0
+
+### Added
 - Add an automatic configuration check (#408)
 - Add more localized labels (#396)
 - Add maxlength attributes to the HTML to match the fields in the DB (#395)
@@ -16,8 +26,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - !!! Move the localized validation error messages from the partial to the validator (#404)
 - Allow installations with feuserextrafields 5 (#371)
 - Require feuserextrafields >= 3.2.0 (#345)
-
-### Removed
 
 ### Fixed
 - Allow XCLASSing the FE user class (#413)
