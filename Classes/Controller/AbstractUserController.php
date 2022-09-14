@@ -66,7 +66,7 @@ abstract class AbstractUserController extends ActionController
      */
     public function newAction(?FrontendUser $user = null): void
     {
-        $newUser = ($user instanceof FrontendUser) ? $user : new FrontendUser();
+        $newUser = ($user instanceof FrontendUser) ? $user : GeneralUtility::makeInstance(FrontendUser::class);
 
         $this->view->assign('user', $newUser);
         $redirectUrl = GeneralUtility::_GP('redirect_url');

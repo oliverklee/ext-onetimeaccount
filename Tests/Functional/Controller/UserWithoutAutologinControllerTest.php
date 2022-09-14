@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
+namespace OliverKlee\Onetimeaccount\Tests\Functional\Controller;
 
-use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
-use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
+ * Note: This test should be a unit test, but `GeneralUtility::flushInternalRuntimeCaches` currently cannot flush
+ * the class name cache yet.
+ *
  * @extends AbstractUserControllerTest<UserWithoutAutologinController>
  *
  * @covers \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController
@@ -60,22 +61,5 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
         $frontEndController = $this->prophesize(TypoScriptFrontendController::class)->reveal();
         $frontEndController->fe_user = $user;
         $GLOBALS['TSFE'] = $frontEndController;
-    }
-
-    /**
-     * @test
-     */
-    public function createActionStoresUidOfNewUserInSession(): void
-    {
-        $userUid = 42;
-        $user = new FrontendUser();
-        $user->_setProperty('uid', $userUid);
-
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('hashed-password');
-
-        $this->userProphecy->setAndSaveSessionData('onetimeaccountUserUid', $userUid)->shouldBeCalled();
-
-        $this->subject->createAction($user);
     }
 }
