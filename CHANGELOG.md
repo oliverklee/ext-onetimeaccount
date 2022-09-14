@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Allow XCLASSing the FE user class (#413)
 - Bump the minimal 10.4 Extbase requirement (#366)
 
 ## 5.0.0
