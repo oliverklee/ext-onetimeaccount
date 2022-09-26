@@ -96,6 +96,7 @@ jobs:
           php-version: "${{ matrix.php-version }}"
           coverage: none
           tools: composer:v2.4
+          ini-values: error_reporting=E_ALL
       - name: "Show Composer version"
         run: composer --version
       - name: "Show the Composer configuration"
@@ -183,6 +184,7 @@ jobs:
           tools: composer:v2.4
           extensions: mysqli
           coverage: none
+          ini-values: error_reporting=E_ALL
       - name: "Show Composer version"
         run: composer --version
       - name: "Show the Composer configuration"
