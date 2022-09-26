@@ -26,9 +26,7 @@ class UserWithoutAutologinController extends AbstractUserController
     {
         $controller = $GLOBALS['TSFE'] ?? null;
         \assert($controller instanceof TypoScriptFrontendController);
-        $user = $controller->fe_user;
-        \assert($user instanceof FrontendUserAuthentication);
 
-        return $user;
+        return $controller->fe_user;
     }
 }

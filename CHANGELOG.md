@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add support for TYPO3 11LTS (#481)
 
 ### Changed
 - Require oelib >= 5.0 (#477)

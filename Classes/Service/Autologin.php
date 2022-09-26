@@ -38,9 +38,7 @@ class Autologin implements SingletonInterface
     {
         $frontEndController = $GLOBALS['TSFE'] ?? null;
         \assert($frontEndController instanceof TypoScriptFrontendController);
-        $authentication = $frontEndController->fe_user;
-        \assert($authentication instanceof FrontendUserAuthentication);
 
-        return $authentication;
+        return $frontEndController->fe_user;
     }
 }
