@@ -8,12 +8,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
-- Allow oelib 5.x (#430)
-- Require oelib >= 4.3.0 (#429)
 
 ### Removed
 
 ### Fixed
+
+## 5.1.1
+
+### Changed
+- Allow oelib 5.x (#430)
+- Require oelib >= 4.3.0 (#429)
 
 ## 5.1.0
 
