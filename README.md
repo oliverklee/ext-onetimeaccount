@@ -1,6 +1,5 @@
 # "One time account" TYPO3 extension
 
-[![TYPO3 V9](https://img.shields.io/badge/TYPO3-9-orange.svg)](https://get.typo3.org/version/9)
 [![TYPO3 V10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
 [![License](https://poser.pugx.org/oliverklee/onetimeaccount/license.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Total downloads](https://poser.pugx.org/oliverklee/onetimeaccount/downloads.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)

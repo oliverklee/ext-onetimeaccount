@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 
 ### Removed
+- Drop support for TYPO3 9LTS (#438)
 
 ### Fixed
 
