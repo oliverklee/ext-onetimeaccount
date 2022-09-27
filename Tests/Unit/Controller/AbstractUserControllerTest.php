@@ -45,17 +45,17 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @var ObjectProphecy<TemplateView>
      */
-    protected $viewProphecy;
+    private $viewProphecy;
 
     /**
      * @var ObjectProphecy<FrontendUserRepository>
      */
-    protected $userRepositoryProphecy;
+    private $userRepositoryProphecy;
 
     /**
      * @var ObjectProphecy<FrontendUserGroupRepository>
      */
-    protected $userGroupRepositoryProphecy;
+    private $userGroupRepositoryProphecy;
 
     /**
      * @var ObjectProphecy<CredentialsGenerator>
@@ -65,12 +65,12 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @var ObjectProphecy<UserValidator>
      */
-    protected $userValidatorProphecy;
+    private $userValidatorProphecy;
 
     /**
      * @var Arguments
      */
-    protected $controllerArguments;
+    private $controllerArguments;
 
     protected function setUpAndInjectSharedDependencies(): void
     {

@@ -40,7 +40,7 @@ abstract class AbstractUserControllerTest extends FunctionalTestCase
     /**
      * @var ObjectProphecy<TemplateView>
      */
-    protected $viewProphecy;
+    private $viewProphecy;
 
     protected function setUpAndInjectSharedDependencies(): void
     {
