@@ -50,7 +50,7 @@
 		"squizlabs/php_codesniffer": "^3.7.1",
 		"symfony/yaml": "^4.4.37 || ^5.3.14 || ^6.0.2",
 		"typo3/coding-standards": "^0.5.5",
-		"typo3/testing-framework": "^4.15.5 || ^6.16.5"
+		"typo3/testing-framework": "^6.16.6"
 	},
 	"replace": {
 		"typo3-ter/onetimeaccount": "self.version"
