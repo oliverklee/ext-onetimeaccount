@@ -23,31 +23,23 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
 {
     /**
      * @var \Closure
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $renderChildrenClosure;
+    private $renderChildrenClosure;
 
     /**
      * @var RenderingContextInterface
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $renderingContext;
+    private $renderingContext;
 
     /**
      * @var ObjectProphecy<VariableProviderInterface>
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $variableProviderProphecy;
+    private $variableProviderProphecy;
 
     /**
      * @var VariableProviderInterface
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $variableProvider;
+    private $variableProvider;
 
     protected function setUp(): void
     {

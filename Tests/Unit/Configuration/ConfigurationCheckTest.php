@@ -16,17 +16,13 @@ final class ConfigurationCheckTest extends UnitTestCase
 {
     /**
      * @var ConfigurationCheck
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $subject;
+    private $subject;
 
     /**
      * @var DummyConfiguration
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $configuration;
+    private $configuration;
 
     protected function setUp(): void
     {

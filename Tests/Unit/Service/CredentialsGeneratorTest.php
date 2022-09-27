@@ -21,24 +21,18 @@ final class CredentialsGeneratorTest extends UnitTestCase
 {
     /**
      * @var CredentialsGenerator
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $subject;
+    private $subject;
 
     /**
      * @var ObjectProphecy<FrontendUserRepository>
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $userRepositoryProphecy;
+    private $userRepositoryProphecy;
 
     /**
      * @var ObjectProphecy<PasswordHashInterface>
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $passwordHasherProphecy;
+    private $passwordHasherProphecy;
 
     protected function setUp(): void
     {

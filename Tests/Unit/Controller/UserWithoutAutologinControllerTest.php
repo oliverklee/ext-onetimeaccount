@@ -21,10 +21,8 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
 {
     /**
      * @var ObjectProphecy<FrontendUserAuthentication>
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $userProphecy;
+    private $userProphecy;
 
     protected function setUp(): void
     {

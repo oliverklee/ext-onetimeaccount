@@ -20,10 +20,8 @@ final class UserWithAutologinControllerTest extends AbstractUserControllerTest
 {
     /**
      * @var ObjectProphecy<Autologin>
-     *
-     * We can make this property private once we drop support for TYPO3 V9.
      */
-    protected $autologinProphecy;
+    private $autologinProphecy;
 
     protected function setUp(): void
     {
