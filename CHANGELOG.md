@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for TYPO3 9LTS (#438)
 
 ### Fixed
+- Fix the plugin registration for TYPO3 10LTS/11LTS (#440)
 
 ## 5.1.1
 

@@ -4,8 +4,8 @@ defined('TYPO3_MODE') || die();
 
 // This makes the plugin selectable in the BE.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    // extension name, matching the PHP namespace
-    'OliverKlee.Onetimeaccount',
+    // extension name, matching the PHP namespaces (but without the vendor)
+    'Onetimeaccount',
     // arbitrary, but unique plugin name (not visible in the BE)
     'WithAutologin',
     // plugin title, as visible in the drop-down in the BE
@@ -28,8 +28,8 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccou
 
 // This makes the plugin selectable in the BE.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    // extension name, matching the PHP namespace
-    'OliverKlee.Onetimeaccount',
+    // extension name, matching the PHP namespaces (but without the vendor)
+    'Onetimeaccount',
     // arbitrary, but unique plugin name (not visible in the BE)
     'WithoutAutologin',
     // plugin title, as visible in the drop-down in the BE
