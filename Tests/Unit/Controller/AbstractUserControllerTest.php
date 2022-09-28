@@ -8,8 +8,10 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
+use OliverKlee\Oelib\Testing\CacheNullifyer;
 use OliverKlee\Onetimeaccount\Controller\AbstractUserController;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
@@ -100,6 +102,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
     protected function tearDown(): void
     {
+        // @phpstan-ignore-next-line We know that the necessary array keys exist.
+        unset($GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class]);
         $this->resetRequestData();
         parent::tearDown();
     }
@@ -115,6 +119,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_GET = [];
         $_POST = [];
+        (new CacheNullifyer())->flushMakeInstanceCache();
         GeneralUtility::flushInternalRuntimeCaches();
     }
 
@@ -156,6 +161,19 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
 
         $this->subject->newAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithoutUserPassesCanPassVirginSubclassedUserToView(): void
+    {
+        // @phpstan-ignore-next-line We know that the necessary array keys exist.
+        $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class] = ['className' => XclassFrontendUser::class];
+
+        $this->viewProphecy->assign('user', Argument::type(XclassFrontendUser::class))->shouldBeCalled();
+
+        $this->subject->newAction();
     }
 
     /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OliverKlee\Onetimeaccount\Tests\Functional\Controller\Fixtures;
+namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 
