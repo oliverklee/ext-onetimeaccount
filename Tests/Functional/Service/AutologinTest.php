@@ -8,8 +8,6 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\Autologin;
 use Psr\Log\NullLogger;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -41,8 +39,9 @@ final class AutologinTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $this->userRepository = $objectManager->get(FrontendUserRepository::class);
+        /** @var FrontendUserRepository $userRepository */
+        $userRepository = $this->get(FrontendUserRepository::class);
+        $this->userRepository = $userRepository;
 
         $this->setUpFakeFrontEnd();
 
