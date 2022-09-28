@@ -29,13 +29,9 @@ final class UserWithAutologinControllerTest extends AbstractUserControllerTest
         $this->setDummyRequestData();
 
         // We need to create an accessible mock in order to be able to set the protected `view`.
-        // We can drop the additional arguments to skip the original constructor once we drop support for TYPO3 V9.
         $this->subject = $this->getAccessibleMock(
             UserWithAutologinController::class,
-            ['redirect', 'forward', 'redirectToUri'],
-            [],
-            '',
-            false
+            ['redirect', 'forward', 'redirectToUri']
         );
 
         $this->setUpAndInjectSharedDependencies();
