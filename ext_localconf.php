@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die('Access denied.');
+defined('TYPO3') or die('Access denied.');
 
 (static function (): void {
     $typo3Version = new \TYPO3\CMS\Core\Information\Typo3Version();
