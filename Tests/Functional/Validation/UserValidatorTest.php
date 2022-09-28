@@ -6,9 +6,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Functional\Validation;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Extbase\Validation\Error;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
@@ -61,11 +59,7 @@ final class UserValidatorTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        if ((new Typo3Version())->getMajorVersion() < 10) {
-            $GLOBALS['LANG'] = GeneralUtility::makeInstance(LanguageService::class);
-        } else {
-            $GLOBALS['LANG'] = $this->get(LanguageService::class);
-        }
+        $GLOBALS['LANG'] = $this->get(LanguageService::class);
 
         $this->subject = new UserValidator();
     }
