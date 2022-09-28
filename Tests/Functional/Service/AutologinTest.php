@@ -6,8 +6,8 @@ namespace OliverKlee\Onetimeaccount\Tests\Functional\Service;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
+use OliverKlee\Oelib\Testing\TestingFramework;
 use OliverKlee\Onetimeaccount\Service\Autologin;
-use Psr\Log\NullLogger;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -35,29 +35,30 @@ final class AutologinTest extends FunctionalTestCase
      */
     private $userRepository;
 
+    /**
+     * @var TestingFramework
+     */
+    private $testingFramework;
+
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->testingFramework = new TestingFramework('tx_onetimeaccount');
+        $this->testingFramework->createFakeFrontEnd($this->testingFramework->createFrontEndPage());
 
         /** @var FrontendUserRepository $userRepository */
         $userRepository = $this->get(FrontendUserRepository::class);
         $this->userRepository = $userRepository;
 
-        $this->setUpFakeFrontEnd();
-
         $this->subject = new Autologin();
     }
 
-    private function setUpFakeFrontEnd(): void
+    protected function tearDown(): void
     {
-        $frontEndController = $this->getMockBuilder(TypoScriptFrontendController::class)
-            ->disableOriginalConstructor()->getMock();
+        $this->testingFramework->cleanUpWithoutDatabase();
 
-        $userAuthentication = new FrontendUserAuthentication();
-        $userAuthentication->setLogger(new NullLogger());
-
-        $frontEndController->fe_user = $userAuthentication;
-        $GLOBALS['TSFE'] = $frontEndController;
+        parent::tearDown();
     }
 
     /**
