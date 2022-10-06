@@ -18,6 +18,7 @@ use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
@@ -113,7 +114,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         // We need to create an accessible mock in order to be able to set the protected `view`.
         $this->subject = $this->getAccessibleMock(
             UserWithoutAutologinController::class,
-            ['redirect', 'forward', 'redirectToUri'],
+            ['forward', 'redirect', 'redirectToUri', 'htmlResponse']
             [
                 $this->userRepositoryMock,
                 $this->userGroupRepositoryMock,
@@ -133,6 +134,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
+
+        $response = $this->prophesize(HtmlResponse::class)->reveal();
+        $this->subject->method('htmlResponse')->willReturn($response);
     }
 
     protected function tearDown(): void

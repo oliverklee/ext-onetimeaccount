@@ -23,6 +23,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop support for PHP 7.2/7.3 (#796)
 
 ### Fixed
+- Return a response in the controller actions (#867)
 - Drop obsolete entries from the `ext_emconf.php` (#860)
 
 ## 6.4.0
