@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add a Rector configuration file (#454)
 
 ### Changed
 - Require feuserextrafields >= 5.2.0 (#435, #446, #453)
