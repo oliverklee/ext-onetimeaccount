@@ -11,7 +11,7 @@ $EM_CONF[$_EXTKEY] = [
             'typo3' => '10.4.11-10.4.99',
             'extbase' => '10.4.11-10.4.99',
             'fluid' => '10.4.11-10.4.99',
-            'feuserextrafields' => '5.1.1-5.99.99',
+            'feuserextrafields' => '5.2.0-5.99.99',
             'oelib' => '4.3.0-5.99.99',
         ],
         'conflicts' => [
