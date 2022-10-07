@@ -101,7 +101,7 @@
 			<trans-unit id="status.5">
 				<source>job seeking (part time)</source>
 			</trans-unit>
-			<trans-unit id="usergroup">
+			<trans-unit id="userGroup">
 				<source>User group</source>
 			</trans-unit>
 			<trans-unit id="comments">

@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -139,6 +140,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user = new FrontendUser();
 
         $this->viewProphecy->assign('user', $user)->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction($user);
     }
@@ -149,6 +155,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function newActionWithoutUserPassesVirginUserToView(): void
     {
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction();
     }
@@ -159,8 +170,59 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function newActionWithNullUserPassesVirginUserToView(): void
     {
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction(null);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithPassesProvidedUserGroupUidToView(): void
+    {
+        $userGroupUid = 5;
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', $userGroupUid)->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
+
+        $this->subject->newAction(null, $userGroupUid);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithNullUserGroupPassesNullUserGroupToView(): void
+    {
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
+
+        $this->subject->newAction(null, null);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithMissingUserGroupPassesNullUserGroupToView(): void
+    {
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
+
+        $this->subject->newAction(null, null);
     }
 
     /**
@@ -172,6 +234,29 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class] = ['className' => XclassFrontendUser::class];
 
         $this->viewProphecy->assign('user', Argument::type(XclassFrontendUser::class))->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
+
+        $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     */
+    public function newActionPassesConfiguredUserGroupsToView(): void
+    {
+        $groupUid1 = 1;
+        $groupUid2 = 2;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])->willReturn($userGroups);
+
+        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('userGroups', $userGroups)->shouldBeCalled();
 
         $this->subject->newAction();
     }
@@ -197,6 +282,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $_GET['redirect_url'] = $redirectUrl;
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
 
         $this->subject->newAction();
@@ -212,6 +301,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $_POST['redirect_url'] = $redirectUrl;
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
 
         $this->subject->newAction();
@@ -226,6 +319,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $_GET['redirect_url'] = $redirectUrl;
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
 
         $this->subject->newAction();
@@ -240,6 +337,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $_POST['redirect_url'] = $redirectUrl;
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
+        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
+        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
+        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
 
         $this->subject->newAction();
@@ -295,23 +396,107 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function createActionSetsGroupsFromConfiguration(): void
+    public function createActionWithAllowedExistentGroupUidSetsGivenGroup(): void
     {
         $groupUid1 = 4;
         $group1 = new FrontendUserGroup();
-        $group2 = new FrontendUserGroup();
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn($group1);
-        $this->userGroupRepositoryProphecy->findByUid($groupUid2)->willReturn($group2);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $user = new FrontendUser();
-        $this->subject->createAction($user);
+        $this->subject->createAction($user, $groupUid1);
 
+        self::assertCount(1, $user->getUserGroup());
         self::assertContains($group1, $user->getUserGroup());
-        self::assertContains($group1, $user->getUserGroup());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithAllowedInexistentGroupUidNotSetsAnyGroup(): void
+    {
+        $groupUid1 = 4;
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn(null);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, $groupUid1);
+
+        self::assertCount(0, $user->getUserGroup());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithNotAllowedGroupUidNotSetsAnyGroup(): void
+    {
+        $groupUid1 = 4;
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, 123);
+
+        self::assertCount(0, $user->getUserGroup());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithNullGroupUidNotSetsAnyGroup(): void
+    {
+        $groupUid1 = 4;
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, null);
+
+        self::assertCount(0, $user->getUserGroup());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithZeroGroupUidNotSetsAnyGroup(): void
+    {
+        $groupUid1 = 4;
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, 0);
+
+        self::assertCount(0, $user->getUserGroup());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithNegativeGroupUidNotSetsAnyGroup(): void
+    {
+        $groupUid1 = 4;
+        $groupUid2 = 5;
+        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, -1);
+
+        self::assertCount(0, $user->getUserGroup());
     }
 
     /**
