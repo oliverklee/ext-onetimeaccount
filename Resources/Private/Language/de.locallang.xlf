@@ -131,7 +131,7 @@
 				<source>job seeking (part time)</source>
 				<target>auf Arbeitssuche (Teilzeit)</target>
 			</trans-unit>
-			<trans-unit id="usergroup">
+			<trans-unit id="userGroup">
 				<source>User group</source>
 				<target>Benutzergruppe</target>
 			</trans-unit>

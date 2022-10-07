@@ -111,7 +111,7 @@
 				<source>job seeking (part time)</source>
 				<target>werkzoekende (deeltijd)</target>
 			</trans-unit>
-			<trans-unit id="usergroup">
+			<trans-unit id="userGroup">
 				<source>User group</source>
 				<target>Gebruikersgroep</target>
 			</trans-unit>

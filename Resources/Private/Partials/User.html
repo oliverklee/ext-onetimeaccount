@@ -294,6 +294,29 @@
                 </div>
             </oelib:isFieldEnabled>
 
+            <oelib:isFieldEnabled fieldName="userGroup">
+                <div class="row mb-3">
+                    <div class="col-sm-2">
+                        <f:translate key="userGroup"/>
+                    </div>
+                    <div class="col-sm-10">
+                        <f:for each="{userGroups}" as="userGroup">
+                            <div class="form-check">
+                                <f:form.radio name="userGroup" value="{userGroup.uid}"
+                                              id="onetimeaccount-userGroup-{userGroup.uid}"
+                                              checked="{selectedUserGroup} == {userGroup.uid}"
+                                              class="form-check-input" errorClass="is-invalid"/>
+                                <label for="onetimeaccount-userGroup-{userGroup.uid}" class="form-check-label">
+                                    {userGroup.title}
+                                </label>
+                            </div>
+                        </f:for>
+
+                        <f:render partial="ValidationResult" arguments="{property: 'userGroup'}"/>
+                    </div>
+                </div>
+            </oelib:isFieldEnabled>
+
             <oelib:isFieldEnabled fieldName="comments">
                 <div class="row mb-3">
                     <label for="onetimeaccount-comments" class="col-sm-2 col-form-label">

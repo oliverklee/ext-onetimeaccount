@@ -107,7 +107,7 @@
 				<source>job seeking (part time)</source>
 				<target>en recherche d'emploi (à temps partiel)</target>
 			</trans-unit>
-			<trans-unit id="usergroup">
+			<trans-unit id="userGroup">
 				<source>User group</source>
 				<target>Groupe d'utilisateurs</target>
 			</trans-unit>

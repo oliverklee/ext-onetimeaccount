@@ -64,11 +64,17 @@ abstract class AbstractUserController extends ActionController
      *
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("user")
      */
-    public function newAction(?FrontendUser $user = null): void
+    public function newAction(?FrontendUser $user = null, ?int $userGroup = null): void
     {
         $newUser = ($user instanceof FrontendUser) ? $user : GeneralUtility::makeInstance(FrontendUser::class);
-
         $this->view->assign('user', $newUser);
+        $this->view->assign('selectedUserGroup', $userGroup);
+
+        $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
+        $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
+        $userGroups = $this->userGroupRepository->findByUids($userGroupUids);
+        $this->view->assign('userGroups', $userGroups);
+
         $redirectUrl = GeneralUtility::_GP('redirect_url');
         if (\is_string($redirectUrl) && $redirectUrl !== '') {
             $this->view->assign('redirectUrl', $redirectUrl);
@@ -95,13 +101,13 @@ abstract class AbstractUserController extends ActionController
      *
      * @throws \RuntimeException
      */
-    public function createAction(?FrontendUser $user = null): void
+    public function createAction(?FrontendUser $user = null, ?int $userGroup = null): void
     {
         if (!$user instanceof FrontendUser) {
             return;
         }
 
-        $plaintextPassword = $this->enrichUser($user);
+        $plaintextPassword = $this->enrichUser($user, $userGroup);
         if (!\is_string($plaintextPassword)) {
             throw new \RuntimeException('Could not generate user credentials.', 1651673684);
         }
@@ -130,14 +136,14 @@ abstract class AbstractUserController extends ActionController
      *
      * @return string the plaintext password, or null if no new password should be generated
      */
-    private function enrichUser(FrontendUser $user): ?string
+    private function enrichUser(FrontendUser $user, ?int $userGroupUid): ?string
     {
         $this->generateFullNameForUser($user);
         $this->credentialsGenerator->generateUsernameForUser($user);
         $password = $this->credentialsGenerator->generatePasswordForUser($user);
 
         $this->enrichWithPid($user);
-        $this->enrichWithGroups($user);
+        $this->enrichWithGroup($user, $userGroupUid);
 
         return $password;
     }
@@ -160,12 +166,16 @@ abstract class AbstractUserController extends ActionController
         }
     }
 
-    private function enrichWithGroups(FrontendUser $user): void
+    private function enrichWithGroup(FrontendUser $user, ?int $userGroupUid): void
     {
+        if (!\is_int($userGroupUid) || $userGroupUid < 1) {
+            return;
+        }
+
         $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
         $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
-        foreach ($userGroupUids as $uid) {
-            $group = $this->userGroupRepository->findByUid($uid);
+        if (\in_array($userGroupUid, $userGroupUids, true)) {
+            $group = $this->userGroupRepository->findByUid($userGroupUid);
             if ($group instanceof FrontendUserGroup) {
                 $user->addUserGroup($group);
             }
