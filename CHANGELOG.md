@@ -9,7 +9,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Add a Rector configuration file (#454)
 
 ### Changed
-- Require feuserextrafields >= 5.2.0 (#435, #446, #453)
+- Require feuserextrafields >= 5.2.1 (#435, #446, #453, #456)
 
 ### Removed
 - Drop support for TYPO3 9LTS (#438)
