@@ -18,8 +18,10 @@ updates:
         versions: [ ">= 2.19.0" ]
       - dependency-name: "friendsofphp/php-cs-fixer"
         versions: [ ">= 3.4.0" ]
+      - dependency-name: "oliverklee/oelib"
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
+      - dependency-name: "sjbr/static-info-tables"
       - dependency-name: "symfony/yaml"
       - dependency-name: "typo3/testing-framework"
     versioning-strategy: "increase"
