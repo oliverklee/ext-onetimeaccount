@@ -72,8 +72,10 @@ abstract class AbstractUserController extends ActionController
 
         $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
         $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
-        $userGroups = $this->userGroupRepository->findByUids($userGroupUids);
-        $this->view->assign('userGroups', $userGroups);
+        if ($userGroupUids !== []) {
+            $userGroups = $this->userGroupRepository->findByUids($userGroupUids);
+            $this->view->assign('userGroups', $userGroups);
+        }
 
         $redirectUrl = GeneralUtility::_GP('redirect_url');
         if (\is_string($redirectUrl) && $redirectUrl !== '') {

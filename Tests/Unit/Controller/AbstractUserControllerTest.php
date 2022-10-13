@@ -142,10 +142,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', $user)->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
 
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
-
         $this->subject->newAction($user);
     }
 
@@ -157,10 +153,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
 
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
-
         $this->subject->newAction();
     }
 
@@ -171,10 +163,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction(null);
     }
@@ -188,10 +176,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', $userGroupUid)->shouldBeCalled();
 
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
-
         $this->subject->newAction(null, $userGroupUid);
     }
 
@@ -203,10 +187,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
 
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
-
         $this->subject->newAction(null, null);
     }
 
@@ -217,10 +197,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
-
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction(null, null);
     }
@@ -235,10 +211,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->viewProphecy->assign('user', Argument::type(XclassFrontendUser::class))->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
 
         $this->subject->newAction();
     }
@@ -283,9 +255,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
 
         $this->subject->newAction();
@@ -302,9 +271,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
 
         $this->subject->newAction();
@@ -320,9 +286,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
 
         $this->subject->newAction();
@@ -338,9 +301,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids(Argument::any())->willReturn($userGroups);
-        $this->viewProphecy->assign('userGroups', Argument::any())->shouldBeCalled();
         $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
 
         $this->subject->newAction();
