@@ -6,6 +6,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 6.0.0
+
+### Added
 - Add a selector for the user group (#460, #467, #468, #471)
 - Add a Rector configuration file (#454)
 
