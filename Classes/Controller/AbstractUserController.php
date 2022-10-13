@@ -9,6 +9,7 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Validation\UserGroupValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -39,6 +40,11 @@ abstract class AbstractUserController extends ActionController
      */
     protected $userValidator;
 
+    /**
+     * @var UserGroupValidator
+     */
+    protected $userGroupValidator;
+
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
@@ -57,6 +63,11 @@ abstract class AbstractUserController extends ActionController
     public function injectUserValidator(UserValidator $validator): void
     {
         $this->userValidator = $validator;
+    }
+
+    public function injectUserGroupValidator(UserGroupValidator $validator): void
+    {
+        $this->userGroupValidator = $validator;
     }
 
     /**
@@ -85,13 +96,17 @@ abstract class AbstractUserController extends ActionController
 
     public function initializeCreateAction(): void
     {
-        if (!$this->arguments->hasArgument('user')) {
-            return;
+        if ($this->arguments->hasArgument('user')) {
+            $userValidator = $this->userValidator;
+            $userValidator->setSettings($this->settings);
+            $this->arguments->getArgument('user')->setValidator($userValidator);
         }
 
-        $userValidator = $this->userValidator;
-        $userValidator->setSettings($this->settings);
-        $this->arguments->getArgument('user')->setValidator($userValidator);
+        if ($this->arguments->hasArgument('userGroup')) {
+            $userGroupValidator = $this->userGroupValidator;
+            $userGroupValidator->setSettings($this->settings);
+            $this->arguments->getArgument('userGroup')->setValidator($userGroupValidator);
+        }
     }
 
     /**

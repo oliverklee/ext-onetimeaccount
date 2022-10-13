@@ -306,14 +306,24 @@
                                     <f:form.radio name="userGroup" value="{userGroup.uid}"
                                                   id="onetimeaccount-userGroup-{userGroup.uid}"
                                                   checked="{selectedUserGroup} == {userGroup.uid}"
-                                                  class="form-check-input" errorClass="is-invalid"/>
+                                                  class="form-check-input" errorClass="is-invalid"
+                                                  additionalAttributes="{required: 'required'}"
+                                    />
                                     <label for="onetimeaccount-userGroup-{userGroup.uid}" class="form-check-label">
                                         {userGroup.title}
                                     </label>
                                 </div>
                             </f:for>
 
-                            <f:render partial="ValidationResult" arguments="{property: 'userGroup'}"/>
+                            <f:form.validationResults>
+                                <f:if condition="{validationResults.flattenedErrors.userGroup}">
+                                    <f:for each="{validationResults.flattenedErrors.userGroup}" as="error">
+                                        <div class="alert alert-danger" role="alert">
+                                            {error.message}
+                                        </div>
+                                    </f:for>
+                                </f:if>
+                            </f:form.validationResults>
                         </div>
                     </div>
                 </f:if>
