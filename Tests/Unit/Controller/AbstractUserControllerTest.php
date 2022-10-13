@@ -11,6 +11,7 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Oelib\Testing\CacheNullifyer;
 use OliverKlee\Onetimeaccount\Controller\AbstractUserController;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\TestingQueryResult;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -20,6 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
@@ -58,7 +60,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @var ObjectProphecy<FrontendUserGroupRepository>
      */
-    private $userGroupRepositoryProphecy;
+    protected $userGroupRepositoryProphecy;
 
     /**
      * @var ObjectProphecy<CredentialsGenerator>
@@ -358,25 +360,24 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function createActionWithAllowedExistentGroupUidSetsGivenGroup(): void
     {
-        $groupUid1 = 4;
-        $group1 = new FrontendUserGroup();
-        $groupUid2 = 5;
-        $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn($group1);
+        $groupUid = 4;
+        $group = new FrontendUserGroup();
+        $this->subject->_set('settings', ['groupsForNewUsers' => (string)$groupUid]);
+        $this->userGroupRepositoryProphecy->findByUid($groupUid)->willReturn($group);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $user = new FrontendUser();
-        $this->subject->createAction($user, $groupUid1);
+        $this->subject->createAction($user, $groupUid);
 
         self::assertCount(1, $user->getUserGroup());
-        self::assertContains($group1, $user->getUserGroup());
+        self::assertContains($group, $user->getUserGroup());
     }
 
     /**
      * @test
      */
-    public function createActionWithAllowedInexistentGroupUidNotSetsAnyGroup(): void
+    public function createActionWithAllowedInexistentGroupUidSetsOtherGroupsFromConfiguration(): void
     {
         $groupUid1 = 4;
         $groupUid2 = 5;
@@ -384,79 +385,147 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn(null);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
+        $userGroupsFromRepository = new ObjectStorage();
+        $userGroup2 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup2);
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
 
         $user = new FrontendUser();
         $this->subject->createAction($user, $groupUid1);
 
-        self::assertCount(0, $user->getUserGroup());
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(1, $user->getUserGroup());
+        self::assertTrue($userGroupsFromUser->contains($userGroup2));
     }
 
     /**
      * @test
      */
-    public function createActionWithNotAllowedGroupUidNotSetsAnyGroup(): void
+    public function createActionWithNotAllowedGroupUidSetsAllGroupsFromConfiguration(): void
     {
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
+        $userGroupsFromRepository = new ObjectStorage();
+        $userGroup1 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup1);
+        $userGroup2 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup2);
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
 
         $user = new FrontendUser();
         $this->subject->createAction($user, 123);
 
-        self::assertCount(0, $user->getUserGroup());
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(2, $userGroupsFromUser);
+        self::assertTrue($userGroupsFromUser->contains($userGroup1));
+        self::assertTrue($userGroupsFromUser->contains($userGroup2));
     }
 
     /**
      * @test
      */
-    public function createActionWithNullGroupUidNotSetsAnyGroup(): void
+    public function createActionWithNullGroupUidSetsAllGroupsFromConfiguration(): void
     {
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
+        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
+        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
+        $userGroupsFromRepository = new ObjectStorage();
+        $userGroup1 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup1);
+        $userGroup2 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup2);
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+
+        $user = new FrontendUser();
+        $this->subject->createAction($user, null);
+
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(2, $userGroupsFromUser);
+        self::assertTrue($userGroupsFromUser->contains($userGroup1));
+        self::assertTrue($userGroupsFromUser->contains($userGroup2));
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithNullGroupUidAndNoConfiguredGroupsSetsNoGroups(): void
+    {
+        $this->subject->_set('settings', ['groupsForNewUsers' => '']);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user, null);
 
-        self::assertCount(0, $user->getUserGroup());
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(0, $userGroupsFromUser);
     }
 
     /**
      * @test
      */
-    public function createActionWithZeroGroupUidNotSetsAnyGroup(): void
+    public function createActionWithZeroGroupUidSetsAllGroupsFromConfiguration(): void
     {
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
+        $userGroupsFromRepository = new ObjectStorage();
+        $userGroup1 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup1);
+        $userGroup2 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup2);
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
 
         $user = new FrontendUser();
         $this->subject->createAction($user, 0);
 
-        self::assertCount(0, $user->getUserGroup());
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(2, $userGroupsFromUser);
+        self::assertTrue($userGroupsFromUser->contains($userGroup1));
+        self::assertTrue($userGroupsFromUser->contains($userGroup2));
     }
 
     /**
      * @test
      */
-    public function createActionWithNegativeGroupUidNotSetsAnyGroup(): void
+    public function createActionWithNegativeGroupUidSetsAllGroupsFromConfiguration(): void
     {
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
         $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
+        $userGroupsFromRepository = new ObjectStorage();
+        $userGroup1 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup1);
+        $userGroup2 = new FrontendUserGroup();
+        $userGroupsFromRepository->attach($userGroup2);
+        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
 
         $user = new FrontendUser();
         $this->subject->createAction($user, -1);
 
-        self::assertCount(0, $user->getUserGroup());
+        $userGroupsFromUser = $user->getUserGroup();
+        self::assertCount(2, $userGroupsFromUser);
+        self::assertTrue($userGroupsFromUser->contains($userGroup1));
+        self::assertTrue($userGroupsFromUser->contains($userGroup2));
     }
 
     /**
