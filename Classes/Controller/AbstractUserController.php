@@ -170,16 +170,19 @@ abstract class AbstractUserController extends ActionController
 
     private function enrichWithGroup(FrontendUser $user, ?int $userGroupUid): void
     {
-        if (!\is_int($userGroupUid) || $userGroupUid < 1) {
-            return;
-        }
-
         $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
         $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
-        if (\in_array($userGroupUid, $userGroupUids, true)) {
+        if (\is_int($userGroupUid) && $userGroupUid >= 1 && \in_array($userGroupUid, $userGroupUids, true)) {
             $group = $this->userGroupRepository->findByUid($userGroupUid);
             if ($group instanceof FrontendUserGroup) {
                 $user->addUserGroup($group);
+            }
+        }
+
+        if ($userGroupUids !== [] && $user->getUserGroup()->count() === 0) {
+            $userGroups = $this->userGroupRepository->findByUids($userGroupUids);
+            foreach ($userGroups as $userGroup) {
+                $user->addUserGroup($userGroup);
             }
         }
     }
