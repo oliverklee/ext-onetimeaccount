@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Drop the elaborate validation for the user group (#478)
 
 ### Fixed
+- Add more native types to a testing support class (#482)
 
 ## 6.0.0
 
