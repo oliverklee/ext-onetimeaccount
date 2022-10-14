@@ -30,7 +30,6 @@ class FlexForms
         'www',
         'dateOfBirth',
         'status',
-        'userGroup',
         'comments',
         'privacy',
     ];

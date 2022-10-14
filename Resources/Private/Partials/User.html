@@ -294,30 +294,28 @@
                 </div>
             </oelib:isFieldEnabled>
 
-            <oelib:isFieldEnabled fieldName="userGroup">
-                <f:if condition="{userGroups -> f:count()} > 1">
-                    <div class="row mb-3">
-                        <div class="col-sm-2">
-                            <f:translate key="userGroup"/>
-                        </div>
-                        <div class="col-sm-10">
-                            <f:for each="{userGroups}" as="userGroup">
-                                <div class="form-check">
-                                    <f:form.radio name="userGroup" value="{userGroup.uid}"
-                                                  id="onetimeaccount-userGroup-{userGroup.uid}"
-                                                  checked="{selectedUserGroup} == {userGroup.uid}"
-                                                  class="form-check-input" errorClass="is-invalid"
-                                                  additionalAttributes="{required: 'required'}"
-                                    />
-                                    <label for="onetimeaccount-userGroup-{userGroup.uid}" class="form-check-label">
-                                        {userGroup.title}
-                                    </label>
-                                </div>
-                            </f:for>
-                        </div>
+            <f:if condition="{userGroups -> f:count()} > 1">
+                <div class="row mb-3">
+                    <div class="col-sm-2">
+                        <f:translate key="userGroup"/>
                     </div>
-                </f:if>
-            </oelib:isFieldEnabled>
+                    <div class="col-sm-10">
+                        <f:for each="{userGroups}" as="userGroup">
+                            <div class="form-check">
+                                <f:form.radio name="userGroup" value="{userGroup.uid}"
+                                              id="onetimeaccount-userGroup-{userGroup.uid}"
+                                              checked="{selectedUserGroup} == {userGroup.uid}"
+                                              class="form-check-input" errorClass="is-invalid"
+                                              additionalAttributes="{required: 'required'}"
+                                />
+                                <label for="onetimeaccount-userGroup-{userGroup.uid}" class="form-check-label">
+                                    {userGroup.title}
+                                </label>
+                            </div>
+                        </f:for>
+                    </div>
+                </div>
+            </f:if>
 
             <oelib:isFieldEnabled fieldName="comments">
                 <div class="row mb-3">
