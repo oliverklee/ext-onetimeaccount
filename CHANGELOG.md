@@ -7,7 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 - Add support for PHP 8.2 (#489)
-- Add support for TYPO3 11LTS (#481, #485, #486)
+- Add support for TYPO3 11LTS (#481, #485, #486, #490)
 
 ### Changed
 - Require oelib >= 5.0 (#477)
