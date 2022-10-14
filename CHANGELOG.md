@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require oelib >= 5.0 (#477)
 
 ### Removed
+- Make displaying the group selector non-configurable (#479)
 - Drop the elaborate validation for the user group (#478)
 
 ### Fixed
