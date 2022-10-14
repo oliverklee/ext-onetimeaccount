@@ -109,6 +109,9 @@ jobs:
           key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
           path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
+      - name: "Fake PHP version for Prophecy with PHP 8.2"
+        run: composer config platform.php 8.1.99
+        if: matrix.php-version == '8.2'
       - name: "Install TYPO3 Core"
         env:
           TYPO3: "${{ matrix.typo3-version }}"
@@ -167,6 +170,9 @@ jobs:
           - typo3-version: "^11.5"
             php-version: "8.1"
             composer-dependencies: highest
+          - typo3-version: "^11.5"
+            php-version: "8.2"
+            composer-dependencies: highest
   functional-tests:
     name: "Functional tests"
     runs-on: ubuntu-22.04
@@ -197,6 +203,9 @@ jobs:
           key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
           path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
+      - name: "Fake PHP version for Prophecy with PHP 8.2"
+        run: composer config platform.php 8.1.99
+        if: matrix.php-version == '8.2'
       - name: "Install TYPO3 Core"
         env:
           TYPO3: "${{ matrix.typo3-version }}"
@@ -264,4 +273,7 @@ jobs:
             composer-dependencies: lowest
           - typo3-version: "^11.5"
             php-version: "8.1"
+            composer-dependencies: highest
+          - typo3-version: "^11.5"
+            php-version: "8.2"
             composer-dependencies: highest
