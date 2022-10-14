@@ -314,16 +314,6 @@
                                     </label>
                                 </div>
                             </f:for>
-
-                            <f:form.validationResults>
-                                <f:if condition="{validationResults.flattenedErrors.userGroup}">
-                                    <f:for each="{validationResults.flattenedErrors.userGroup}" as="error">
-                                        <div class="alert alert-danger" role="alert">
-                                            {error.message}
-                                        </div>
-                                    </f:for>
-                                </f:if>
-                            </f:form.validationResults>
                         </div>
                     </div>
                 </f:if>

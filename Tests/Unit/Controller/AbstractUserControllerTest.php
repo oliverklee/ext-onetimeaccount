@@ -13,19 +13,16 @@ use OliverKlee\Onetimeaccount\Controller\AbstractUserController;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\TestingQueryResult;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
-use OliverKlee\Onetimeaccount\Validation\UserGroupValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Property\PropertyMapper;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -76,11 +73,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     private $userValidatorProphecy;
 
     /**
-     * @var ObjectProphecy<UserGroupValidator>
-     */
-    private $userGroupValidatorProphecy;
-
-    /**
      * @var Arguments
      */
     private $controllerArguments;
@@ -106,10 +98,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->userValidatorProphecy = $this->prophesize(UserValidator::class);
         $userValidator = $this->userValidatorProphecy->reveal();
         $this->subject->injectUserValidator($userValidator);
-
-        $this->userGroupValidatorProphecy = $this->prophesize(UserGroupValidator::class);
-        $userGroupValidator = $this->userGroupValidatorProphecy->reveal();
-        $this->subject->injectUserGroupValidator($userGroupValidator);
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
@@ -342,46 +330,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function initializeCreateActionWithUserGroupArgumentSetsUserGroupValidatorWithSettings(): void
-    {
-        /** @var ObjectProphecy<PropertyMapper> $propertyMapperProphecy */
-        $propertyMapperProphecy = $this->prophesize(PropertyMapper::class);
-        $propertyMapperProphecy->getMessages()->willReturn(new Result());
-        $propertyMapperProphecy->convert(Argument::cetera())->willReturn(null);
-        $userGroupArgument = new ExtbaseArgument('userGroup', 'integer');
-        $userGroupArgument->injectPropertyMapper($propertyMapperProphecy->reveal());
-        $userGroupArgument->setValue(5);
-        $this->controllerArguments->addArgument($userGroupArgument);
-
-        $settings = ['fieldsToShow' => 'name,email', 'requiredFields' => 'email'];
-        $this->subject->_set('settings', $settings);
-        $this->userGroupValidatorProphecy->setSettings($settings)->shouldBeCalled();
-
-        $this->subject->initializeCreateAction();
-
-        self::assertSame($this->userGroupValidatorProphecy->reveal(), $userGroupArgument->getValidator());
-    }
-
-    /**
-     * @test
-     */
     public function initializeCreateActionWithoutUserArgumentNotTouchesUserValidator(): void
     {
         $this->subject->_set('settings', []);
 
         $this->userValidatorProphecy->setSettings(Argument::any())->shouldNotBeCalled();
-
-        $this->subject->initializeCreateAction();
-    }
-
-    /**
-     * @test
-     */
-    public function initializeCreateActionWithoutUserGroupArgumentNotTouchesUserGroupValidator(): void
-    {
-        $this->subject->_set('settings', []);
-
-        $this->userGroupValidatorProphecy->setSettings(Argument::any())->shouldNotBeCalled();
 
         $this->subject->initializeCreateAction();
     }
