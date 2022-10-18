@@ -21,9 +21,10 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: "${{ matrix.php-version }}"
-          coverage: xdebug
-          extensions: xdebug, mysqli
-          tools: composer:v2.4, phive
+          coverage: pcov
+          extensions: mysqli
+          ini-values: pcov.directory=Classes
+          tools: composer:v2, phive
       - name: "Show Composer version"
         run: composer --version
       - name: "Show the Composer configuration"
