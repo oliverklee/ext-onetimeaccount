@@ -8,6 +8,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+- Switch the coverage on CI from Xdebug to PCOV (#501)
 
 ### Removed
 
