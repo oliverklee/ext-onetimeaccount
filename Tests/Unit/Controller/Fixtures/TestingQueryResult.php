@@ -41,7 +41,9 @@ final class TestingQueryResult implements QueryResultInterface
 
     public function key(): string
     {
-        return $this->objectStorage->key();
+        $key = $this->objectStorage->key();
+
+        return \is_string($key) ? $key : '';
     }
 
     public function valid(): bool
@@ -61,7 +63,9 @@ final class TestingQueryResult implements QueryResultInterface
 
     public function offsetGet($offset): ?FrontendUserGroup
     {
-        return $this->objectStorage->offsetGet($offset);
+        $offset = $this->objectStorage->offsetGet($offset);
+
+        return $offset instanceof FrontendUserGroup ? $offset : null;
     }
 
     public function offsetSet($offset, $value): void
