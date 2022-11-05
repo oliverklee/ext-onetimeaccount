@@ -7,8 +7,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Service;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface;
 use TYPO3\CMS\Core\SingletonInterface;
@@ -25,14 +24,14 @@ final class CredentialsGeneratorTest extends UnitTestCase
     private $subject;
 
     /**
-     * @var ObjectProphecy<FrontendUserRepository>
+     * @var FrontendUserRepository&MockObject
      */
-    private $userRepositoryProphecy;
+    private $userRepositoryMock;
 
     /**
-     * @var ObjectProphecy<PasswordHashInterface>
+     * @var PasswordHashInterface&MockObject
      */
-    private $passwordHasherProphecy;
+    private $passwordHasherMock;
 
     protected function setUp(): void
     {
@@ -40,15 +39,14 @@ final class CredentialsGeneratorTest extends UnitTestCase
 
         $this->subject = new CredentialsGenerator();
 
-        $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
-        $userRepository = $this->userRepositoryProphecy->reveal();
-        $this->subject->injectFrontendUserRepository($userRepository);
+        $this->userRepositoryMock = $this->getMockBuilder(FrontendUserRepository::class)
+            ->disableOriginalConstructor()->getMock();
+        $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
 
-        $this->passwordHasherProphecy = $this->prophesize(PasswordHashInterface::class);
-        $passwordHasher = $this->passwordHasherProphecy->reveal();
-        $passwordHashFactoryProphecy = $this->prophesize(PasswordHashFactory::class);
-        $passwordHashFactoryProphecy->getDefaultHashInstance('FE')->willReturn($passwordHasher);
-        $this->subject->injectPasswordHashFactory($passwordHashFactoryProphecy->reveal());
+        $this->passwordHasherMock = $this->createMock(PasswordHashInterface::class);
+        $passwordHashFactoryMock = $this->createMock(PasswordHashFactory::class);
+        $passwordHashFactoryMock->method('getDefaultHashInstance')->with('FE')->willReturn($this->passwordHasherMock);
+        $this->subject->injectPasswordHashFactory($passwordHashFactoryMock);
     }
 
     /**
@@ -96,7 +94,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $email = 'unique@example.com';
         $user = new FrontendUser();
         $user->setEmail($email);
-        $this->userRepositoryProphecy->findOneByUsername($email)->willReturn(null);
+        $this->userRepositoryMock->method('findOneByUsername')->with($email)->willReturn(null);
 
         $this->subject->generateUsernameForUser($user);
 
@@ -111,7 +109,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $email = 'unique@example.com';
         $user = new FrontendUser();
         $user->setEmail(' ' . $email . ' ');
-        $this->userRepositoryProphecy->findOneByUsername($email)->willReturn(null);
+        $this->userRepositoryMock->method('findOneByUsername')->with($email)->willReturn(null);
 
         $this->subject->generateUsernameForUser($user);
 
@@ -127,8 +125,10 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $emailWithSuffix = $email . '_1';
         $user = new FrontendUser();
         $user->setEmail($email);
-        $this->userRepositoryProphecy->findOneByUsername($email)->willReturn($user);
-        $this->userRepositoryProphecy->findOneByUsername($emailWithSuffix)->willReturn(null);
+        $this->userRepositoryMock->method('findOneByUsername')->willReturnMap([
+            [$email, $user],
+            [$emailWithSuffix, null],
+        ]);
 
         $this->subject->generateUsernameForUser($user);
 
@@ -145,9 +145,12 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $emailWithSuffix2 = $email . '_2';
         $user = new FrontendUser();
         $user->setEmail($email);
-        $this->userRepositoryProphecy->findOneByUsername($email)->willReturn($user);
-        $this->userRepositoryProphecy->findOneByUsername($emailWithSuffix1)->willReturn($user);
-        $this->userRepositoryProphecy->findOneByUsername($emailWithSuffix2)->willReturn(null);
+
+        $this->userRepositoryMock->method('findOneByUsername')->willReturnMap([
+            [$email, $user],
+            [$emailWithSuffix1, $user],
+            [$emailWithSuffix2, null],
+        ]);
 
         $this->subject->generateUsernameForUser($user);
 
@@ -200,7 +203,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
     public function generatePasswordForUserWithoutExistingPasswordReturnsTwelveCharacterPassword(): void
     {
         $user = new FrontendUser();
-        $this->passwordHasherProphecy->getHashedPassword(Argument::any())->willReturn('');
+        $this->passwordHasherMock->method('getHashedPassword')->with(self::anything())->willReturn('');
 
         $result = $this->subject->generatePasswordForUser($user);
 
@@ -215,7 +218,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
     {
         $passwordHash
             = '$argon2i$v=19$m=65536,t=16,p=1$ODBXYmZrYkQ2akMwa1lHYg$iWz2uY5XHXAhjqG69uFSQDWvy/y1G931gk/s19sfBxo';
-        $this->passwordHasherProphecy->getHashedPassword(Argument::type('string'))->willReturn($passwordHash);
+        $this->passwordHasherMock->method('getHashedPassword')->with(self::isType('string'))->willReturn($passwordHash);
         $user = new FrontendUser();
 
         $this->subject->generatePasswordForUser($user);
