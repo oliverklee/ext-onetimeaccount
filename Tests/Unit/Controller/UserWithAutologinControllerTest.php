@@ -7,8 +7,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Controller\UserWithAutologinController;
 use OliverKlee\Onetimeaccount\Service\Autologin;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
+use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @extends AbstractUserControllerTest<UserWithAutologinController>
@@ -19,9 +18,9 @@ use Prophecy\Prophecy\ObjectProphecy;
 final class UserWithAutologinControllerTest extends AbstractUserControllerTest
 {
     /**
-     * @var ObjectProphecy<Autologin>
+     * @var Autologin&MockObject
      */
-    private $autologinProphecy;
+    private $autologinMock;
 
     protected function setUp(): void
     {
@@ -36,9 +35,8 @@ final class UserWithAutologinControllerTest extends AbstractUserControllerTest
 
         $this->setUpAndInjectSharedDependencies();
 
-        $this->autologinProphecy = $this->prophesize(Autologin::class);
-        $autologinProphecy = $this->autologinProphecy->reveal();
-        $this->subject->injectAutoLogin($autologinProphecy);
+        $this->autologinMock = $this->createMock(Autologin::class);
+        $this->subject->injectAutoLogin($this->autologinMock);
     }
 
     /**
@@ -48,9 +46,8 @@ final class UserWithAutologinControllerTest extends AbstractUserControllerTest
     {
         $user = new FrontendUser();
         $hashedPassword = 'hashed-password';
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->willReturn($hashedPassword);
-        $this->autologinProphecy->createSessionForUser($user, $hashedPassword)->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with($user)->willReturn($hashedPassword);
+        $this->autologinMock->expects(self::once())->method('createSessionForUser')->with($user, $hashedPassword);
 
         $this->subject->createAction($user);
     }
