@@ -109,9 +109,6 @@ jobs:
           key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
           path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
-      - name: "Fake PHP version for Prophecy with PHP 8.2"
-        run: composer config platform.php 8.1.99
-        if: matrix.php-version == '8.2'
       - name: "Install TYPO3 Core"
         env:
           TYPO3: "${{ matrix.typo3-version }}"
@@ -203,9 +200,6 @@ jobs:
           key: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-${{ hashFiles('**/composer.json') }}"
           path: ~/.cache/composer
           restore-keys: "php${{ matrix.php-version }}-typo3${{ matrix.typo3-version }}-${{ matrix.composer-dependencies }}-composer-\n"
-      - name: "Fake PHP version for Prophecy with PHP 8.2"
-        run: composer config platform.php 8.1.99
-        if: matrix.php-version == '8.2'
       - name: "Install TYPO3 Core"
         env:
           TYPO3: "${{ matrix.typo3-version }}"
