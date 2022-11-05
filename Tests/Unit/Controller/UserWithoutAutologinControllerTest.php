@@ -6,8 +6,7 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Controller;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
+use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
@@ -20,9 +19,9 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 final class UserWithoutAutologinControllerTest extends AbstractUserControllerTest
 {
     /**
-     * @var ObjectProphecy<FrontendUserAuthentication>
+     * @var FrontendUserAuthentication&MockObject
      */
-    private $userProphecy;
+    private $userMock;
 
     protected function setUp(): void
     {
@@ -48,11 +47,11 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
 
     private function setUpFakeFrontEnd(): void
     {
-        $this->userProphecy = $this->prophesize(FrontendUserAuthentication::class);
-        $user = $this->userProphecy->reveal();
+        $this->userMock = $this->createMock(FrontendUserAuthentication::class);
 
-        $frontEndController = $this->prophesize(TypoScriptFrontendController::class)->reveal();
-        $frontEndController->fe_user = $user;
+        $frontEndController = $this->getMockBuilder(TypoScriptFrontendController::class)
+            ->disableOriginalConstructor()->getMock();
+        $frontEndController->fe_user = $this->userMock;
         $GLOBALS['TSFE'] = $frontEndController;
     }
 
@@ -65,10 +64,11 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
         $user = new FrontendUser();
         $user->_setProperty('uid', $userUid);
 
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('hashed-password');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
-        $this->userProphecy->setAndSaveSessionData('onetimeaccountUserUid', $userUid)->shouldBeCalled();
+        $this->userMock->expects(self::once())
+            ->method('setAndSaveSessionData')
+            ->with('onetimeaccountUserUid', $userUid);
 
         $this->subject->createAction($user);
     }

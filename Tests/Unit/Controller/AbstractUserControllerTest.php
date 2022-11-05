@@ -15,8 +15,6 @@ use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\TestingQueryResult;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
-use Prophecy\Argument;
-use Prophecy\Prophecy\ObjectProphecy;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
@@ -48,29 +46,29 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     protected $subject;
 
     /**
-     * @var ObjectProphecy<TemplateView>
+     * @var TemplateView&MockObject
      */
-    private $viewProphecy;
+    private $viewMock;
 
     /**
-     * @var ObjectProphecy<FrontendUserRepository>
+     * @var FrontendUserRepository&MockObject
      */
-    private $userRepositoryProphecy;
+    private $userRepositoryMock;
 
     /**
-     * @var ObjectProphecy<FrontendUserGroupRepository>
+     * @var FrontendUserGroupRepository&MockObject
      */
-    protected $userGroupRepositoryProphecy;
+    protected $userGroupRepositoryMock;
 
     /**
-     * @var ObjectProphecy<CredentialsGenerator>
+     * @var CredentialsGenerator&MockObject
      */
-    protected $credentialsGeneratorProphecy;
+    protected $credentialsGeneratorMock;
 
     /**
-     * @var ObjectProphecy<UserValidator>
+     * @var UserValidator&MockObject
      */
-    private $userValidatorProphecy;
+    private $userValidatorMock;
 
     /**
      * @var Arguments
@@ -79,25 +77,22 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
     protected function setUpAndInjectSharedDependencies(): void
     {
-        $this->viewProphecy = $this->prophesize(TemplateView::class);
-        $view = $this->viewProphecy->reveal();
-        $this->subject->_set('view', $view);
+        $this->viewMock = $this->createMock(TemplateView::class);
+        $this->subject->_set('view', $this->viewMock);
 
-        $this->userRepositoryProphecy = $this->prophesize(FrontendUserRepository::class);
-        $userRepository = $this->userRepositoryProphecy->reveal();
-        $this->subject->injectFrontendUserRepository($userRepository);
+        $this->userRepositoryMock = $this->getMockBuilder(FrontendUserRepository::class)
+            ->disableOriginalConstructor()->getMock();
+        $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
 
-        $this->userGroupRepositoryProphecy = $this->prophesize(FrontendUserGroupRepository::class);
-        $userGroupRepository = $this->userGroupRepositoryProphecy->reveal();
-        $this->subject->injectFrontendUserGroupRepository($userGroupRepository);
+        $this->userGroupRepositoryMock = $this->getMockBuilder(FrontendUserGroupRepository::class)
+            ->disableOriginalConstructor()->getMock();
+        $this->subject->injectFrontendUserGroupRepository($this->userGroupRepositoryMock);
 
-        $this->credentialsGeneratorProphecy = $this->prophesize(CredentialsGenerator::class);
-        $credentialsGenerator = $this->credentialsGeneratorProphecy->reveal();
-        $this->subject->injectCredentialsGenerator($credentialsGenerator);
+        $this->credentialsGeneratorMock = $this->createMock(CredentialsGenerator::class);
+        $this->subject->injectCredentialsGenerator($this->credentialsGeneratorMock);
 
-        $this->userValidatorProphecy = $this->prophesize(UserValidator::class);
-        $userValidator = $this->userValidatorProphecy->reveal();
-        $this->subject->injectUserValidator($userValidator);
+        $this->userValidatorMock = $this->createMock(UserValidator::class);
+        $this->subject->injectUserValidator($this->userValidatorMock);
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
@@ -141,8 +136,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
 
-        $this->viewProphecy->assign('user', $user)->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', $user],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction($user);
     }
@@ -152,8 +149,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function newActionWithoutUserPassesVirginUserToView(): void
     {
-        $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::isInstanceOf(FrontendUser::class)],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction();
     }
@@ -163,8 +162,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function newActionWithNullUserPassesVirginUserToView(): void
     {
-        $this->viewProphecy->assign('user', Argument::type(FrontendUser::class))->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::isInstanceOf(FrontendUser::class)],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction(null);
     }
@@ -175,8 +176,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function newActionWithPassesProvidedUserGroupUidToView(): void
     {
         $userGroupUid = 5;
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', $userGroupUid)->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', $userGroupUid]
+        );
 
         $this->subject->newAction(null, $userGroupUid);
     }
@@ -186,8 +189,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function newActionWithNullUserGroupPassesNullUserGroupToView(): void
     {
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', null]
+        );
 
         $this->subject->newAction(null, null);
     }
@@ -197,8 +202,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function newActionWithMissingUserGroupPassesNullUserGroupToView(): void
     {
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', null)->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', null]
+        );
 
         $this->subject->newAction(null, null);
     }
@@ -211,8 +218,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         // @phpstan-ignore-next-line We know that the necessary array keys exist.
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class] = ['className' => XclassFrontendUser::class];
 
-        $this->viewProphecy->assign('user', Argument::type(XclassFrontendUser::class))->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
+            ['user', self::isInstanceOf(XclassFrontendUser::class)],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction();
     }
@@ -225,12 +234,14 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 1;
         $groupUid2 = 2;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $userGroups = $this->prophesize(QueryResultInterface::class)->reveal();
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])->willReturn($userGroups);
+        $userGroups = $this->createMock(QueryResultInterface::class);
+        $this->userGroupRepositoryMock->method('findByUids')->with([$groupUid1, $groupUid2])->willReturn($userGroups);
 
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('userGroups', $userGroups)->shouldBeCalled();
+        $this->viewMock->expects(self::atLeast(3))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()],
+            ['userGroups', $userGroups]
+        );
 
         $this->subject->newAction();
     }
@@ -255,9 +266,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_GET['redirect_url'] = $redirectUrl;
 
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
+        $this->viewMock->expects(self::exactly(2))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction();
     }
@@ -271,9 +283,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('redirectUrl', Argument::any())->shouldNotBeCalled();
+        $this->viewMock->expects(self::exactly(2))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()]
+        );
 
         $this->subject->newAction();
     }
@@ -286,9 +299,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $redirectUrl = 'https://example.com/';
         $_GET['redirect_url'] = $redirectUrl;
 
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
+        $this->viewMock->expects(self::exactly(3))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()],
+            ['redirectUrl', $redirectUrl]
+        );
 
         $this->subject->newAction();
     }
@@ -301,9 +316,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $redirectUrl = 'https://example.com/';
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->viewProphecy->assign('user', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('selectedUserGroup', Argument::any())->shouldBeCalled();
-        $this->viewProphecy->assign('redirectUrl', $redirectUrl)->shouldBeCalled();
+        $this->viewMock->expects(self::exactly(3))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()],
+            ['redirectUrl', $redirectUrl]
+        );
 
         $this->subject->newAction();
     }
@@ -320,11 +337,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $settings = ['fieldsToShow' => 'name,email', 'requiredFields' => 'email'];
         $this->subject->_set('settings', $settings);
-        $this->userValidatorProphecy->setSettings($settings)->shouldBeCalled();
+        $this->userValidatorMock->expects(self::once())->method('setSettings')->with($settings);
 
         $this->subject->initializeCreateAction();
 
-        self::assertSame($this->userValidatorProphecy->reveal(), $userArgument->getValidator());
+        self::assertSame($this->userValidatorMock, $userArgument->getValidator());
     }
 
     /**
@@ -334,7 +351,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $this->subject->_set('settings', []);
 
-        $this->userValidatorProphecy->setSettings(Argument::any())->shouldNotBeCalled();
+        $this->userValidatorMock->expects(self::never())->method('setSettings');
 
         $this->subject->initializeCreateAction();
     }
@@ -347,8 +364,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $systemFolderUid = 42;
         $this->subject->_set('settings', ['systemFolderForNewUsers' => (string)$systemFolderUid]);
         $user = new FrontendUser();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -363,9 +379,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid = 4;
         $group = new FrontendUserGroup();
         $this->subject->_set('settings', ['groupsForNewUsers' => (string)$groupUid]);
-        $this->userGroupRepositoryProphecy->findByUid($groupUid)->willReturn($group);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->userGroupRepositoryMock->method('findByUid')->with($groupUid)->willReturn($group);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user, $groupUid);
@@ -382,15 +397,15 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->userGroupRepositoryProphecy->findByUid($groupUid1)->willReturn(null);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->userGroupRepositoryMock->method('findByUid')->with($groupUid1)->willReturn(null);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup2 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup2);
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
-            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+        $this->userGroupRepositoryMock->expects(self::atLeastOnce())->method('findByUids')
+            ->with([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository));
 
         $user = new FrontendUser();
         $this->subject->createAction($user, $groupUid1);
@@ -408,16 +423,16 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup1);
         $userGroup2 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup2);
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
-            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+        $this->userGroupRepositoryMock->expects(self::atLeastOnce())->method('findByUids')
+            ->with([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository));
 
         $user = new FrontendUser();
         $this->subject->createAction($user, 123);
@@ -436,16 +451,16 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup1);
         $userGroup2 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup2);
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
-            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+        $this->userGroupRepositoryMock->expects(self::atLeastOnce())->method('findByUids')
+            ->with([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository));
 
         $user = new FrontendUser();
         $this->subject->createAction($user, null);
@@ -462,8 +477,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionWithNullGroupUidAndNoConfiguredGroupsSetsNoGroups(): void
     {
         $this->subject->_set('settings', ['groupsForNewUsers' => '']);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user, null);
@@ -480,16 +494,16 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup1);
         $userGroup2 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup2);
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
-            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+        $this->userGroupRepositoryMock->expects(self::atLeastOnce())->method('findByUids')
+            ->with([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository));
 
         $user = new FrontendUser();
         $this->subject->createAction($user, 0);
@@ -508,16 +522,16 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup1);
         $userGroup2 = new FrontendUserGroup();
         $userGroupsFromRepository->attach($userGroup2);
-        $this->userGroupRepositoryProphecy->findByUids([$groupUid1, $groupUid2])
-            ->willReturn(new TestingQueryResult($userGroupsFromRepository))->shouldBeCalled();
+        $this->userGroupRepositoryMock->expects(self::atLeastOnce())->method('findByUids')
+            ->with([$groupUid1, $groupUid2])
+            ->willReturn(new TestingQueryResult($userGroupsFromRepository));
 
         $user = new FrontendUser();
         $this->subject->createAction($user, -1);
@@ -534,8 +548,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionGeneratesUsername(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser($user)->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any());
+        $this->credentialsGeneratorMock->expects(self::once())->method('generateUsernameForUser')->with($user);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -546,8 +560,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionGeneratesPassword(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->shouldBeCalled();
+        $this->credentialsGeneratorMock->expects(self::once())->method('generatePasswordForUser')
+            ->with($user)->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -562,8 +576,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user->setName($fullName);
         $user->setFirstName('Mini');
         $user->setLastName('Slowness');
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -579,8 +592,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $user->setName($fullName);
         $user->setFirstName('Mini');
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -596,8 +608,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $user->setName($fullName);
         $user->setLastName('Slowness');
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -614,8 +625,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user->setFirstName($firstName);
         $lastName = 'Slowness';
         $user->setLastName($lastName);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -631,8 +641,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $firstName = 'Mini';
         $user->setFirstName($firstName);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -647,8 +656,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $lastName = 'Slowness';
         $user->setLastName($lastName);
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -661,8 +669,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionForUserWithNoNameAtAllKeepsEmptyFullyName(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any())->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->shouldBeCalled();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -675,10 +682,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionWithUserAddsProvidedUserToRepository(): void
     {
         $user = new FrontendUser();
-        $this->userRepositoryProphecy->add($user)->shouldBeCalled();
-        $this->userRepositoryProphecy->persistAll();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->userRepositoryMock->expects(self::once())->method('add')->with($user);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -689,10 +694,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     public function createActionWithUserPersistsEverything(): void
     {
         $user = new FrontendUser();
-        $this->userRepositoryProphecy->add(Argument::any())->shouldBeCalled();
-        $this->userRepositoryProphecy->persistAll()->shouldBeCalled();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->userRepositoryMock->expects(self::once())->method('persistAll');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -707,8 +710,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->expectExceptionCode(1651673684);
 
         $user = new FrontendUser();
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser($user)->willReturn(null);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn(null);
 
         $this->subject->createAction($user);
     }
@@ -718,7 +720,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function createActionWithNullUserNotAddsAnythingToRepository(): void
     {
-        $this->userRepositoryProphecy->add(Argument::any())->shouldNotBeCalled();
+        $this->userRepositoryMock->expects(self::never())->method('add')->with(self::anything());
 
         $this->subject->createAction(null);
     }
@@ -728,7 +730,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function createActionWithoutUserNotAddsAnythingToRepository(): void
     {
-        $this->userRepositoryProphecy->add(Argument::any())->shouldNotBeCalled();
+        $this->userRepositoryMock->expects(self::never())->method('add')->with(self::anything());
 
         $this->subject->createAction();
     }
@@ -738,7 +740,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function createActionWithNullUserNotPersistsAnything(): void
     {
-        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryMock->expects(self::never())->method('persistAll');
 
         $this->subject->createAction(null);
     }
@@ -748,7 +750,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     public function createActionWithoutUserNotPersistsAnything(): void
     {
-        $this->userRepositoryProphecy->persistAll()->shouldNotBeCalled();
+        $this->userRepositoryMock->expects(self::never())->method('persistAll');
 
         $this->subject->createAction();
     }
@@ -762,8 +764,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         $this->subject->expects(self::never())->method('redirectToUri');
 
         $this->subject->createAction(new FrontendUser());
@@ -777,8 +778,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $redirectUrl = self::SITE_URL;
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         $this->subject->expects(self::once())->method('redirectToUri')->with($redirectUrl);
 
         $this->subject->createAction(new FrontendUser());
@@ -791,8 +791,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_POST['redirect_url'] = 'https://www.oliverklee.de/';
 
-        $this->credentialsGeneratorProphecy->generateUsernameForUser(Argument::any());
-        $this->credentialsGeneratorProphecy->generatePasswordForUser(Argument::any())->willReturn('');
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
         $this->subject->expects(self::never())->method('redirectToUri');
 
         $this->subject->createAction(new FrontendUser());
