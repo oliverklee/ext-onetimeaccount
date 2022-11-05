@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Switch the coverage on CI from Xdebug to PCOV (#501)
 
 ### Removed
+- Stop using Prophecy (#519)
 
 ### Fixed
 - Improve type safety (#508)
