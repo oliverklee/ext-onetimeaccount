@@ -39,6 +39,7 @@ final class UserValidatorTest extends UnitTestCase
         'comments',
         'privacy',
     ];
+
     /**
      * @var UserValidator
      */
