@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Stop using Prophecy (#519, #520, #521, #522)
 
 ### Fixed
+- Enable caching for PHP-CS-Fixer (#536)
 - Improve type safety (#508)
 
 ## 6.1.0
