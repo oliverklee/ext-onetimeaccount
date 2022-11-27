@@ -16,6 +16,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 /**
  * Base class to implement most of the functionality of the plugin except for the specifics of what should
  * happen after a user has been created (autologin or storing the user UID in the session).
+ *
+ * @internal Only use the concrete subclasses of this class.
  */
 abstract class AbstractUserController extends ActionController
 {

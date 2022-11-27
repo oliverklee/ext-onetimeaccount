@@ -27,6 +27,8 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * @template C of AbstractUserController
+ *
+ * @internal Only use the concrete subclasses of this class.
  */
 abstract class AbstractUserControllerTest extends UnitTestCase
 {
