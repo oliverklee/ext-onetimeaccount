@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Stop using Prophecy (#519, #520, #521, #522)
 
 ### Fixed
+- Drop the 9TLS-only plugin element registration (#550)
 - Enable caching for PHP-CS-Fixer (#536)
 - Improve type safety (#508)
 
