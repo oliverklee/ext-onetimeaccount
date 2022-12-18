@@ -8,6 +8,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Changed
+
+### Removed
+
+### Fixed
+
+## 6.1.1
+
+### Changed
 - Bump the dependencies (#551)
 - Make the abstract classes `@internal` (#538)
 - Switch the coverage on CI from Xdebug to PCOV (#501)
