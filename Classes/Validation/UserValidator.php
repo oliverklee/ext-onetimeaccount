@@ -50,7 +50,7 @@ class UserValidator extends AbstractConfigurationDependentValidator
                 $result = $user->getGender() !== FrontendUser::GENDER_NOT_PROVIDED;
                 break;
             case 'dateOfBirth':
-                $result = $user->getDateOfBirth() instanceof \DateTime;
+                $result = $user->getDateOfBirth() instanceof \DateTimeInterface;
                 break;
             case 'status':
                 $result = $user->getStatus() !== FrontendUser::STATUS_NONE;
