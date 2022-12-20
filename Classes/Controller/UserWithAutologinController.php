@@ -9,6 +9,8 @@ use OliverKlee\Onetimeaccount\Service\Autologin;
 
 /**
  * Plugin for creating a front-end user and directly logging it in.
+ *
+ * @deprecated will be removed in onetimeaccount 7.0
  */
 class UserWithAutologinController extends AbstractUserController
 {

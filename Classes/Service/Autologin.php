@@ -12,6 +12,8 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Creates a FE session for the given user.
+ *
+ * @deprecated will be removed in onetimeaccount 7.0
  */
 class Autologin implements SingletonInterface
 {
