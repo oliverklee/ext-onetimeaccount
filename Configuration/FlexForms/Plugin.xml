@@ -58,6 +58,7 @@
                                 <size>1</size>
                                 <minitems>1</minitems>
                                 <maxitems>1</maxitems>
+                                <hideSuggest>1</hideSuggest>
                             </config>
                         </TCEforms>
                     </settings.systemFolderForNewUsers>
@@ -73,6 +74,7 @@
                                 <size>5</size>
                                 <minitems>1</minitems>
                                 <maxitems>99</maxitems>
+                                <hideSuggest>1</hideSuggest>
                             </config>
                         </TCEforms>
                     </settings.groupsForNewUsers>

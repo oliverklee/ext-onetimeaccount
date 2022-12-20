@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require oelib >= 5.1.0 (#555)
 
 ### Removed
+- Make the flexforms more compact by removing the suggest wizards (#561)
 
 ### Fixed
 
