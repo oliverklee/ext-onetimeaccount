@@ -9,6 +9,10 @@ What does this extension do, and how does it work?
 The part with autologin
 =======================
 
+.. note::
+   The plugin with autologin is deprecated and will be removed in
+   onetimeaccount 7.0
+
 This plugin is intended to be used for cases where a front-end login is
 required for certain parts of the process (e.g., signing up for a course) using
 the `seminars extension <https://extensions.typo3.org/extension/seminars>`__,

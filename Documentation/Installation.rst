@@ -23,6 +23,10 @@ plugin without autologin.
 If you are using seminars below 5.0.0 or seminars 4 with the legacy
 registration form, you need to use the plugin with autologin.
 
+.. note::
+   The plugin with autologin is deprecated and will be removed in
+   onetimeaccount 7.0
+
 Installation steps
 ==================
 

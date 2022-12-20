@@ -7,6 +7,9 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+### Deprecated
+- Deprecate the plugin with autologin (#559)
+
 ### Changed
 - Require feuserextrafields >= 5.3.0 (#556)
 - Require oelib >= 5.1.0 (#555)
