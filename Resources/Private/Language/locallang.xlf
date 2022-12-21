@@ -16,7 +16,7 @@
 				<source>Required fields</source>
 			</trans-unit>
 			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>System folder for the new FE user records</source>
+				<source>Folder for the new FE user records</source>
 			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>

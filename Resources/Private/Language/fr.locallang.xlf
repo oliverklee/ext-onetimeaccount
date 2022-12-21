@@ -8,7 +8,7 @@
 				<target>Champs d'utilisateurs FE dans le formulaire</target>
 			</trans-unit>
 			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>System folder for the new FE user records</source>
+				<source>Folder for the new FE user records</source>
 				<target>Répertoire pour le stockage des nouveaux utilisateurs FE</target>
 			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">

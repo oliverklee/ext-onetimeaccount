@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Deprecate the plugin with autologin (#559)
 
 ### Changed
+- Improve the wording in a flexforms label (#562)
 - Switch the user validator to recognize `DateTimeInterface` (#560)
 - Require feuserextrafields >= 5.3.0 (#556)
 - Require oelib >= 5.1.0 (#555)
