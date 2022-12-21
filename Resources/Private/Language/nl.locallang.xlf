@@ -12,8 +12,8 @@
 				<target>Verplichte velden</target>
 			</trans-unit>
 			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>System folder for the new FE user records</source>
-				<target>Systeemfolder voor de nieuwe FE user records</target>
+				<source>Folder for the new FE user records</source>
+				<target>Folder voor de nieuwe FE user records</target>
 			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>

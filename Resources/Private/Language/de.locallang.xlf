@@ -20,8 +20,8 @@
 				<target>Pflichtfelder</target>
 			</trans-unit>
 			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>System folder for the new FE user records</source>
-				<target>Systemordner für die neuen FE-User</target>
+				<source>Folder for the new FE user records</source>
+				<target>Ordner für die neuen FE-User</target>
 			</trans-unit>
 			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>
