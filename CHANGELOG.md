@@ -8,6 +8,16 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 
 ### Deprecated
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 6.1.2
+
+### Deprecated
 - Deprecate the plugin with autologin (#559)
 
 ### Changed
