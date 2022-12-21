@@ -20,6 +20,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Make the flexforms more compact by removing the suggest wizards (#561)
 
 ### Fixed
+- Use proper XML namespaces for the custom view helper in the Fluid templates
+  (#564)
 
 ## 6.1.1
 
