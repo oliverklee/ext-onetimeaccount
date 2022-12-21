@@ -8,7 +8,10 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
+use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
+use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
+use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -41,6 +44,16 @@ abstract class AbstractUserController extends ActionController
      */
     protected $userValidator;
 
+    /**
+     * @var CaptchaValidator
+     */
+    protected $captchaValidator;
+
+    /**
+     * @var CaptchaFactory
+     */
+    protected $captchaFactory;
+
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
@@ -61,6 +74,16 @@ abstract class AbstractUserController extends ActionController
         $this->userValidator = $validator;
     }
 
+    public function injectCaptchaValidator(CaptchaValidator $validator): void
+    {
+        $this->captchaValidator = $validator;
+    }
+
+    public function injectCaptchaFactory(CaptchaFactory $factory): void
+    {
+        $this->captchaFactory = $factory;
+    }
+
     /**
      * Creates the user creation form (which initially is empty).
      *
@@ -71,12 +94,18 @@ abstract class AbstractUserController extends ActionController
         $newUser = ($user instanceof FrontendUser) ? $user : GeneralUtility::makeInstance(FrontendUser::class);
         $this->view->assign('user', $newUser);
         $this->view->assign('selectedUserGroup', $userGroup);
-
         $userGroupSetting = $this->settings['groupsForNewUsers'] ?? null;
         $userGroupUids = \is_string($userGroupSetting) ? GeneralUtility::intExplode(',', $userGroupSetting, true) : [];
         if ($userGroupUids !== []) {
             $userGroups = $this->userGroupRepository->findByUids($userGroupUids);
             $this->view->assign('userGroups', $userGroups);
+        }
+
+        $captchaSetting = $this->settings['captcha'] ?? 0;
+        $isCaptchaEnabled = (\is_string($captchaSetting) || \is_int($captchaSetting)) ? (bool)$captchaSetting : false;
+
+        if ($isCaptchaEnabled) {
+            $this->view->assign('captcha', $this->captchaFactory->generateChallenge());
         }
 
         $redirectUrl = GeneralUtility::_GP('redirect_url');
@@ -92,18 +121,23 @@ abstract class AbstractUserController extends ActionController
             $userValidator->setSettings($this->settings);
             $this->arguments->getArgument('user')->setValidator($userValidator);
         }
+        if ($this->arguments->hasArgument('captcha')) {
+            $captchaValidator = $this->captchaValidator;
+            $captchaValidator->setSettings($this->settings);
+            $this->arguments->getArgument('captcha')->setValidator($captchaValidator);
+        }
     }
 
     /**
      * Creates and persists a new user.
      *
-     * Note: `$user` is optional in order to avoid a crash when someone is using a FE login form on the sane page
+     * The arguments are optional in order to avoid a crash when someone is using a FE login form on the sane page
      * after creating a user with this action. (This will use the current URL as form target, causing the user to be
      * null as it had been sent via a POST request.)
      *
      * @throws \RuntimeException
      */
-    public function createAction(?FrontendUser $user = null, ?int $userGroup = null): void
+    public function createAction(?FrontendUser $user = null, ?int $userGroup = null, ?Captcha $captcha = null): void
     {
         if (!$user instanceof FrontendUser) {
             return;

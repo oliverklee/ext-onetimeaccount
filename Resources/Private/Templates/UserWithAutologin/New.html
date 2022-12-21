@@ -4,7 +4,8 @@
 
     <f:section name="main">
         <f:render partial="User"
-                  arguments="{user: user, selectedUserGroup: selectedUserGroup, userGroups: userGroups, controller: 'UserWithAutologin', redirectUrl: redirectUrl}"/>
+                  arguments="{user: user, selectedUserGroup: selectedUserGroup, userGroups: userGroups, captcha: captcha, controller: 'UserWithAutologin', redirectUrl: redirectUrl, settings: settings}"/>
+
         <f:render partial="ConfigurationCheck"/>
     </f:section>
 </html>

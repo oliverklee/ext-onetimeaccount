@@ -78,6 +78,16 @@
                             </config>
                         </TCEforms>
                     </settings.groupsForNewUsers>
+                    <settings.captcha>
+                        <TCEforms>
+                            <label>
+                                LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:plugin.captcha
+                            </label>
+                            <config>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.captcha>
                 </el>
             </ROOT>
         </general>

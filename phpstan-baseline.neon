@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 3
+			path: Tests/Functional/Validation/CaptchaValidatorTest.php
+
+		-
 			message: "#^Parameter \\#1 \\$object of method TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\:\\:offsetSet\\(\\) expects OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup, string\\|null given\\.$#"
 			count: 1
 			path: Tests/Unit/Controller/Fixtures/TestingQueryResult.php
@@ -19,3 +24,13 @@ parameters:
 			message: "#^Parameter \\#1 \\$value of method TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\:\\:offsetUnset\\(\\) expects int\\|OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup, string given\\.$#"
 			count: 1
 			path: Tests/Unit/Controller/Fixtures/TestingQueryResult.php
+
+		-
+			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
+			count: 1
+			path: Tests/Unit/Service/CaptchaFactoryTest.php
+
+		-
+			message: "#^Cannot access offset 'encryptionKey' on mixed\\.$#"
+			count: 2
+			path: Tests/Unit/Service/CaptchaFactoryTest.php

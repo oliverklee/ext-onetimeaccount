@@ -10,9 +10,12 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use OliverKlee\Oelib\Testing\CacheNullifyer;
 use OliverKlee\Onetimeaccount\Controller\AbstractUserController;
+use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
+use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\TestingQueryResult;
 use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
+use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -73,6 +76,16 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     private $userValidatorMock;
 
     /**
+     * @var CaptchaFactory&MockObject
+     */
+    private $captchaFactoryMock;
+
+    /**
+     * @var CaptchaValidator&MockObject
+     */
+    private $captchaValidatorMock;
+
+    /**
      * @var Arguments
      */
     private $controllerArguments;
@@ -95,6 +108,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->userValidatorMock = $this->createMock(UserValidator::class);
         $this->subject->injectUserValidator($this->userValidatorMock);
+        $this->captchaFactoryMock = $this->createMock(CaptchaFactory::class);
+        $this->subject->injectCaptchaFactory($this->captchaFactoryMock);
+        $this->captchaValidatorMock = $this->createMock(CaptchaValidator::class);
+        $this->subject->injectCaptchaValidator($this->captchaValidatorMock);
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
@@ -175,7 +192,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function newActionWithPassesProvidedUserGroupUidToView(): void
+    public function newActionWithUserGroupPassesProvidedUserGroupUidToView(): void
     {
         $userGroupUid = 5;
         $this->viewMock->expects(self::atLeast(2))->method('assign')->withConsecutive(
@@ -215,7 +232,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @test
      */
-    public function newActionWithoutUserPassesCanPassVirginSubclassedUserToView(): void
+    public function newActionWithoutUserCanPassVirginSubclassedUserToView(): void
     {
         // @phpstan-ignore-next-line We know that the necessary array keys exist.
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class] = ['className' => XclassFrontendUser::class];
@@ -246,6 +263,24 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         );
 
         $this->subject->newAction();
+    }
+
+    /**
+     * @test
+     */
+    public function newActionWithPassesNewCaptchaToView(): void
+    {
+        $this->subject->_set('settings', ['captcha' => '1']);
+        $captcha = new Captcha();
+        $this->captchaFactoryMock->method('generateChallenge')->willReturn($captcha);
+
+        $this->viewMock->expects(self::atLeast(3))->method('assign')->withConsecutive(
+            ['user', self::anything()],
+            ['selectedUserGroup', self::anything()],
+            ['captcha', $captcha]
+        );
+
+        $this->subject->newAction(null);
     }
 
     /**
@@ -354,6 +389,37 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->subject->_set('settings', []);
 
         $this->userValidatorMock->expects(self::never())->method('setSettings');
+
+        $this->subject->initializeCreateAction();
+    }
+
+    /**
+     * @test
+     */
+    public function initializeCreateActionWithCaptchaArgumentSetsCaptchaValidatorWithSettings(): void
+    {
+        $captcha = new Captcha();
+        $captchaArgument = new ExtbaseArgument('captcha', Captcha::class);
+        $captchaArgument->setValue($captcha);
+        $this->controllerArguments->addArgument($captchaArgument);
+
+        $settings = ['captcha' => '1'];
+        $this->subject->_set('settings', $settings);
+        $this->captchaValidatorMock->expects(self::once())->method('setSettings')->with($settings);
+
+        $this->subject->initializeCreateAction();
+
+        self::assertSame($this->captchaValidatorMock, $captchaArgument->getValidator());
+    }
+
+    /**
+     * @test
+     */
+    public function initializeCreateActionWithoutCaptchaArgumentNotTouchesCaptchaValidator(): void
+    {
+        $this->subject->_set('settings', []);
+
+        $this->captchaValidatorMock->expects(self::never())->method('setSettings');
 
         $this->subject->initializeCreateAction();
     }
