@@ -51,6 +51,10 @@
 				<source>Mrs.</source>
 				<target>Frau</target>
 			</trans-unit>
+			<trans-unit id="gender.2">
+				<source>diverse</source>
+				<target>divers</target>
+			</trans-unit>
 			<trans-unit id="fullSalutation">
 				<source>Full salutation including name</source>
 				<target>Vollständige Anrede inklusive Name</target>

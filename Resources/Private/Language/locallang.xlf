@@ -39,6 +39,9 @@
 			<trans-unit id="gender.1">
 				<source>Mrs.</source>
 			</trans-unit>
+			<trans-unit id="gender.2">
+				<source>diverse</source>
+			</trans-unit>
 			<trans-unit id="fullSalutation">
 				<source>Full salutation including name</source>
 			</trans-unit>
