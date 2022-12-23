@@ -53,3 +53,9 @@ process works).
 
 The onetimeaccount plugin can be used on the login page either next to the
 normal login form or instead of it (if a FE login is not relevant).
+
+CAPTCHA
+=======
+
+To avoid garbage FE user records, this extension can be configured to use a
+CAPTCHA.

@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    <fieldset>
+        <div class="row mb-3">
+            <label for="onetimeaccount-captcha" class="col-sm-2 col-form-label">
+                <f:translate key="captcha.question" arguments="{0: captcha.firstSummand, 1: captcha.secondSummand}"/>
+            </label>
+            <div class="col-sm-10">
+                <f:form.select id="onetimeaccount-captcha" name="captcha[givenAnswer]"
+                               class="form-select" errorClass="is-invalid" value="{captcha.sum}">
+                    <f:form.select.option value="{captcha.decoyAnswer}">
+                        <f:translate key="captcha.answer.no"/>
+                    </f:form.select.option>
+                    <f:form.select.option value="{captcha.correctAnswer}">
+                        <f:translate key="captcha.answer.yes"/>
+                    </f:form.select.option>
+                </f:form.select>
+
+                <f:form.validationResults for="captcha.givenAnswer">
+                    <f:if condition="{validationResults.flattenedErrors}">
+                        <f:for each="{validationResults.errors}" as="error">
+                            <div class="alert alert-warning" role="alert">
+                                {error.message}
+                            </div>
+                        </f:for>
+                    </f:if>
+                </f:form.validationResults>
+
+                <f:variable name="captchaDateFormat" value="d.m.Y - H:i:s"/>
+                <f:comment>
+                    We cannot use `f:input.hidden` here because this will always keep the old value if there are
+                    validation errors.
+                </f:comment>
+                <input type="hidden" name="tx_onetimeaccount_withoutautologin[captcha][validUntil][date]"
+                       value="{captcha.validUntil -> f:format.date(format: captchaDateFormat)}">
+                <f:form.hidden name="captcha[validUntil][dateFormat]" value="{captchaDateFormat}"/>
+            </div>
+        </div>
+    </fieldset>
+</html>

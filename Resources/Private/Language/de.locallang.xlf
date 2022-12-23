@@ -27,6 +27,10 @@
 				<source>Groups for the new FE users</source>
 				<target>Gruppen für die neuen FE-User</target>
 			</trans-unit>
+			<trans-unit id="plugin.captcha">
+				<source>Protect the form against spam with a CAPTCHA</source>
+				<target>Das Formular mit einem Captcha gegen Spam schützen</target>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 				<target>Ihre persönlichen Daten</target>
@@ -156,6 +160,22 @@
 					Ich stimme zu, dass meine Angaben und Daten elektronisch erhoben und gespeichert werden.
 					Sie können Ihre Einwilligung jederzeit für die Zukunft per Email widerrufen.
 				</target>
+			</trans-unit>
+			<trans-unit id="captcha.question">
+				<source>Are you human?</source>
+				<target>Sind Sie ein Mensch?</target>
+			</trans-unit>
+			<trans-unit id="captcha.answer.yes">
+				<source>Yes, I am human.</source>
+				<target>Ja, ich bin ein Mensch.</target>
+			</trans-unit>
+			<trans-unit id="captcha.answer.no">
+				<source>No, I am not human.</source>
+				<target>Nein, ich bin kein Mensch.</target>
+			</trans-unit>
+			<trans-unit id="captcha.validationError">
+				<source>Please confirm that you are human.</source>
+				<target>Bitte bestätigen Sie, dass Sie ein Mensch sind.</target>
 			</trans-unit>
 			<trans-unit id="saveAndContinue">
 				<source>Save and continue</source>

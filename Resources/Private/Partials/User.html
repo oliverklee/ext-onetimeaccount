@@ -1,4 +1,4 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"  xmlns:oelib="OliverKlee\Oelib\ViewHelpers"
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:oelib="OliverKlee\Oelib\ViewHelpers"
       data-namespace-typo3-fluid="true">
     <f:form name="user" object="{user}" controller="{controller}" action="create">
         <fieldset>
@@ -348,6 +348,10 @@
                 </div>
             </oelib:isFieldEnabled>
         </fieldset>
+
+        <f:if condition="{settings.captcha}">
+            <f:render partial="Captcha" arguments="{captcha: captcha}"/>
+        </f:if>
 
         <p class="d-flex justify-content-end mt-3 mb-3">
             <f:if condition="{redirectUrl}">

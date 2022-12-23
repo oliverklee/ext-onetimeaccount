@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add a CAPTCHA (#570)
 - Add "diverse" as a gender option (#566)
 
 ### Deprecated

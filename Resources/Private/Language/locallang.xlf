@@ -21,6 +21,9 @@
 			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>
 			</trans-unit>
+			<trans-unit id="plugin.captcha">
+				<source>Protect the form against spam with a CAPTCHA</source>
+			</trans-unit>
 			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 			</trans-unit>
@@ -118,6 +121,18 @@
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.
 				</source>
+			</trans-unit>
+			<trans-unit id="captcha.question">
+				<source>Are you human?</source>
+			</trans-unit>
+			<trans-unit id="captcha.answer.yes">
+				<source>Yes, I am human.</source>
+			</trans-unit>
+			<trans-unit id="captcha.answer.no">
+				<source>No, I am not human.</source>
+			</trans-unit>
+			<trans-unit id="captcha.validationError">
+				<source>Please confirm that you are human.</source>
 			</trans-unit>
 			<trans-unit id="saveAndContinue">
 				<source>Save and continue</source>
