@@ -2,7 +2,7 @@
 
 [![TYPO3 V10](https://img.shields.io/badge/TYPO3-10-orange.svg)](https://get.typo3.org/version/10)
 [![TYPO3 V11](https://img.shields.io/badge/TYPO3-11-orange.svg)](https://get.typo3.org/version/11)
-[![License](https://poser.pugx.org/oliverklee/onetimeaccount/license.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
+[![License](https://img.shields.io/github/license/oliverklee/ext-onetimeaccount/license.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![Total downloads](https://poser.pugx.org/oliverklee/onetimeaccount/downloads.svg)](https://packagist.org/packages/oliverklee/onetimeaccount)
 [![GitHub CI status](https://github.com/oliverklee/ext-onetimeaccount/workflows/CI/badge.svg?branch=main)](https://github.com/oliverklee/ext-onetimeaccount/actions)
 [![Coverage Status](https://coveralls.io/repos/github/oliverklee/ext-onetimeaccount/badge.svg?branch=main)](https://coveralls.io/github/oliverklee/ext-onetimeaccount?branch=main)
