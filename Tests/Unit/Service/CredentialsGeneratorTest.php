@@ -11,6 +11,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -18,6 +19,8 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class CredentialsGeneratorTest extends UnitTestCase
 {
+    protected $resetSingletonInstances = true;
+
     /**
      * @var CredentialsGenerator
      */
@@ -37,16 +40,17 @@ final class CredentialsGeneratorTest extends UnitTestCase
     {
         parent::setUp();
 
+        $this->passwordHasherMock = $this->createMock(PasswordHashInterface::class);
+        $passwordHashFactoryMock = $this->createMock(PasswordHashFactory::class);
+        $passwordHashFactoryMock->method('getDefaultHashInstance')->with('FE')->willReturn($this->passwordHasherMock);
+
+        GeneralUtility::addInstance(PasswordHashFactory::class, $passwordHashFactoryMock);
+
         $this->subject = new CredentialsGenerator();
 
         $this->userRepositoryMock = $this->getMockBuilder(FrontendUserRepository::class)
             ->disableOriginalConstructor()->getMock();
         $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
-
-        $this->passwordHasherMock = $this->createMock(PasswordHashInterface::class);
-        $passwordHashFactoryMock = $this->createMock(PasswordHashFactory::class);
-        $passwordHashFactoryMock->method('getDefaultHashInstance')->with('FE')->willReturn($this->passwordHasherMock);
-        $this->subject->injectPasswordHashFactory($passwordHashFactoryMock);
     }
 
     /**
