@@ -8,6 +8,7 @@ use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -60,6 +61,14 @@ final class CaptchaFactoryTest extends UnitTestCase
         GeneralUtility::purgeInstances();
 
         parent::tearDown();
+    }
+
+    /**
+     * @test
+     */
+    public function isSingleton(): void
+    {
+        self::assertInstanceOf(SingletonInterface::class, $this->subject);
     }
 
     /**

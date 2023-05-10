@@ -7,6 +7,7 @@ namespace OliverKlee\Onetimeaccount\Validation;
 use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Validation\Error as ValidationError;
 use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
@@ -14,7 +15,7 @@ use TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator;
 /**
  * Validates that the captcha is filled in correctly (if it is enabled via the configuration).
  */
-class CaptchaValidator extends AbstractValidator
+class CaptchaValidator extends AbstractValidator implements SingletonInterface
 {
     protected $acceptsEmptyValues = false;
 
