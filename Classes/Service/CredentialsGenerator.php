@@ -9,6 +9,7 @@ use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashInterface;
 use TYPO3\CMS\Core\SingletonInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class can generate a username and password for a user.
@@ -21,23 +22,23 @@ class CredentialsGenerator implements SingletonInterface
     private const PASSWORD_LENGTH = 32;
 
     /**
-     * @var FrontendUserRepository
-     */
-    private $userRepository;
-
-    /**
      * @var PasswordHashInterface
      */
     private $passwordHasher;
 
+    /**
+     * @var FrontendUserRepository
+     */
+    private $userRepository;
+
+    public function __construct()
+    {
+        $this->passwordHasher = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
+    }
+
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
         $this->userRepository = $repository;
-    }
-
-    public function injectPasswordHashFactory(PasswordHashFactory $factory): void
-    {
-        $this->passwordHasher = $factory->getDefaultHashInstance('FE');
     }
 
     /**
