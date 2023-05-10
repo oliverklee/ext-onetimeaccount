@@ -7,12 +7,13 @@ namespace OliverKlee\Onetimeaccount\Service;
 use OliverKlee\Oelib\Interfaces\Time;
 use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Factory for building valid Captcha instances to be added to forms.
  */
-class CaptchaFactory
+class CaptchaFactory implements SingletonInterface
 {
     /**
      * @var non-empty-string

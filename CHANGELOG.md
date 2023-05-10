@@ -14,6 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Mark all injected classes as singletons (#631)
 
 ## 6.2.0
 

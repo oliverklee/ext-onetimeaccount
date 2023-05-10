@@ -6,6 +6,7 @@ namespace OliverKlee\Onetimeaccount\Validation;
 
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\Oelib\Validation\AbstractConfigurationDependentValidator;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 /**
@@ -13,7 +14,7 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  *
  * @extends AbstractConfigurationDependentValidator<FrontendUser>
  */
-class UserValidator extends AbstractConfigurationDependentValidator
+class UserValidator extends AbstractConfigurationDependentValidator implements SingletonInterface
 {
     protected function getModelClassName(): string
     {
