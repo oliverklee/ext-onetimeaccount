@@ -14,6 +14,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+
+## 6.2.1
+
+### Fixed
 - Do not inject the `PasswordHashFactory` (#633)
 - Mark all injected classes as singletons (#631)
 
