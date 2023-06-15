@@ -27,7 +27,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
-			count: 1
+			count: 2
 			path: Tests/Unit/Service/CaptchaFactoryTest.php
 
 		-
