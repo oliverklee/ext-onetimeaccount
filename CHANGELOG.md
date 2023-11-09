@@ -10,6 +10,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
+- Allow feuserextrafields 6.x (#679)
 
 ### Removed
 
