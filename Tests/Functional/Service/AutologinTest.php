@@ -66,7 +66,7 @@ final class AutologinTest extends FunctionalTestCase
      */
     public function createSessionForUserProvidesFrontEndControllerWithFilledAuthentication(): void
     {
-        $this->importDataSet(__DIR__ . '/Fixtures/User.xml');
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/User.csv');
         $user = $this->userRepository->findByUid(1);
         self::assertInstanceOf(FrontendUser::class, $user);
         $password = 'max-has-a-password';
@@ -88,7 +88,7 @@ final class AutologinTest extends FunctionalTestCase
      */
     public function createSessionForUserSetsOneTimeAccountFlagInSession(): void
     {
-        $this->importDataSet(__DIR__ . '/Fixtures/User.xml');
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/User.csv');
         $user = $this->userRepository->findByUid(1);
         self::assertInstanceOf(FrontendUser::class, $user);
         $password = 'max-has-a-password';
