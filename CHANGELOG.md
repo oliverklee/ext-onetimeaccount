@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Add the Crowdin configuration (#692)
 - Add support for PHP 8.3 (#681)
 
 ### Deprecated

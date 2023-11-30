@@ -187,6 +187,8 @@
 			"rm .php-cs-fixer.php",
 			"rm .phpstorm.meta.php",
 			"rm Configuration/TsLint.yml",
+			"rm composer.lock",
+			"rm crowdin.yml",
 			"rm phive.xml",
 			"rm phpcs.xml",
 			"rm phpstan-baseline.neon",
