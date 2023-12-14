@@ -17,7 +17,7 @@ defined('TYPO3') || die();
 // This removes the default controls from the plugin.
 // @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['onetimeaccount_withautologin']
-    = 'recursive,select_key,pages';
+    = 'recursive,pages';
 // These two commands add the flexform configuration for the plugin.
 // @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withautologin'] = 'pi_flexform';
@@ -41,7 +41,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccou
 // This removes the default controls from the plugin.
 // @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['onetimeaccount_withoutautologin']
-    = 'recursive,select_key,pages';
+    = 'recursive,pages';
 // These two commands add the flexform configuration for the plugin.
 // @phpstan-ignore-next-line We know that this array key exists and is an array.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['onetimeaccount_withoutautologin'] = 'pi_flexform';

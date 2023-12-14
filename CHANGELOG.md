@@ -17,6 +17,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Drop obsolete option from the plugin registration (#703)
 
 ## 6.2.1
 
