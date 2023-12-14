@@ -15,6 +15,7 @@ use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
 
 /**
  * Base class to implement most of the functionality of the plugin except for the specifics of what should
@@ -117,14 +118,20 @@ abstract class AbstractUserController extends ActionController
     public function initializeCreateAction(): void
     {
         if ($this->arguments->hasArgument('user')) {
+            $conjunctionUserValidator = new ConjunctionValidator();
+            $conjunctionUserValidator->addValidator($this->arguments->getArgument('user')->getValidator());
             $userValidator = $this->userValidator;
             $userValidator->setSettings($this->settings);
-            $this->arguments->getArgument('user')->setValidator($userValidator);
+            $conjunctionUserValidator->addValidator($userValidator);
+            $this->arguments->getArgument('user')->setValidator($conjunctionUserValidator);
         }
         if ($this->arguments->hasArgument('captcha')) {
+            $conjunctionCaptchaValidator = new ConjunctionValidator();
+            $conjunctionCaptchaValidator->addValidator($this->arguments->getArgument('captcha')->getValidator());
             $captchaValidator = $this->captchaValidator;
             $captchaValidator->setSettings($this->settings);
-            $this->arguments->getArgument('captcha')->setValidator($captchaValidator);
+            $conjunctionCaptchaValidator->addValidator($captchaValidator);
+            $this->arguments->getArgument('captcha')->setValidator($conjunctionCaptchaValidator);
         }
     }
 
