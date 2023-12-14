@@ -6,15 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Add the Crowdin configuration (#692)
-- Add support for PHP 8.3 (#681)
 
 ### Deprecated
 
 ### Changed
-- Allow feuserextrafields 6.x (#679)
 
 ### Removed
+
+### Fixed
+
+## 6.3.0
+
+### Added
+- Add the Crowdin configuration (#692)
+- Add support for PHP 8.3 (#681)
+
+### Changed
+- Allow feuserextrafields 6.x (#679)
 
 ### Fixed
 - Do not skip the Extbase property validations (#704)
