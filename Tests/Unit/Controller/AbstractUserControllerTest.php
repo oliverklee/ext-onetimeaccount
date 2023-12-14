@@ -24,6 +24,8 @@ use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
+use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -371,6 +373,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $userArgument = new ExtbaseArgument('user', FrontendUser::class);
         $userArgument->setValue($user);
         $this->controllerArguments->addArgument($userArgument);
+        $propertyValidator = new GenericObjectValidator();
+        $userArgument->setValidator($propertyValidator);
 
         $settings = ['fieldsToShow' => 'name,email', 'requiredFields' => 'email'];
         $this->subject->_set('settings', $settings);
@@ -378,7 +382,12 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->subject->initializeCreateAction();
 
-        self::assertSame($this->userValidatorMock, $userArgument->getValidator());
+        $actualValidator = $userArgument->getValidator();
+        self::assertInstanceOf(ConjunctionValidator::class, $actualValidator);
+        $validators = $actualValidator->getValidators();
+        self::assertCount(2, $validators);
+        self::assertContains($propertyValidator, $validators);
+        self::assertContains($this->userValidatorMock, $validators);
     }
 
     /**
@@ -402,6 +411,8 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $captchaArgument = new ExtbaseArgument('captcha', Captcha::class);
         $captchaArgument->setValue($captcha);
         $this->controllerArguments->addArgument($captchaArgument);
+        $propertyValidator = new GenericObjectValidator();
+        $captchaArgument->setValidator($propertyValidator);
 
         $settings = ['captcha' => '1'];
         $this->subject->_set('settings', $settings);
@@ -409,7 +420,12 @@ abstract class AbstractUserControllerTest extends UnitTestCase
 
         $this->subject->initializeCreateAction();
 
-        self::assertSame($this->captchaValidatorMock, $captchaArgument->getValidator());
+        $actualValidator = $captchaArgument->getValidator();
+        self::assertInstanceOf(ConjunctionValidator::class, $actualValidator);
+        $validators = $actualValidator->getValidators();
+        self::assertCount(2, $validators);
+        self::assertContains($propertyValidator, $validators);
+        self::assertContains($this->captchaValidatorMock, $validators);
     }
 
     /**
