@@ -13,6 +13,7 @@ use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
@@ -175,7 +176,9 @@ abstract class AbstractUserController extends ActionController
     abstract protected function afterCreate(FrontendUser $user, string $plaintextPassword): void;
 
     /**
-     * Adds data from the configuration to the user before it can be saved.
+     * Enriches the user with a username, a password, a full name, a PID and a group.
+     *
+     * Also sets the last login date to now.
      *
      * @return string the plaintext password, or null if no new password should be generated
      */
@@ -187,6 +190,9 @@ abstract class AbstractUserController extends ActionController
 
         $this->enrichWithPid($user);
         $this->enrichWithGroup($user, $userGroupUid);
+        $now = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'iso');
+        \assert(\is_string($now));
+        $user->setLastLogin(new \DateTime($now));
 
         return $password;
     }

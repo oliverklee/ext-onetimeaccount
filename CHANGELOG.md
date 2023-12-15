@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+- Set the last login date when creating a FE user record (#707)
 
 ### Deprecated
 

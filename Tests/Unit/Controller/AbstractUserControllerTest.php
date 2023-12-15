@@ -18,6 +18,7 @@ use OliverKlee\Onetimeaccount\Tests\Unit\Controller\Fixtures\XclassFrontendUser;
 use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
@@ -41,6 +42,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      * @var non-empty-string
      */
     protected const SITE_URL = 'https://www.example.com';
+
+    /**
+     * @var non-empty-string
+     */
+    protected const NOW = '2004-02-12T15:19:21+00:00';
 
     /**
      * @var bool
@@ -92,8 +98,17 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     private $controllerArguments;
 
+    /**
+     * @var Context&MockObject
+     */
+    private $contextMock;
+
     protected function setUpAndInjectSharedDependencies(): void
     {
+        $this->contextMock = $this->createMock(Context::class);
+        $this->contextMock->method('getPropertyFromAspect')->with('date', 'iso')->willReturn(self::NOW);
+        GeneralUtility::setSingletonInstance(Context::class, $this->contextMock);
+
         $this->viewMock = $this->createMock(TemplateView::class);
         $this->subject->_set('view', $this->viewMock);
 
@@ -648,6 +663,21 @@ abstract class AbstractUserControllerTest extends UnitTestCase
             ->with($user)->willReturn('');
 
         $this->subject->createAction($user);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionSetsLastLoginToNow(): void
+    {
+        $user = new FrontendUser();
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+
+        $this->subject->createAction($user);
+
+        $lastLoginDate = $user->getLastLogin();
+        self::assertInstanceOf(\DateTime::class, $lastLoginDate);
+        self::assertEquals(new \DateTime(self::NOW), $lastLoginDate);
     }
 
     /**
