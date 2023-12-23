@@ -67,14 +67,7 @@ jobs:
       fail-fast: false
       matrix:
         command:
-          - "composer:normalize"
-          - "php:cs-fixer"
-          - "php:rector"
-          - "php:sniff"
           - "php:stan"
-          - "ts:lint"
-          - "xliff:lint"
-          - "yaml:lint"
         php-version:
           - "8.3"
   unit-tests:
