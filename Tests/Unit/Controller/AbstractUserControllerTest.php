@@ -8,7 +8,6 @@ use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUser;
 use OliverKlee\FeUserExtraFields\Domain\Model\FrontendUserGroup;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserGroupRepository;
 use OliverKlee\FeUserExtraFields\Domain\Repository\FrontendUserRepository;
-use OliverKlee\Oelib\Testing\CacheNullifyer;
 use OliverKlee\Onetimeaccount\Controller\AbstractUserController;
 use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
@@ -153,7 +152,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     {
         $_GET = [];
         $_POST = [];
-        (new CacheNullifyer())->flushMakeInstanceCache();
         GeneralUtility::flushInternalRuntimeCaches();
     }
 
