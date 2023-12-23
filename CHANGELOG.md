@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
+- Require higher TYPO3 Core bugfix versions (#713)
 
 ### Removed
 
