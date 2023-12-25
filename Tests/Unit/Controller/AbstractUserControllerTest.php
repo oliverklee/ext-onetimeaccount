@@ -97,16 +97,11 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     private $controllerArguments;
 
-    /**
-     * @var Context&MockObject
-     */
-    private $contextMock;
-
     protected function setUpAndInjectSharedDependencies(): void
     {
-        $this->contextMock = $this->createMock(Context::class);
-        $this->contextMock->method('getPropertyFromAspect')->with('date', 'iso')->willReturn(self::NOW);
-        GeneralUtility::setSingletonInstance(Context::class, $this->contextMock);
+        $contextMock = $this->createMock(Context::class);
+        $contextMock->method('getPropertyFromAspect')->with('date', 'iso')->willReturn(self::NOW);
+        GeneralUtility::setSingletonInstance(Context::class, $contextMock);
 
         $this->viewMock = $this->createMock(TemplateView::class);
         $this->subject->_set('view', $this->viewMock);
@@ -268,7 +263,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $groupUid1 = 1;
         $groupUid2 = 2;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $userGroups = $this->createMock(QueryResultInterface::class);
+        $userGroups = $this->createStub(QueryResultInterface::class);
         $this->userGroupRepositoryMock->method('findByUids')->with([$groupUid1, $groupUid2])->willReturn($userGroups);
 
         $this->viewMock->expects(self::atLeast(3))->method('assign')->withConsecutive(
