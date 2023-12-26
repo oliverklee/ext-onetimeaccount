@@ -10,7 +10,6 @@ use OliverKlee\Oelib\ViewHelpers\AbstractConfigurationCheckViewHelper;
 use OliverKlee\Oelib\ViewHelpers\IsFieldEnabledViewHelper;
 use OliverKlee\Onetimeaccount\ViewHelpers\ConfigurationCheckViewHelper;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Stub;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -28,9 +27,9 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
     private $renderChildrenClosure;
 
     /**
-     * @var RenderingContextInterface&Stub
+     * @var RenderingContextInterface&MockObject
      */
-    private $renderingContextStub;
+    private $renderingContextMock;
 
     /**
      * @var VariableProviderInterface&MockObject
@@ -44,9 +43,9 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
         $this->renderChildrenClosure = static function (): string {
             return '';
         };
-        $this->renderingContextStub = $this->createStub(RenderingContextInterface::class);
+        $this->renderingContextMock = $this->createMock(RenderingContextInterface::class);
         $this->variableProviderMock = $this->createMock(VariableProviderInterface::class);
-        $this->renderingContextStub->method('getVariableProvider')->willReturn($this->variableProviderMock);
+        $this->renderingContextMock->method('getVariableProvider')->willReturn($this->variableProviderMock);
     }
 
     protected function tearDown(): void
@@ -105,7 +104,7 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
         $result = ConfigurationCheckViewHelper::renderStatic(
             [],
             $this->renderChildrenClosure,
-            $this->renderingContextStub
+            $this->renderingContextMock
         );
 
         self::assertSame('', $result);
@@ -133,7 +132,7 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
         $result = ConfigurationCheckViewHelper::renderStatic(
             [],
             $this->renderChildrenClosure,
-            $this->renderingContextStub
+            $this->renderingContextMock
         );
 
         self::assertSame('This is a configuration check warning.', $result);
@@ -157,7 +156,7 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
         $result = ConfigurationCheckViewHelper::renderStatic(
             [],
             $this->renderChildrenClosure,
-            $this->renderingContextStub
+            $this->renderingContextMock
         );
 
         self::assertStringContainsString('plugin.tx_onetimeaccount.settings.requiredFields', $result);
