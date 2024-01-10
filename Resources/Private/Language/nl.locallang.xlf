@@ -31,9 +31,9 @@
         <source>Protect the form against spam with a CAPTCHA</source>
         <target state="needs-translation">Protect the form against spam with a CAPTCHA</target>
       </trans-unit>
-      <trans-unit id="userDataLegend">
+      <trans-unit id="userDataLegend" approved="yes">
         <source>Your personal data</source>
-        <target state="translated">Uw persoonlijke gegevens</target>
+        <target state="final">Uw persoonlijke gegevens</target>
       </trans-unit>
       <trans-unit id="company" approved="yes">
         <source>Company</source>
@@ -161,17 +161,17 @@
 					You can withdraw your consent for the future via email at any time.
 				</target>
       </trans-unit>
-      <trans-unit id="captcha.question">
+      <trans-unit id="captcha.question" approved="yes">
         <source>Are you human?</source>
-        <target state="translated">Bent u een mens?</target>
+        <target state="final">Bent u een mens?</target>
       </trans-unit>
-      <trans-unit id="captcha.answer.yes">
+      <trans-unit id="captcha.answer.yes" approved="yes">
         <source>Yes, I am human.</source>
-        <target state="translated">Ja, ik ben een mens.</target>
+        <target state="final">Ja, ik ben een mens.</target>
       </trans-unit>
-      <trans-unit id="captcha.answer.no">
+      <trans-unit id="captcha.answer.no" approved="yes">
         <source>No, I am not human.</source>
-        <target state="translated">Nee, ik ben geen mens.</target>
+        <target state="final">Nee, ik ben geen mens.</target>
       </trans-unit>
       <trans-unit id="captcha.validationError">
         <source>Please confirm that you are human.</source>
