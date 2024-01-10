@@ -11,21 +11,21 @@
         <source>One-time FE account creator without autologin</source>
         <target state="needs-translation">One-time FE account creator without autologin</target>
       </trans-unit>
-      <trans-unit id="plugin.fieldsToShow">
+      <trans-unit id="plugin.fieldsToShow" approved="yes">
         <source>FE user fields in the form</source>
-        <target state="needs-translation">FE user fields in the form</target>
+        <target state="final">Campi degli utenti di FE nella form</target>
       </trans-unit>
       <trans-unit id="plugin.requiredFields">
         <source>Required fields</source>
         <target state="needs-translation">Required fields</target>
       </trans-unit>
-      <trans-unit id="plugin.systemFolderForNewUsers">
+      <trans-unit id="plugin.systemFolderForNewUsers" approved="yes">
         <source>Folder for the new FE user records</source>
-        <target state="needs-translation">Folder for the new FE user records</target>
+        <target state="final">Cartella per nuovi utenti di FE</target>
       </trans-unit>
-      <trans-unit id="plugin.groupsForNewUsers">
+      <trans-unit id="plugin.groupsForNewUsers" approved="yes">
         <source>Groups for the new FE users</source>
-        <target state="needs-translation">Groups for the new FE users</target>
+        <target state="final">Gruppo per i nuovi utenti di FE</target>
       </trans-unit>
       <trans-unit id="plugin.captcha">
         <source>Protect the form against spam with a CAPTCHA</source>
@@ -35,9 +35,9 @@
         <source>Your personal data</source>
         <target state="needs-translation">Your personal data</target>
       </trans-unit>
-      <trans-unit id="company">
+      <trans-unit id="company" approved="yes">
         <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <target state="final">Azienda</target>
       </trans-unit>
       <trans-unit id="gender">
         <source>Gender</source>
@@ -47,13 +47,13 @@
         <source>(none provided)</source>
         <target state="needs-translation">(none provided)</target>
       </trans-unit>
-      <trans-unit id="gender.0">
+      <trans-unit id="gender.0" approved="yes">
         <source>Mr.</source>
-        <target state="needs-translation">Mr.</target>
+        <target state="final">Sig.</target>
       </trans-unit>
-      <trans-unit id="gender.1">
+      <trans-unit id="gender.1" approved="yes">
         <source>Mrs.</source>
-        <target state="needs-translation">Mrs.</target>
+        <target state="final">Sig.ra</target>
       </trans-unit>
       <trans-unit id="gender.2">
         <source>diverse</source>
@@ -67,9 +67,9 @@
         <source>Department/Title</source>
         <target state="needs-translation">Department/Title</target>
       </trans-unit>
-      <trans-unit id="name">
+      <trans-unit id="name" approved="yes">
         <source>Full name</source>
-        <target state="needs-translation">Full name</target>
+        <target state="final">Nome e cognome</target>
       </trans-unit>
       <trans-unit id="firstName">
         <source>First name</source>
@@ -79,65 +79,65 @@
         <source>Last name</source>
         <target state="needs-translation">Last name</target>
       </trans-unit>
-      <trans-unit id="address">
+      <trans-unit id="address" approved="yes">
         <source>Street</source>
-        <target state="needs-translation">Street</target>
+        <target state="final">Via</target>
       </trans-unit>
-      <trans-unit id="zip">
+      <trans-unit id="zip" approved="yes">
         <source>ZIP</source>
-        <target state="needs-translation">ZIP</target>
+        <target state="final">CAP</target>
       </trans-unit>
-      <trans-unit id="city">
+      <trans-unit id="city" approved="yes">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="final">Città</target>
       </trans-unit>
       <trans-unit id="zone">
         <source>County/Region</source>
         <target state="needs-translation">County/Region</target>
       </trans-unit>
-      <trans-unit id="country">
+      <trans-unit id="country" approved="yes">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="final">Stato</target>
       </trans-unit>
-      <trans-unit id="email">
+      <trans-unit id="email" approved="yes">
         <source>E-mail</source>
-        <target state="needs-translation">E-mail</target>
+        <target state="final">Email</target>
       </trans-unit>
       <trans-unit id="www">
         <source>Website</source>
         <target state="needs-translation">Website</target>
       </trans-unit>
-      <trans-unit id="telephone">
+      <trans-unit id="telephone" approved="yes">
         <source>Phone number</source>
-        <target state="needs-translation">Phone number</target>
+        <target state="final">Telefono</target>
       </trans-unit>
-      <trans-unit id="dateOfBirth">
+      <trans-unit id="dateOfBirth" approved="yes">
         <source>Date of birth</source>
-        <target state="needs-translation">Date of birth</target>
+        <target state="final">Data di nascita</target>
       </trans-unit>
-      <trans-unit id="status">
+      <trans-unit id="status" approved="yes">
         <source>Job status</source>
-        <target state="needs-translation">Job status</target>
+        <target state="final">Stato di impiego</target>
       </trans-unit>
-      <trans-unit id="status.1">
+      <trans-unit id="status.1" approved="yes">
         <source>student</source>
-        <target state="needs-translation">student</target>
+        <target state="final">studente</target>
       </trans-unit>
-      <trans-unit id="status.2">
+      <trans-unit id="status.2" approved="yes">
         <source>job seeking (full time)</source>
-        <target state="needs-translation">job seeking (full time)</target>
+        <target state="final">in cerca di occupazione (tempo pieno)</target>
       </trans-unit>
-      <trans-unit id="status.3">
+      <trans-unit id="status.3" approved="yes">
         <source>working</source>
-        <target state="needs-translation">working</target>
+        <target state="final">lavoratore</target>
       </trans-unit>
-      <trans-unit id="status.4">
+      <trans-unit id="status.4" approved="yes">
         <source>retired</source>
-        <target state="needs-translation">retired</target>
+        <target state="final">pensionato</target>
       </trans-unit>
-      <trans-unit id="status.5">
+      <trans-unit id="status.5" approved="yes">
         <source>job seeking (part time)</source>
-        <target state="needs-translation">job seeking (part time)</target>
+        <target state="final">in cerca di occupazione (mezza giornata)</target>
       </trans-unit>
       <trans-unit id="userGroup">
         <source>User group</source>
