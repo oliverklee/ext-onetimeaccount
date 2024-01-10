@@ -3,199 +3,199 @@
   <file source-language="en" datatype="plaintext" original="messages" target-language="de">
     <header/>
     <body>
-      <trans-unit id="plugin.withAutologin">
+      <trans-unit id="plugin.withAutologin" approved="yes">
         <source>One-time FE account creator with autologin</source>
-        <target state="needs-translation">One-time FE account creator with autologin</target>
+        <target state="final">Einmal-FE-Account-Generator mit Autologin</target>
       </trans-unit>
-      <trans-unit id="plugin.withoutAutologin">
+      <trans-unit id="plugin.withoutAutologin" approved="yes">
         <source>One-time FE account creator without autologin</source>
-        <target state="needs-translation">One-time FE account creator without autologin</target>
+        <target state="final">Einmal-FE-Account-Generator ohne Autologin</target>
       </trans-unit>
-      <trans-unit id="plugin.fieldsToShow">
+      <trans-unit id="plugin.fieldsToShow" approved="yes">
         <source>FE user fields in the form</source>
-        <target state="needs-translation">FE user fields in the form</target>
+        <target state="final">FE-User-Felder im Formular</target>
       </trans-unit>
-      <trans-unit id="plugin.requiredFields">
+      <trans-unit id="plugin.requiredFields" approved="yes">
         <source>Required fields</source>
-        <target state="needs-translation">Required fields</target>
+        <target state="final">Pflichtfelder</target>
       </trans-unit>
-      <trans-unit id="plugin.systemFolderForNewUsers">
+      <trans-unit id="plugin.systemFolderForNewUsers" approved="yes">
         <source>Folder for the new FE user records</source>
-        <target state="needs-translation">Folder for the new FE user records</target>
+        <target state="final">Ordner für die neuen FE-User</target>
       </trans-unit>
-      <trans-unit id="plugin.groupsForNewUsers">
+      <trans-unit id="plugin.groupsForNewUsers" approved="yes">
         <source>Groups for the new FE users</source>
-        <target state="needs-translation">Groups for the new FE users</target>
+        <target state="final">Gruppen für die neuen FE-User</target>
       </trans-unit>
-      <trans-unit id="plugin.captcha">
+      <trans-unit id="plugin.captcha" approved="yes">
         <source>Protect the form against spam with a CAPTCHA</source>
-        <target state="needs-translation">Protect the form against spam with a CAPTCHA</target>
+        <target state="final">Das Formular mit einem Captcha gegen Spam schützen</target>
       </trans-unit>
-      <trans-unit id="userDataLegend">
+      <trans-unit id="userDataLegend" approved="yes">
         <source>Your personal data</source>
-        <target state="needs-translation">Your personal data</target>
+        <target state="final">Ihre persönlichen Daten</target>
       </trans-unit>
-      <trans-unit id="company">
+      <trans-unit id="company" approved="yes">
         <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <target state="final">Firma</target>
       </trans-unit>
-      <trans-unit id="gender">
+      <trans-unit id="gender" approved="yes">
         <source>Gender</source>
-        <target state="needs-translation">Gender</target>
+        <target state="final">Geschlecht</target>
       </trans-unit>
-      <trans-unit id="gender.99">
+      <trans-unit id="gender.99" approved="yes">
         <source>(none provided)</source>
-        <target state="needs-translation">(none provided)</target>
+        <target state="final">(nicht angegeben)</target>
       </trans-unit>
-      <trans-unit id="gender.0">
+      <trans-unit id="gender.0" approved="yes">
         <source>Mr.</source>
-        <target state="needs-translation">Mr.</target>
+        <target state="final">Herr</target>
       </trans-unit>
-      <trans-unit id="gender.1">
+      <trans-unit id="gender.1" approved="yes">
         <source>Mrs.</source>
-        <target state="needs-translation">Mrs.</target>
+        <target state="final">Frau</target>
       </trans-unit>
-      <trans-unit id="gender.2">
+      <trans-unit id="gender.2" approved="yes">
         <source>diverse</source>
-        <target state="needs-translation">diverse</target>
+        <target state="final">divers</target>
       </trans-unit>
-      <trans-unit id="fullSalutation">
+      <trans-unit id="fullSalutation" approved="yes">
         <source>Full salutation including name</source>
-        <target state="needs-translation">Full salutation including name</target>
+        <target state="final">Vollständige Anrede inklusive Name</target>
       </trans-unit>
-      <trans-unit id="title">
+      <trans-unit id="title" approved="yes">
         <source>Department/Title</source>
-        <target state="needs-translation">Department/Title</target>
+        <target state="final">Abteilung/Funktion</target>
       </trans-unit>
-      <trans-unit id="name">
+      <trans-unit id="name" approved="yes">
         <source>Full name</source>
-        <target state="needs-translation">Full name</target>
+        <target state="final">Vollständiger Name</target>
       </trans-unit>
-      <trans-unit id="firstName">
+      <trans-unit id="firstName" approved="yes">
         <source>First name</source>
-        <target state="needs-translation">First name</target>
+        <target state="final">Vorname</target>
       </trans-unit>
-      <trans-unit id="lastName">
+      <trans-unit id="lastName" approved="yes">
         <source>Last name</source>
-        <target state="needs-translation">Last name</target>
+        <target state="final">Nachname</target>
       </trans-unit>
-      <trans-unit id="address">
+      <trans-unit id="address" approved="yes">
         <source>Street</source>
-        <target state="needs-translation">Street</target>
+        <target state="final">Straße</target>
       </trans-unit>
-      <trans-unit id="zip">
+      <trans-unit id="zip" approved="yes">
         <source>ZIP</source>
-        <target state="needs-translation">ZIP</target>
+        <target state="final">PLZ</target>
       </trans-unit>
-      <trans-unit id="city">
+      <trans-unit id="city" approved="yes">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="final">Ort</target>
       </trans-unit>
-      <trans-unit id="zone">
+      <trans-unit id="zone" approved="yes">
         <source>County/Region</source>
-        <target state="needs-translation">County/Region</target>
+        <target state="final">Bundesland/Provinz</target>
       </trans-unit>
-      <trans-unit id="country">
+      <trans-unit id="country" approved="yes">
         <source>Country</source>
-        <target state="needs-translation">Country</target>
+        <target state="final">Land</target>
       </trans-unit>
-      <trans-unit id="email">
+      <trans-unit id="email" approved="yes">
         <source>E-mail</source>
-        <target state="needs-translation">E-mail</target>
+        <target state="final">E-Mail</target>
       </trans-unit>
-      <trans-unit id="www">
+      <trans-unit id="www" approved="yes">
         <source>Website</source>
-        <target state="needs-translation">Website</target>
+        <target state="final">Website</target>
       </trans-unit>
-      <trans-unit id="telephone">
+      <trans-unit id="telephone" approved="yes">
         <source>Phone number</source>
-        <target state="needs-translation">Phone number</target>
+        <target state="final">Telefon</target>
       </trans-unit>
-      <trans-unit id="dateOfBirth">
+      <trans-unit id="dateOfBirth" approved="yes">
         <source>Date of birth</source>
-        <target state="needs-translation">Date of birth</target>
+        <target state="final">Geburtsdatum</target>
       </trans-unit>
-      <trans-unit id="status">
+      <trans-unit id="status" approved="yes">
         <source>Job status</source>
-        <target state="needs-translation">Job status</target>
+        <target state="final">Beschäftigungsstatus</target>
       </trans-unit>
-      <trans-unit id="status.1">
+      <trans-unit id="status.1" approved="yes">
         <source>student</source>
-        <target state="needs-translation">student</target>
+        <target state="final">in Ausbildung</target>
       </trans-unit>
-      <trans-unit id="status.2">
+      <trans-unit id="status.2" approved="yes">
         <source>job seeking (full time)</source>
-        <target state="needs-translation">job seeking (full time)</target>
+        <target state="final">auf Arbeitssuche (Vollzeit)</target>
       </trans-unit>
-      <trans-unit id="status.3">
+      <trans-unit id="status.3" approved="yes">
         <source>working</source>
-        <target state="needs-translation">working</target>
+        <target state="final">arbeitend</target>
       </trans-unit>
-      <trans-unit id="status.4">
+      <trans-unit id="status.4" approved="yes">
         <source>retired</source>
-        <target state="needs-translation">retired</target>
+        <target state="final">in Rente</target>
       </trans-unit>
-      <trans-unit id="status.5">
+      <trans-unit id="status.5" approved="yes">
         <source>job seeking (part time)</source>
-        <target state="needs-translation">job seeking (part time)</target>
+        <target state="final">auf Arbeitssuche (Teilzeit)</target>
       </trans-unit>
-      <trans-unit id="userGroup">
+      <trans-unit id="userGroup" approved="yes">
         <source>User group</source>
-        <target state="needs-translation">User group</target>
+        <target state="final">Benutzergruppe</target>
       </trans-unit>
-      <trans-unit id="comments">
+      <trans-unit id="comments" approved="yes">
         <source>Comments</source>
-        <target state="needs-translation">Comments</target>
+        <target state="final">Anmerkungen</target>
       </trans-unit>
-      <trans-unit id="privacy">
+      <trans-unit id="privacy" approved="yes">
         <source>Privacy policy agreement</source>
-        <target state="needs-translation">Privacy policy agreement</target>
+        <target state="final">Zustimmung zu den Datenschutzbestimmungen</target>
       </trans-unit>
-      <trans-unit id="privacy.long">
+      <trans-unit id="privacy.long" approved="yes">
         <source>
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.
 				</source>
-        <target state="needs-translation">
-					I consent that the data I enter will be stored electronically.
-					You can withdraw your consent for the future via email at any time.
+        <target state="final">
+					Ich stimme zu, dass meine Angaben und Daten elektronisch erhoben und gespeichert werden.
+					Sie können Ihre Einwilligung jederzeit für die Zukunft per Email widerrufen.
 				</target>
       </trans-unit>
-      <trans-unit id="captcha.question">
+      <trans-unit id="captcha.question" approved="yes">
         <source>Are you human?</source>
-        <target state="needs-translation">Are you human?</target>
+        <target state="final">Sind Sie ein Mensch?</target>
       </trans-unit>
-      <trans-unit id="captcha.answer.yes">
+      <trans-unit id="captcha.answer.yes" approved="yes">
         <source>Yes, I am human.</source>
-        <target state="needs-translation">Yes, I am human.</target>
+        <target state="final">Ja, ich bin ein Mensch.</target>
       </trans-unit>
-      <trans-unit id="captcha.answer.no">
+      <trans-unit id="captcha.answer.no" approved="yes">
         <source>No, I am not human.</source>
-        <target state="needs-translation">No, I am not human.</target>
+        <target state="final">Nein, ich bin kein Mensch.</target>
       </trans-unit>
-      <trans-unit id="captcha.validationError">
+      <trans-unit id="captcha.validationError" approved="yes">
         <source>Please confirm that you are human.</source>
-        <target state="needs-translation">Please confirm that you are human.</target>
+        <target state="final">Bitte bestätigen Sie, dass Sie ein Mensch sind.</target>
       </trans-unit>
-      <trans-unit id="saveAndContinue">
+      <trans-unit id="saveAndContinue" approved="yes">
         <source>Save and continue</source>
-        <target state="needs-translation">Save and continue</target>
+        <target state="final">Speichern und weiter</target>
       </trans-unit>
-      <trans-unit id="alert.userCreatedAndLoggedIn">
+      <trans-unit id="alert.userCreatedAndLoggedIn" approved="yes">
         <source>The user has been created, and you now are logged in as the new user.</source>
-        <target state="needs-translation">The user has been created, and you now are logged in as the new user.</target>
+        <target state="final">Der User wurde angelegt, und Sie sind jetzt als der neue User eingeloggt.</target>
       </trans-unit>
-      <trans-unit id="alert.userCreatedNotLoggedIn">
+      <trans-unit id="alert.userCreatedNotLoggedIn" approved="yes">
         <source>
 					The user has been created, but the automatic login with the new user has not successful.
 				</source>
-        <target state="needs-translation">
-					The user has been created, but the automatic login with the new user has not successful.
+        <target state="final">
+					Der User wurde angelegt, aber der automatische Login mit dem neuen User ist fehlgeschlagen.
 				</target>
       </trans-unit>
-      <trans-unit id="alert.userCreatedWithoutLogin">
+      <trans-unit id="alert.userCreatedWithoutLogin" approved="yes">
         <source>The user has been created.</source>
-        <target state="needs-translation">The user has been created.</target>
+        <target state="final">Der User wurde angelegt.</target>
       </trans-unit>
     </body>
   </file>
