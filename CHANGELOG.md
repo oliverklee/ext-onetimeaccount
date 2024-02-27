@@ -6,7 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Changed
-- Shorten the label for the salutation (#412)
+- Shorten the label for the salutation (#744)
 
 ### Added
 - Set the last login date when creating a FE user record (#707)
