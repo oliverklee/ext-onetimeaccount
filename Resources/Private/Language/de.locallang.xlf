@@ -59,9 +59,9 @@
         <source>diverse</source>
         <target state="final">divers</target>
       </trans-unit>
-      <trans-unit id="fullSalutation" approved="yes">
-        <source>Full salutation including name</source>
-        <target state="final">Vollständige Anrede inklusive Name</target>
+      <trans-unit id="fullSalutation">
+        <source>Salutation and name</source>
+        <target state="translated">Anrede und Name</target>
       </trans-unit>
       <trans-unit id="title" approved="yes">
         <source>Department/Title</source>
