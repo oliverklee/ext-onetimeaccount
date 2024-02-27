@@ -46,7 +46,7 @@
 				<source>diverse</source>
 			</trans-unit>
 			<trans-unit id="fullSalutation">
-				<source>Full salutation including name</source>
+				<source>Salutation and name</source>
 			</trans-unit>
 			<trans-unit id="title">
 				<source>Department/Title</source>
