@@ -60,8 +60,8 @@
         <target state="needs-translation">diverse</target>
       </trans-unit>
       <trans-unit id="fullSalutation">
-        <source>Full salutation including name</source>
-        <target state="needs-translation">Full salutation including name</target>
+        <source>Salutation and name</source>
+        <target state="needs-translation">Salutation and name</target>
       </trans-unit>
       <trans-unit id="title" approved="yes">
         <source>Department/Title</source>
