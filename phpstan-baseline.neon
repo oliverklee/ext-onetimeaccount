@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Parameter &\\$configuration by\\-ref type of method OliverKlee\\\\Onetimeaccount\\\\Configuration\\\\FlexForms\\:\\:buildFields\\(\\) expects array\\<string, array\\<string, string\\>\\>, array\\<string, array\\<int\\|string, array\\<int, string\\>\\|string\\>\\> given\\.$#"
+			count: 1
+			path: Classes/Configuration/FlexForms.php
+
+		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 3
 			path: Tests/Functional/Validation/CaptchaValidatorTest.php
