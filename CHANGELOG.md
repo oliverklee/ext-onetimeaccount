@@ -14,7 +14,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
-- Unify the spelling of "email" (#761)
+- Unify the spelling of "email" (#761, #762)
 - Require higher TYPO3 Core bugfix versions (#713)
 
 ### Removed
