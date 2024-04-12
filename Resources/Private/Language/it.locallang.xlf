@@ -48,7 +48,7 @@
 				<target>Stato</target>
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
-				<source>E-mail</source>
+				<source>Email</source>
 				<target>Email</target>
 			</trans-unit>
 			<trans-unit id="telephone" resname="telephone" approved="yes">
