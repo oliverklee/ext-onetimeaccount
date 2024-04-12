@@ -19,6 +19,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 
 ### Fixed
+- Add `resname` to all language labels (#760)
 - Avoid using deprecated oelib functionality (#714)
 
 ## 6.3.0

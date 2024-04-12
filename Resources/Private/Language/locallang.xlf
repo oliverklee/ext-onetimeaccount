@@ -3,149 +3,149 @@
 	<file source-language="en" datatype="plaintext" original="messages">
 		<header/>
 		<body>
-			<trans-unit id="plugin.withAutologin">
+			<trans-unit id="plugin.withAutologin" resname="plugin.withAutologin" approved="yes">
 				<source>One-time FE account creator with autologin</source>
 			</trans-unit>
-			<trans-unit id="plugin.withoutAutologin">
+			<trans-unit id="plugin.withoutAutologin" resname="plugin.withoutAutologin" approved="yes">
 				<source>One-time FE account creator without autologin</source>
 			</trans-unit>
-			<trans-unit id="plugin.fieldsToShow">
+			<trans-unit id="plugin.fieldsToShow" resname="plugin.fieldsToShow" approved="yes">
 				<source>FE user fields in the form</source>
 			</trans-unit>
-			<trans-unit id="plugin.requiredFields">
+			<trans-unit id="plugin.requiredFields" resname="plugin.requiredFields" approved="yes">
 				<source>Required fields</source>
 			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers">
+			<trans-unit id="plugin.systemFolderForNewUsers" resname="plugin.systemFolderForNewUsers" approved="yes">
 				<source>Folder for the new FE user records</source>
 			</trans-unit>
-			<trans-unit id="plugin.groupsForNewUsers">
+			<trans-unit id="plugin.groupsForNewUsers" resname="plugin.groupsForNewUsers" approved="yes">
 				<source>Groups for the new FE users</source>
 			</trans-unit>
-			<trans-unit id="plugin.captcha">
+			<trans-unit id="plugin.captcha" resname="plugin.captcha" approved="yes">
 				<source>Protect the form against spam with a CAPTCHA</source>
 			</trans-unit>
-			<trans-unit id="userDataLegend">
+			<trans-unit id="userDataLegend" resname="userDataLegend" approved="yes">
 				<source>Your personal data</source>
 			</trans-unit>
-			<trans-unit id="company">
+			<trans-unit id="company" resname="company" approved="yes">
 				<source>Company</source>
 			</trans-unit>
-			<trans-unit id="gender">
+			<trans-unit id="gender" resname="gender" approved="yes">
 				<source>Gender</source>
 			</trans-unit>
-			<trans-unit id="gender.99">
+			<trans-unit id="gender.99" resname="gender.99" approved="yes">
 				<source>(none provided)</source>
 			</trans-unit>
-			<trans-unit id="gender.0">
+			<trans-unit id="gender.0" resname="gender.0" approved="yes">
 				<source>Mr.</source>
 			</trans-unit>
-			<trans-unit id="gender.1">
+			<trans-unit id="gender.1" resname="gender.1" approved="yes">
 				<source>Mrs.</source>
 			</trans-unit>
-			<trans-unit id="gender.2">
+			<trans-unit id="gender.2" resname="gender.2" approved="yes">
 				<source>diverse</source>
 			</trans-unit>
-			<trans-unit id="fullSalutation">
+			<trans-unit id="fullSalutation" resname="fullSalutation" approved="yes">
 				<source>Salutation and name</source>
 			</trans-unit>
-			<trans-unit id="title">
+			<trans-unit id="title" resname="title" approved="yes">
 				<source>Department/Title</source>
 			</trans-unit>
-			<trans-unit id="name">
+			<trans-unit id="name" resname="name" approved="yes">
 				<source>Full name</source>
 			</trans-unit>
-			<trans-unit id="firstName">
+			<trans-unit id="firstName" resname="firstName" approved="yes">
 				<source>First name</source>
 			</trans-unit>
-			<trans-unit id="lastName">
+			<trans-unit id="lastName" resname="lastName" approved="yes">
 				<source>Last name</source>
 			</trans-unit>
-			<trans-unit id="address">
+			<trans-unit id="address" resname="address" approved="yes">
 				<source>Street</source>
 			</trans-unit>
-			<trans-unit id="zip">
+			<trans-unit id="zip" resname="zip" approved="yes">
 				<source>ZIP</source>
 			</trans-unit>
-			<trans-unit id="city">
+			<trans-unit id="city" resname="city" approved="yes">
 				<source>City</source>
 				<target>Ort</target>
 			</trans-unit>
-			<trans-unit id="zone">
+			<trans-unit id="zone" resname="zone" approved="yes">
 				<source>County/Region</source>
 			</trans-unit>
-			<trans-unit id="country">
+			<trans-unit id="country" resname="country" approved="yes">
 				<source>Country</source>
 			</trans-unit>
-			<trans-unit id="email">
+			<trans-unit id="email" resname="email" approved="yes">
 				<source>E-mail</source>
 			</trans-unit>
-			<trans-unit id="www">
+			<trans-unit id="www" resname="www" approved="yes">
 				<source>Website</source>
 			</trans-unit>
-			<trans-unit id="telephone">
+			<trans-unit id="telephone" resname="telephone" approved="yes">
 				<source>Phone number</source>
 			</trans-unit>
-			<trans-unit id="dateOfBirth">
+			<trans-unit id="dateOfBirth" resname="dateOfBirth" approved="yes">
 				<source>Date of birth</source>
 			</trans-unit>
-			<trans-unit id="status">
+			<trans-unit id="status" resname="status" approved="yes">
 				<source>Job status</source>
 			</trans-unit>
-			<trans-unit id="status.1">
+			<trans-unit id="status.1" resname="status.1" approved="yes">
 				<source>student</source>
 				<target>in Ausbildung</target>
 			</trans-unit>
-			<trans-unit id="status.2">
+			<trans-unit id="status.2" resname="status.2" approved="yes">
 				<source>job seeking (full time)</source>
 			</trans-unit>
-			<trans-unit id="status.3">
+			<trans-unit id="status.3" resname="status.3" approved="yes">
 				<source>working</source>
 			</trans-unit>
-			<trans-unit id="status.4">
+			<trans-unit id="status.4" resname="status.4" approved="yes">
 				<source>retired</source>
 			</trans-unit>
-			<trans-unit id="status.5">
+			<trans-unit id="status.5" resname="status.5" approved="yes">
 				<source>job seeking (part time)</source>
 			</trans-unit>
-			<trans-unit id="userGroup">
+			<trans-unit id="userGroup" resname="userGroup" approved="yes">
 				<source>User group</source>
 			</trans-unit>
-			<trans-unit id="comments">
+			<trans-unit id="comments" resname="comments" approved="yes">
 				<source>Comments</source>
 			</trans-unit>
-			<trans-unit id="privacy">
+			<trans-unit id="privacy" resname="privacy" approved="yes">
 				<source>Privacy policy agreement</source>
 			</trans-unit>
-			<trans-unit id="privacy.long">
+			<trans-unit id="privacy.long" resname="privacy.long" approved="yes">
 				<source>
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.
 				</source>
 			</trans-unit>
-			<trans-unit id="captcha.question">
+			<trans-unit id="captcha.question" resname="captcha.question" approved="yes">
 				<source>Are you human?</source>
 			</trans-unit>
-			<trans-unit id="captcha.answer.yes">
+			<trans-unit id="captcha.answer.yes" resname="captcha.answer.yes" approved="yes">
 				<source>Yes, I am human.</source>
 			</trans-unit>
-			<trans-unit id="captcha.answer.no">
+			<trans-unit id="captcha.answer.no" resname="captcha.answer.no" approved="yes">
 				<source>No, I am not human.</source>
 			</trans-unit>
-			<trans-unit id="captcha.validationError">
+			<trans-unit id="captcha.validationError" resname="captcha.validationError" approved="yes">
 				<source>Please confirm that you are human.</source>
 			</trans-unit>
-			<trans-unit id="saveAndContinue">
+			<trans-unit id="saveAndContinue" resname="saveAndContinue" approved="yes">
 				<source>Save and continue</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedAndLoggedIn">
+			<trans-unit id="alert.userCreatedAndLoggedIn" resname="alert.userCreatedAndLoggedIn" approved="yes">
 				<source>The user has been created, and you now are logged in as the new user.</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedNotLoggedIn">
+			<trans-unit id="alert.userCreatedNotLoggedIn" resname="alert.userCreatedNotLoggedIn" approved="yes">
 				<source>
 					The user has been created, but the automatic login with the new user has not successful.
 				</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedWithoutLogin">
+			<trans-unit id="alert.userCreatedWithoutLogin" resname="alert.userCreatedWithoutLogin" approved="yes">
 				<source>The user has been created.</source>
 			</trans-unit>
 		</body>

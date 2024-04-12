@@ -3,119 +3,119 @@
 	<file source-language="en" target-language="nl" datatype="plaintext" original="messages">
 		<header/>
 		<body>
-			<trans-unit id="plugin.fieldsToShow">
+			<trans-unit id="plugin.fieldsToShow" resname="plugin.fieldsToShow" approved="yes">
 				<source>FE user fields in the form</source>
 				<target>FE user velden in het formulier</target>
 			</trans-unit>
-			<trans-unit id="plugin.requiredFields">
+			<trans-unit id="plugin.requiredFields" resname="plugin.requiredFields" approved="yes">
 				<source>Required fields</source>
 				<target>Verplichte velden</target>
 			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers">
+			<trans-unit id="plugin.systemFolderForNewUsers" resname="plugin.systemFolderForNewUsers" approved="yes">
 				<source>Folder for the new FE user records</source>
 				<target>Folder voor de nieuwe FE user records</target>
 			</trans-unit>
-			<trans-unit id="plugin.groupsForNewUsers">
+			<trans-unit id="plugin.groupsForNewUsers" resname="plugin.groupsForNewUsers" approved="yes">
 				<source>Groups for the new FE users</source>
 				<target>Groepen voor de nieuwe FE users</target>
 			</trans-unit>
-			<trans-unit id="company">
+			<trans-unit id="company" resname="company" approved="yes">
 				<source>Company</source>
 				<target>Bedrijfsnaam</target>
 			</trans-unit>
-			<trans-unit id="gender">
+			<trans-unit id="gender" resname="gender" approved="yes">
 				<source>Gender</source>
 				<target>Dhr./Mevr.</target>
 			</trans-unit>
-			<trans-unit id="gender.0">
+			<trans-unit id="gender.0" resname="gender.0" approved="yes">
 				<source>Mr.</source>
 				<target>Dhr.</target>
 			</trans-unit>
-			<trans-unit id="gender.1">
+			<trans-unit id="gender.1" resname="gender.1" approved="yes">
 				<source>Mrs.</source>
 				<target>Mevr.</target>
 			</trans-unit>
-			<trans-unit id="title">
+			<trans-unit id="title" resname="title" approved="yes">
 				<source>Department/Title</source>
 				<target>Afdeling/titel</target>
 			</trans-unit>
-			<trans-unit id="name">
+			<trans-unit id="name" resname="name" approved="yes">
 				<source>Full name</source>
 				<target>Voor-en achternaam</target>
 			</trans-unit>
-			<trans-unit id="firstName">
+			<trans-unit id="firstName" resname="firstName" approved="yes">
 				<source>First name</source>
 				<target>Voornaam</target>
 			</trans-unit>
-			<trans-unit id="lastName">
+			<trans-unit id="lastName" resname="lastName" approved="yes">
 				<source>Last name</source>
 				<target>Achternaam</target>
 			</trans-unit>
-			<trans-unit id="address">
+			<trans-unit id="address" resname="address" approved="yes">
 				<source>Street</source>
 				<target>Straat</target>
 			</trans-unit>
-			<trans-unit id="zip">
+			<trans-unit id="zip" resname="zip" approved="yes">
 				<source>ZIP</source>
 				<target>Postcode</target>
 			</trans-unit>
-			<trans-unit id="city">
+			<trans-unit id="city" resname="city" approved="yes">
 				<source>City</source>
 				<target>Plaats</target>
 			</trans-unit>
-			<trans-unit id="zone">
+			<trans-unit id="zone" resname="zone" approved="yes">
 				<source>County/Region</source>
 				<target>Provincie/regio</target>
 			</trans-unit>
-			<trans-unit id="country">
+			<trans-unit id="country" resname="country" approved="yes">
 				<source>Country</source>
 				<target>Land</target>
 			</trans-unit>
-			<trans-unit id="email">
+			<trans-unit id="email" resname="email" approved="yes">
 				<source>E-mail</source>
 				<target>E-mail</target>
 			</trans-unit>
-			<trans-unit id="www">
+			<trans-unit id="www" resname="www" approved="yes">
 				<source>Website</source>
 				<target>Website</target>
 			</trans-unit>
-			<trans-unit id="telephone">
+			<trans-unit id="telephone" resname="telephone" approved="yes">
 				<source>Phone number</source>
 				<target>Telefoon</target>
 			</trans-unit>
-			<trans-unit id="dateOfBirth">
+			<trans-unit id="dateOfBirth" resname="dateOfBirth" approved="yes">
 				<source>Birth date</source>
 				<target>Geboortedatum</target>
 			</trans-unit>
-			<trans-unit id="status">
+			<trans-unit id="status" resname="status" approved="yes">
 				<source>Job status</source>
 				<target>Arbeidsstatus</target>
 			</trans-unit>
-			<trans-unit id="status.1">
+			<trans-unit id="status.1" resname="status.1" approved="yes">
 				<source>student</source>
 				<target>in Ausbildung</target>
 			</trans-unit>
-			<trans-unit id="status.2">
+			<trans-unit id="status.2" resname="status.2" approved="yes">
 				<source>job seeking (full time)</source>
 				<target>werkzoekende (full time)</target>
 			</trans-unit>
-			<trans-unit id="status.3">
+			<trans-unit id="status.3" resname="status.3" approved="yes">
 				<source>working</source>
 				<target>werkend</target>
 			</trans-unit>
-			<trans-unit id="status.4">
+			<trans-unit id="status.4" resname="status.4" approved="yes">
 				<source>retired</source>
 				<target>gepensioneerd</target>
 			</trans-unit>
-			<trans-unit id="status.5">
+			<trans-unit id="status.5" resname="status.5" approved="yes">
 				<source>job seeking (part time)</source>
 				<target>werkzoekende (deeltijd)</target>
 			</trans-unit>
-			<trans-unit id="userGroup">
+			<trans-unit id="userGroup" resname="userGroup" approved="yes">
 				<source>User group</source>
 				<target>Gebruikersgroep</target>
 			</trans-unit>
-			<trans-unit id="comments">
+			<trans-unit id="comments" resname="comments" approved="yes">
 				<source>Comments</source>
 				<target>Notities</target>
 			</trans-unit>
