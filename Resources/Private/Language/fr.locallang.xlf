@@ -68,7 +68,7 @@
 				<target>Pays</target>
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
-				<source>E-mail</source>
+				<source>Email</source>
 				<target>Adresse mail</target>
 			</trans-unit>
 			<trans-unit id="www" resname="www" approved="yes">

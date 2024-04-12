@@ -77,7 +77,7 @@
 				<source>Country</source>
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
-				<source>E-mail</source>
+				<source>Email</source>
 			</trans-unit>
 			<trans-unit id="www" resname="www" approved="yes">
 				<source>Website</source>

@@ -72,7 +72,7 @@
 				<target>Land</target>
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
-				<source>E-mail</source>
+				<source>Email</source>
 				<target>E-mail</target>
 			</trans-unit>
 			<trans-unit id="www" resname="www" approved="yes">

@@ -100,8 +100,8 @@
 				<target>Land</target>
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
-				<source>E-mail</source>
-				<target>E-Mail</target>
+				<source>Email</source>
+				<target>Email</target>
 			</trans-unit>
 			<trans-unit id="www" resname="www" approved="yes">
 				<source>Website</source>
