@@ -3,83 +3,83 @@
 	<file source-language="en" target-language="it" datatype="plaintext" original="messages">
 		<header/>
 		<body>
-			<trans-unit id="plugin.fieldsToShow">
+			<trans-unit id="plugin.fieldsToShow" resname="plugin.fieldsToShow" approved="yes">
 				<source>FE user fields in the form</source>
 				<target>Campi degli utenti di FE nella form</target>
 			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers">
+			<trans-unit id="plugin.systemFolderForNewUsers" resname="plugin.systemFolderForNewUsers" approved="yes">
 				<source>Folder for the new FE user records</source>
 				<target>Cartella per nuovi utenti di FE</target>
 			</trans-unit>
-			<trans-unit id="plugin.groupsForNewUsers">
+			<trans-unit id="plugin.groupsForNewUsers" resname="plugin.groupsForNewUsers" approved="yes">
 				<source>Groups for the new FE users</source>
 				<target>Gruppo per i nuovi utenti di FE</target>
 			</trans-unit>
-			<trans-unit id="company">
+			<trans-unit id="company" resname="company" approved="yes">
 				<source>Company</source>
 				<target>Azienda</target>
 			</trans-unit>
-			<trans-unit id="gender.0">
+			<trans-unit id="gender.0" resname="gender.0" approved="yes">
 				<source>Mr.</source>
 				<target>Sig.</target>
 			</trans-unit>
-			<trans-unit id="gender.1">
+			<trans-unit id="gender.1" resname="gender.1" approved="yes">
 				<source>Mrs.</source>
 				<target>Sig.ra</target>
 			</trans-unit>
-			<trans-unit id="name">
+			<trans-unit id="name" resname="name" approved="yes">
 				<source>Full name</source>
 				<target>Nome e cognome</target>
 			</trans-unit>
-			<trans-unit id="address">
+			<trans-unit id="address" resname="address" approved="yes">
 				<source>Street</source>
 				<target>Via</target>
 			</trans-unit>
-			<trans-unit id="zip">
+			<trans-unit id="zip" resname="zip" approved="yes">
 				<source>ZIP</source>
 				<target>CAP</target>
 			</trans-unit>
-			<trans-unit id="city">
+			<trans-unit id="city" resname="city" approved="yes">
 				<source>City</source>
 				<target>Città</target>
 			</trans-unit>
-			<trans-unit id="country">
+			<trans-unit id="country" resname="country" approved="yes">
 				<source>Country</source>
 				<target>Stato</target>
 			</trans-unit>
-			<trans-unit id="email">
+			<trans-unit id="email" resname="email" approved="yes">
 				<source>E-mail</source>
 				<target>Email</target>
 			</trans-unit>
-			<trans-unit id="telephone">
+			<trans-unit id="telephone" resname="telephone" approved="yes">
 				<source>Phone number</source>
 				<target>Telefono</target>
 			</trans-unit>
-			<trans-unit id="dateOfBirth">
+			<trans-unit id="dateOfBirth" resname="dateOfBirth" approved="yes">
 				<source>Date of birth</source>
 				<target>Data di nascita</target>
 			</trans-unit>
-			<trans-unit id="status">
+			<trans-unit id="status" resname="status" approved="yes">
 				<source>Job status</source>
 				<target>Stato di impiego</target>
 			</trans-unit>
-			<trans-unit id="status.1">
+			<trans-unit id="status.1" resname="status.1" approved="yes">
 				<source>student</source>
 				<target>studente</target>
 			</trans-unit>
-			<trans-unit id="status.2">
+			<trans-unit id="status.2" resname="status.2" approved="yes">
 				<source>job seeking (full time)</source>
 				<target>in cerca di occupazione (tempo pieno)</target>
 			</trans-unit>
-			<trans-unit id="status.3">
+			<trans-unit id="status.3" resname="status.3" approved="yes">
 				<source>working</source>
 				<target>lavoratore</target>
 			</trans-unit>
-			<trans-unit id="status.4">
+			<trans-unit id="status.4" resname="status.4" approved="yes">
 				<source>retired</source>
 				<target>pensionato</target>
 			</trans-unit>
-			<trans-unit id="status.5">
+			<trans-unit id="status.5" resname="status.5" approved="yes">
 				<source>job seeking (part time)</source>
 				<target>in cerca di occupazione (mezza giornata)</target>
 			</trans-unit>
