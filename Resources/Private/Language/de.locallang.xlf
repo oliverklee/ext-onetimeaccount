@@ -101,7 +101,7 @@
 			</trans-unit>
 			<trans-unit id="email" resname="email" approved="yes">
 				<source>Email</source>
-				<target>Email</target>
+				<target>E-Mail</target>
 			</trans-unit>
 			<trans-unit id="www" resname="www" approved="yes">
 				<source>Website</source>
@@ -158,7 +158,7 @@
 				</source>
 				<target>
 					Ich stimme zu, dass meine Angaben und Daten elektronisch erhoben und gespeichert werden.
-					Sie können Ihre Einwilligung jederzeit für die Zukunft per Email widerrufen.
+					Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail widerrufen.
 				</target>
 			</trans-unit>
 			<trans-unit id="captcha.question" resname="captcha.question" approved="yes">
