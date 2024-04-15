@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require higher TYPO3 Core bugfix versions (#713)
 
 ### Removed
+- Delete localizations that are now on Crowdin (#764)
 
 ### Fixed
 - Add `resname` to all language labels (#760)
