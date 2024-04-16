@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Changed
+- Allow installations with oelib 6.x (#771)
 - Shorten the label for the salutation (#744)
 
 ### Added
