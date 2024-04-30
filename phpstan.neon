@@ -9,15 +9,7 @@ parameters:
 
   level: 9
 
-  bootstrapFiles:
-    - .Build/vendor/autoload.php
-
   paths:
-    - Classes
-    - Configuration
-    - Tests
-
-  scanDirectories:
     - Classes
     - Configuration
     - Tests
