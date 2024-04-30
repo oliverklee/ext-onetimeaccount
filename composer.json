@@ -45,6 +45,8 @@
 		"saschaegerer/phpstan-typo3": "^1.8.4",
 		"sjbr/static-info-tables": "^6.9.6 || ^11.5.3",
 		"squizlabs/php_codesniffer": "^3.9.2",
+		"symfony/console": "^5.4 || ^6.4 || ^7.0",
+		"symfony/translation": "^5.4 || ^6.4 || ^7.0",
 		"symfony/yaml": "^5.4.2 || ^6.1.3 || ^7.0.0",
 		"typo3/coding-standards": "~0.6.1",
 		"typo3/testing-framework": "^6.16.6",
@@ -139,6 +141,7 @@
 			"@ci:php:sniff",
 			"@ci:php:stan",
 			"@ci:ts:lint",
+			"@ci:xliff:lint",
 			"@ci:yaml:lint"
 		],
 		"ci:tests": [
@@ -155,6 +158,7 @@
 			".Build/vendor/bin/phpunit -c .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTests.xml Tests/Unit"
 		],
 		"ci:ts:lint": "typoscript-lint -c Configuration/TsLint.yml --ansi -n --fail-on-warnings -vvv Configuration/TypoScript",
+		"ci:xliff:lint": "php Build/bin/xliff-lint lint:xliff Resources/Private/Language",
 		"ci:yaml:lint": "find . ! -path '*.Build/*' -name '*.yml' | xargs -r php ./.Build/vendor/bin/yaml-lint",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
 		"docs:generate": [
@@ -179,6 +183,7 @@
 		"prepare-release": [
 			"rm -rf .Build",
 			"rm -rf .github",
+			"rm -rf Build",
 			"rm -rf Tests",
 			"rm .editorconfig",
 			"rm .gitattributes",
@@ -214,6 +219,7 @@
 		"ci:tests:functional": "Runs the functional tests.",
 		"ci:tests:unit": "Runs the unit tests.",
 		"ci:ts:lint": "Lints the TypoScript files.",
+		"ci:xliff:lint": "Lints the XLIFF files.",
 		"ci:yaml:lint": "Lints the YAML files.",
 		"coverage:create-directories": "Creates the directories needed for recording and merging the code coverage reports.",
 		"docs:generate": "Renders the extension ReST documentation.",
