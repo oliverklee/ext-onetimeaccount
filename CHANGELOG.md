@@ -22,6 +22,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Delete localizations that are now on Crowdin (#764)
 
 ### Fixed
+- Fix grammar in error message (#784)
 - Add `resname` to all language labels (#760)
 - Avoid using deprecated oelib functionality (#714)
 

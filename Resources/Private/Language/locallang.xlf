@@ -142,7 +142,7 @@
 			</trans-unit>
 			<trans-unit id="alert.userCreatedNotLoggedIn" resname="alert.userCreatedNotLoggedIn">
 				<source>
-					The user has been created, but the automatic login with the new user has not successful.
+					The user has been created, but the automatic login with the new user was not successful.
 				</source>
 			</trans-unit>
 			<trans-unit id="alert.userCreatedWithoutLogin" resname="alert.userCreatedWithoutLogin">
