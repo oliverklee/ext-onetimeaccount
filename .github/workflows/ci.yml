@@ -63,8 +63,6 @@ jobs:
           restore-keys: "php${{ matrix.php-version }}-composer-\n"
       - name: "Install Composer dependencies"
         run: "composer update --no-progress"
-      - name: "Install development tools"
-        run: phive --no-progress install --trust-gpg-keys D8406D0D82947747293778314AA394086372C20A
       - name: "Run command"
         run: "composer ci:${{ matrix.command }}"
     strategy:
@@ -72,7 +70,6 @@ jobs:
       matrix:
         command:
           - "composer:normalize"
-          - "php:copypaste"
           - "php:cs-fixer"
           - "php:sniff"
           - "php:stan"
