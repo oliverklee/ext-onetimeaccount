@@ -6,13 +6,25 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Changed
+
+### Added
+
+### Deprecated
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 6.4.0
+
+### Changed
 - Allow installations with oelib 6.x (#771)
 - Shorten the label for the salutation (#744)
 
 ### Added
 - Set the last login date when creating a FE user record (#707)
-
-### Deprecated
 
 ### Changed
 - Unify the spelling of "email" (#761, #762)
