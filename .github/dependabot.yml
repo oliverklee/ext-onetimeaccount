@@ -25,6 +25,8 @@ updates:
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
       - dependency-name: "sjbr/static-info-tables"
+      - dependency-name: "symfony/console"
+      - dependency-name: "symfony/translation"
       - dependency-name: "symfony/yaml"
       - dependency-name: "typo3/testing-framework"
       - dependency-name: "typo3/coding-standards"
