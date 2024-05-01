@@ -1,3 +1,9 @@
+page {
+  includeCSS {
+    onetimeaccount = EXT:onetimeaccount/Resources/Public/Css/FrontEnd.css
+  }
+}
+
 plugin.tx_onetimeaccount {
   view {
     templateRootPaths {

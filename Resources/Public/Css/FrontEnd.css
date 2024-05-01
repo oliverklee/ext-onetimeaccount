@@ -1,0 +1,25 @@
+/*
+ * Hide content visually while keeping it accessible to assistive technologies
+ *
+ * See: https://www.a11yproject.com/posts/2013-01-11-how-to-hide-content/
+ * See: https://kittygiraudel.com/2016/10/13/css-hide-and-seek/
+ *
+ * copied from Twitter Bootstrap:
+ * https://github.com/twbs/bootstrap/blob/main/scss/mixins/_visually-hidden.scss
+ */
+.tx-onetimeaccount-visually-hidden {
+    border: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+}
+
+/* Making label texts unselectable improves accessibility. */
+form.tx-onetimeaccount-form label {
+    user-select: none;
+}
