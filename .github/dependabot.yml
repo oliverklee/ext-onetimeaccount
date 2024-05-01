@@ -16,11 +16,7 @@ updates:
       - dependency-type: "development"
     ignore:
       - dependency-name: "ergebnis/composer-normalize"
-        versions: [ ">= 2.19.0" ]
-      - dependency-name: "friendsofphp/php-cs-fixer"
-        versions: [ ">= 3.4.0" ]
-      - dependency-name: "helmich/typo3-typoscript-lint"
-        versions: [ ">= 3.0.0" ]
+        versions: [ ">= 2.29.0" ]
       - dependency-name: "oliverklee/oelib"
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
