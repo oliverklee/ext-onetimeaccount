@@ -45,8 +45,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
 
         $this->subject = new CredentialsGenerator();
 
-        $this->userRepositoryMock = $this->getMockBuilder(FrontendUserRepository::class)
-            ->disableOriginalConstructor()->getMock();
+        $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
         $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
     }
 
@@ -167,7 +166,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
 
         $this->subject->generateUsernameForUser($user);
 
-        self::assertRegExp('/^[a-z\\d]{32}$/', $user->getUsername());
+        self::assertMatchesRegularExpression('/^[a-z\\d]{32}$/', $user->getUsername());
     }
 
     /**
@@ -209,7 +208,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
         $result = $this->subject->generatePasswordForUser($user);
 
         self::assertIsString($result);
-        self::assertRegExp('/^\\w{32}$/', $result);
+        self::assertMatchesRegularExpression('/^\\w{32}$/', $result);
     }
 
     /**

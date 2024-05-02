@@ -47,9 +47,6 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     protected const NOW = '2004-02-12T15:19:21+00:00';
 
-    /**
-     * @var bool
-     */
     protected $resetSingletonInstances = true;
 
     /**
@@ -103,12 +100,10 @@ abstract class AbstractUserControllerTest extends UnitTestCase
         $this->viewMock = $this->createMock(TemplateView::class);
         $this->subject->_set('view', $this->viewMock);
 
-        $this->userRepositoryMock = $this->getMockBuilder(FrontendUserRepository::class)
-            ->disableOriginalConstructor()->getMock();
+        $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
         $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
 
-        $this->userGroupRepositoryMock = $this->getMockBuilder(FrontendUserGroupRepository::class)
-            ->disableOriginalConstructor()->getMock();
+        $this->userGroupRepositoryMock = $this->createMock(FrontendUserGroupRepository::class);
         $this->subject->injectFrontendUserGroupRepository($this->userGroupRepositoryMock);
 
         $this->credentialsGeneratorMock = $this->createMock(CredentialsGenerator::class);

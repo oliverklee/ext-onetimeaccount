@@ -49,8 +49,7 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
     {
         $this->userMock = $this->createMock(FrontendUserAuthentication::class);
 
-        $frontEndController = $this->getMockBuilder(TypoScriptFrontendController::class)
-            ->disableOriginalConstructor()->getMock();
+        $frontEndController = $this->createMock(TypoScriptFrontendController::class);
         $frontEndController->fe_user = $this->userMock;
         $GLOBALS['TSFE'] = $frontEndController;
     }
