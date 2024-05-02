@@ -56,9 +56,6 @@ jobs:
         run: phive --no-progress install --trust-gpg-keys D8406D0D82947747293778314AA394086372C20A
       - name: "Start MySQL"
         run: "sudo /etc/init.d/mysql start"
-      # This workaround for MySQL 8 can be removed once we drop support for PHP 7.2/7.3.
-      - name: "Configure the MySQL user to work with PHP 7.2/7.3"
-        run: mysql -u root --password=root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root'"
       - name: "Run unit tests with coverage"
         run: composer ci:coverage:unit
       - name: "Show coverage files"
