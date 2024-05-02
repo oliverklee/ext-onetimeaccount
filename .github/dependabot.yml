@@ -15,8 +15,6 @@ updates:
     allow:
       - dependency-type: "development"
     ignore:
-      - dependency-name: "ergebnis/composer-normalize"
-        versions: [ ">= 2.29.0" ]
       - dependency-name: "oliverklee/oelib"
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
