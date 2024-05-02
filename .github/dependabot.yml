@@ -20,7 +20,6 @@ updates:
       - dependency-name: "oliverklee/oelib"
       - dependency-name: "phpunit/phpunit"
       - dependency-name: "psr/log"
-      - dependency-name: "sjbr/static-info-tables"
       - dependency-name: "symfony/console"
       - dependency-name: "symfony/translation"
       - dependency-name: "symfony/yaml"
