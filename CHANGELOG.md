@@ -12,6 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
+- Require `feuserextrafields` >= 6.2.0 (#805)
 
 ### Removed
 - Drop support for TYPO3 10LTS (#797)
