@@ -42,9 +42,9 @@ final class UserValidatorTest extends FunctionalTestCase
     ];
 
     protected array $testExtensionsToLoad = [
-        'typo3conf/ext/feuserextrafields',
-        'typo3conf/ext/oelib',
-        'typo3conf/ext/onetimeaccount',
+        'oliverklee/feuserextrafields',
+        'oliverklee/oelib',
+        'oliverklee/onetimeaccount',
     ];
 
     protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
