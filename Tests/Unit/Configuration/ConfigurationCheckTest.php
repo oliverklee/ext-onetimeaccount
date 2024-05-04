@@ -14,15 +14,8 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class ConfigurationCheckTest extends UnitTestCase
 {
-    /**
-     * @var ConfigurationCheck
-     */
-    private $subject;
-
-    /**
-     * @var DummyConfiguration
-     */
-    private $configuration;
+    private ConfigurationCheck $subject;
+    private DummyConfiguration $configuration;
 
     protected function setUp(): void
     {

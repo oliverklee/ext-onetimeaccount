@@ -13,10 +13,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class CaptchaTest extends UnitTestCase
 {
-    /**
-     * @var Captcha
-     */
-    private $subject;
+    private Captcha $subject;
 
     protected function setUp(): void
     {

@@ -41,10 +41,7 @@ final class UserValidatorTest extends UnitTestCase
         'privacy',
     ];
 
-    /**
-     * @var UserValidator
-     */
-    private $subject;
+    private UserValidator $subject;
 
     protected function setUp(): void
     {

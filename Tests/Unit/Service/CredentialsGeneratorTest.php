@@ -21,20 +21,17 @@ final class CredentialsGeneratorTest extends UnitTestCase
 {
     protected $resetSingletonInstances = true;
 
-    /**
-     * @var CredentialsGenerator
-     */
-    private $subject;
+    private CredentialsGenerator $subject;
 
     /**
      * @var FrontendUserRepository&MockObject
      */
-    private $userRepositoryMock;
+    private MockObject $userRepositoryMock;
 
     /**
      * @var PasswordHashInterface&MockObject
      */
-    private $passwordHasherMock;
+    private MockObject $passwordHasherMock;
 
     protected function setUp(): void
     {

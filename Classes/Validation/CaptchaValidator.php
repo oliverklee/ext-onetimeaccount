@@ -19,15 +19,8 @@ class CaptchaValidator extends AbstractValidator implements SingletonInterface
 {
     protected $acceptsEmptyValues = false;
 
-    /**
-     * @var CaptchaFactory
-     */
-    private $captchaFactory;
-
-    /**
-     * @var bool
-     */
-    private $enabled = false;
+    private CaptchaFactory $captchaFactory;
+    private bool $enabled = false;
 
     public function injectCaptchaFactory(CaptchaFactory $factory): void
     {

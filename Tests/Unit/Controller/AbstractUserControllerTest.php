@@ -55,47 +55,44 @@ abstract class AbstractUserControllerTest extends UnitTestCase
     /**
      * @var C&MockObject&AccessibleObjectInterface
      */
-    protected $subject;
+    protected MockObject $subject;
 
     /**
      * @var TemplateView&MockObject
      */
-    private $viewMock;
+    private MockObject $viewMock;
 
     /**
      * @var FrontendUserRepository&MockObject
      */
-    private $userRepositoryMock;
+    private MockObject $userRepositoryMock;
 
     /**
      * @var FrontendUserGroupRepository&MockObject
      */
-    protected $userGroupRepositoryMock;
+    protected MockObject $userGroupRepositoryMock;
 
     /**
      * @var CredentialsGenerator&MockObject
      */
-    protected $credentialsGeneratorMock;
+    protected MockObject $credentialsGeneratorMock;
 
     /**
      * @var UserValidator&MockObject
      */
-    private $userValidatorMock;
+    private MockObject $userValidatorMock;
 
     /**
      * @var CaptchaFactory&MockObject
      */
-    private $captchaFactoryMock;
+    private MockObject $captchaFactoryMock;
 
     /**
      * @var CaptchaValidator&MockObject
      */
-    private $captchaValidatorMock;
+    private MockObject $captchaValidatorMock;
 
-    /**
-     * @var Arguments
-     */
-    private $controllerArguments;
+    private Arguments $controllerArguments;
 
     protected function setUpAndInjectSharedDependencies(): void
     {

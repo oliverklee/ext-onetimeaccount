@@ -17,10 +17,7 @@ final class FlexFormsTest extends UnitTestCase
      */
     private const LOCALLANG_PREFIX = 'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:';
 
-    /**
-     * @var FlexForms
-     */
-    private $subject;
+    private FlexForms $subject;
 
     protected function setUp(): void
     {

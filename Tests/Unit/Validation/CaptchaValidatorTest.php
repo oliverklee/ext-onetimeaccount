@@ -16,10 +16,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class CaptchaValidatorTest extends UnitTestCase
 {
-    /**
-     * @var CaptchaValidator
-     */
-    private $subject;
+    private CaptchaValidator $subject;
 
     protected function setUp(): void
     {

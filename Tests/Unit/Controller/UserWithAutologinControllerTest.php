@@ -20,7 +20,7 @@ final class UserWithAutologinControllerTest extends AbstractUserControllerTest
     /**
      * @var Autologin&MockObject
      */
-    private $autologinMock;
+    private MockObject $autologinMock;
 
     protected function setUp(): void
     {

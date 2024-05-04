@@ -25,20 +25,9 @@ final class AutologinTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
-    /**
-     * @var Autologin
-     */
-    private $subject;
-
-    /**
-     * @var FrontendUserRepository
-     */
-    private $userRepository;
-
-    /**
-     * @var TestingFramework
-     */
-    private $testingFramework;
+    private Autologin $subject;
+    private FrontendUserRepository $userRepository;
+    private TestingFramework $testingFramework;
 
     protected function setUp(): void
     {
