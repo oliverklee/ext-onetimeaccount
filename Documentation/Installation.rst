@@ -21,11 +21,11 @@ the feature switch to use the new registration form, you should also use the
 plugin without autologin.
 
 If you are using seminars below 5.0.0 or seminars 4 with the legacy
-registration form, you need to use the plugin with autologin.
+registration form, you need to use the plugin with autologin (with
+onetimeaccount version 6.0.0 or lower).
 
 .. note::
-   The plugin with autologin is deprecated and will be removed in
-   onetimeaccount 7.0
+   The plugin with autologin was removed in onetimeaccount 7.0.
 
 Installation steps
 ==================
@@ -41,9 +41,8 @@ Installation steps
    This element can be next to your frontend login form, or it could
    sit their instead of the login form (if you do not need a regular login
    on your site).
-#. In the tab "Plugin", select "One-time FE account creator with autologin"
-   or "One-time FE account creator without autologin" as plugin type
-   (depending on which version of seminars you are using; see above).
+#. In the tab "Plugin", select "One-time FE account creator without autologin"
+   as plugin type.
 #. Select which fields should be displayed.
 #. Select which fields should be required.
 #. Select the system folder in which the created front-end users should be

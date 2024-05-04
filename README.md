@@ -8,8 +8,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/oliverklee/ext-onetimeaccount/badge.svg?branch=main)](https://coveralls.io/github/oliverklee/ext-onetimeaccount?branch=main)
 
 This extension provides a Bootstrap-5-compatible form that allows users to
-create a one-time FE account to which they will be automatically logged in
-(without having to enter a username or password).
+create a short-lived FE user account without having to enter a user name or
+password.
 
 It also provides a CAPTCHA.
 
