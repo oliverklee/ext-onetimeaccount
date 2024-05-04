@@ -1,6 +1,6 @@
 {
 	"name": "oliverklee/onetimeaccount",
-	"description": "Allow users to create a one-time FE account to which they will be automatically logged in (without having to enter a user name or password).",
+	"description": "Allow users to create a short-lived FE user account without having to enter a user name or password.",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
 	"keywords": [

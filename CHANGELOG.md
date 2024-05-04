@@ -16,6 +16,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Require `feuserextrafields` >= 6.2.0 (#805)
 
 ### Removed
+- Drop the plugin with autologin (#827)
 - Drop support for TYPO3 10LTS (#797)
 - Drop support for PHP 7.2/7.3 (#796)
 
