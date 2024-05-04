@@ -47,7 +47,7 @@ abstract class AbstractUserControllerTest extends UnitTestCase
      */
     protected const NOW = '2004-02-12T15:19:21+00:00';
 
-    protected $resetSingletonInstances = true;
+    protected bool $resetSingletonInstances = true;
 
     /**
      * @var C&MockObject&AccessibleObjectInterface
