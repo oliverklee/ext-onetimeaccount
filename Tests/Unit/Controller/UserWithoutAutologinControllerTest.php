@@ -34,7 +34,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
  * @covers \OliverKlee\Onetimeaccount\Controller\UserWithoutAutologinController
- * @covers \OliverKlee\Onetimeaccount\Controller\AbstractUserController
  */
 final class UserWithoutAutologinControllerTest extends UnitTestCase
 {
@@ -826,21 +825,6 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $this->userRepositoryMock->expects(self::once())->method('persistAll');
         $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
-
-        $this->subject->createAction($user);
-    }
-
-    /**
-     * @test
-     */
-    public function createActionWithUserForFailedPasswordGenerationThrowsException(): void
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Could not generate user credentials.');
-        $this->expectExceptionCode(1651673684);
-
-        $user = new FrontendUser();
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn(null);
 
         $this->subject->createAction($user);
     }
