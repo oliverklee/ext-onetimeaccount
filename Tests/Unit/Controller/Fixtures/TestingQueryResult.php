@@ -58,24 +58,34 @@ final class TestingQueryResult implements QueryResultInterface
 
     public function offsetExists($offset): bool
     {
-        return $this->objectStorage->offsetExists($offset);
+        return $this->objectStorage->offsetExists((int)$offset);
     }
 
     public function offsetGet($offset): ?FrontendUserGroup
     {
-        $offset = $this->objectStorage->offsetGet($offset);
+        $offset = $this->objectStorage->offsetGet((int)$offset);
 
         return $offset instanceof FrontendUserGroup ? $offset : null;
     }
 
+    /**
+     * @return never
+     *
+     * @throws \BadMethodCallException
+     */
     public function offsetSet($offset, $value): void
     {
-        $this->objectStorage->offsetSet($offset, $value);
+        throw new \BadMethodCallException('Not implemented.', 1714832632);
     }
 
+    /**
+     * @return never
+     *
+     * @throws \BadMethodCallException
+     */
     public function offsetUnset($offset): void
     {
-        $this->objectStorage->offsetUnset($offset);
+        throw new \BadMethodCallException('Not implemented.', 1714832637);
     }
 
     public function count(): int
