@@ -3,91 +3,63 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
 use Rector\PHPUnit\Set\PHPUnitSetList;
-use Rector\Php71\Rector\FuncCall\CountOnNullRector;
 use Rector\PostRector\Rector\NameImportingPostRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\ValueObject\PhpVersion;
+use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
+use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 use Ssch\TYPO3Rector\Set\Typo3SetList;
+use Ssch\Typo3RectorTestingFramework\Set\TYPO3TestingFrameworkSetList;
 
-/**
- * This configuration file is for Rector 0.13.4. Higher versions need the dedicated TYPO3 Rector
- * package and a different configuration.
- */
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->paths(
-        [
-            __DIR__ . '/Classes',
-            __DIR__ . '/Configuration',
-            __DIR__ . '/Tests',
-        ]
-    );
+return RectorConfig::configure()
+    ->withConfiguredRule(ExtEmConfRector::class, [
+        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
+    ])
+    ->withPaths([
+        __DIR__ . '/Classes/',
+        __DIR__ . '/Configuration/',
+        __DIR__ . '/Tests/',
+    ])
+    ->withPhpSets(
+        true
+    )
+    ->withSets([
+        // Typo3LevelSetList::UP_TO_TYPO3_10,
+        // Typo3LevelSetList::UP_TO_TYPO3_11,
+        // Typo3LevelSetList::UP_TO_TYPO3_12,
 
-    $rectorConfig->parameters()->set(Option::ENABLE_EDITORCONFIG, true);
+        Typo3SetList::TYPO3_11,
 
-    // Disable parallel processing. Otherwise, non-PHP file processing is not working (TypoScript).
-    $rectorConfig->disableParallel();
+        // Typo3SetList::CODE_QUALITY,
+        // Typo3SetList::GENERAL,
 
-    // Define your target version which you want to support.
-    $rectorConfig->phpVersion(PhpVersion::PHP_72);
+        // TYPO3TestingFrameworkSetList::TYPO3_TESTING_FRAMEWORK_7,
 
-    // In order to have a better analysis from PHPStan, we teach it here some more things.
-    $rectorConfig->phpstanConfig(Typo3Option::PHPSTAN_FOR_RECTOR_PATH);
-
-    // auto-import names, but not classes in doc blocks
-    $rectorConfig->importNames();
-    // this will not import root namespace classes, like \DateTime or \Exception
-    $rectorConfig->disableImportShortClasses();
-
-    // define sets of rules
-    $rectorConfig->sets([
+        // LevelSetList::UP_TO_PHP_53,
+        // LevelSetList::UP_TO_PHP_54,
+        // LevelSetList::UP_TO_PHP_55,
+        // LevelSetList::UP_TO_PHP_56,
+        // LevelSetList::UP_TO_PHP_70,
+        // LevelSetList::UP_TO_PHP_71,
+        // LevelSetList::UP_TO_PHP_72,
         // LevelSetList::UP_TO_PHP_73,
         // LevelSetList::UP_TO_PHP_74,
         // LevelSetList::UP_TO_PHP_80,
         // LevelSetList::UP_TO_PHP_81,
         // LevelSetList::UP_TO_PHP_82,
+        // LevelSetList::UP_TO_PHP_83,
 
         // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3LevelSetList.php
         // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3SetList.php
 
-        // Typo3SetList::TYPO3_95,
-        // Typo3SetList::TCA_95,
-        // Typo3SetList::TYPOSCRIPT_CONDITIONS_95,
-        // Typo3SetList::COMPOSER_PACKAGES_95_CORE,
-        // Typo3SetList::COMPOSER_PACKAGES_95_EXTENSIONS,
-
-        // Typo3SetList::TYPO3_104,
-        // Typo3SetList::TCA_104,
-        // Typo3SetList::TYPOSCRIPT_100,
-        // Typo3SetList::TYPOSCRIPT_CONDITIONS_104,
-        // Typo3SetList::COMPOSER_PACKAGES_104_CORE,
-        // Typo3SetList::COMPOSER_PACKAGES_104_EXTENSIONS,
-
-        // Typo3SetList::TYPO3_11,
-        // Typo3SetList::TCA_110,
-        // Typo3SetList::COMPOSER_PACKAGES_110_CORE,
-        // Typo3SetList::COMPOSER_PACKAGES_110_EXTENSIONS,
-
-        // Typo3SetList::TYPO3_12,
-        // Typo3SetList::TCA_120,
-        // Typo3SetList::TYPOSCRIPT_120,
-
-        // Typo3SetList::DATABASE_TO_DBAL,
-        // Typo3SetList::UNDERSCORE_TO_NAMESPACE,
-        // Typo3SetList::EXTBASE_COMMAND_CONTROLLERS_TO_SYMFONY_COMMANDS,
-        // Typo3SetList::REGISTER_ICONS_TO_ICON,
-        // Typo3SetList::NIMUT_TESTING_FRAMEWORK_TO_TYPO3_TESTING_FRAMEWORK,
-
         // SetList::CODE_QUALITY,
         // SetList::CODING_STYLE,
         // SetList::DEAD_CODE,
-        // SetList::PSR_4,
         // SetList::TYPE_DECLARATION,
-        // SetList::TYPE_DECLARATION_STRICT,
         // SetList::EARLY_RETURN,
 
         // PHPUnitSetList::PHPUNIT80_DMS,
@@ -97,23 +69,27 @@ return static function (RectorConfig $rectorConfig): void {
         // PHPUnitSetList::PHPUNIT_70,
         // PHPUnitSetList::PHPUNIT_80,
         // PHPUnitSetList::PHPUNIT_90,
-        // PHPUnitSetList::PHPUNIT_91,
+        // PHPUnitSetList::PHPUNIT_100,
         // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        // PHPUnitSetList::PHPUNIT_EXCEPTION,
-        // PHPUnitSetList::REMOVE_MOCKS,
-        // PHPUnitSetList::PHPUNIT_SPECIFIC_METHOD,
-        // PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER,
+    ])
+    // To have a better analysis from PHPStan, we teach it here some more things
+    ->withPHPStanConfigs([
+        Typo3Option::PHPSTAN_FOR_RECTOR_PATH,
+    ])
+    ->withPhpVersion(PhpVersion::PHP_74)
+    ->withRules([
+        ConvertImplicitVariablesToExplicitGlobalsRector::class,
+    ])
+    // If you use importNames(), you should consider excluding some TYPO3 files.
+    ->withSkip([
+        // @see https://github.com/sabbelasichon/typo3-rector/issues/2536
+        __DIR__ . '/.github/*',
+        __DIR__ . '/.Build/*',
+        NameImportingPostRector::class => [
+            'ext_localconf.php',
+            'ext_tables.php',
+            'ClassAliasMap.php',
+            __DIR__ . '/Configuration/*.php',
+            __DIR__ . '/Configuration/**/*.php',
+        ],
     ]);
-
-    $rectorConfig->skip(
-        [
-            // This rector is over-zealous.
-            CountOnNullRector::class,
-            NameImportingPostRector::class => [
-                // These files get concatenated by TYPO3, and we cannot use imports there.
-                __DIR__ . '/Configuration/TCA',
-                __DIR__ . '/ext_localconf.php',
-            ],
-        ]
-    );
-};
