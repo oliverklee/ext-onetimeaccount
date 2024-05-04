@@ -19,7 +19,7 @@ final class TestingQueryResult implements QueryResultInterface
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
-    private $objectStorage;
+    private ObjectStorage $objectStorage;
 
     /**
      * @param ObjectStorage<FrontendUserGroup> $storage

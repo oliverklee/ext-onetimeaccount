@@ -13,10 +13,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class AutologinTest extends UnitTestCase
 {
-    /**
-     * @var Autologin
-     */
-    private $subject;
+    private Autologin $subject;
 
     protected function setUp(): void
     {

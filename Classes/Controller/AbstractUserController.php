@@ -26,35 +26,12 @@ use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
  */
 abstract class AbstractUserController extends ActionController
 {
-    /**
-     * @var FrontendUserRepository
-     */
-    protected $userRepository;
-
-    /**
-     * @var FrontendUserGroupRepository
-     */
-    protected $userGroupRepository;
-
-    /**
-     * @var CredentialsGenerator
-     */
-    protected $credentialsGenerator;
-
-    /**
-     * @var UserValidator
-     */
-    protected $userValidator;
-
-    /**
-     * @var CaptchaValidator
-     */
-    protected $captchaValidator;
-
-    /**
-     * @var CaptchaFactory
-     */
-    protected $captchaFactory;
+    protected FrontendUserRepository $userRepository;
+    protected FrontendUserGroupRepository $userGroupRepository;
+    protected CredentialsGenerator $credentialsGenerator;
+    protected UserValidator $userValidator;
+    protected CaptchaValidator $captchaValidator;
+    protected CaptchaFactory $captchaFactory;
 
     public function injectFrontendUserRepository(FrontendUserRepository $repository): void
     {
@@ -180,7 +157,7 @@ abstract class AbstractUserController extends ActionController
      *
      * Also sets the last login date to now.
      *
-     * @return string the plaintext password, or null if no new password should be generated
+     * @return string|null the plaintext password, or null if no new password should be generated
      */
     private function enrichUser(FrontendUser $user, ?int $userGroupUid): ?string
     {

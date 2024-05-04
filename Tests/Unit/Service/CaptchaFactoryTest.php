@@ -36,12 +36,9 @@ final class CaptchaFactoryTest extends UnitTestCase
     /**
      * @var Context&MockObject
      */
-    private $contextMock;
+    private MockObject $contextMock;
 
-    /**
-     * @var CaptchaFactory
-     */
-    private $subject;
+    private CaptchaFactory $subject;
 
     protected function setUp(): void
     {

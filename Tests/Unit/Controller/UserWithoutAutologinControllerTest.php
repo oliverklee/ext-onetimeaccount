@@ -21,7 +21,7 @@ final class UserWithoutAutologinControllerTest extends AbstractUserControllerTes
     /**
      * @var FrontendUserAuthentication&MockObject
      */
-    private $userMock;
+    private MockObject $userMock;
 
     protected function setUp(): void
     {

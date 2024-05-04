@@ -49,10 +49,7 @@ final class UserValidatorTest extends FunctionalTestCase
 
     protected $coreExtensionsToLoad = ['extbase', 'fluid'];
 
-    /**
-     * @var UserValidator
-     */
-    private $subject;
+    private UserValidator $subject;
 
     protected function setUp(): void
     {

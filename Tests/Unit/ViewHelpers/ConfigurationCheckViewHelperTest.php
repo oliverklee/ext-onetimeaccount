@@ -21,28 +21,23 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  */
 final class ConfigurationCheckViewHelperTest extends UnitTestCase
 {
-    /**
-     * @var \Closure
-     */
-    private $renderChildrenClosure;
+    private \Closure $renderChildrenClosure;
 
     /**
      * @var RenderingContextInterface&MockObject
      */
-    private $renderingContextMock;
+    private MockObject $renderingContextMock;
 
     /**
      * @var VariableProviderInterface&MockObject
      */
-    private $variableProviderMock;
+    private MockObject $variableProviderMock;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->renderChildrenClosure = static function (): string {
-            return '';
-        };
+        $this->renderChildrenClosure = static fn (): string => '';
         $this->renderingContextMock = $this->createMock(RenderingContextInterface::class);
         $this->variableProviderMock = $this->createMock(VariableProviderInterface::class);
         $this->renderingContextMock->method('getVariableProvider')->willReturn($this->variableProviderMock);

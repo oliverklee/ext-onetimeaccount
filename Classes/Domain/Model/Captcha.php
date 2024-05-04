@@ -11,25 +11,11 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Captcha extends AbstractEntity
 {
-    /**
-     * @var \DateTime|null
-     */
-    protected $validUntil;
+    protected ?\DateTime $validUntil = null;
+    protected string $correctAnswer = '';
+    protected string $decoyAnswer = '';
 
-    /**
-     * @var string
-     */
-    protected $correctAnswer = '';
-
-    /**
-     * @var string
-     */
-    protected $decoyAnswer = '';
-
-    /**
-     * @var string
-     */
-    protected $givenAnswer = '';
+    protected string $givenAnswer = '';
 
     public function getValidUntil(): ?\DateTime
     {
