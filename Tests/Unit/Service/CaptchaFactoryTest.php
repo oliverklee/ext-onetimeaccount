@@ -26,7 +26,7 @@ final class CaptchaFactoryTest extends UnitTestCase
      * @var non-empty-string
      */
     private const ENCRYPTION_KEY = '$argon2i$v=19$m=65536,t=16,'
-    . 'p=1$dXBmSUYva2EzT2hZZEVEUA$1JtKq8v7WusoVuZ9z8BuIPP0tw03gV9CwySkaZE+DX0';
+        . 'p=1$dXBmSUYva2EzT2hZZEVEUA$1JtKq8v7WusoVuZ9z8BuIPP0tw03gV9CwySkaZE+DX0';
 
     /**
      * @var non-empty-string
@@ -105,7 +105,7 @@ final class CaptchaFactoryTest extends UnitTestCase
 
         $result = $this->subject->generateChallenge();
 
-        self::assertRegExp('/^[\\da-f]{40}$/', $result->getCorrectAnswer());
+        self::assertMatchesRegularExpression('/^[\\da-f]{40}$/', $result->getCorrectAnswer());
     }
 
     /**
@@ -135,7 +135,7 @@ final class CaptchaFactoryTest extends UnitTestCase
     {
         $result = $this->subject->generateChallenge();
 
-        self::assertRegExp('/^[\\da-f]{40}$/', $result->getDecoyAnswer());
+        self::assertMatchesRegularExpression('/^[\\da-f]{40}$/', $result->getDecoyAnswer());
     }
 
     /**
@@ -170,7 +170,7 @@ final class CaptchaFactoryTest extends UnitTestCase
 
         $this->subject->fillCorrectAnswer($captcha);
 
-        self::assertRegExp('/^[\\da-f]{40}$/', $captcha->getCorrectAnswer());
+        self::assertMatchesRegularExpression('/^[\\da-f]{40}$/', $captcha->getCorrectAnswer());
     }
 
     /**
