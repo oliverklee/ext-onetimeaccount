@@ -3,10 +3,6 @@
   <file source-language="en" datatype="plaintext" original="messages" target-language="no">
     <header/>
     <body>
-      <trans-unit id="plugin.withAutologin" resname="plugin.withAutologin">
-        <source>One-time FE account creator with autologin</source>
-        <target state="needs-translation">One-time FE account creator with autologin</target>
-      </trans-unit>
       <trans-unit id="plugin.withoutAutologin" resname="plugin.withoutAutologin">
         <source>One-time FE account creator without autologin</source>
         <target state="needs-translation">One-time FE account creator without autologin</target>
