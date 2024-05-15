@@ -169,13 +169,13 @@
         <source>No, I am not human.</source>
         <target state="final">Nee, ik ben geen mens.</target>
       </trans-unit>
-      <trans-unit id="captcha.validationError" resname="captcha.validationError">
+      <trans-unit id="captcha.validationError" resname="captcha.validationError" approved="yes">
         <source>Please confirm that you are human.</source>
-        <target state="needs-translation">Please confirm that you are human.</target>
+        <target state="final">Bevestig alstublieft dat u een mens bent.</target>
       </trans-unit>
-      <trans-unit id="saveAndContinue" resname="saveAndContinue">
+      <trans-unit id="saveAndContinue" resname="saveAndContinue" approved="yes">
         <source>Save and continue</source>
-        <target state="needs-translation">Save and continue</target>
+        <target state="final">Opslaan en doorgaan</target>
       </trans-unit>
       <trans-unit id="alert.userCreatedAndLoggedIn" resname="alert.userCreatedAndLoggedIn">
         <source>The user has been created, and you now are logged in as the new user.</source>
