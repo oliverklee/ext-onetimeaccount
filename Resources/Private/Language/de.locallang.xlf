@@ -181,12 +181,12 @@
         <source>The user has been created, and you now are logged in as the new user.</source>
         <target state="final">Der User wurde angelegt, und Sie sind jetzt als der neue User eingeloggt.</target>
       </trans-unit>
-      <trans-unit id="alert.userCreatedNotLoggedIn" resname="alert.userCreatedNotLoggedIn">
+      <trans-unit id="alert.userCreatedNotLoggedIn" resname="alert.userCreatedNotLoggedIn" approved="yes">
         <source>
 					The user has been created, but the automatic login with the new user was not successful.
 				</source>
-        <target state="needs-translation">
-					The user has been created, but the automatic login with the new user was not successful.
+        <target state="final">
+					Der User wurde angelegt, aber der automatische Login mit dem neuen User ist fehlgeschlagen.
 				</target>
       </trans-unit>
       <trans-unit id="alert.userCreatedWithoutLogin" resname="alert.userCreatedWithoutLogin" approved="yes">
