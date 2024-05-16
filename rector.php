@@ -2,11 +2,14 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
+use Rector\CodeQuality\Rector\Ternary\SwitchNegatedTernaryRector;
 use Rector\Config\RectorConfig;
 use Rector\PHPUnit\Set\PHPUnitSetList;
-use Rector\PostRector\Rector\NameImportingPostRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
+use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
@@ -16,28 +19,23 @@ use Ssch\TYPO3Rector\Set\Typo3SetList;
 use Ssch\Typo3RectorTestingFramework\Set\TYPO3TestingFrameworkSetList;
 
 return RectorConfig::configure()
-    ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
-    ])
     ->withPaths([
         __DIR__ . '/Classes/',
         __DIR__ . '/Configuration/',
         __DIR__ . '/Tests/',
+        __DIR__ . '/ext_emconf.php',
+        __DIR__ . '/ext_localconf.php',
     ])
+    ->withPhpVersion(PhpVersion::PHP_74)
     ->withPhpSets(
         true
     )
+    // Note: We're only enabling a single set by default to improve performance. (Rector needs at least a single set to
+    // run.)
+    //
+    // You can temporarily enable more sets as needed.
     ->withSets([
-        // Typo3LevelSetList::UP_TO_TYPO3_10,
-        // Typo3LevelSetList::UP_TO_TYPO3_11,
-        // Typo3LevelSetList::UP_TO_TYPO3_12,
-
-        Typo3SetList::TYPO3_11,
-
-        // Typo3SetList::CODE_QUALITY,
-        // Typo3SetList::GENERAL,
-
-        // TYPO3TestingFrameworkSetList::TYPO3_TESTING_FRAMEWORK_7,
+        // Rector sets
 
         // LevelSetList::UP_TO_PHP_53,
         // LevelSetList::UP_TO_PHP_54,
@@ -53,14 +51,17 @@ return RectorConfig::configure()
         // LevelSetList::UP_TO_PHP_82,
         // LevelSetList::UP_TO_PHP_83,
 
-        // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3LevelSetList.php
-        // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3SetList.php
-
         // SetList::CODE_QUALITY,
         // SetList::CODING_STYLE,
         // SetList::DEAD_CODE,
-        // SetList::TYPE_DECLARATION,
         // SetList::EARLY_RETURN,
+        // SetList::INSTANCEOF,
+        // SetList::NAMING,
+        // SetList::PRIVATIZATION,
+        // SetList::STRICT_BOOLEANS,
+        // SetList::TYPE_DECLARATION,
+
+        // PHPUnit sets
 
         // PHPUnitSetList::PHPUNIT80_DMS,
         // PHPUnitSetList::PHPUNIT_40,
@@ -71,25 +72,32 @@ return RectorConfig::configure()
         // PHPUnitSetList::PHPUNIT_90,
         // PHPUnitSetList::PHPUNIT_100,
         // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+
+        // TYPO3 Sets
+        // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3LevelSetList.php
+        // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3SetList.php
+
+        Typo3SetList::CODE_QUALITY,
+        Typo3SetList::GENERAL,
+
+        Typo3LevelSetList::UP_TO_TYPO3_11,
+        // Typo3LevelSetList::UP_TO_TYPO3_12,
+
+        // TYPO3TestingFrameworkSetList::TYPO3_TESTING_FRAMEWORK_7,
     ])
     // To have a better analysis from PHPStan, we teach it here some more things
     ->withPHPStanConfigs([
         Typo3Option::PHPSTAN_FOR_RECTOR_PATH,
     ])
-    ->withPhpVersion(PhpVersion::PHP_74)
     ->withRules([
+        AddVoidReturnTypeWhereNoReturnRector::class,
         ConvertImplicitVariablesToExplicitGlobalsRector::class,
     ])
-    // If you use importNames(), you should consider excluding some TYPO3 files.
+    ->withImportNames(true, true, false)
+    ->withConfiguredRule(ExtEmConfRector::class, [
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '7.4.0-8.3.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '11.5.17-11.5.99',
+        ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
+    ])
     ->withSkip([
-        // @see https://github.com/sabbelasichon/typo3-rector/issues/2536
-        __DIR__ . '/.github/*',
-        __DIR__ . '/.Build/*',
-        NameImportingPostRector::class => [
-            'ext_localconf.php',
-            'ext_tables.php',
-            'ClassAliasMap.php',
-            __DIR__ . '/Configuration/*.php',
-            __DIR__ . '/Configuration/**/*.php',
-        ],
     ]);
