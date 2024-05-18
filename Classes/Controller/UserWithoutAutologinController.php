@@ -37,34 +37,20 @@ class UserWithoutAutologinController extends ActionController
 
     private CaptchaFactory $captchaFactory;
 
-    public function injectFrontendUserRepository(FrontendUserRepository $repository): void
-    {
-        $this->userRepository = $repository;
-    }
-
-    public function injectFrontendUserGroupRepository(FrontendUserGroupRepository $repository): void
-    {
-        $this->userGroupRepository = $repository;
-    }
-
-    public function injectCredentialsGenerator(CredentialsGenerator $generator): void
-    {
-        $this->credentialsGenerator = $generator;
-    }
-
-    public function injectUserValidator(UserValidator $validator): void
-    {
-        $this->userValidator = $validator;
-    }
-
-    public function injectCaptchaValidator(CaptchaValidator $validator): void
-    {
-        $this->captchaValidator = $validator;
-    }
-
-    public function injectCaptchaFactory(CaptchaFactory $factory): void
-    {
-        $this->captchaFactory = $factory;
+    public function __construct(
+        FrontendUserRepository $userRepository,
+        FrontendUserGroupRepository $userGroupRepository,
+        CredentialsGenerator $credentialsGenerator,
+        UserValidator $userValidator,
+        CaptchaValidator $captchaValidator,
+        CaptchaFactory $captchaFactory
+    ) {
+        $this->userRepository = $userRepository;
+        $this->userGroupRepository = $userGroupRepository;
+        $this->credentialsGenerator = $credentialsGenerator;
+        $this->userValidator = $userValidator;
+        $this->captchaValidator = $captchaValidator;
+        $this->captchaFactory = $captchaFactory;
     }
 
     /**
