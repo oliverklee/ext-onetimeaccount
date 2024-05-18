@@ -43,10 +43,8 @@ final class CredentialsGeneratorTest extends UnitTestCase
 
         GeneralUtility::addInstance(PasswordHashFactory::class, $passwordHashFactoryMock);
 
-        $this->subject = new CredentialsGenerator();
-
         $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
-        $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
+        $this->subject = new CredentialsGenerator($this->userRepositoryMock);
     }
 
     /**
