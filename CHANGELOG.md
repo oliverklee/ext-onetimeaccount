@@ -12,7 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
-- Switch to constructor injection (#864)
+- Switch to constructor injection (#864, #865)
 - Use PHP 7.4 language features and add native type declarations (#817)
 - Require `feuserextrafields` >= 6.2.0 (#805)
 

@@ -103,39 +103,33 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
 
         $this->setUpFakeFrontEnd();
 
+        $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
+        $this->userGroupRepositoryMock = $this->createMock(FrontendUserGroupRepository::class);
+        $this->credentialsGeneratorMock = $this->createMock(CredentialsGenerator::class);
+        $this->userValidatorMock = $this->createMock(UserValidator::class);
+        $this->captchaValidatorMock = $this->createMock(CaptchaValidator::class);
+        $this->captchaFactoryMock = $this->createMock(CaptchaFactory::class);
+
         // We need to create an accessible mock in order to be able to set the protected `view`.
         $this->subject = $this->getAccessibleMock(
             UserWithoutAutologinController::class,
-            ['redirect', 'forward', 'redirectToUri']
+            ['redirect', 'forward', 'redirectToUri'],
+            [
+                $this->userRepositoryMock,
+                $this->userGroupRepositoryMock,
+                $this->credentialsGeneratorMock,
+                $this->userValidatorMock,
+                $this->captchaValidatorMock,
+                $this->captchaFactoryMock,
+            ]
         );
 
-        $this->setUpAndInjectSharedDependencies();
-    }
-
-    private function setUpAndInjectSharedDependencies(): void
-    {
         $contextMock = $this->createMock(Context::class);
         $contextMock->method('getPropertyFromAspect')->with('date', 'iso')->willReturn(self::NOW);
         GeneralUtility::setSingletonInstance(Context::class, $contextMock);
 
         $this->viewMock = $this->createMock(TemplateView::class);
         $this->subject->_set('view', $this->viewMock);
-
-        $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
-        $this->subject->injectFrontendUserRepository($this->userRepositoryMock);
-
-        $this->userGroupRepositoryMock = $this->createMock(FrontendUserGroupRepository::class);
-        $this->subject->injectFrontendUserGroupRepository($this->userGroupRepositoryMock);
-
-        $this->credentialsGeneratorMock = $this->createMock(CredentialsGenerator::class);
-        $this->subject->injectCredentialsGenerator($this->credentialsGeneratorMock);
-
-        $this->userValidatorMock = $this->createMock(UserValidator::class);
-        $this->subject->injectUserValidator($this->userValidatorMock);
-        $this->captchaFactoryMock = $this->createMock(CaptchaFactory::class);
-        $this->subject->injectCaptchaFactory($this->captchaFactoryMock);
-        $this->captchaValidatorMock = $this->createMock(CaptchaValidator::class);
-        $this->subject->injectCaptchaValidator($this->captchaValidatorMock);
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
