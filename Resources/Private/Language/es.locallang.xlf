@@ -31,9 +31,9 @@
         <source>Your personal data</source>
         <target state="needs-translation">Your personal data</target>
       </trans-unit>
-      <trans-unit id="company" resname="company">
+      <trans-unit id="company" resname="company" approved="yes">
         <source>Company</source>
-        <target state="needs-translation">Company</target>
+        <target state="final">Empresa</target>
       </trans-unit>
       <trans-unit id="gender" resname="gender">
         <source>Gender</source>
