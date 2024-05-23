@@ -5,8 +5,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## x.y.z
 
-### Changed
-
 ### Added
 
 ### Deprecated
@@ -14,7 +12,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Switch to constructor injection (#864, #865)
 - Use PHP 7.4 language features and add native type declarations (#817)
-- Require `feuserextrafields` >= 6.2.0 (#805)
+- Require `feuserextrafields` >= 6.3.0 (#805, #873)
 
 ### Removed
 - Drop `AbstractUserController` (#833)
@@ -27,14 +25,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## 6.4.0
 
-### Changed
-- Allow installations with oelib 6.x (#771)
-- Shorten the label for the salutation (#744)
-
 ### Added
 - Set the last login date when creating a FE user record (#707)
 
 ### Changed
+- Allow installations with oelib 6.x (#771)
+- Shorten the label for the salutation (#744)
 - Unify the spelling of "email" (#761, #762)
 - Require higher TYPO3 Core bugfix versions (#713)
 
