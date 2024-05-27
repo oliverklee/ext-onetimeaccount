@@ -140,7 +140,7 @@ class UserWithoutAutologinController extends ActionController
     /**
      * Enriches the user with a username, a password, a full name, a PID and a group.
      *
-     * Also sets the last login date to now.
+     * Also sets the last login date to now, and saves the date the terms or privacy checkboxes were checked.
      */
     private function enrichUser(FrontendUser $user, ?int $userGroupUid): void
     {
@@ -150,9 +150,17 @@ class UserWithoutAutologinController extends ActionController
 
         $this->enrichWithPid($user);
         $this->enrichWithGroup($user, $userGroupUid);
-        $now = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'iso');
-        \assert(\is_string($now));
-        $user->setLastLogin(new \DateTime($now));
+        $nowAsString = GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'iso');
+        \assert(\is_string($nowAsString));
+        $now = new \DateTime($nowAsString);
+        $user->setLastLogin($now);
+
+        if ($user->hasTermsAcknowledged()) {
+            $user->setTermsDateOfAcceptance($now);
+        }
+        if ($user->getPrivacy()) {
+            $user->setPrivacyDateOfAcceptance($now);
+        }
     }
 
     private function generateFullNameForUser(FrontendUser $user): void

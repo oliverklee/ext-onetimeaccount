@@ -692,6 +692,66 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     /**
      * @test
      */
+    public function createActionForTermsNotAcknowledgedKeepsTermsDateOfAcceptanceUnchanged(): void
+    {
+        $user = new FrontendUser();
+        $user->setTermsAcknowledged(false);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+
+        $this->subject->createAction($user);
+
+        self::assertNull($user->getTermsDateOfAcceptance());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForTermsAcknowledgedTermsDateOfAcceptanceToNow(): void
+    {
+        $user = new FrontendUser();
+        $user->setTermsAcknowledged(true);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+
+        $this->subject->createAction($user);
+
+        $termsAcceptedDate = $user->getTermsDateOfAcceptance();
+        self::assertInstanceOf(\DateTime::class, $termsAcceptedDate);
+        self::assertEquals(new \DateTime(self::NOW), $termsAcceptedDate);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForPrivacyNotSetKeepsPrivacyDateOfAcceptanceUnchanged(): void
+    {
+        $user = new FrontendUser();
+        $user->setPrivacy(false);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+
+        $this->subject->createAction($user);
+
+        self::assertNull($user->getPrivacyDateOfAcceptance());
+    }
+
+    /**
+     * @test
+     */
+    public function createActionForPrivacySetPrivacyDateOfAcceptanceToNow(): void
+    {
+        $user = new FrontendUser();
+        $user->setPrivacy(true);
+        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+
+        $this->subject->createAction($user);
+
+        $privacyAcceptedDate = $user->getPrivacyDateOfAcceptance();
+        self::assertInstanceOf(\DateTime::class, $privacyAcceptedDate);
+        self::assertEquals(new \DateTime(self::NOW), $privacyAcceptedDate);
+    }
+
+    /**
+     * @test
+     */
     public function createActionForUserWithFullNameAndFirstNameAndLastNameKeepsFullNameUnchanged(): void
     {
         $fullName = 'Max Performance';

@@ -6,7 +6,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
-- Add a checkbox for the terms & conditions (#877)
+- Record the date of acceptance for the terms and privacy (#880)
+- Add a checkbox for the terms & conditions (#877, #879)
 
 ### Deprecated
 
