@@ -32,6 +32,7 @@ class FlexForms
         'status',
         'comments',
         'privacy',
+        'termsAcknowledged',
     ];
 
     /**
