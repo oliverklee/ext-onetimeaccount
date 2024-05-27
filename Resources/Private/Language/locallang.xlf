@@ -21,6 +21,9 @@
 			<trans-unit id="plugin.captcha" resname="plugin.captcha">
 				<source>Protect the form against spam with a CAPTCHA</source>
 			</trans-unit>
+			<trans-unit id="plugin.termsAndConditionsPage" resname="plugin.termsAndConditionsPage">
+				<source>Page with the terms &amp; conditions</source>
+			</trans-unit>
 			<trans-unit id="userDataLegend" resname="userDataLegend">
 				<source>Your personal data</source>
 			</trans-unit>
@@ -113,8 +116,11 @@
 			<trans-unit id="termsAcknowledged" resname="termsAcknowledged">
 				<source>Terms &amp; conditions</source>
 			</trans-unit>
-			<trans-unit id="termsAcknowledged.long" resname="termsAcknowledged.long">
-				<source>I consent to the terms and conditions.</source>
+			<trans-unit id="termsAcknowledgedLinkTitle" resname="termsAcknowledgedLinkTitle">
+				<source>terms &amp; conditions</source>
+			</trans-unit>
+			<trans-unit id="consentToTermsAndConditions" resname="consentToTermsAndConditions">
+				<source>I consent to the %1$s.</source>
 			</trans-unit>
 			<trans-unit id="privacy" resname="privacy">
 				<source>Privacy policy agreement</source>
