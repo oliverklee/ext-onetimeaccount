@@ -39,6 +39,7 @@ final class UserValidatorTest extends UnitTestCase
         'status',
         'comments',
         'privacy',
+        'termsAcknowledged',
     ];
 
     private UserValidator $subject;
@@ -67,6 +68,7 @@ final class UserValidatorTest extends UnitTestCase
         $user->setCompany('TYPO3 Community');
         $user->setZone('ABC');
         $user->setPrivacy(true);
+        $user->setTermsAcknowledged(true);
         $user->setFullSalutation('Yo Ben!');
         $user->setGender(FrontendUser::GENDER_MALE);
         $user->setStatus(FrontendUser::STATUS_STUDENT);

@@ -116,6 +116,9 @@ class UserValidator extends AbstractConfigurationDependentValidator implements S
             case 'privacy':
                 $result = $user->getPrivacy();
                 break;
+            case 'termsAcknowledged':
+                $result = $user->hasTermsAcknowledged();
+                break;
             case 'status':
                 $result = $user->getStatus() !== FrontendUser::STATUS_NONE;
                 break;
