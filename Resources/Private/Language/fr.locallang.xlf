@@ -27,6 +27,10 @@
         <source>Protect the form against spam with a CAPTCHA</source>
         <target state="needs-translation">Protect the form against spam with a CAPTCHA</target>
       </trans-unit>
+      <trans-unit id="plugin.termsAndConditionsPage" resname="plugin.termsAndConditionsPage">
+        <source>Page with the terms &amp; conditions</source>
+        <target state="needs-translation">Page with the terms &amp; conditions</target>
+      </trans-unit>
       <trans-unit id="userDataLegend" resname="userDataLegend">
         <source>Your personal data</source>
         <target state="needs-translation">Your personal data</target>
@@ -142,6 +146,18 @@
       <trans-unit id="comments" resname="comments" approved="yes">
         <source>Comments</source>
         <target state="final">Commentaires</target>
+      </trans-unit>
+      <trans-unit id="termsAcknowledged" resname="termsAcknowledged">
+        <source>Terms &amp; conditions</source>
+        <target state="needs-translation">Terms &amp; conditions</target>
+      </trans-unit>
+      <trans-unit id="termsAcknowledgedLinkTitle" resname="termsAcknowledgedLinkTitle">
+        <source>terms &amp; conditions</source>
+        <target state="needs-translation">terms &amp; conditions</target>
+      </trans-unit>
+      <trans-unit id="consentToTermsAndConditions" resname="consentToTermsAndConditions">
+        <source>I consent to the %1$s.</source>
+        <target state="needs-translation">I consent to the %1$s.</target>
       </trans-unit>
       <trans-unit id="privacy" resname="privacy" approved="yes">
         <source>Privacy policy agreement</source>
