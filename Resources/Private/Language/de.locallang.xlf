@@ -27,9 +27,9 @@
         <source>Protect the form against spam with a CAPTCHA</source>
         <target state="final">Das Formular mit einem Captcha gegen Spam schützen</target>
       </trans-unit>
-      <trans-unit id="plugin.termsAndConditionsPage" resname="plugin.termsAndConditionsPage">
+      <trans-unit id="plugin.termsAndConditionsPage" resname="plugin.termsAndConditionsPage" approved="yes">
         <source>Page with the terms &amp; conditions</source>
-        <target state="needs-translation">Page with the terms &amp; conditions</target>
+        <target state="final">Seite mit den AGB</target>
       </trans-unit>
       <trans-unit id="userDataLegend" resname="userDataLegend" approved="yes">
         <source>Your personal data</source>
@@ -147,17 +147,17 @@
         <source>Comments</source>
         <target state="final">Anmerkungen</target>
       </trans-unit>
-      <trans-unit id="termsAcknowledged" resname="termsAcknowledged">
+      <trans-unit id="termsAcknowledged" resname="termsAcknowledged" approved="yes">
         <source>Terms &amp; conditions</source>
-        <target state="needs-translation">Terms &amp; conditions</target>
+        <target state="final">Geschäftsbedingungen</target>
       </trans-unit>
-      <trans-unit id="termsAcknowledgedLinkTitle" resname="termsAcknowledgedLinkTitle">
+      <trans-unit id="termsAcknowledgedLinkTitle" resname="termsAcknowledgedLinkTitle" approved="yes">
         <source>terms &amp; conditions</source>
-        <target state="needs-translation">terms &amp; conditions</target>
+        <target state="final">Geschäftsbedingungen</target>
       </trans-unit>
-      <trans-unit id="consentToTermsAndConditions" resname="consentToTermsAndConditions">
+      <trans-unit id="consentToTermsAndConditions" resname="consentToTermsAndConditions" approved="yes">
         <source>I consent to the %1$s.</source>
-        <target state="needs-translation">I consent to the %1$s.</target>
+        <target state="final">Ich stimme den %1$s zu.</target>
       </trans-unit>
       <trans-unit id="privacy" resname="privacy" approved="yes">
         <source>Privacy policy agreement</source>
