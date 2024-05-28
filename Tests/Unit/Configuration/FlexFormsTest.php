@@ -52,6 +52,7 @@ final class FlexFormsTest extends UnitTestCase
             'comments' => ['comments'],
             'privacy' => ['privacy'],
             'termsAcknowledged' => ['termsAcknowledged'],
+            'vatIn' => ['vatIn'],
         ];
     }
 

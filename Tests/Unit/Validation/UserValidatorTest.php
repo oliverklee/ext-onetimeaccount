@@ -40,6 +40,7 @@ final class UserValidatorTest extends UnitTestCase
         'comments',
         'privacy',
         'termsAcknowledged',
+        'vatIn',
     ];
 
     private UserValidator $subject;
@@ -74,6 +75,7 @@ final class UserValidatorTest extends UnitTestCase
         $user->setStatus(FrontendUser::STATUS_STUDENT);
         $user->setComments('Wonderful!');
         $user->setDateOfBirth(new \DateTime('now'));
+        $user->setVatIn('DE123456789');
 
         return $user;
     }

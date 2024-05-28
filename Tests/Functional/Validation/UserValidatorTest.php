@@ -40,6 +40,7 @@ final class UserValidatorTest extends FunctionalTestCase
         'comments',
         'privacy',
         'termsAcknowledged',
+        'vatIn',
     ];
 
     protected array $testExtensionsToLoad = [

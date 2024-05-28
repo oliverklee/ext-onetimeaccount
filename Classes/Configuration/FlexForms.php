@@ -30,6 +30,7 @@ class FlexForms
         'www',
         'dateOfBirth',
         'status',
+        'vatIn',
         'comments',
         'privacy',
         'termsAcknowledged',
