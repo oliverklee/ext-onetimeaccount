@@ -30,6 +30,9 @@
 			<trans-unit id="company" resname="company">
 				<source>Company</source>
 			</trans-unit>
+			<trans-unit id="vatIn" resname="vatIn">
+				<source>VAT identification number</source>
+			</trans-unit>
 			<trans-unit id="gender" resname="gender">
 				<source>Gender</source>
 			</trans-unit>
