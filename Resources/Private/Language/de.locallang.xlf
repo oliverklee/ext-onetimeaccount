@@ -39,9 +39,9 @@
         <source>Company</source>
         <target state="final">Firma</target>
       </trans-unit>
-      <trans-unit id="vatIn" resname="vatIn">
+      <trans-unit id="vatIn" resname="vatIn" approved="yes">
         <source>VAT identification number</source>
-        <target state="needs-translation">VAT identification number</target>
+        <target state="final">USt-IdNr.</target>
       </trans-unit>
       <trans-unit id="gender" resname="gender" approved="yes">
         <source>Gender</source>
