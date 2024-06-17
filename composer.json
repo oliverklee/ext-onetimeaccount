@@ -32,7 +32,7 @@
 		"typo3fluid/fluid": "^2.6.10"
 	},
 	"require-dev": {
-		"ergebnis/composer-normalize": "^2.42.0",
+		"ergebnis/composer-normalize": "^2.43.0",
 		"friendsofphp/php-cs-fixer": "^3.58.1",
 		"helmich/typo3-typoscript-lint": "^3.1.1",
 		"php-coveralls/php-coveralls": "^2.7.0",
