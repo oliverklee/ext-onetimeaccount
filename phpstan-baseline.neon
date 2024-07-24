@@ -6,6 +6,11 @@ parameters:
 			path: Classes/Configuration/FlexForms.php
 
 		-
+			message: "#^Binary operation \"\\+\" between mixed and 300 results in an error\\.$#"
+			count: 1
+			path: Classes/Service/CaptchaFactory.php
+
+		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 3
 			path: Tests/Functional/Validation/CaptchaValidatorTest.php
