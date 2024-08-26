@@ -110,7 +110,7 @@ final class TestingQueryResult implements QueryResultInterface
     }
 
     /**
-     * @return array<int, FrontendUserGroup>
+     * @return list<FrontendUserGroup>
      */
     public function toArray(): array
     {

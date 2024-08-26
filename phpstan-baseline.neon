@@ -16,11 +16,6 @@ parameters:
 			path: Tests/Functional/Validation/CaptchaValidatorTest.php
 
 		-
-			message: "#^Return type \\(array\\<int, OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\) of method OliverKlee\\\\Onetimeaccount\\\\Tests\\\\Unit\\\\Controller\\\\Fixtures\\\\TestingQueryResult\\:\\:toArray\\(\\) should be covariant with return type \\(list\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\) of method TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\:\\:toArray\\(\\)$#"
-			count: 1
-			path: Tests/Unit/Controller/Fixtures/TestingQueryResult.php
-
-		-
 			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
 			count: 2
 			path: Tests/Unit/Service/CaptchaFactoryTest.php
