@@ -6,6 +6,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## x.y.z
 
 ### Added
+
 - Add a field for the VAT IN (#881)
 - Record the date of acceptance for the terms and privacy (#880)
 - Add a checkbox for the terms & conditions (#877, #879)
@@ -13,35 +14,42 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 
 ### Changed
+
 - Require TYPO3 >= 11.5.37 (#949)
 - Switch to constructor injection (#864, #865)
 - Use PHP 7.4 language features and add native type declarations (#817)
 - Require `feuserextrafields` >= 6.3.0 (#805, #873)
 
 ### Removed
+
 - Drop `AbstractUserController` (#833)
 - Drop the plugin with autologin (#827)
 - Drop support for TYPO3 10LTS (#797)
 - Drop support for PHP 7.2/7.3 (#796)
 
 ### Fixed
+
 - Drop obsolete entries from the `ext_emconf.php` (#860)
 
 ## 6.4.0
 
 ### Added
+
 - Set the last login date when creating a FE user record (#707)
 
 ### Changed
+
 - Allow installations with oelib 6.x (#771)
 - Shorten the label for the salutation (#744)
 - Unify the spelling of "email" (#761, #762)
 - Require higher TYPO3 Core bugfix versions (#713)
 
 ### Removed
+
 - Delete localizations that are now on Crowdin (#764)
 
 ### Fixed
+
 - Improve accessibility of the form (#791)
 - Fix grammar in error message (#784)
 - Add `resname` to all language labels (#760)
@@ -50,57 +58,69 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 6.3.0
 
 ### Added
+
 - Add the Crowdin configuration (#692)
 - Add support for PHP 8.3 (#681)
 
 ### Changed
+
 - Allow feuserextrafields 6.x (#679)
 
 ### Fixed
+
 - Do not skip the Extbase property validations (#704)
 - Drop obsolete option from the plugin registration (#703)
 
 ## 6.2.1
 
 ### Fixed
+
 - Do not inject the `PasswordHashFactory` (#633)
 - Mark all injected classes as singletons (#631)
 
 ## 6.2.0
 
 ### Added
+
 - Add a CAPTCHA (#570)
 - Add "diverse" as a gender option (#566)
 
 ## 6.1.2
 
 ### Deprecated
+
 - Deprecate the plugin with autologin (#559)
 
 ### Changed
+
 - Improve the wording in a flexforms label (#562)
 - Switch the user validator to recognize `DateTimeInterface` (#560)
 - Require feuserextrafields >= 5.3.0 (#556)
 - Require oelib >= 5.1.0 (#555)
 
 ### Removed
+
 - Make the flexforms more compact by removing the suggest wizards (#561)
 
 ### Fixed
+
 - Use proper XML namespaces for the custom view helper in the Fluid templates
   (#564)
 
 ## 6.1.1
 
 ### Changed
+
 - Bump the dependencies (#551)
 - Make the abstract classes `@internal` (#538)
 - Switch the coverage on CI from Xdebug to PCOV (#501)
 
 ### Removed
+
 - Stop using Prophecy (#519, #520, #521, #522)
 
 ### Fixed
+
 - Drop the 9TLS-only plugin element registration (#550)
 - Enable caching for PHP-CS-Fixer (#536)
 - Improve type safety (#508)
@@ -108,32 +128,40 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 6.1.0
 
 ### Added
+
 - Add support for PHP 8.2 (#489)
 - Add support for TYPO3 11LTS (#481, #485, #486, #490)
 
 ### Changed
+
 - Require oelib >= 5.0 (#477)
 
 ### Removed
+
 - Make displaying the group selector non-configurable (#479)
 - Drop the elaborate validation for the user group (#478)
 
 ### Fixed
+
 - Add more native types to a testing support class (#482)
 
 ## 6.0.0
 
 ### Added
+
 - Add a selector for the user group (#460, #467, #468, #471)
 - Add a Rector configuration file (#454)
 
 ### Changed
+
 - Require feuserextrafields >= 5.2.1 (#435, #446, #453, #456)
 
 ### Removed
+
 - Drop support for TYPO3 9LTS (#438)
 
 ### Fixed
+
 - Stop using the deprecated `ObjectManager` in tests (#444)
 - Stop using the deprecated `TYPO3_MODE` constant (#443)
 - Fix the plugin registration for TYPO3 10LTS/11LTS (#440)
@@ -141,61 +169,76 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 5.1.1
 
 ### Changed
+
 - Allow oelib 5.x (#430)
 - Require oelib >= 4.3.0 (#429)
 
 ## 5.1.0
 
 ### Added
+
 - Add an automatic configuration check (#408)
 - Add more localized labels (#396)
 - Add maxlength attributes to the HTML to match the fields in the DB (#395)
-- Add a plugin that writes the user ID into the session (without autologin) (#390)
+- Add a plugin that writes the user ID into the session (without autologin)
+  (#390)
 
 ### Changed
+
 - Add a dependency on oelib (#405, #406, #407)
-- !!! Move the localized validation error messages from the partial to the validator (#404)
+- !!! Move the localized validation error messages from the partial to the
+  validator (#404)
 - Allow installations with feuserextrafields 5 (#371)
 - Require feuserextrafields >= 3.2.0 (#345)
 
 ### Fixed
+
 - Allow XCLASSing the FE user class (#413)
 - Bump the minimal 10.4 Extbase requirement (#366)
 
 ## 5.0.0
 
 ### Added
+
 - Complete rewrite with added support for TYPO3 9LTS and 10LTS
 
 ### Removed
+
 - Drop support for TYPO3 8TLS
 
 ## 4.2.2
 
 ### Added
+
 - Add an `.editorconfig` to match the Core (#183)
 
 ### Changed
+
 - Update the dependencies (#193)
 - Require oelib >= 3.6.3 (#182, #189)
 
 ### Fixed
+
 - Allow the development Composer plugins (#192)
 
 ## 4.2.1
 
 ### Changed
+
 - Require oelib >= 3.2.0 (#180)
 
 ### Fixed
+
 - Relax the dependencies to allow non-Composer installations again (#181)
 
 ## 4.2.0
 
 ### Added
+
 - Add support for PHP 7.3 and 7.4 (#177)
 
 ### Changed
+
 - Update the dependencies (#175, #176)
 - Switch from Travis CI to GitHub Actions (#173, #174)
 - Switch the default branch from master to main (#172)
@@ -203,23 +246,28 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 4.1.1
 
 ### Fixed
+
 - Add `.0` version suffixes to PHP version requirements (#161)
 - Update the "for" attribute of labels (#156, #160)
-- Load the flexforms language labels in the default language as well (#158, #159)
+- Load the flexforms language labels in the default language as well
+  (#158, #159)
 - Always use Composer-installed versions of the dev tools (#157)
 
 ## 4.1.0
 
 ### Added
+
 - Add a privacy policy checkbox (#152)
 
 ### Changed
+
 - Change the HTML template from XHTML to HTML5 (#151)
 - Stop using the TYPO3 console for the CI build (#146)
 - Upgrade PHPUnit and nimut/testing-framework (#143)
 - Improve the code autoformatting (#139)
 
 ### Fixed
+
 - Fix the layout of checkboxes in the FE (#150)
 - Fix a typo in the documentation (#149)
 - Keep the order of the FE user groups (#147)
@@ -230,25 +278,30 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 4.0.1
 
 ### Added
+
 - Add php-cs-fixer to the CI (#131, #132)
 
 ### Changed
+
 - Sort the entries in the `.gitignore` and `.gitattributes` (#134)
 - Require oelib >= 3.0.3 (#133)
 - Use PHP 7.2 for the TER release script (#130)
 
 ### Fixed
+
 - Update the locations of the mkforms JavaScript includes (#135)
 
 ## 4.0.0
 
 ### Added
+
 - Add support for TYPO3 9LTS (#123)
 - Add code sniffing and fixing (#120)
 - Build with PHP 7.2 on Travis CI (#115)
 - Display the name of the current functional test (#97, #98)
 
 ### Changed
+
 - Use the new configuration check (#122, #79)
 - Bump the `static_info_tables` dependency (#121)
 - Require oelib 3.0 (#119)
@@ -258,12 +311,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update the testing libraries (#93, #96)
 
 ### Removed
+
 - Skip the logging in TYPO3 >= 9 (#127)
 - Drop unneeded Travis CI configuration settings (#99, #100, #101)
 - Drop support for PHP 5 (#92, #114)
 - Drop support for TYPO3 7.6 (#91, #104, #113)
 
 ### Fixed
+
 - Avoid using deprecated Core functionality in TYPO3 9LTS (#128)
 - Use the new mock class name (#126)
 - Move the plugin registration to `Configuration/TCA/Overrides/` (#125)
@@ -275,6 +330,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 3.0.2
 
 ### Changed
+
 - Simplify the dependency versions in composer.json (#87)
 - Use the nimut TF for creating test records (#83)
 - Update the oelib dependency (#80)
@@ -288,9 +344,11 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Streamline ext_emconf.php (#58)
 
 ### Removed
+
 - Drop the TYPO3 package repository from composer.json (#72)
 
 ### Fixed
+
 - Show the name label if first and last name are visible (#64, #89)
 - Drop surplus trailing slashes from Composer scripts (#77, #88)
 - Add the transitive dependencies to composer.json (#85)
@@ -307,12 +365,15 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 3.0.1
 
 ### Added
+
 - Auto-release to the TER (#48)
 
 ### Changed
+
 - Move the old tests to Tests/LegacyUnit/ (#55)
 
 ### Fixed
+
 - Drop an obsolete "replace" entry from composer.json (#68)
 - Don't HTML-encode the data from the FE editor on saving (#56)
 - Use the current composer names of static_info_tables (#54)
@@ -324,10 +385,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 3.0.0
 
 ### Added
+
 - Add support for TYPO3 8.7 (#41)
 - Add support for PHP 7.1 and 7.2 (#36)
 
 ### Changed
+
 - Also allow oelib 3.x (#43)
 - Switch to the SVG icon in the BE for the content element (#38)
 - Require oelib >= 2.0.0 (#35)
@@ -335,12 +398,14 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Update to PHPUnit 5.3 (#31)
 
 ### Removed
+
 - Remove the class alias map (#38)
 - Drop ext_autoload.php (#34)
 - Require TYPO3 7.6 and drop support for TYPO3 6.2 (#32)
 - Drop support for PHP 5.5 (#29)
 
 ### Fixed
+
 - Update the content element wizard for TYPO3 8.7 (#42)
 - Fix the redirect_url on TravisCI on TYPO3 8.7 (#40)
 - Make the PHPUnit test runner configurable (#37)
@@ -348,22 +413,26 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 ## 2.1.0
 
 ### Added
+
 - Run the unit tests on TravisCI (#12)
 - Add an SVG extension icon (#15)
 - Composer script for PHP linting (#5)
 - Add TravisCI builds
 
 ### Changed
+
 - Require oelib ^1.4.0 (#21)
 - Require mkforms >= 3.0.0 (#4)
 - Require static_info_tables >= 6.3.7 (#2)
 - Move the extension to GitHub
 
 ### Removed
+
 - Drop the incorrect TYPO3 Core license headers (#20)
 - Remove the example extension (#6)
 
 ### Fixed
+
 - Fix PhpStorm code inspection warnings (#27)
 - Use a public method instead of the internal _getThisFormData (#25)
 - Update use of deprecated rn_base configuration class (#24)
@@ -371,7 +440,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Provide cli_dispatch.phpsh for 8.7 on Travis (#18)
 - Require typo3/minimal for installing TYPO3 (#17)
 - Require mkforms >= 3.0.14 (#14)
-- Fix autoloading when running the tests in the BE module in non-composer mode (#11)
+- Fix autoloading when running the tests in the BE module in non-composer mode
+  (#11)
 - Use the correct package name for mkforms in composer.json
 - Allow mkforms 3.x
 
