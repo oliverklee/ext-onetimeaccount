@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Require Fluid >= 2.7.4 (#962)
 - Require TYPO3 >= 11.5.37 (#949)
 - Switch to constructor injection (#864, #865)
 - Use PHP 7.4 language features and add native type declarations (#817)
