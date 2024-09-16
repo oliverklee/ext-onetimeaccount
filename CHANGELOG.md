@@ -24,7 +24,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 - Drop `AbstractUserController` (#833)
 - Drop the plugin with autologin (#827)
-- Drop support for TYPO3 10LTS (#797)
+- Drop support for TYPO3 10LTS (#797, #958)
 - Drop support for PHP 7.2/7.3 (#796)
 
 ### Fixed
