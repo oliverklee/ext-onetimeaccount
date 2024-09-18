@@ -22,13 +22,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
 use TYPO3\CMS\Extbase\Mvc\Controller\Arguments;
+use TYPO3\CMS\Extbase\Mvc\Request;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
 use TYPO3\CMS\Extbase\Validation\Validator\GenericObjectValidator;
 use TYPO3\CMS\Fluid\View\TemplateView;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\TestingFramework\Core\AccessibleObjectInterface;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -101,8 +101,6 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         parent::setUp();
         $this->setDummyRequestData();
 
-        $this->setUpFakeFrontEnd();
-
         $this->userRepositoryMock = $this->createMock(FrontendUserRepository::class);
         $this->userGroupRepositoryMock = $this->createMock(FrontendUserGroupRepository::class);
         $this->credentialsGeneratorMock = $this->createMock(CredentialsGenerator::class);
@@ -133,12 +131,17 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
 
         $this->controllerArguments = new Arguments();
         $this->subject->_set('arguments', $this->controllerArguments);
+
+        $this->userMock = $this->createMock(FrontendUserAuthentication::class);
+        $requestMock = $this->createMock(Request::class);
+        $requestMock->method('getAttribute')->with('frontend.user')->willReturn($this->userMock);
+        $this->subject->_set('request', $requestMock);
     }
 
     protected function tearDown(): void
     {
         // @phpstan-ignore-next-line We know that the necessary array keys exist.
-        unset($GLOBALS['TSFE'], $GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class]);
+        unset($GLOBALS['TYPO3_CONF_VARS']['SYS']['Objects'][FrontendUser::class]);
         $this->resetRequestData();
         parent::tearDown();
     }
@@ -155,15 +158,6 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $_GET = [];
         $_POST = [];
         GeneralUtility::flushInternalRuntimeCaches();
-    }
-
-    private function setUpFakeFrontEnd(): void
-    {
-        $this->userMock = $this->createMock(FrontendUserAuthentication::class);
-
-        $frontEndController = $this->createMock(TypoScriptFrontendController::class);
-        $frontEndController->fe_user = $this->userMock;
-        $GLOBALS['TSFE'] = $frontEndController;
     }
 
     /**
