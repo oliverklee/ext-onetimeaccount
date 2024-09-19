@@ -18,7 +18,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * Plugin for creating a front-end user and storing its UID in a FE session. This plugin has no autologin, though.
@@ -211,9 +210,9 @@ class UserWithoutAutologinController extends ActionController
 
     private function getFrontendUserAuthentication(): FrontendUserAuthentication
     {
-        $controller = $GLOBALS['TSFE'] ?? null;
-        \assert($controller instanceof TypoScriptFrontendController);
+        $userAuthentication = $this->request->getAttribute('frontend.user');
+        \assert($userAuthentication instanceof FrontendUserAuthentication);
 
-        return $controller->fe_user;
+        return $userAuthentication;
     }
 }
