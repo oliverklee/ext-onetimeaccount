@@ -111,7 +111,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         // We need to create an accessible mock in order to be able to set the protected `view`.
         $this->subject = $this->getAccessibleMock(
             UserWithoutAutologinController::class,
-            ['redirect', 'forward', 'redirectToUri'],
+            ['redirect', 'redirectToUri'],
             [
                 $this->userRepositoryMock,
                 $this->userGroupRepositoryMock,
