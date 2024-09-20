@@ -12,7 +12,7 @@ $EM_CONF[$_EXTKEY] = [
             'extbase' => '11.5.37-12.4.99',
             'fluid' => '11.5.37-12.4.99',
             'feuserextrafields' => '6.3.0-6.99.99',
-            'oelib' => '6.0.1-6.99.99',
+            'oelib' => '6.0.0-6.99.99',
         ],
         'conflicts' => [
         ],

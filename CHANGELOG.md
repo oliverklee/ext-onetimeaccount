@@ -13,7 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- Require oelib >= 6.0 (#985)
+- Require oelib >= 6.0 (#985, #1000)
 
 ### Removed
 
