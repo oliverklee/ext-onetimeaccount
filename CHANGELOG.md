@@ -32,6 +32,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Use short class names for Extbase annotations (#978)
 - Avoid using the deprecated `$GLOBALS['TSFE']->fe_user` (#968)
 - Drop obsolete entries from the `ext_emconf.php` (#860)
 

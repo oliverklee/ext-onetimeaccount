@@ -15,6 +15,7 @@ use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Validation\Validator\ConjunctionValidator;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -55,7 +56,7 @@ class UserWithoutAutologinController extends ActionController
     /**
      * Creates the user creation form (which initially is empty).
      *
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("user")
+     * @IgnoreValidation("user")
      */
     public function newAction(?FrontendUser $user = null, ?int $userGroup = null): void
     {
