@@ -26,12 +26,12 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @var FrontendUserRepository&MockObject
      */
-    private MockObject $userRepositoryMock;
+    private FrontendUserRepository $userRepositoryMock;
 
     /**
      * @var PasswordHashInterface&MockObject
      */
-    private MockObject $passwordHasherMock;
+    private PasswordHashInterface $passwordHasherMock;
 
     protected function setUp(): void
     {

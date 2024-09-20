@@ -52,49 +52,49 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     /**
      * @var UserWithoutAutologinController&MockObject&AccessibleObjectInterface
      */
-    private MockObject $subject;
+    private UserWithoutAutologinController $subject;
 
     /**
      * @var TemplateView&MockObject
      */
-    private MockObject $viewMock;
+    private TemplateView $viewMock;
 
     /**
      * @var FrontendUserRepository&MockObject
      */
-    private MockObject $userRepositoryMock;
+    private FrontendUserRepository $userRepositoryMock;
 
     /**
      * @var FrontendUserGroupRepository&MockObject
      */
-    private MockObject $userGroupRepositoryMock;
+    private FrontendUserGroupRepository $userGroupRepositoryMock;
 
     /**
      * @var CredentialsGenerator&MockObject
      */
-    private MockObject $credentialsGeneratorMock;
+    private CredentialsGenerator $credentialsGeneratorMock;
 
     /**
      * @var UserValidator&MockObject
      */
-    private MockObject $userValidatorMock;
+    private UserValidator $userValidatorMock;
 
     /**
      * @var CaptchaFactory&MockObject
      */
-    private MockObject $captchaFactoryMock;
+    private CaptchaFactory $captchaFactoryMock;
 
     /**
      * @var CaptchaValidator&MockObject
      */
-    private MockObject $captchaValidatorMock;
+    private CaptchaValidator $captchaValidatorMock;
 
     private Arguments $controllerArguments;
 
     /**
      * @var FrontendUserAuthentication&MockObject
      */
-    private MockObject $userMock;
+    private FrontendUserAuthentication $userMock;
 
     protected function setUp(): void
     {
