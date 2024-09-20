@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Add support for TYPO3 12LTS (#986, #989)
+
 ### Deprecated
 
 ### Changed
