@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Rename some methods: `generate*` -> `generateAndSet` (#976)
 - Mark some classes and methods as `@internal` (#974)
 - Require Fluid >= 2.7.4 (#962)
 - Require TYPO3 >= 11.5.37 (#949)

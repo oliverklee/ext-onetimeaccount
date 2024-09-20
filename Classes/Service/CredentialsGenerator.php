@@ -35,16 +35,16 @@ class CredentialsGenerator implements SingletonInterface
      * Generates a unique username for the given user (either from the email address possibly with a number attached,
      * or a 32-character random hex username if the email address is empty).
      */
-    public function generateUsernameForUser(FrontendUser $user): void
+    public function generateAndSetUsernameForUser(FrontendUser $user): void
     {
         if ($user->getUsername() !== '') {
             return;
         }
 
         if ($user->getEmail() !== '') {
-            $this->generateUsernameFromEmail($user);
+            $this->generateAndSetUsernameFromEmail($user);
         } else {
-            $this->generateRandomHexUsername($user);
+            $this->generateAndSetRandomHexUsername($user);
         }
     }
 
@@ -52,7 +52,7 @@ class CredentialsGenerator implements SingletonInterface
      * Generates a random long password, sets the password hash for the user, and returns the plain-text password
      * (or `null` if the user already has a password).
      */
-    public function generatePasswordForUser(FrontendUser $user): ?string
+    public function generateAndSetPasswordForUser(FrontendUser $user): ?string
     {
         if ($user->getPassword() !== '') {
             return null;
@@ -65,7 +65,7 @@ class CredentialsGenerator implements SingletonInterface
         return $password;
     }
 
-    private function generateUsernameFromEmail(FrontendUser $user): void
+    private function generateAndSetUsernameFromEmail(FrontendUser $user): void
     {
         $email = \trim($user->getEmail());
         $userByEmail = $this->userRepository->findOneByUsername($email);
@@ -84,7 +84,7 @@ class CredentialsGenerator implements SingletonInterface
         $user->setUsername($username);
     }
 
-    private function generateRandomHexUsername(FrontendUser $user): void
+    private function generateAndSetRandomHexUsername(FrontendUser $user): void
     {
         $username = \bin2hex(\random_bytes(16));
         $user->setUsername($username);
