@@ -18,6 +18,7 @@ use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
 use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Controller\Argument as ExtbaseArgument;
@@ -111,7 +112,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         // We need to create an accessible mock in order to be able to set the protected `view`.
         $this->subject = $this->getAccessibleMock(
             UserWithoutAutologinController::class,
-            ['redirect', 'redirectToUri'],
+            ['redirect', 'redirectToUri', 'htmlResponse'],
             [
                 $this->userRepositoryMock,
                 $this->userGroupRepositoryMock,
@@ -136,6 +137,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $requestMock = $this->createMock(Request::class);
         $requestMock->method('getAttribute')->with('frontend.user')->willReturn($this->userMock);
         $this->subject->_set('request', $requestMock);
+
+        $responseStub = $this->createStub(HtmlResponse::class);
+        $this->subject->method('htmlResponse')->willReturn($responseStub);
     }
 
     protected function tearDown(): void
@@ -166,6 +170,16 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function isActionController(): void
     {
         self::assertInstanceOf(ActionController::class, $this->subject);
+    }
+
+    /**
+     * @test
+     */
+    public function newActionReturnsHtmlResponse(): void
+    {
+        $result = $this->subject->newAction();
+
+        self::assertInstanceOf(HtmlResponse::class, $result);
     }
 
     /**
@@ -456,6 +470,30 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->captchaValidatorMock->expects(self::never())->method('setSettings');
 
         $this->subject->initializeCreateAction();
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithUserReturnsHtmlResponse(): void
+    {
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
+
+        $result = $this->subject->createAction(new FrontendUser());
+
+        self::assertInstanceOf(HtmlResponse::class, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function createActionWithoutUserReturnsHtmlResponse(): void
+    {
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
+
+        $result = $this->subject->createAction();
+
+        self::assertInstanceOf(HtmlResponse::class, $result);
     }
 
     /**

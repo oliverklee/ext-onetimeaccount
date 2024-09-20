@@ -13,6 +13,7 @@ use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use OliverKlee\Onetimeaccount\Service\CredentialsGenerator;
 use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use OliverKlee\Onetimeaccount\Validation\UserValidator;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
@@ -58,7 +59,7 @@ class UserWithoutAutologinController extends ActionController
      *
      * @IgnoreValidation("user")
      */
-    public function newAction(?FrontendUser $user = null, ?int $userGroup = null): void
+    public function newAction(?FrontendUser $user = null, ?int $userGroup = null): ResponseInterface
     {
         $newUser = ($user instanceof FrontendUser) ? $user : GeneralUtility::makeInstance(FrontendUser::class);
         $this->view->assign('user', $newUser);
@@ -81,6 +82,8 @@ class UserWithoutAutologinController extends ActionController
         if (\is_string($redirectUrl) && $redirectUrl !== '') {
             $this->view->assign('redirectUrl', $redirectUrl);
         }
+
+        return $this->htmlResponse();
     }
 
     public function initializeCreateAction(): void
@@ -115,10 +118,13 @@ class UserWithoutAutologinController extends ActionController
      *
      * @throws \RuntimeException
      */
-    public function createAction(?FrontendUser $user = null, ?int $userGroup = null, ?Captcha $captcha = null): void
-    {
+    public function createAction(
+        ?FrontendUser $user = null,
+        ?int $userGroup = null,
+        ?Captcha $captcha = null
+    ): ResponseInterface {
         if (!$user instanceof FrontendUser) {
-            return;
+            return $this->htmlResponse();
         }
 
         $this->enrichUser($user, $userGroup);
@@ -135,6 +141,8 @@ class UserWithoutAutologinController extends ActionController
                 $this->redirectToUri($redirectUrl);
             }
         }
+
+        return $this->htmlResponse();
     }
 
     /**
