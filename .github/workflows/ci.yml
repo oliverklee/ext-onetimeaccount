@@ -69,6 +69,7 @@ jobs:
         command:
           - "composer:normalize"
           - "php:cs-fixer"
+          - "php:rector"
           - "php:sniff"
           - "php:stan"
           - "ts:lint"
