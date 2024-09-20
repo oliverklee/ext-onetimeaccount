@@ -29,6 +29,7 @@ final class CaptchaValidatorTest extends FunctionalTestCase
     protected array $coreExtensionsToLoad = ['extbase', 'fluid'];
 
     private CaptchaValidator $subject;
+
     private CaptchaFactory $captchaFactory;
 
     protected function setUp(): void

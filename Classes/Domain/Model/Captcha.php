@@ -12,7 +12,9 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Captcha extends AbstractEntity
 {
     protected ?\DateTime $validUntil = null;
+
     protected string $correctAnswer = '';
+
     protected string $decoyAnswer = '';
 
     protected string $givenAnswer = '';
