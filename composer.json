@@ -157,7 +157,7 @@
 		"fix:php:cs": "php-cs-fixer fix --config .php-cs-fixer.php",
 		"fix:php:rector": "rector",
 		"fix:php:sniff": "phpcbf Classes Configuration Tests",
-		"phpstan:baseline": "phpstan  --generate-baseline=phpstan-baseline.neon",
+		"phpstan:baseline": "phpstan  --generate-baseline=phpstan-baseline.neon --allow-empty-baseline",
 		"prepare-release": [
 			"rm -rf .Build",
 			"rm -rf .github",
