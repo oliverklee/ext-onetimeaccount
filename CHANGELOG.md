@@ -7,11 +7,21 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+### Deprecated
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 7.0.0: Drop support for TYPO3 10LTS and PHP < 7.4
+
+### Added
+
 - Add a field for the VAT IN (#881)
 - Record the date of acceptance for the terms and privacy (#880)
 - Add a checkbox for the terms & conditions (#877, #879)
-
-### Deprecated
 
 ### Changed
 
