@@ -97,6 +97,21 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     private FrontendUserAuthentication $userMock;
 
+    /**
+     * @var Request&MockObject
+     */
+    private Request $requestMock;
+
+    /**
+     * @var array<string, string|null>
+     */
+    private array $getParameters = [];
+
+    /**
+     * @var array<string, string|null>
+     */
+    private array $postParameters = [];
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -134,9 +149,15 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $this->subject->_set('arguments', $this->controllerArguments);
 
         $this->userMock = $this->createMock(FrontendUserAuthentication::class);
-        $requestMock = $this->createMock(Request::class);
-        $requestMock->method('getAttribute')->with('frontend.user')->willReturn($this->userMock);
-        $this->subject->_set('request', $requestMock);
+        $this->requestMock = $this->createMock(Request::class);
+        $this->requestMock->method('getAttribute')->with('frontend.user')->willReturn($this->userMock);
+        $this->requestMock->method('getParsedBody')->willReturnCallback(
+            fn (): array => $this->postParameters
+        );
+        $this->requestMock->method('getQueryParams')->willReturnCallback(
+            fn (): array => $this->getParameters
+        );
+        $this->subject->_set('request', $this->requestMock);
 
         $responseStub = $this->createStub(HtmlResponse::class);
         $this->subject->method('htmlResponse')->willReturn($responseStub);
@@ -159,8 +180,6 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
 
     private function resetRequestData(): void
     {
-        $_GET = [];
-        $_POST = [];
         GeneralUtility::flushInternalRuntimeCaches();
     }
 
@@ -335,7 +354,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function newActionWithEmptyRedirectUrlInGetNotPassesRedirectUrlToView(?string $redirectUrl): void
     {
-        $_GET['redirect_url'] = $redirectUrl;
+        $this->getParameters['redirect_url'] = $redirectUrl;
 
         $this->viewMock->expects(self::exactly(2))->method('assign')->withConsecutive(
             ['user', self::anything()],
@@ -352,7 +371,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function newActionWithEmptyRedirectUrlInPostNotPassesRedirectUrlToView(?string $redirectUrl): void
     {
-        $_POST['redirect_url'] = $redirectUrl;
+        $this->postParameters['redirect_url'] = $redirectUrl;
 
         $this->viewMock->expects(self::exactly(2))->method('assign')->withConsecutive(
             ['user', self::anything()],
@@ -368,7 +387,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function newActionWithRedirectUrlInSiteInGetPassesRedirectUrlToView(): void
     {
         $redirectUrl = 'https://example.com/';
-        $_GET['redirect_url'] = $redirectUrl;
+        $this->getParameters['redirect_url'] = $redirectUrl;
 
         $this->viewMock->expects(self::exactly(3))->method('assign')->withConsecutive(
             ['user', self::anything()],
@@ -385,7 +404,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function newActionWithRedirectUrlInSiteInPostPassesRedirectUrlToView(): void
     {
         $redirectUrl = 'https://example.com/';
-        $_POST['redirect_url'] = $redirectUrl;
+        $this->postParameters['redirect_url'] = $redirectUrl;
 
         $this->viewMock->expects(self::exactly(3))->method('assign')->withConsecutive(
             ['user', self::anything()],
@@ -998,7 +1017,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithUserWithEmptyRedirectUrlInPostNotRedirects(?string $redirectUrl): void
     {
-        $_POST['redirect_url'] = $redirectUrl;
+        $this->postParameters['redirect_url'] = $redirectUrl;
 
         $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
             ->with(self::anything())
@@ -1014,7 +1033,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionWithUserWithLocalRedirectUrlInPostRedirectsToRedirectUrl(): void
     {
         $redirectUrl = self::SITE_URL;
-        $_POST['redirect_url'] = $redirectUrl;
+        $this->postParameters['redirect_url'] = $redirectUrl;
 
         $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
             ->with(self::anything())
@@ -1029,7 +1048,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithUserWithExternalRedirectUrlNotRedirects(): void
     {
-        $_POST['redirect_url'] = 'https://www.oliverklee.de/';
+        $this->postParameters['redirect_url'] = 'https://www.oliverklee.de/';
 
         $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
             ->with(self::anything())
@@ -1044,7 +1063,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
      */
     public function createActionWithoutUserWithRedirectUrlInSiteNotRedirects(): void
     {
-        $_POST['redirect_url'] = self::SITE_URL;
+        $this->postParameters['redirect_url'] = self::SITE_URL;
 
         $this->subject->expects(self::never())->method('redirectToUri');
 
