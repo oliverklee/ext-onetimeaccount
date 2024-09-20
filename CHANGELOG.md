@@ -7,17 +7,23 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Add support for TYPO3 12LTS (#986, #989, #991, #992, #996, #997)
-
 ### Deprecated
 
 ### Changed
 
-- Require oelib >= 6.0 (#985, #1000)
-
 ### Removed
 
 ### Fixed
+
+## 7.1.0: Add support for TYPO3 12 LTS
+
+### Added
+
+- Add support for TYPO3 12LTS (#986, #989, #991, #992, #996, #997)
+
+### Changed
+
+- Require oelib >= 6.0 (#985, #1000)
 
 ## 7.0.0: Drop support for TYPO3 10LTS and PHP < 7.4
 
