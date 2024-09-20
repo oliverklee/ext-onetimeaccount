@@ -78,8 +78,8 @@ class UserWithoutAutologinController extends ActionController
             $this->view->assign('captcha', $this->captchaFactory->generateChallenge());
         }
 
-        $redirectUrl = GeneralUtility::_GP('redirect_url');
-        if (\is_string($redirectUrl) && $redirectUrl !== '') {
+        $redirectUrl = $this->getRedirectUrl();
+        if (\is_string($redirectUrl)) {
             $this->view->assign('redirectUrl', $redirectUrl);
         }
 
@@ -219,8 +219,8 @@ class UserWithoutAutologinController extends ActionController
 
     private function handleRedirect(): void
     {
-        $redirectUrl = GeneralUtility::_POST('redirect_url');
-        if (!\is_string($redirectUrl) || $redirectUrl === '') {
+        $redirectUrl = $this->getRedirectUrl();
+        if (!\is_string($redirectUrl)) {
             return;
         }
 
@@ -228,5 +228,19 @@ class UserWithoutAutologinController extends ActionController
         if ($sanitizedUrl !== '') {
             $this->redirectToUri($redirectUrl);
         }
+    }
+
+    /**
+     * @return non-empty-string|null
+     */
+    private function getRedirectUrl(): ?string
+    {
+        $parsedBody = $this->request->getParsedBody();
+        $redirectUrlFromParsedBody = \is_array($parsedBody) ? ($parsedBody['redirect_url'] ?? null) : null;
+        $queryParams = $this->request->getQueryParams();
+        $redirectUrlFromQueryParams = \is_array($queryParams) ? ($queryParams['redirect_url'] ?? null) : null;
+        $redirectUrl = $redirectUrlFromParsedBody ?? $redirectUrlFromQueryParams ?? null;
+
+        return (\is_string($redirectUrl) && $redirectUrl !== '') ? $redirectUrl : null;
     }
 }
