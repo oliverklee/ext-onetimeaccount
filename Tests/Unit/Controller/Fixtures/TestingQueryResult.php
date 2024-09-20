@@ -103,6 +103,18 @@ final class TestingQueryResult implements QueryResultInterface
         throw new \BadMethodCallException('Not implemented.', 1665661687);
     }
 
+    /**
+     * @param QueryInterface<FrontendUserGroup> $query
+     *
+     * @return never
+     *
+     * @throws \BadMethodCallException
+     */
+    public function setQuery(QueryInterface $query): void
+    {
+        throw new \BadMethodCallException('Not implemented.', 1665661687);
+    }
+
     public function getFirst(): FrontendUserGroup
     {
         $this->objectStorage->rewind();
