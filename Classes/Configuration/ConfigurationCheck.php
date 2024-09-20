@@ -8,6 +8,8 @@ use OliverKlee\Oelib\Configuration\AbstractConfigurationCheck;
 
 /**
  * Checks the plugin configuration for errors.
+ *
+ * @internal
  */
 class ConfigurationCheck extends AbstractConfigurationCheck
 {
