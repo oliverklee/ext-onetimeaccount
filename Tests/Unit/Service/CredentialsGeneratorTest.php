@@ -75,11 +75,11 @@ final class CredentialsGeneratorTest extends UnitTestCase
      *
      * @dataProvider userWithUsernameDataProvider
      */
-    public function generateUsernameForUserWithUsernameKeepsUsernameUnchanged(FrontendUser $user): void
+    public function generateAndSetUsernameForUserWithUsernameKeepsUsernameUnchanged(FrontendUser $user): void
     {
         $existingUsername = $user->getUsername();
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertSame($existingUsername, $user->getUsername());
     }
@@ -87,14 +87,14 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generateUsernameForUserWithUniqueEmailUsesEmailAsUsername(): void
+    public function generateAndSetUsernameForUserWithUniqueEmailUsesEmailAsUsername(): void
     {
         $email = 'unique@example.com';
         $user = new FrontendUser();
         $user->setEmail($email);
         $this->userRepositoryMock->method('findOneByUsername')->with($email)->willReturn(null);
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertSame($email, $user->getUsername());
     }
@@ -102,14 +102,14 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generateUsernameForUserWithUniqueEmailTrimsEmailAsUsername(): void
+    public function generateAndSetUsernameForUserWithUniqueEmailTrimsEmailAsUsername(): void
     {
         $email = 'unique@example.com';
         $user = new FrontendUser();
         $user->setEmail(' ' . $email . ' ');
         $this->userRepositoryMock->method('findOneByUsername')->with($email)->willReturn(null);
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertSame($email, $user->getUsername());
     }
@@ -117,7 +117,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generateUsernameForUserWithExistingEmailUsesEmailWithUniqueSuffixAsUsername(): void
+    public function generateAndSetUsernameForUserWithExistingEmailUsesEmailWithUniqueSuffixAsUsername(): void
     {
         $email = 'unique@example.com';
         $emailWithSuffix = $email . '_1';
@@ -128,7 +128,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
             [$emailWithSuffix, null],
         ]);
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertSame($emailWithSuffix, $user->getUsername());
     }
@@ -136,7 +136,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generateUsernameForUserWithExistingEmailWithSuffixUsesEmailWithNextUniqueSuffixAsUsername(): void
+    public function generateAndSetUsernameForUserWithExistingEmailWithSuffixUsesEmailWithNextSuffixAsUsername(): void
     {
         $email = 'unique@example.com';
         $emailWithSuffix1 = $email . '_1';
@@ -150,7 +150,7 @@ final class CredentialsGeneratorTest extends UnitTestCase
             [$emailWithSuffix2, null],
         ]);
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertSame($emailWithSuffix2, $user->getUsername());
     }
@@ -158,11 +158,11 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generateUsernameForUserWithoutEmailUsesUuidAsUsername(): void
+    public function generateAndSetUsernameForUserWithoutEmailUsesUuidAsUsername(): void
     {
         $user = new FrontendUser();
 
-        $this->subject->generateUsernameForUser($user);
+        $this->subject->generateAndSetUsernameForUser($user);
 
         self::assertMatchesRegularExpression('/^[a-z\\d]{32}$/', $user->getUsername());
     }
@@ -170,13 +170,13 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generatePasswordForUserWithExistingPasswordKeepsOldPassword(): void
+    public function generateAndSetPasswordForUserWithExistingPasswordKeepsOldPassword(): void
     {
         $user = new FrontendUser();
         $existingPassword = 'gzuio134tfgzuiobft1234';
         $user->setPassword($existingPassword);
 
-        $this->subject->generatePasswordForUser($user);
+        $this->subject->generateAndSetPasswordForUser($user);
 
         self::assertSame($existingPassword, $user->getPassword());
     }
@@ -184,13 +184,13 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generatePasswordForUserWithExistingPasswordReturnsNull(): void
+    public function generateAndSetPasswordForUserWithExistingPasswordReturnsNull(): void
     {
         $user = new FrontendUser();
         $existingPassword = 'gzuio134tfgzuiobft1234';
         $user->setPassword($existingPassword);
 
-        $result = $this->subject->generatePasswordForUser($user);
+        $result = $this->subject->generateAndSetPasswordForUser($user);
 
         self::assertNull($result);
     }
@@ -198,12 +198,12 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generatePasswordForUserWithoutExistingPasswordReturnsTwelveCharacterPassword(): void
+    public function generateAndSetPasswordForUserWithoutExistingPasswordReturnsTwelveCharacterPassword(): void
     {
         $user = new FrontendUser();
         $this->passwordHasherMock->method('getHashedPassword')->with(self::anything())->willReturn('');
 
-        $result = $this->subject->generatePasswordForUser($user);
+        $result = $this->subject->generateAndSetPasswordForUser($user);
 
         self::assertIsString($result);
         self::assertMatchesRegularExpression('/^\\w{32}$/', $result);
@@ -212,14 +212,14 @@ final class CredentialsGeneratorTest extends UnitTestCase
     /**
      * @test
      */
-    public function generatePasswordForUserWithoutExistingPasswordSetsHashOfTwelveCharacterPassword(): void
+    public function generateAndSetPasswordForUserWithoutExistingPasswordSetsHashOfTwelveCharacterPassword(): void
     {
         $passwordHash
             = '$argon2i$v=19$m=65536,t=16,p=1$ODBXYmZrYkQ2akMwa1lHYg$iWz2uY5XHXAhjqG69uFSQDWvy/y1G931gk/s19sfBxo';
         $this->passwordHasherMock->method('getHashedPassword')->with(self::isType('string'))->willReturn($passwordHash);
         $user = new FrontendUser();
 
-        $this->subject->generatePasswordForUser($user);
+        $this->subject->generateAndSetPasswordForUser($user);
 
         self::assertSame($passwordHash, $user->getPassword());
     }

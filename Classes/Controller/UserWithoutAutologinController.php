@@ -143,9 +143,9 @@ class UserWithoutAutologinController extends ActionController
      */
     private function enrichUser(FrontendUser $user, ?int $userGroupUid): void
     {
-        $this->generateFullNameForUser($user);
-        $this->credentialsGenerator->generateUsernameForUser($user);
-        $password = $this->credentialsGenerator->generatePasswordForUser($user);
+        $this->generateAndSetFullNameForUser($user);
+        $this->credentialsGenerator->generateAndSetUsernameForUser($user);
+        $password = $this->credentialsGenerator->generateAndSetPasswordForUser($user);
 
         $this->enrichWithPid($user);
         $this->enrichWithGroup($user, $userGroupUid);
@@ -162,7 +162,7 @@ class UserWithoutAutologinController extends ActionController
         }
     }
 
-    private function generateFullNameForUser(FrontendUser $user): void
+    private function generateAndSetFullNameForUser(FrontendUser $user): void
     {
         if ($user->getName() !== '') {
             return;

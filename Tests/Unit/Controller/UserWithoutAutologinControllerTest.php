@@ -466,7 +466,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $systemFolderUid = 42;
         $this->subject->_set('settings', ['systemFolderForNewUsers' => (string)$systemFolderUid]);
         $user = new FrontendUser();
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -482,7 +484,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $group = new FrontendUserGroup();
         $this->subject->_set('settings', ['groupsForNewUsers' => (string)$groupUid]);
         $this->userGroupRepositoryMock->method('findByUid')->with($groupUid)->willReturn($group);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user, $groupUid);
@@ -500,7 +504,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
         $this->userGroupRepositoryMock->method('findByUid')->with($groupUid1)->willReturn(null);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup2 = new FrontendUserGroup();
@@ -525,7 +531,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
@@ -553,7 +561,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
@@ -579,7 +589,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionWithNullGroupUidAndNoConfiguredGroupsSetsNoGroups(): void
     {
         $this->subject->_set('settings', ['groupsForNewUsers' => '']);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $user = new FrontendUser();
         $this->subject->createAction($user, null);
@@ -596,7 +608,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
@@ -624,7 +638,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $groupUid1 = 4;
         $groupUid2 = 5;
         $this->subject->_set('settings', ['groupsForNewUsers' => $groupUid1 . ',' . $groupUid2]);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         /** @var ObjectStorage<FrontendUserGroup> $userGroupsFromRepository */
         $userGroupsFromRepository = new ObjectStorage();
         $userGroup1 = new FrontendUserGroup();
@@ -650,8 +666,10 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionGeneratesUsername(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorMock->expects(self::once())->method('generateUsernameForUser')->with($user);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->expects(self::once())->method('generateAndSetUsernameForUser')->with($user);
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -662,7 +680,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionGeneratesPassword(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorMock->expects(self::once())->method('generatePasswordForUser')
+        $this->credentialsGeneratorMock->expects(self::once())->method('generateAndSetPasswordForUser')
             ->with($user)->willReturn('');
 
         $this->subject->createAction($user);
@@ -674,7 +692,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionSetsLastLoginToNow(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -690,7 +708,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $user->setTermsAcknowledged(false);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -704,7 +722,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $user->setTermsAcknowledged(true);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -720,7 +738,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $user->setPrivacy(false);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -734,7 +752,7 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $user->setPrivacy(true);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -753,7 +771,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user->setName($fullName);
         $user->setFirstName('Mini');
         $user->setLastName('Slowness');
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -769,7 +789,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $user->setName($fullName);
         $user->setFirstName('Mini');
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -785,7 +807,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $user->setName($fullName);
         $user->setLastName('Slowness');
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -802,7 +826,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user->setFirstName($firstName);
         $lastName = 'Slowness';
         $user->setLastName($lastName);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -818,7 +844,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $firstName = 'Mini';
         $user->setFirstName($firstName);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -833,7 +861,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $lastName = 'Slowness';
         $user->setLastName($lastName);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -846,7 +876,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     public function createActionForUserWithNoNameAtAllKeepsEmptyFullyName(): void
     {
         $user = new FrontendUser();
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
 
@@ -860,7 +892,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryMock->expects(self::once())->method('add')->with($user);
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -872,7 +906,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $user = new FrontendUser();
         $this->userRepositoryMock->expects(self::once())->method('persistAll');
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->subject->createAction($user);
     }
@@ -926,7 +962,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         $this->subject->expects(self::never())->method('redirectToUri');
 
         $this->subject->createAction(new FrontendUser());
@@ -940,7 +978,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $redirectUrl = self::SITE_URL;
         $_POST['redirect_url'] = $redirectUrl;
 
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         $this->subject->expects(self::once())->method('redirectToUri')->with($redirectUrl);
 
         $this->subject->createAction(new FrontendUser());
@@ -953,7 +993,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
     {
         $_POST['redirect_url'] = 'https://www.oliverklee.de/';
 
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
         $this->subject->expects(self::never())->method('redirectToUri');
 
         $this->subject->createAction(new FrontendUser());
@@ -980,7 +1022,9 @@ final class UserWithoutAutologinControllerTest extends UnitTestCase
         $user = new FrontendUser();
         $user->_setProperty('uid', $userUid);
 
-        $this->credentialsGeneratorMock->method('generatePasswordForUser')->with(self::anything())->willReturn('');
+        $this->credentialsGeneratorMock->method('generateAndSetPasswordForUser')
+            ->with(self::anything())
+            ->willReturn('');
 
         $this->userMock->expects(self::once())
             ->method('setAndSaveSessionData')
