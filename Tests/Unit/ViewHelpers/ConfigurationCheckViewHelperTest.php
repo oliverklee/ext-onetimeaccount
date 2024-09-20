@@ -26,12 +26,12 @@ final class ConfigurationCheckViewHelperTest extends UnitTestCase
     /**
      * @var RenderingContextInterface&MockObject
      */
-    private MockObject $renderingContextMock;
+    private RenderingContextInterface $renderingContextMock;
 
     /**
      * @var VariableProviderInterface&MockObject
      */
-    private MockObject $variableProviderMock;
+    private VariableProviderInterface $variableProviderMock;
 
     protected function setUp(): void
     {
