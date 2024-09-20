@@ -22,6 +22,7 @@ class CredentialsGenerator implements SingletonInterface
     private const PASSWORD_LENGTH = 32;
 
     private FrontendUserRepository $userRepository;
+
     private PasswordHashInterface $passwordHasher;
 
     public function __construct(FrontendUserRepository $repository)
