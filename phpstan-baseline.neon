@@ -6,14 +6,29 @@ parameters:
 			path: Classes/Configuration/FlexForms.php
 
 		-
+			message: "#^Parameter \\#1 \\$pid of method TYPO3\\\\CMS\\\\Extbase\\\\DomainObject\\\\AbstractDomainObject\\:\\:setPid\\(\\) expects int\\<0, max\\>, int given\\.$#"
+			count: 1
+			path: Classes/Controller/UserWithoutAutologinController.php
+
+		-
 			message: "#^Binary operation \"\\+\" between mixed and 300 results in an error\\.$#"
 			count: 1
 			path: Classes/Service/CaptchaFactory.php
 
 		-
+			message: "#^Parameter \\#1 \\$password of method OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUser\\:\\:setPassword\\(\\) expects string, string\\|null given\\.$#"
+			count: 1
+			path: Classes/Service/CredentialsGenerator.php
+
+		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 3
 			path: Tests/Functional/Validation/CaptchaValidatorTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$query \\(TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryInterface\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\) of method OliverKlee\\\\Onetimeaccount\\\\Tests\\\\Unit\\\\Controller\\\\Fixtures\\\\TestingQueryResult\\:\\:setQuery\\(\\) should be compatible with parameter \\$query \\(TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryInterface\\<object\\>\\) of method TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\<OliverKlee\\\\FeUserExtraFields\\\\Domain\\\\Model\\\\FrontendUserGroup\\>\\:\\:setQuery\\(\\)$#"
+			count: 1
+			path: Tests/Unit/Controller/Fixtures/TestingQueryResult.php
 
 		-
 			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
