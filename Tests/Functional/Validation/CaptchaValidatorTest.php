@@ -8,7 +8,7 @@ use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
 use OliverKlee\Onetimeaccount\Validation\CaptchaValidator;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Error\Result;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -35,7 +35,8 @@ final class CaptchaValidatorTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $GLOBALS['LANG'] = $this->get(LanguageService::class);
+
+        $GLOBALS['LANG'] = $this->get(LanguageServiceFactory::class)->create('default');
 
         $this->subject = new CaptchaValidator();
 
