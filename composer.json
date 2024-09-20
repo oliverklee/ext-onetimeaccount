@@ -114,12 +114,14 @@
 		],
 		"ci:php:cs-fixer": "php-cs-fixer fix --config .php-cs-fixer.php -v --dry-run --diff",
 		"ci:php:lint": "find .*.php *.php Classes Configuration Tests -name '*.php' -print0 | xargs -r -0 -n 1 -P 4 php -l",
+		"ci:php:rector": "rector --dry-run",
 		"ci:php:sniff": "phpcs Classes Configuration Tests",
 		"ci:php:stan": "phpstan --no-progress",
 		"ci:static": [
 			"@ci:composer:normalize",
 			"@ci:php:cs-fixer",
 			"@ci:php:lint",
+			"@ci:php:rector",
 			"@ci:php:sniff",
 			"@ci:php:stan",
 			"@ci:ts:lint",
@@ -148,10 +150,12 @@
 		],
 		"fix:composer": "@composer normalize --no-check-lock",
 		"fix:php": [
+			"@fix:php:rector",
 			"@fix:php:cs",
 			"@fix:php:sniff"
 		],
 		"fix:php:cs": "php-cs-fixer fix --config .php-cs-fixer.php",
+		"fix:php:rector": "rector",
 		"fix:php:sniff": "phpcbf Classes Configuration Tests",
 		"phpstan:baseline": "phpstan  --generate-baseline=phpstan-baseline.neon",
 		"prepare-release": [
@@ -182,6 +186,7 @@
 		"ci:coverage:unit": "Generates the code coverage report for unit tests.",
 		"ci:php:cs-fixer": "Checks the code style with the PHP Coding Standards Fixer (PHP-CS-Fixer).",
 		"ci:php:lint": "Lints the PHP files for syntax errors.",
+		"ci:php:rector": "Checks for code for changes by Rector.",
 		"ci:php:sniff": "Checks the code style with PHP_CodeSniffer (PHPCS).",
 		"ci:php:stan": "Checks the PHP types using PHPStan.",
 		"ci:static": "Runs all static code checks (syntax, style, types).",
@@ -196,6 +201,7 @@
 		"fix:composer": "Normalizes all composer.json files.",
 		"fix:php": "Runs all fixers for the PHP code.",
 		"fix:php:cs": "Fixes the code style with PHP-CS-Fixer.",
+		"fix:php:rector": "Updates the code with Rector.",
 		"fix:php:sniff": "Fixes the code style with PHP_CodeSniffer.",
 		"phpstan:baseline": "Updates the PHPStan baseline file to match the code.",
 		"prepare-release": "Removes development-only files in preparation of a TER release."
