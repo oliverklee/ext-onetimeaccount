@@ -128,19 +128,11 @@ class UserWithoutAutologinController extends ActionController
         }
 
         $this->enrichUser($user, $userGroup);
-
         $this->userRepository->add($user);
         $this->userRepository->persistAll();
 
         $this->afterCreate($user);
-
-        $redirectUrl = GeneralUtility::_POST('redirect_url');
-        if (\is_string($redirectUrl) && $redirectUrl !== '') {
-            $sanitizedUrl = GeneralUtility::sanitizeLocalUrl($redirectUrl);
-            if ($sanitizedUrl !== '') {
-                $this->redirectToUri($redirectUrl);
-            }
-        }
+        $this->handleRedirect();
 
         return $this->htmlResponse();
     }
@@ -223,5 +215,18 @@ class UserWithoutAutologinController extends ActionController
         \assert($userAuthentication instanceof FrontendUserAuthentication);
 
         return $userAuthentication;
+    }
+
+    private function handleRedirect(): void
+    {
+        $redirectUrl = GeneralUtility::_POST('redirect_url');
+        if (!\is_string($redirectUrl) || $redirectUrl === '') {
+            return;
+        }
+
+        $sanitizedUrl = GeneralUtility::sanitizeLocalUrl($redirectUrl);
+        if ($sanitizedUrl !== '') {
+            $this->redirectToUri($redirectUrl);
+        }
     }
 }
