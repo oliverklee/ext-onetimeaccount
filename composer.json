@@ -50,7 +50,7 @@
 		"symfony/translation": "^5.4.44 || ^6.4.12 || ^7.1.5",
 		"symfony/yaml": "^5.4.44 || ^6.4.12 || ^7.1.5",
 		"typo3/coding-standards": "0.6.1",
-		"typo3/testing-framework": "7.1.0",
+		"typo3/testing-framework": "7.1.1",
 		"webmozart/assert": "^1.11.0"
 	},
 	"replace": {
