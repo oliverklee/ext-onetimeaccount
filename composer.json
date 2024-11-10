@@ -37,7 +37,7 @@
 		"friendsofphp/php-cs-fixer": "3.64.0",
 		"helmich/typo3-typoscript-lint": "3.1.1",
 		"phpstan/extension-installer": "1.4.3",
-		"phpstan/phpstan": "1.12.8",
+		"phpstan/phpstan": "1.12.9",
 		"phpstan/phpstan-phpunit": "1.4.0",
 		"phpstan/phpstan-strict-rules": "1.6.1",
 		"phpunit/phpunit": "9.6.19",
