@@ -15,6 +15,10 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+## 7.1.1: Bug fixes for TYPO3 12LTS
+
+### Fixed
+
 - Fix the redirect response with TYPO3 12LTS (#1028)
 
 ## 7.1.0: Add support for TYPO3 12 LTS
