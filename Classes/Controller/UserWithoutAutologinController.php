@@ -132,9 +132,10 @@ class UserWithoutAutologinController extends ActionController
         $this->userRepository->persistAll();
 
         $this->afterCreate($user);
-        $this->handleRedirect();
+        $redirectResponse = $this->handleRedirect();
 
-        return $this->htmlResponse();
+        return $redirectResponse instanceof ResponseInterface
+            ? $redirectResponse : $this->htmlResponse();
     }
 
     /**
@@ -217,17 +218,16 @@ class UserWithoutAutologinController extends ActionController
         return $userAuthentication;
     }
 
-    private function handleRedirect(): void
+    private function handleRedirect(): ?ResponseInterface
     {
         $redirectUrl = $this->getRedirectUrl();
         if (!\is_string($redirectUrl)) {
-            return;
+            return null;
         }
 
         $sanitizedUrl = GeneralUtility::sanitizeLocalUrl($redirectUrl);
-        if ($sanitizedUrl !== '') {
-            $this->redirectToUri($redirectUrl);
-        }
+
+        return $sanitizedUrl !== '' ? $this->redirectToUri($redirectUrl) : null;
     }
 
     /**
