@@ -3,161 +3,161 @@
 	<file source-language="en" datatype="plaintext" original="messages">
 		<header/>
 		<body>
-			<trans-unit id="plugin.withoutAutologin" resname="plugin.withoutAutologin">
+			<trans-unit id="plugin.withoutAutologin">
 				<source>One-time FE account creator without autologin</source>
 			</trans-unit>
-			<trans-unit id="plugin.fieldsToShow" resname="plugin.fieldsToShow">
+			<trans-unit id="plugin.fieldsToShow">
 				<source>FE user fields in the form</source>
 			</trans-unit>
-			<trans-unit id="plugin.requiredFields" resname="plugin.requiredFields">
+			<trans-unit id="plugin.requiredFields">
 				<source>Required fields</source>
 			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers" resname="plugin.systemFolderForNewUsers">
+			<trans-unit id="plugin.systemFolderForNewUsers">
 				<source>Folder for the new FE user records</source>
 			</trans-unit>
-			<trans-unit id="plugin.groupsForNewUsers" resname="plugin.groupsForNewUsers">
+			<trans-unit id="plugin.groupsForNewUsers">
 				<source>Groups for the new FE users</source>
 			</trans-unit>
-			<trans-unit id="plugin.captcha" resname="plugin.captcha">
+			<trans-unit id="plugin.captcha">
 				<source>Protect the form against spam with a CAPTCHA</source>
 			</trans-unit>
-			<trans-unit id="plugin.termsAndConditionsPage" resname="plugin.termsAndConditionsPage">
+			<trans-unit id="plugin.termsAndConditionsPage">
 				<source>Page with the terms &amp; conditions</source>
 			</trans-unit>
-			<trans-unit id="userDataLegend" resname="userDataLegend">
+			<trans-unit id="userDataLegend">
 				<source>Your personal data</source>
 			</trans-unit>
-			<trans-unit id="company" resname="company">
+			<trans-unit id="company">
 				<source>Company</source>
 			</trans-unit>
-			<trans-unit id="vatIn" resname="vatIn">
+			<trans-unit id="vatIn">
 				<source>VAT identification number</source>
 			</trans-unit>
-			<trans-unit id="gender" resname="gender">
+			<trans-unit id="gender">
 				<source>Gender</source>
 			</trans-unit>
-			<trans-unit id="gender.99" resname="gender.99">
+			<trans-unit id="gender.99">
 				<source>(none provided)</source>
 			</trans-unit>
-			<trans-unit id="gender.0" resname="gender.0">
+			<trans-unit id="gender.0">
 				<source>Mr.</source>
 			</trans-unit>
-			<trans-unit id="gender.1" resname="gender.1">
+			<trans-unit id="gender.1">
 				<source>Mrs.</source>
 			</trans-unit>
-			<trans-unit id="gender.2" resname="gender.2">
+			<trans-unit id="gender.2">
 				<source>diverse</source>
 			</trans-unit>
-			<trans-unit id="fullSalutation" resname="fullSalutation">
+			<trans-unit id="fullSalutation">
 				<source>Salutation and name</source>
 			</trans-unit>
-			<trans-unit id="title" resname="title">
+			<trans-unit id="title">
 				<source>Department/Title</source>
 			</trans-unit>
-			<trans-unit id="name" resname="name">
+			<trans-unit id="name">
 				<source>Full name</source>
 			</trans-unit>
-			<trans-unit id="firstName" resname="firstName">
+			<trans-unit id="firstName">
 				<source>First name</source>
 			</trans-unit>
-			<trans-unit id="lastName" resname="lastName">
+			<trans-unit id="lastName">
 				<source>Last name</source>
 			</trans-unit>
-			<trans-unit id="address" resname="address">
+			<trans-unit id="address">
 				<source>Street</source>
 			</trans-unit>
-			<trans-unit id="zip" resname="zip">
+			<trans-unit id="zip">
 				<source>ZIP</source>
 			</trans-unit>
-			<trans-unit id="city" resname="city">
+			<trans-unit id="city">
 				<source>City</source>
 				<target>Ort</target>
 			</trans-unit>
-			<trans-unit id="zone" resname="zone">
+			<trans-unit id="zone">
 				<source>County/Region</source>
 			</trans-unit>
-			<trans-unit id="country" resname="country">
+			<trans-unit id="country">
 				<source>Country</source>
 			</trans-unit>
-			<trans-unit id="email" resname="email">
+			<trans-unit id="email">
 				<source>Email</source>
 			</trans-unit>
-			<trans-unit id="www" resname="www">
+			<trans-unit id="www">
 				<source>Website</source>
 			</trans-unit>
-			<trans-unit id="telephone" resname="telephone">
+			<trans-unit id="telephone">
 				<source>Phone number</source>
 			</trans-unit>
-			<trans-unit id="dateOfBirth" resname="dateOfBirth">
+			<trans-unit id="dateOfBirth">
 				<source>Date of birth</source>
 			</trans-unit>
-			<trans-unit id="status" resname="status">
+			<trans-unit id="status">
 				<source>Job status</source>
 			</trans-unit>
-			<trans-unit id="status.1" resname="status.1">
+			<trans-unit id="status.1">
 				<source>student</source>
 				<target>in Ausbildung</target>
 			</trans-unit>
-			<trans-unit id="status.2" resname="status.2">
+			<trans-unit id="status.2">
 				<source>job seeking (full time)</source>
 			</trans-unit>
-			<trans-unit id="status.3" resname="status.3">
+			<trans-unit id="status.3">
 				<source>working</source>
 			</trans-unit>
-			<trans-unit id="status.4" resname="status.4">
+			<trans-unit id="status.4">
 				<source>retired</source>
 			</trans-unit>
-			<trans-unit id="status.5" resname="status.5">
+			<trans-unit id="status.5">
 				<source>job seeking (part time)</source>
 			</trans-unit>
-			<trans-unit id="userGroup" resname="userGroup">
+			<trans-unit id="userGroup">
 				<source>User group</source>
 			</trans-unit>
-			<trans-unit id="comments" resname="comments">
+			<trans-unit id="comments">
 				<source>Comments</source>
 			</trans-unit>
-			<trans-unit id="termsAcknowledged" resname="termsAcknowledged">
+			<trans-unit id="termsAcknowledged">
 				<source>Terms &amp; conditions</source>
 			</trans-unit>
-			<trans-unit id="termsAcknowledgedLinkTitle" resname="termsAcknowledgedLinkTitle">
+			<trans-unit id="termsAcknowledgedLinkTitle">
 				<source>terms &amp; conditions</source>
 			</trans-unit>
-			<trans-unit id="consentToTermsAndConditions" resname="consentToTermsAndConditions">
+			<trans-unit id="consentToTermsAndConditions">
 				<source>I consent to the %1$s.</source>
 			</trans-unit>
-			<trans-unit id="privacy" resname="privacy">
+			<trans-unit id="privacy">
 				<source>Privacy policy agreement</source>
 			</trans-unit>
-			<trans-unit id="privacy.long" resname="privacy.long">
+			<trans-unit id="privacy.long">
 				<source>
 					I consent that the data I enter will be stored electronically.
 					You can withdraw your consent for the future via email at any time.
 				</source>
 			</trans-unit>
-			<trans-unit id="captcha.question" resname="captcha.question">
+			<trans-unit id="captcha.question">
 				<source>Are you human?</source>
 			</trans-unit>
-			<trans-unit id="captcha.answer.yes" resname="captcha.answer.yes">
+			<trans-unit id="captcha.answer.yes">
 				<source>Yes, I am human.</source>
 			</trans-unit>
-			<trans-unit id="captcha.answer.no" resname="captcha.answer.no">
+			<trans-unit id="captcha.answer.no">
 				<source>No, I am not human.</source>
 			</trans-unit>
-			<trans-unit id="captcha.validationError" resname="captcha.validationError">
+			<trans-unit id="captcha.validationError">
 				<source>Please confirm that you are human.</source>
 			</trans-unit>
-			<trans-unit id="saveAndContinue" resname="saveAndContinue">
+			<trans-unit id="saveAndContinue">
 				<source>Save and continue</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedAndLoggedIn" resname="alert.userCreatedAndLoggedIn">
+			<trans-unit id="alert.userCreatedAndLoggedIn">
 				<source>The user has been created, and you now are logged in as the new user.</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedNotLoggedIn" resname="alert.userCreatedNotLoggedIn">
+			<trans-unit id="alert.userCreatedNotLoggedIn">
 				<source>
 					The user has been created, but the automatic login with the new user was not successful.
 				</source>
 			</trans-unit>
-			<trans-unit id="alert.userCreatedWithoutLogin" resname="alert.userCreatedWithoutLogin">
+			<trans-unit id="alert.userCreatedWithoutLogin">
 				<source>The user has been created.</source>
 			</trans-unit>
 		</body>
