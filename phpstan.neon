@@ -13,6 +13,7 @@ parameters:
     - Classes
     - Configuration
     - Tests
+    - ext_localconf.php
 
   ignoreErrors:
     -
