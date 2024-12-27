@@ -13,9 +13,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
-- Remove unneeded `resname` from the language files (#1031)
-
 ### Fixed
+
+## 7.1.2: Bug fixes and cleanup
+
+### Removed
+
+- Remove unneeded `resname` from the language files (#1031)
 
 ## 7.1.1: Bug fixes for TYPO3 12LTS
 
