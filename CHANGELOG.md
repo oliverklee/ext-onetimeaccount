@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Require TYPO3 >= 11.5.41 (#1049)
+
 ### Removed
 
 ### Fixed
