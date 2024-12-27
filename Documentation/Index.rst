@@ -1,7 +1,3 @@
-.. include:: /Includes.rst.txt
-
-.. _start:
-
 ==================================
 TYPO3 extension ``onetimeaccount``
 ==================================
@@ -28,8 +24,6 @@ TYPO3 extension ``onetimeaccount``
 :Rendered:
    |today|
 
-----
-
 This extension provides a Bootstrap-5-compatible form that allows users to
 create a one-time FE account to which they will be automatically logged in
 (without having to enter a username or password).
@@ -41,7 +35,7 @@ allowing attendees to sign up for events without having to create an account.
 .. image:: images/form-in-frontend.png
    :class: with-shadow
 
-----
+The content of this document is related to TYPO3 - a GNU/GPL CMS/Framework available from www.typo3.org
 
 **Table of Contents:**
 
@@ -54,9 +48,3 @@ allowing attendees to sign up for events without having to create an account.
    Upgrading
 
 .. Meta Menu
-
-.. toctree::
-   :hidden:
-
-   Sitemap
-   genindex

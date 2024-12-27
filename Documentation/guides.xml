@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        links-are-relative="true">
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               project-home="https://extensions.typo3.org/extension/onetimeaccount"
+               project-contact="mailto:typo3-coding@oliverklee.de"
+               project-repository="https://github.com/oliverklee/ext-onetimeaccount"
+               project-issues="https://github.com/oliverklee/ext-onetimeaccount/issues" edit-on-github-branch="main"
+               edit-on-github="oliverklee/ext-onetimeaccount" typo3-core-preferred="stable"
+               interlink-shortcode="oliverklee/onetimeaccount"/>
+    <project title="onetimeaccount" release="7.1.1" version="7.1" copyright="2024"/>
+</guides>
