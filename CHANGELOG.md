@@ -7,18 +7,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-- Add support for PHP 8.4 (#1051)
-
 ### Deprecated
+
+### Changed
+
+### Removed
+
+### Fixed
+
+## 7.2.0: Add support for PHP 8.4
+
+### Added
+
+- Add support for PHP 8.4 (#1051)
 
 ### Changed
 
 - Allow `typo3fluid/fluid:^4.0` (#1050)
 - Require TYPO3 >= 11.5.41 (#1049)
-
-### Removed
-
-### Fixed
 
 ## 7.1.2: Bug fixes and cleanup
 
