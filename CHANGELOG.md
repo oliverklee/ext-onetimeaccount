@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Allow `typo3fluid/fluid:^4.0` (#1050)
 - Require TYPO3 >= 11.5.41 (#1049)
 
 ### Removed
