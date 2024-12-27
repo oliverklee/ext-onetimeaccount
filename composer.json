@@ -141,9 +141,6 @@
 		"ci:xliff:lint": "php Build/bin/xliff-lint lint:xliff Resources/Private/Language",
 		"ci:yaml:lint": "find . ! -path '*.Build/*' -name '*.yml' | xargs -r php ./.Build/vendor/bin/yaml-lint",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
-		"docs:generate": [
-			"docker run --rm t3docs/render-documentation show-shell-commands > tempfile.sh; echo 'dockrun_t3rd makehtml' >> tempfile.sh; bash tempfile.sh; rm tempfile.sh"
-		],
 		"fix": [
 			"@fix:composer",
 			"@fix:php"
@@ -194,7 +191,6 @@
 		"ci:xliff:lint": "Lints the XLIFF files.",
 		"ci:yaml:lint": "Lints the YAML files.",
 		"coverage:create-directories": "Creates the directories needed for recording and merging the code coverage reports.",
-		"docs:generate": "Renders the extension ReST documentation.",
 		"fix": "Runs all automatic code style fixes.",
 		"fix:composer": "Normalizes all composer.json files.",
 		"fix:php": "Runs all fixers for the PHP code.",
