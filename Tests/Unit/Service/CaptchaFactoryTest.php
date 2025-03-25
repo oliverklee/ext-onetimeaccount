@@ -6,8 +6,8 @@ namespace OliverKlee\Onetimeaccount\Tests\Unit\Service;
 
 use OliverKlee\Onetimeaccount\Domain\Model\Captcha;
 use OliverKlee\Onetimeaccount\Service\CaptchaFactory;
-use PHPUnit\Framework\MockObject\MockObject;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
@@ -17,6 +17,8 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class CaptchaFactoryTest extends UnitTestCase
 {
+    protected bool $resetSingletonInstances = true;
+
     /**
      * @var non-empty-string
      */
@@ -33,10 +35,7 @@ final class CaptchaFactoryTest extends UnitTestCase
      */
     private const ADDITIONAL_SECRET = 'onetimeaccount-captcha';
 
-    /**
-     * @var Context&MockObject
-     */
-    private Context $contextMock;
+    private Context $context;
 
     private CaptchaFactory $subject;
 
@@ -46,8 +45,7 @@ final class CaptchaFactoryTest extends UnitTestCase
 
         $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'] = self::ENCRYPTION_KEY;
 
-        $this->contextMock = $this->createMock(Context::class);
-        GeneralUtility::setSingletonInstance(Context::class, $this->contextMock);
+        $this->context = GeneralUtility::makeInstance(Context::class);
 
         $this->subject = new CaptchaFactory();
     }
@@ -55,7 +53,6 @@ final class CaptchaFactoryTest extends UnitTestCase
     protected function tearDown(): void
     {
         unset($GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey']);
-        GeneralUtility::purgeInstances();
 
         parent::tearDown();
     }
@@ -83,16 +80,14 @@ final class CaptchaFactoryTest extends UnitTestCase
      */
     public function generateChallengeSetsValidUntilExactlyFiveMinutesInTheFuture(): void
     {
-        $nowAsUnitTimestamp = 1671731248;
-
-        $this->contextMock->expects(self::once())->method('getPropertyFromAspect')->with('date', 'timestamp')
-            ->willReturn($nowAsUnitTimestamp);
+        $now = new \DateTimeImmutable('now');
+        $this->context->setAspect('date', new DateTimeAspect($now));
 
         $result = $this->subject->generateChallenge();
         $validUntil = $result->getValidUntil();
 
         self::assertInstanceOf(\DateTime::class, $validUntil);
-        self::assertSame($nowAsUnitTimestamp + 60 * 5, $validUntil->getTimestamp());
+        self::assertSame($now->getTimestamp() + 60 * 5, $validUntil->getTimestamp());
     }
 
     /**
@@ -100,8 +95,7 @@ final class CaptchaFactoryTest extends UnitTestCase
      */
     public function generateChallengeSetsCorrectAnswerToFortyCharacterHexString(): void
     {
-        $this->contextMock->expects(self::once())->method('getPropertyFromAspect')->with('date', 'timestamp')
-            ->willReturn(1671732034);
+        $this->context->setAspect('date', new DateTimeAspect(new \DateTimeImmutable('now')));
 
         $result = $this->subject->generateChallenge();
 
@@ -113,10 +107,7 @@ final class CaptchaFactoryTest extends UnitTestCase
      */
     public function generateChallengeSetsCorrectAnswerAsHashFromFormattedValidUntilDateWithEncryptionKey(): void
     {
-        $nowAsUnitTimestamp = 1671731248;
-
-        $this->contextMock->expects(self::once())->method('getPropertyFromAspect')->with('date', 'timestamp')
-            ->willReturn($nowAsUnitTimestamp);
+        $this->context->setAspect('date', new DateTimeAspect(new \DateTimeImmutable('now')));
 
         $result = $this->subject->generateChallenge();
 
