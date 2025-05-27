@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Require the latest TYPO3 12LTS security release (#1092)
+
 ### Removed
 
 ### Fixed
