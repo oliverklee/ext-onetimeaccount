@@ -14,6 +14,7 @@ class FlexForms
      */
     protected const AVAILABLE_FIELDS = [
         'company',
+        'department',
         'gender',
         'fullSalutation',
         'name',

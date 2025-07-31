@@ -21,6 +21,7 @@ final class UserValidatorTest extends UnitTestCase
      */
     private const VALIDATABLE_FIELDS = [
         'company',
+        'department',
         'gender',
         'fullSalutation',
         'name',
@@ -66,7 +67,8 @@ final class UserValidatorTest extends UnitTestCase
         $user->setCity('Development Hill');
         $user->setCountry('Buthan');
         $user->setWww('https://example.com');
-        $user->setCompany('TYPO3 Community');
+        $user->setCompany('Lumon');
+        $user->setDepartment('Choreography and Merriment');
         $user->setZone('ABC');
         $user->setPrivacy(true);
         $user->setTermsAcknowledged(true);
