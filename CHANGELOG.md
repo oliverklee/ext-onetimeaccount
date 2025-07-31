@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Require feuserextrafields >= 6.4.0 (#1109)
 - Require the latest TYPO3 12LTS security release (#1092)
 
 ### Removed
