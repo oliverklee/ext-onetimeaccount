@@ -21,6 +21,7 @@ final class UserValidatorTest extends FunctionalTestCase
      */
     private const VALIDATABLE_FIELDS = [
         'company',
+        'department',
         'gender',
         'fullSalutation',
         'name',

@@ -30,6 +30,9 @@
 			<trans-unit id="company">
 				<source>Company</source>
 			</trans-unit>
+			<trans-unit id="department">
+				<source>Department</source>
+			</trans-unit>
 			<trans-unit id="vatIn">
 				<source>VAT identification number</source>
 			</trans-unit>

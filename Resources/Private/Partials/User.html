@@ -6,16 +6,35 @@
                 <f:translate key="userDataLegend" extensionName="onetimeaccount"/>
             </legend>
 
-            <oelib:isFieldEnabled fieldName="company">
-                <div class="row mb-3">
-                    <label for="onetimeaccount-company" class="col-sm-2 col-form-label">
-                        <f:translate key="company"/>
-                    </label>
-                    <div class="col-sm-10">
-                        <f:form.textfield property="company" id="onetimeaccount-company" maxlength="80"
-                                          class="form-control" errorClass="is-invalid"
-                                          additionalAttributes="{autocomplete: 'organization'}"/>
-                        <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
+            <oelib:isFieldEnabled fieldName="company|department">
+                <div class="row">
+                    <div class="col">
+                        <oelib:isFieldEnabled fieldName="company">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-company" class="col-sm-4 col-form-label">
+                                    <f:translate key="company"/>
+                                </label>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="company" id="onetimeaccount-company" maxlength="80"
+                                                      class="form-control" errorClass="is-invalid"
+                                                      additionalAttributes="{autocomplete: 'organization'}"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'company'}"/>
+                                </div>
+                            </div>
+                        </oelib:isFieldEnabled>
+                        <oelib:isFieldEnabled fieldName="department">
+                            <div class="row mb-3">
+                                <label for="onetimeaccount-department" class="col-sm-4 col-form-label">
+                                    <f:translate key="department"/>
+                                </label>
+                                <div class="col-sm-8">
+                                    <f:form.textfield property="department" id="onetimeaccount-department"
+                                                      maxlength="128"
+                                                      class="form-control" errorClass="is-invalid"/>
+                                    <f:render partial="ValidationResult" arguments="{property: 'department'}"/>
+                                </div>
+                            </div>
+                        </oelib:isFieldEnabled>
                     </div>
                 </div>
             </oelib:isFieldEnabled>
