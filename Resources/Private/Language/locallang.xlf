@@ -52,7 +52,7 @@
 				<source>Salutation and name</source>
 			</trans-unit>
 			<trans-unit id="title">
-				<source>Department/Title</source>
+				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="name">
 				<source>Full name</source>
