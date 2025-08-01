@@ -68,8 +68,8 @@
         <target state="needs-translation">Salutation and name</target>
       </trans-unit>
       <trans-unit id="title">
-        <source>Department/Title</source>
-        <target state="needs-translation">Department/Title</target>
+        <source>Title</source>
+        <target state="needs-translation">Title</target>
       </trans-unit>
       <trans-unit id="name" approved="yes">
         <source>Full name</source>
