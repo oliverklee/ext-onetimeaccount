@@ -19,6 +19,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Fix HTML grid for multi-field rows (#1113)
+
 ## 7.2.0: Add support for PHP 8.4
 
 ### Added
