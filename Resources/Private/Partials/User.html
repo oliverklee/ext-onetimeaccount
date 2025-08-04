@@ -74,37 +74,29 @@
             </oelib:isFieldEnabled>
 
             <oelib:isFieldEnabled fieldName="firstName|lastName">
-                <div class="row">
-                    <div class="col">
-                        <oelib:isFieldEnabled fieldName="firstName">
-                            <div class="row mb-3">
-                                <label for="onetimeaccount-firstName" class="col-sm-4 col-form-label">
-                                    <f:translate key="firstName"/>
-                                </label>
-                                <div class="col-sm-8">
-                                    <f:form.textfield property="firstName" id="onetimeaccount-firstName" maxlength="50"
-                                                      class="form-control" errorClass="is-invalid"
-                                                      additionalAttributes="{autocomplete: 'given-name'}"/>
-                                    <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
-                                </div>
-                            </div>
-                        </oelib:isFieldEnabled>
-                    </div>
-                    <div class="col">
-                        <oelib:isFieldEnabled fieldName="lastName">
-                            <div class="row mb-3">
-                                <label for="onetimeaccount-lastName" class="col-sm-4 col-form-label">
-                                    <f:translate key="lastName"/>
-                                </label>
-                                <div class="col-sm-8">
-                                    <f:form.textfield property="lastName" id="onetimeaccount-lastName" maxlength="50"
-                                                      class="form-control" errorClass="is-invalid"
-                                                      additionalAttributes="{autocomplete: 'family-name'}"/>
-                                    <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
-                                </div>
-                            </div>
-                        </oelib:isFieldEnabled>
-                    </div>
+                <div class="input-group row mb-3">
+                    <oelib:isFieldEnabled fieldName="firstName">
+                        <label for="onetimeaccount-firstName" class="col-sm-2 col-form-label">
+                            <f:translate key="firstName"/>
+                        </label>
+                        <div class="col-sm-4">
+                            <f:form.textfield property="firstName" id="onetimeaccount-firstName" maxlength="50"
+                                              class="form-control" errorClass="is-invalid"
+                                              additionalAttributes="{autocomplete: 'given-name'}"/>
+                            <f:render partial="ValidationResult" arguments="{property: 'firstName'}"/>
+                        </div>
+                    </oelib:isFieldEnabled>
+                    <oelib:isFieldEnabled fieldName="lastName">
+                        <label for="onetimeaccount-lastName" class="col-sm-2 col-form-label">
+                            <f:translate key="lastName"/>
+                        </label>
+                        <div class="col-sm-4">
+                            <f:form.textfield property="lastName" id="onetimeaccount-lastName" maxlength="50"
+                                              class="form-control" errorClass="is-invalid"
+                                              additionalAttributes="{autocomplete: 'family-name'}"/>
+                            <f:render partial="ValidationResult" arguments="{property: 'lastName'}"/>
+                        </div>
+                    </oelib:isFieldEnabled>
                 </div>
             </oelib:isFieldEnabled>
 
@@ -137,37 +129,29 @@
             </oelib:isFieldEnabled>
 
             <oelib:isFieldEnabled fieldName="zip|city">
-                <div class="row">
-                    <div class="col">
-                        <oelib:isFieldEnabled fieldName="zip">
-                            <div class="row mb-3">
-                                <label for="onetimeaccount-zip" class="col-sm-4 col-form-label">
-                                    <f:translate key="zip"/>
-                                </label>
-                                <div class="col-sm-8">
-                                    <f:form.textfield property="zip" id="onetimeaccount-zip" maxlength="10"
-                                                      class="form-control" errorClass="is-invalid"
-                                                      additionalAttributes="{autocomplete: 'postal-code'}"/>
-                                    <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
-                                </div>
-                            </div>
-                        </oelib:isFieldEnabled>
-                    </div>
-                    <div class="col">
-                        <oelib:isFieldEnabled fieldName="city">
-                            <div class="row mb-3">
-                                <label for="onetimeaccount-city" class="col-sm-4 col-form-label">
-                                    <f:translate key="city"/>
-                                </label>
-                                <div class="col-sm-8">
-                                    <f:form.textfield property="city" id="onetimeaccount-city" maxlength="50"
-                                                      class="form-control" errorClass="is-invalid"
-                                                      additionalAttributes="{autocomplete: 'address-level2'}"/>
-                                    <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
-                                </div>
-                            </div>
-                        </oelib:isFieldEnabled>
-                    </div>
+                <div class="input-group row mb-3">
+                    <oelib:isFieldEnabled fieldName="zip">
+                        <label for="onetimeaccount-zip" class="col-sm-2 col-form-label">
+                            <f:translate key="zip"/>
+                        </label>
+                        <div class="col-sm-2">
+                            <f:form.textfield property="zip" id="onetimeaccount-zip" maxlength="10"
+                                              class="form-control" errorClass="is-invalid"
+                                              additionalAttributes="{autocomplete: 'postal-code'}"/>
+                            <f:render partial="ValidationResult" arguments="{property: 'zip'}"/>
+                        </div>
+                    </oelib:isFieldEnabled>
+                    <oelib:isFieldEnabled fieldName="city">
+                        <label for="onetimeaccount-city" class="col-sm-2 col-form-label">
+                            <f:translate key="city"/>
+                        </label>
+                        <div class="col-sm-6">
+                            <f:form.textfield property="city" id="onetimeaccount-city" maxlength="50"
+                                              class="form-control" errorClass="is-invalid"
+                                              additionalAttributes="{autocomplete: 'address-level2'}"/>
+                            <f:render partial="ValidationResult" arguments="{property: 'city'}"/>
+                        </div>
+                    </oelib:isFieldEnabled>
                 </div>
             </oelib:isFieldEnabled>
 
