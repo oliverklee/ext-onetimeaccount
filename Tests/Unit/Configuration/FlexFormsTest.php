@@ -33,6 +33,7 @@ final class FlexFormsTest extends UnitTestCase
     {
         return [
             'company' => ['company'],
+            'department' => ['department'],
             'gender' => ['gender'],
             'fullSalutation' => ['fullSalutation'],
             'name' => ['name'],

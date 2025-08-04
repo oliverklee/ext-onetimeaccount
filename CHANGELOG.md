@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Add a department field (#1111)
+
 ### Deprecated
 
 ### Changed

@@ -113,6 +113,9 @@ class UserValidator extends AbstractConfigurationDependentValidator implements S
             case 'company':
                 $result = $user->getCompany() !== '';
                 break;
+            case 'department':
+                $result = $user->getDepartment() !== '';
+                break;
             case 'vatIn':
                 $result = $user->getVatIn() !== '';
                 break;
