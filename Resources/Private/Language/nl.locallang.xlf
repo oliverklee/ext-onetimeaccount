@@ -23,9 +23,9 @@
         <source>Groups for the new FE users</source>
         <target state="final">Groepen voor de nieuwe FE users</target>
       </trans-unit>
-      <trans-unit id="plugin.captcha">
+      <trans-unit id="plugin.captcha" approved="yes">
         <source>Protect the form against spam with a CAPTCHA</source>
-        <target state="needs-translation">Protect the form against spam with a CAPTCHA</target>
+        <target state="final">Het formulier beschermen tegen spam met een CAPTCHA</target>
       </trans-unit>
       <trans-unit id="plugin.termsAndConditionsPage">
         <source>Page with the terms &amp; conditions</source>
@@ -39,9 +39,9 @@
         <source>Company</source>
         <target state="final">Bedrijfsnaam</target>
       </trans-unit>
-      <trans-unit id="department">
+      <trans-unit id="department" approved="yes">
         <source>Department</source>
-        <target state="needs-translation">Department</target>
+        <target state="final">Afdeling</target>
       </trans-unit>
       <trans-unit id="vatIn">
         <source>VAT identification number</source>
