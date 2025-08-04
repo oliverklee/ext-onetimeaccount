@@ -39,6 +39,10 @@
         <source>Company</source>
         <target state="final">Firma</target>
       </trans-unit>
+      <trans-unit id="department">
+        <source>Department</source>
+        <target state="needs-translation">Department</target>
+      </trans-unit>
       <trans-unit id="vatIn" approved="yes">
         <source>VAT identification number</source>
         <target state="final">USt-IdNr.</target>
