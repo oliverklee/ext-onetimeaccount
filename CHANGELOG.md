@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Add some top margin to the form (#1114)
 - Fix HTML grid for multi-field rows (#1113)
 
 ## 7.2.0: Add support for PHP 8.4
