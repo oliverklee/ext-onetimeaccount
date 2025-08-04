@@ -39,9 +39,9 @@
         <source>Company</source>
         <target state="final">Firma</target>
       </trans-unit>
-      <trans-unit id="department">
+      <trans-unit id="department" approved="yes">
         <source>Department</source>
-        <target state="needs-translation">Department</target>
+        <target state="final">Abteilung</target>
       </trans-unit>
       <trans-unit id="vatIn" approved="yes">
         <source>VAT identification number</source>
@@ -71,9 +71,9 @@
         <source>Salutation and name</source>
         <target state="final">Anrede und Name</target>
       </trans-unit>
-      <trans-unit id="title">
+      <trans-unit id="title" approved="yes">
         <source>Title</source>
-        <target state="needs-translation">Title</target>
+        <target state="final">Titel</target>
       </trans-unit>
       <trans-unit id="name" approved="yes">
         <source>Full name</source>
