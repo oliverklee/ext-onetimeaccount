@@ -16,9 +16,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class UserValidatorTest extends UnitTestCase
 {
-    /**
-     * @var array<int, non-empty-string>
-     */
     private const VALIDATABLE_FIELDS = [
         'company',
         'department',

@@ -12,9 +12,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class FlexFormsTest extends UnitTestCase
 {
-    /**
-     * @var non-empty-string
-     */
     private const LOCALLANG_PREFIX = 'LLL:EXT:onetimeaccount/Resources/Private/Language/locallang.xlf:';
 
     private FlexForms $subject;

@@ -41,14 +41,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class UserWithoutAutologinControllerTest extends UnitTestCase
 {
-    /**
-     * @var non-empty-string
-     */
     private const SITE_URL = 'https://www.example.com';
-
-    /**
-     * @var non-empty-string
-     */
     private const NOW = '2004-02-12T15:19:21+00:00';
 
     protected bool $resetSingletonInstances = true;
