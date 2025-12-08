@@ -1,168 +1,168 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="messages">
-		<header/>
-		<body>
-			<trans-unit id="plugin.withoutAutologin">
-				<source>One-time FE account creator without autologin</source>
-			</trans-unit>
-			<trans-unit id="plugin.fieldsToShow">
-				<source>FE user fields in the form</source>
-			</trans-unit>
-			<trans-unit id="plugin.requiredFields">
-				<source>Required fields</source>
-			</trans-unit>
-			<trans-unit id="plugin.systemFolderForNewUsers">
-				<source>Folder for the new FE user records</source>
-			</trans-unit>
-			<trans-unit id="plugin.groupsForNewUsers">
-				<source>Groups for the new FE users</source>
-			</trans-unit>
-			<trans-unit id="plugin.captcha">
-				<source>Protect the form against spam with a CAPTCHA</source>
-			</trans-unit>
-			<trans-unit id="plugin.termsAndConditionsPage">
-				<source>Page with the terms &amp; conditions</source>
-			</trans-unit>
-			<trans-unit id="userDataLegend">
-				<source>Your personal data</source>
-			</trans-unit>
-			<trans-unit id="company">
-				<source>Company</source>
-			</trans-unit>
-			<trans-unit id="department">
-				<source>Department</source>
-			</trans-unit>
-			<trans-unit id="vatIn">
-				<source>VAT identification number</source>
-			</trans-unit>
-			<trans-unit id="gender">
-				<source>Gender</source>
-			</trans-unit>
-			<trans-unit id="gender.99">
-				<source>(none provided)</source>
-			</trans-unit>
-			<trans-unit id="gender.0">
-				<source>Mr.</source>
-			</trans-unit>
-			<trans-unit id="gender.1">
-				<source>Mrs.</source>
-			</trans-unit>
-			<trans-unit id="gender.2">
-				<source>diverse</source>
-			</trans-unit>
-			<trans-unit id="fullSalutation">
-				<source>Salutation and name</source>
-			</trans-unit>
-			<trans-unit id="title">
-				<source>Title</source>
-			</trans-unit>
-			<trans-unit id="name">
-				<source>Full name</source>
-			</trans-unit>
-			<trans-unit id="firstName">
-				<source>First name</source>
-			</trans-unit>
-			<trans-unit id="lastName">
-				<source>Last name</source>
-			</trans-unit>
-			<trans-unit id="address">
-				<source>Street</source>
-			</trans-unit>
-			<trans-unit id="zip">
-				<source>ZIP</source>
-			</trans-unit>
-			<trans-unit id="city">
-				<source>City</source>
-				<target>Ort</target>
-			</trans-unit>
-			<trans-unit id="zone">
-				<source>County/Region</source>
-			</trans-unit>
-			<trans-unit id="country">
-				<source>Country</source>
-			</trans-unit>
-			<trans-unit id="email">
-				<source>Email</source>
-			</trans-unit>
-			<trans-unit id="www">
-				<source>Website</source>
-			</trans-unit>
-			<trans-unit id="telephone">
-				<source>Phone number</source>
-			</trans-unit>
-			<trans-unit id="dateOfBirth">
-				<source>Date of birth</source>
-			</trans-unit>
-			<trans-unit id="status">
-				<source>Job status</source>
-			</trans-unit>
-			<trans-unit id="status.1">
-				<source>student</source>
-				<target>in Ausbildung</target>
-			</trans-unit>
-			<trans-unit id="status.2">
-				<source>job seeking (full time)</source>
-			</trans-unit>
-			<trans-unit id="status.3">
-				<source>working</source>
-			</trans-unit>
-			<trans-unit id="status.4">
-				<source>retired</source>
-			</trans-unit>
-			<trans-unit id="status.5">
-				<source>job seeking (part time)</source>
-			</trans-unit>
-			<trans-unit id="userGroup">
-				<source>User group</source>
-			</trans-unit>
-			<trans-unit id="comments">
-				<source>Comments</source>
-			</trans-unit>
-			<trans-unit id="termsAcknowledged">
-				<source>Terms &amp; conditions</source>
-			</trans-unit>
-			<trans-unit id="termsAcknowledgedLinkTitle">
-				<source>terms &amp; conditions</source>
-			</trans-unit>
-			<trans-unit id="consentToTermsAndConditions">
-				<source>I consent to the %1$s.</source>
-			</trans-unit>
-			<trans-unit id="privacy">
-				<source>Privacy policy agreement</source>
-			</trans-unit>
-			<trans-unit id="privacy.long">
-				<source>
-					I consent that the data I enter will be stored electronically.
-					You can withdraw your consent for the future via email at any time.
-				</source>
-			</trans-unit>
-			<trans-unit id="captcha.question">
-				<source>Are you human?</source>
-			</trans-unit>
-			<trans-unit id="captcha.answer.yes">
-				<source>Yes, I am human.</source>
-			</trans-unit>
-			<trans-unit id="captcha.answer.no">
-				<source>No, I am not human.</source>
-			</trans-unit>
-			<trans-unit id="captcha.validationError">
-				<source>Please confirm that you are human.</source>
-			</trans-unit>
-			<trans-unit id="saveAndContinue">
-				<source>Save and continue</source>
-			</trans-unit>
-			<trans-unit id="alert.userCreatedAndLoggedIn">
-				<source>The user has been created, and you now are logged in as the new user.</source>
-			</trans-unit>
-			<trans-unit id="alert.userCreatedNotLoggedIn">
-				<source>
-					The user has been created, but the automatic login with the new user was not successful.
-				</source>
-			</trans-unit>
-			<trans-unit id="alert.userCreatedWithoutLogin">
-				<source>The user has been created.</source>
-			</trans-unit>
-		</body>
-	</file>
+  <file source-language="en" datatype="plaintext" original="messages">
+    <header/>
+    <body>
+      <trans-unit id="plugin.withoutAutologin">
+        <source>One-time FE account creator without autologin</source>
+      </trans-unit>
+      <trans-unit id="plugin.fieldsToShow">
+        <source>FE user fields in the form</source>
+      </trans-unit>
+      <trans-unit id="plugin.requiredFields">
+        <source>Required fields</source>
+      </trans-unit>
+      <trans-unit id="plugin.systemFolderForNewUsers">
+        <source>Folder for the new FE user records</source>
+      </trans-unit>
+      <trans-unit id="plugin.groupsForNewUsers">
+        <source>Groups for the new FE users</source>
+      </trans-unit>
+      <trans-unit id="plugin.captcha">
+        <source>Protect the form against spam with a CAPTCHA</source>
+      </trans-unit>
+      <trans-unit id="plugin.termsAndConditionsPage">
+        <source>Page with the terms &amp; conditions</source>
+      </trans-unit>
+      <trans-unit id="userDataLegend">
+        <source>Your personal data</source>
+      </trans-unit>
+      <trans-unit id="company">
+        <source>Company</source>
+      </trans-unit>
+      <trans-unit id="department">
+        <source>Department</source>
+      </trans-unit>
+      <trans-unit id="vatIn">
+        <source>VAT identification number</source>
+      </trans-unit>
+      <trans-unit id="gender">
+        <source>Gender</source>
+      </trans-unit>
+      <trans-unit id="gender.99">
+        <source>(none provided)</source>
+      </trans-unit>
+      <trans-unit id="gender.0">
+        <source>Mr.</source>
+      </trans-unit>
+      <trans-unit id="gender.1">
+        <source>Mrs.</source>
+      </trans-unit>
+      <trans-unit id="gender.2">
+        <source>diverse</source>
+      </trans-unit>
+      <trans-unit id="fullSalutation">
+        <source>Salutation and name</source>
+      </trans-unit>
+      <trans-unit id="title">
+        <source>Title</source>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Full name</source>
+      </trans-unit>
+      <trans-unit id="firstName">
+        <source>First name</source>
+      </trans-unit>
+      <trans-unit id="lastName">
+        <source>Last name</source>
+      </trans-unit>
+      <trans-unit id="address">
+        <source>Street</source>
+      </trans-unit>
+      <trans-unit id="zip">
+        <source>ZIP</source>
+      </trans-unit>
+      <trans-unit id="city">
+        <source>City</source>
+        <target>Ort</target>
+      </trans-unit>
+      <trans-unit id="zone">
+        <source>County/Region</source>
+      </trans-unit>
+      <trans-unit id="country">
+        <source>Country</source>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>Email</source>
+      </trans-unit>
+      <trans-unit id="www">
+        <source>Website</source>
+      </trans-unit>
+      <trans-unit id="telephone">
+        <source>Phone number</source>
+      </trans-unit>
+      <trans-unit id="dateOfBirth">
+        <source>Date of birth</source>
+      </trans-unit>
+      <trans-unit id="status">
+        <source>Job status</source>
+      </trans-unit>
+      <trans-unit id="status.1">
+        <source>student</source>
+        <target>in Ausbildung</target>
+      </trans-unit>
+      <trans-unit id="status.2">
+        <source>job seeking (full time)</source>
+      </trans-unit>
+      <trans-unit id="status.3">
+        <source>working</source>
+      </trans-unit>
+      <trans-unit id="status.4">
+        <source>retired</source>
+      </trans-unit>
+      <trans-unit id="status.5">
+        <source>job seeking (part time)</source>
+      </trans-unit>
+      <trans-unit id="userGroup">
+        <source>User group</source>
+      </trans-unit>
+      <trans-unit id="comments">
+        <source>Comments</source>
+      </trans-unit>
+      <trans-unit id="termsAcknowledged">
+        <source>Terms &amp; conditions</source>
+      </trans-unit>
+      <trans-unit id="termsAcknowledgedLinkTitle">
+        <source>terms &amp; conditions</source>
+      </trans-unit>
+      <trans-unit id="consentToTermsAndConditions">
+        <source>I consent to the %1$s.</source>
+      </trans-unit>
+      <trans-unit id="privacy">
+        <source>Privacy policy agreement</source>
+      </trans-unit>
+      <trans-unit id="privacy.long">
+        <source>
+          I consent that the data I enter will be stored electronically.
+          You can withdraw your consent for the future via email at any time.
+        </source>
+      </trans-unit>
+      <trans-unit id="captcha.question">
+        <source>Are you human?</source>
+      </trans-unit>
+      <trans-unit id="captcha.answer.yes">
+        <source>Yes, I am human.</source>
+      </trans-unit>
+      <trans-unit id="captcha.answer.no">
+        <source>No, I am not human.</source>
+      </trans-unit>
+      <trans-unit id="captcha.validationError">
+        <source>Please confirm that you are human.</source>
+      </trans-unit>
+      <trans-unit id="saveAndContinue">
+        <source>Save and continue</source>
+      </trans-unit>
+      <trans-unit id="alert.userCreatedAndLoggedIn">
+        <source>The user has been created, and you now are logged in as the new user.</source>
+      </trans-unit>
+      <trans-unit id="alert.userCreatedNotLoggedIn">
+        <source>
+          The user has been created, but the automatic login with the new user was not successful.
+        </source>
+      </trans-unit>
+      <trans-unit id="alert.userCreatedWithoutLogin">
+        <source>The user has been created.</source>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>
