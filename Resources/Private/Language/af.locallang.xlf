@@ -173,13 +173,13 @@
       </trans-unit>
       <trans-unit id="privacy.long">
         <source>
-					I consent that the data I enter will be stored electronically.
-					You can withdraw your consent for the future via email at any time.
-				</source>
+          I consent that the data I enter will be stored electronically.
+          You can withdraw your consent for the future via email at any time.
+        </source>
         <target state="needs-translation">
-					I consent that the data I enter will be stored electronically.
-					You can withdraw your consent for the future via email at any time.
-				</target>
+          I consent that the data I enter will be stored electronically.
+          You can withdraw your consent for the future via email at any time.
+        </target>
       </trans-unit>
       <trans-unit id="captcha.question">
         <source>Are you human?</source>
@@ -207,11 +207,11 @@
       </trans-unit>
       <trans-unit id="alert.userCreatedNotLoggedIn">
         <source>
-					The user has been created, but the automatic login with the new user was not successful.
-				</source>
+          The user has been created, but the automatic login with the new user was not successful.
+        </source>
         <target state="needs-translation">
-					The user has been created, but the automatic login with the new user was not successful.
-				</target>
+          The user has been created, but the automatic login with the new user was not successful.
+        </target>
       </trans-unit>
       <trans-unit id="alert.userCreatedWithoutLogin">
         <source>The user has been created.</source>
