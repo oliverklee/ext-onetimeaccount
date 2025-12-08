@@ -9,9 +9,6 @@ namespace OliverKlee\Onetimeaccount\Configuration;
  */
 class FlexForms
 {
-    /**
-     * @var array<int, non-empty-string>
-     */
     protected const AVAILABLE_FIELDS = [
         'company',
         'department',

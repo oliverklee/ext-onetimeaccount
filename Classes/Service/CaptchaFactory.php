@@ -15,14 +15,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CaptchaFactory implements SingletonInterface
 {
-    /**
-     * @var non-empty-string
-     */
     private const ADDITIONAL_SECRET = 'onetimeaccount-captcha';
-
-    /**
-     * @var non-empty-string
-     */
     private const DATE_FORMAT = 'Y-m-d H:i:s';
 
     /**

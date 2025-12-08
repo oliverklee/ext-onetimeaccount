@@ -16,9 +16,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
  */
 final class UserValidatorTest extends FunctionalTestCase
 {
-    /**
-     * @var array<int, non-empty-string>
-     */
     private const VALIDATABLE_FIELDS = [
         'company',
         'department',

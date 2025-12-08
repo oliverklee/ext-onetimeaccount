@@ -19,20 +19,9 @@ final class CaptchaFactoryTest extends UnitTestCase
 {
     protected bool $resetSingletonInstances = true;
 
-    /**
-     * @var non-empty-string
-     */
     private const DATE_FORMAT = 'Y-m-d H:i:s';
-
-    /**
-     * @var non-empty-string
-     */
     private const ENCRYPTION_KEY = '$argon2i$v=19$m=65536,t=16,'
         . 'p=1$dXBmSUYva2EzT2hZZEVEUA$1JtKq8v7WusoVuZ9z8BuIPP0tw03gV9CwySkaZE+DX0';
-
-    /**
-     * @var non-empty-string
-     */
     private const ADDITIONAL_SECRET = 'onetimeaccount-captcha';
 
     private Context $context;

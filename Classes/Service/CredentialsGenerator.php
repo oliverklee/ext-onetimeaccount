@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class CredentialsGenerator implements SingletonInterface
 {
     /**
-     * @var positive-int needs to be an even number
+     * needs to be an even number
      */
     private const PASSWORD_LENGTH = 32;
 
