@@ -171,15 +171,13 @@
         <source>Privacy policy agreement</source>
         <target state="final">Zustimmung zu den Datenschutzbestimmungen</target>
       </trans-unit>
-      <trans-unit id="privacy.long">
+      <trans-unit id="privacy.long" approved="yes">
         <source>
           I consent that the data I enter will be stored electronically.
           You can withdraw your consent for the future via email at any time.
         </source>
-        <target state="needs-translation">
-          I consent that the data I enter will be stored electronically.
-          You can withdraw your consent for the future via email at any time.
-        </target>
+        <target state="final">Ich stimme zu, dass meine Angaben und Daten elektronisch erhoben und gespeichert werden.
+Sie können Ihre Einwilligung jederzeit für die Zukunft per E-Mail widerrufen.</target>
       </trans-unit>
       <trans-unit id="captcha.question" approved="yes">
         <source>Are you human?</source>
@@ -205,13 +203,11 @@
         <source>The user has been created, and you now are logged in as the new user.</source>
         <target state="final">Der User wurde angelegt, und Sie sind jetzt als der neue User eingeloggt.</target>
       </trans-unit>
-      <trans-unit id="alert.userCreatedNotLoggedIn">
+      <trans-unit id="alert.userCreatedNotLoggedIn" approved="yes">
         <source>
           The user has been created, but the automatic login with the new user was not successful.
         </source>
-        <target state="needs-translation">
-          The user has been created, but the automatic login with the new user was not successful.
-        </target>
+        <target state="final">Der User wurde angelegt, aber der automatische Login mit dem neuen User ist fehlgeschlagen.</target>
       </trans-unit>
       <trans-unit id="alert.userCreatedWithoutLogin" approved="yes">
         <source>The user has been created.</source>
